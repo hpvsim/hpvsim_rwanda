@@ -136,8 +136,8 @@ if __name__ == '__main__':
 
     # Make a list of what to run, comment out anything you don't want to run
     to_run = [
-        # 'run_single',
-        'run_scenario',
+        'run_single',
+        # 'run_scenario',
     ]
 
     location='rwanda'
