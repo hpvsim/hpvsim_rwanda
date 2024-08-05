@@ -162,28 +162,17 @@ if __name__ == '__main__':
     # Run and plot a single simulation
     # Takes <1min to run
     if 'run_single' in to_run:
-        sim = run_sim(location=location, calib_pars=calib_pars, end=2025, debug=debug)  # Run the simulation
+        sim = run_sim(location=location, calib_pars=calib_pars, end=2060, debug=debug)  # Run the simulation
         sim.plot()  # Plot the simulation
-
-    # Example of how to run a scenario with and without vaccination
-    # Takes ~2min to run
-    if 'run_scenario' in to_run:
-        sim_baseline = make_sim(location=location, calib_pars=calib_pars, end=2060)
-        sim_scenario = make_sim(location=location, calib_pars=calib_pars, end=2060, interventions=routine_vx)
-        msim = hpv.MultiSim(sims=[sim_baseline, sim_scenario])  # Make a multisim for running in parallel
-        msim.run(verbose=0.1)
 
         # Now plot cancers with & without vaccination
         pl.figure()
-        res0 = msim.sims[0].results
-        res1 = msim.sims[1].results
-        pl.plot(res0['year'][60:], res0['cancer_incidence'][60:], label='No vaccination')
-        pl.plot(res0['year'][60:], res1['cancer_incidence'][60:], color='r', label='With vaccination')
+        si = 60
+        res = sim.results
+        pl.plot(res['year'][si:], res['asr_cancer_incidence'][si:], label='Residual burden')
         pl.legend()
-        pl.title('Cancer incidence')
+        pl.title('ASR cancer incidence')
         pl.show()
-
-    # To run more complex scenarios, you may want to set them up in a separate file
 
     T.toc('Done')  # Print out how long the run took
 
