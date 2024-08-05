@@ -111,7 +111,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.1, screen_ch
     txv_prod = hpv.default_tx('txvx2')
     txv_prod.df = pd.read_csv('txvx_pars.csv')
     txv = hpv.linked_txvx(
-        prob=1.0,
+        prob=future_treat_cov,
         product=txv_prod,
         eligibility=txv_eligible,
         label='txv'
