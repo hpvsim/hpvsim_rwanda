@@ -36,19 +36,14 @@ def make_st_scenarios():
 
     # Baseline
     scendict['Baseline'] = make_st()
-    scendict['TxV with 10% screening'] = make_st(
-        future_screen_cov=0.1,
-        treat_change_year=2030
-    )
 
-    scendict['TxV with 50% screening'] = make_st(
-        future_screen_cov=0.5,
-        treat_change_year=2030
-    )
-    scendict['TxV with 90% screening'] = make_st(
-        future_screen_cov=0.9,
-        treat_change_year=2030
-    )
+    for future_screen_cov in [0.1, 0.5, 0.9]:
+        for indication, effpars in {'cin': '50/90', 'precin': '90/50'}.items():
+            scendict[f'TxV {effpars} with {int(future_screen_cov*100)}% screening'] = make_st(
+                future_screen_cov=future_screen_cov,
+                tvx_pars=f'txvx_pars_{indication}.csv',
+                treat_change_year=2030
+            )
 
     return scendict
 

@@ -1,0 +1,17 @@
+name,state,genotype,efficacy
+txv,latent,hpv16,0
+txv,latent,hpv18,0
+txv,latent,hi5,0
+txv,latent,ohr,0
+txv,precin,hpv16,0.5
+txv,precin,hpv18,0.5
+txv,precin,hi5,0.5
+txv,precin,ohr,0.5
+txv,cin,hpv16,0.9
+txv,cin,hpv18,0.9
+txv,cin,hi5,0.9
+txv,cin,ohr,0.9
+txv,cancerous,hpv16,0
+txv,cancerous,hpv18,0
+txv,cancerous,hi5,0
+txv,cancerous,ohr,0

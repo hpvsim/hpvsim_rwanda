@@ -18,7 +18,7 @@ def make_vx(end_year=2100):
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.1, screen_change_year=2025,
             start_year=2020, end_year=2100,
-            prev_treat_cov=0.3, future_treat_cov=0.7, treat_change_year=2100):
+            prev_treat_cov=0.3, txv_pars=None, future_treat_cov=0.7, treat_change_year=2100):
     """
     Make screening and treatment interventions
     """
@@ -109,7 +109,11 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.1, screen_ch
 
     txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
     txv_prod = hpv.default_tx('txvx2')
-    txv_prod.df = pd.read_csv('txvx_pars.csv')
+    if txv_pars is not None:
+        if isinstance(txv_pars, str):
+            txv_prod.df = pd.read_csv(txv_pars)
+        elif isinstance(txv_pars, pd.DataFrame):
+            txv_prod.df = txv_pars
     txv = hpv.linked_txvx(
         prob=future_treat_cov,
         product=txv_prod,
