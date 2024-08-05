@@ -1,0 +1,16 @@
+name,state,genotype,result,probability
+txv_assigner,susceptible,all,txv,0
+txv_assigner,susceptible,all,radiation,0
+txv_assigner,susceptible,all,none,1
+txv_assigner,latent,all,txv,0
+txv_assigner,latent,all,radiation,0
+txv_assigner,latent,all,none,1
+txv_assigner,precin,all,txv,1
+txv_assigner,precin,all,radiation,0
+txv_assigner,precin,all,none,0
+txv_assigner,cin,all,txv,1
+txv_assigner,cin,all,radiation,0
+txv_assigner,cin,all,none,0
+txv_assigner,cancerous,all,txv,0
+txv_assigner,cancerous,all,radiation,1
+txv_assigner,cancerous,all,none,0
