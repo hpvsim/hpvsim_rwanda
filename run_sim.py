@@ -8,6 +8,8 @@ import numpy as np
 import sciris as sc
 import hpvsim as hpv
 
+from interventions import make_st
+
 # %% Settings and filepaths
 # Debug switch
 debug = 0  # Run with smaller population sizes and in serial
@@ -19,7 +21,7 @@ save_plots = True
 
 
 # %% Simulation creation functions
-def make_sim(location=None, calib_pars=None, debug=0, interventions=None, analyzers=None, datafile=None, seed=1, end=2020):
+def make_sim(location=None, calib_pars=None, debug=0, add_vax=True, add_st=True, interventions=None, analyzers=None, datafile=None, seed=1, end=2025):
     """
     Define parameters, analyzers, and interventions for the simulation
     """
@@ -88,6 +90,18 @@ def make_sim(location=None, calib_pars=None, debug=0, interventions=None, analyz
         pars = sc.mergedicts(pars, calib_pars)
 
     # Interventions
+    if add_vax:
+        interventions = sc.autolist(interventions)
+        vx_years = np.arange(2011, end)
+        scaleup = [.2, .4, .6, .8, .9]
+        final_cov = 0.9
+        vx_cov = np.concatenate([scaleup+[final_cov]*(len(vx_years)-len(scaleup))])
+        routine_vx = hpv.routine_vx(product='bivalent', age_range=[11, 12], prob=vx_cov, years=vx_years)
+        interventions += routine_vx
+    if add_st:
+        interventions = sc.autolist(interventions)
+        interventions += make_st()
+
     sim = hpv.Sim(pars=pars, interventions=interventions, analyzers=analyzers, datafile=datafile)
 
     return sim
@@ -96,12 +110,14 @@ def make_sim(location=None, calib_pars=None, debug=0, interventions=None, analyz
 # %% Simulation running functions
 def run_sim(
         location=None, analyzers=None, interventions=None, debug=0, seed=1, verbose=0.2,
-        do_save=False, end=2020, calib_pars=None, meta=None):
+        do_save=False, end=2020, add_vax=True, add_st=True, calib_pars=None, meta=None):
 
     # Make sim
     sim = make_sim(
         location=location,
         debug=debug,
+        add_vax=add_vax,
+        add_st=add_st,
         interventions=interventions,
         analyzers=analyzers,
         calib_pars=calib_pars,
@@ -140,19 +156,18 @@ if __name__ == '__main__':
         # 'run_scenario',
     ]
 
-    location='rwanda'
+    location = 'rwanda'
     calib_pars = sc.loadobj(f'results/{location}_pars_nov06.obj')
 
     # Run and plot a single simulation
     # Takes <1min to run
     if 'run_single' in to_run:
-        sim = run_sim(location=location, calib_pars=calib_pars, end=2020, debug=debug)  # Run the simulation
+        sim = run_sim(location=location, calib_pars=calib_pars, end=2025, debug=debug)  # Run the simulation
         sim.plot()  # Plot the simulation
 
     # Example of how to run a scenario with and without vaccination
     # Takes ~2min to run
     if 'run_scenario' in to_run:
-        routine_vx = hpv.routine_vx(product='bivalent', age_range=[9, 10], prob=0.9, start_year=2025)
         sim_baseline = make_sim(location=location, calib_pars=calib_pars, end=2060)
         sim_scenario = make_sim(location=location, calib_pars=calib_pars, end=2060, interventions=routine_vx)
         msim = hpv.MultiSim(sims=[sim_baseline, sim_scenario])  # Make a multisim for running in parallel
