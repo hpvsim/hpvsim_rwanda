@@ -42,7 +42,7 @@ def run_calib(location=None, n_trials=None, n_workers=None, do_plot=False, do_sa
         'data/rwanda_asr_cancer_incidence.csv',
     ]
     
-    # Update calibration parameters based on Rwanda data
+    # Update calibration parameters based on Rwanda data (THESE ARE STILL VALUE FOR ZAMBIA AND NEED TO BE UPDATED)
     calib_pars = dict(
         beta=[0.04, 0.02, 0.5, 0.02],
         own_imm_hr=[0.6, 0.3, 1, 0.05],
