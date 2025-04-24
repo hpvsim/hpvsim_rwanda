@@ -1,5 +1,5 @@
 """
-This file is used to run calibrations for TxV 10-country analysis.
+This file is used to run calibrations for TxV in Rwanda.
 
 Instructions: Go to the CONFIGURATIONS section on lines 29-36 to set up the script before running it.
 """
@@ -24,16 +24,16 @@ import run_sim as rs
 
 # CONFIGURATIONS TO BE SET BY USERS BEFORE RUNNING
 to_run = [
-    # 'run_calibration',  # Make sure this is uncommented if you want to _run_ the calibrations (usually on VMs)
+    'run_calibration',  # Make sure this is uncommented if you want to _run_ the calibrations (usually on VMs)
     'plot_calibration',  # Make sure this is uncommented if you want to _plot_ the calibrations (usually locally)
 ]
-debug = False  # If True, this will do smaller runs that can be run locally for debugging
+debug = True  # If True, this will do smaller runs that can be run locally for debugging
 do_save = True
 
 # Run settings for calibration (dependent on debug)
 n_trials = [15000, 10][debug]  # How many trials to run for calibration
 n_workers = [40, 1][debug]  # How many cores to use
-storage = ["mysql://hpvsim_user@localhost/hpvsim_db", None][debug]  # Storage for calibrations
+storage = "D:/TxV_modeling"  # Storage for calibrations 
 
 
 ########################################################################
@@ -46,7 +46,7 @@ def make_priors():
         dur_cin=dict(par1=[14, 5, 25, 0.5],
                      par2=[20, 10, 25, 0.5])
     )
-
+                                             # in the code below why HPV16 has custom parameters distinct from the others? and why "rel_beta" isnt defined for HPV16
     genotype_pars = dict(
         hpv18=sc.dcp(default),
         hi5=sc.dcp(default),
@@ -57,24 +57,25 @@ def make_priors():
                          par2=[20, 10, 25, 0.5])
         ),
     )
-
+                                                        
     return genotype_pars
-
 
 def run_calib(location=None, n_trials=None, n_workers=None,
               do_plot=False, do_save=True, filestem=''):
     dflocation=location.replace(" ", "_")
-    if location == 'south africa':
-        hiv_datafile = ['data/hiv_incidence_south_africa.csv',
-                        'data/south_africa_female_hiv_mortality.csv',
-                        'data/south_africa_male_hiv_mortality.csv']
-        art_datafile = ['data/south_africa_art_coverage_by_age_males.csv',
-                        'data/south_africa_art_coverage_by_age_females.csv']
+    if location == 'rwanda':
+        hiv_datafile = ['data/hiv_incidence_rwanda.csv',
+                        'data/rwanda_female_hiv_mortality.csv',
+                        'data/rwanda_male_hiv_mortality.csv']
+        art_datafile = ['data/rwanda_art_coverage_by_age_males.csv',
+                        'data/rwanda_art_coverage_by_age_females.csv']
 
     else:
         hiv_datafile = None
         art_datafile = None
 
+                                                         ##### HIV/ART Data: Defined before rs.make_sim() because they are simulation inputs, whias Cancer Data are Defined after rs.make_sim() because they are calibration targets (e.g., the model adjusts parameters to match cancer incidence).
+                                                         ##### Cancer Data are Calibration targets: Used to compare model outputs to real-world data during calibration (not as direct inputs to the simulation).
     sim = rs.make_sim(location, hiv_datafile=hiv_datafile, art_datafile=art_datafile, calib=True, art_sens=True)
     datafiles = [
         f'data/{dflocation}_cancer_cases.csv', #Globocan
@@ -188,7 +189,7 @@ if __name__ == '__main__':
 
     T = sc.timer()
     locations = [
-        'south africa'
+        'rwanda'
     ]
 
 
