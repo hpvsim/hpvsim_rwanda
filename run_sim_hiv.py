@@ -1,13 +1,9 @@
 """
 Define the HPVsim simulation for Rwanda
 """
-#Set the working directory
+#Set the working dir
 import os
 os.chdir('D:\TxV_modeling\hpvsim_rwanda-main')
-
-#To check the working directory in Python
-print(os.getcwd())
-
 
 # Standard imports
 import pylab as pl
@@ -53,7 +49,7 @@ def make_sim(location='rwanda', calib=False, calib_pars=None, debug=debug, add_v
         location=location,
         init_hpv_dist=dict(hpv16=0.4, hpv18=0.25, hi5=0.25, ohr=.1),
         init_hpv_prev={
-            'age_brackets': np.array([12, 17, 24, 34, 44, 64, 80, 150]),     # HPV PREVALENCE FROMNM WHICH COUNTRY ?
+            'age_brackets': np.array([12, 17, 24, 34, 44, 64, 80, 150]),     
             'm': np.array([0.0, 0.25, 0.6, 0.25, 0.05, 0.01, 0.0005, 0]),
             'f': np.array([0.0, 0.35, 0.7, 0.25, 0.05, 0.01, 0.0005, 0]),
         },
@@ -127,10 +123,10 @@ def make_sim(location='rwanda', calib=False, calib_pars=None, debug=debug, add_v
     pars = sc.mergedicts(pars, calib_pars)
     pars['n_agents'] = [20e3, 1e3][debug]
 
-    # # Ensure hiv_pars below are functions after merging to avoid: TypeError: 'float' object is not subscriptable
-    pars.hiv_pars['cd4_trajectory'] = lambda y: np.full_like(np.atleast_1d(y), 0.5, dtype=float)
-    pars.hiv_pars['time_to_hiv_death_scale'] = lambda age: np.ones_like(age, dtype=float)
-    pars.hiv_pars['cd4_reconstitution'] = lambda months_on_ART: np.ones_like(months_on_ART, dtype=float)
+  # # Ensure hiv_pars below are functions after merging to avoid: TypeError: 'float' object is not subscriptable
+    pars.hiv_pars['cd4_trajectory'] = lambda f: (24.363 - 16.672 * f)
+    pars.hiv_pars['time_to_hiv_death_scale'] = lambda a: 21.182
+    pars.hiv_pars['cd4_reconstitution'] = lambda m: 15.584 * m
     # Analyzers
     #analyzers = sc.autolist()
     #interventions = sc.autolist()
@@ -144,22 +140,20 @@ def make_sim(location='rwanda', calib=False, calib_pars=None, debug=debug, add_v
     if add_st:
         interventions = sc.autolist(interventions)
         interventions += make_st(end_year=end)
-
-    if 'cd4_trajectory' in pars.hiv_pars: del pars.hiv_pars['cd4_trajectory']
             
 # Create the sim
     sim = hpv.Sim(pars=pars, interventions=interventions, analyzers=analyzers, rand_seed=seed, datafile=datafile,
                   hiv_datafile=hiv_datafile, art_datafile=art_datafile, end=2100)
 
     return sim
-                 # If you create "sim = hpv.Sim()" ONLY, it will create a Sim object with the DEFAULTS values.
+                 
     
 # %% Simulation running functions
 def run_sim(
         analyzers=None, interventions=None, debug=debug, seed=1, verbose=0.2,
         do_save=False, end=2100, add_vax=True, add_st=True, calib_pars=None, meta=None, hiv_datafile=None, art_datafile=None, location='rwanda'):
 
- # Make arguments                                # WHY THESE DATASETS ARE DEFINED HERE WHILE THEY ARE DEFINED IN CALIBRATION SCRIPT?
+ # Make arguments                                
     if hiv_datafile is None:
         hiv_datafile = ['data/hiv_incidence_rwanda.csv', 
                         'data/rwanda_female_hiv_mortality.csv',
@@ -169,8 +163,7 @@ def run_sim(
          #art_datafile = ['data/rwanda_art_coverage_by_age_males.csv',
             #              'data/rwanda_art_coverage_by_age_females.csv']
          art_datafile = ['data/rwanda_ART_coverage.csv']
-                                                # WHY CANCER DATASETS ARENT DEFINED HERE? 
-            
+                                                
     az1 = hpv.age_results(
         result_args=sc.objdict(            
             cancers_no_hiv=sc.objdict(
@@ -301,12 +294,12 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
     else:
           print("No year data available in cancers_with_hiv")
 
-        #cancers_with_hiv = a.results['cancers_with_hiv'][np.int64(2060)]
-        #cancers_no_hiv = a.results['cancers_no_hiv'][np.int64(2060)]
-        #cancers = a.results['cancers'][np.int64(2060)]
-        #cancer_incidence_no_hiv = a.results['cancer_incidence_no_hiv'][np.int64(2060)]
-        #cancer_incidence_with_hiv = a.results['cancer_incidence_with_hiv'][np.int64(2060)]
-        #cancer_incidence = a.results['cancer_incidence'][np.int64(2060)]
+        cancers_with_hiv = a.results['cancers_with_hiv'][np.int64(2060)]
+        cancers_no_hiv = a.results['cancers_no_hiv'][np.int64(2060)]
+        cancers = a.results['cancers'][np.int64(2060)]
+        cancer_incidence_no_hiv = a.results['cancer_incidence_no_hiv'][np.int64(2060)]
+        cancer_incidence_with_hiv = a.results['cancer_incidence_with_hiv'][np.int64(2060)]
+        cancer_incidence = a.results['cancer_incidence'][np.int64(2060)]
 
 # Perform division
     cancer_ratio = cancer_incidence_with_hiv/cancer_incidence_no_hiv 
