@@ -3,7 +3,7 @@ Define the HPVsim simulation for Rwanda
 """
 #Set the working directory
 import os
-os.chdir('D:\TxV_modeling\hpvsim_rwanda-main')
+# os.chdir('D:\TxV_modeling\hpvsim_rwanda-main')
 
 #To check the working directory in Python
 print(os.getcwd())
@@ -44,8 +44,7 @@ def make_sim(location='rwanda', calib=False, calib_pars=None, debug=debug, add_v
     # Basic parameters
     pars = sc.objdict(
         n_agents=[20e3, 1e3][debug],
-        #dt=[0.25, 1.0][debug],
-        dt=1.0,
+        dt=[0.25, 1.0][debug],
         #start=[1960, 1980][debug],
         start=1980,
         end=end,

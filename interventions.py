@@ -24,6 +24,7 @@ def make_vx(end_year=2100):
     print(f"Years: {len(vx_years)}, Probabilities: {len(vx_cov)}")
     return routine_vx
 
+
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2025,
             start_year=2020, end_year=2100,prev_treat_cov=0.3, txv_pars=None, future_treat_cov=0.7, treat_change_year=2100, dt=0.25):
     """
@@ -80,7 +81,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     [prev_treat_cov] * n_prev_years_treat + [future_treat_cov] * (n_future_years_treat + 1)
  )
 
-
     # Ensure lengths match for treatment coverage
     if len(treat_coverage) > len(treat_years):  # Truncate treat_coverage if it's longer
        treat_coverage = treat_coverage[:len(treat_years)]
@@ -105,41 +105,12 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     assign_treatment = hpv.routine_triage(
         start_year=start_year,
         end_year=treat_change_year,
-        prob=np.ones(len(screen_years)), # Ensure probabilities match years
+        prob=1,
         annual_prob=False,
         product='tx_assigner',
         eligibility=screen_positive,
         label='tx assigner'
     )
-     # Debugging: Print years and probabilities for routine_triage
-    print(f"routine_triage years: {assign_treatment.years}")
-    print(f"routine_triage probabilities: {assign_treatment.prob}")
-    # Manually set years and probabilities if they are None
-    if assign_treatment.years is None:
-       assign_treatment.years = np.arange(start_year, treat_change_year + 1)
-    print(f"Manually set years for assign_treatment: {assign_treatment.years}")
-
-    if assign_treatment.prob is None:
-       assign_treatment.prob = np.ones(len(assign_treatment.years))
-    print(f"Manually set probabilities for assign_treatment: {assign_treatment.prob}")
-
-
-   # Manually align years and probabilities
-    if len(assign_treatment.prob) != len(assign_treatment.years):
-        min_length = min(len(assign_treatment.prob), len(assign_treatment.years))
-        assign_treatment.prob = assign_treatment.prob[:min_length]
-        assign_treatment.years = assign_treatment.years[:min_length]
-        print(f"Adjusted routine_triage years: {assign_treatment.years}")
-        print(f"Adjusted routine_triage probabilities: {assign_treatment.prob}")
-
- 
-
-
-    # Manually set the years attribute if it's not automatically set
-    if assign_treatment.years is None:
-       assign_treatment.years = np.arange(start_year, treat_change_year + 1)
-    print(f"Manually set years for routine_triage: {assign_treatment.years}")
-
 
     # Assign treatment - future
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
@@ -163,8 +134,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     ablation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['ablation']
     ablation = hpv.treat_num(
         prob=treat_coverage,
-        years=np.arange(start_year, end_year + 1),
-        annual_prob=False,
         product='ablation',
         eligibility=ablation_eligible,
         label='ablation'
@@ -176,8 +145,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
                                             + sim.get_intervention('ablation').outcomes['unsuccessful'].tolist()))
     excision = hpv.treat_num(
         prob=treat_coverage,
-        years=np.arange(start_year, end_year + 1),
-        annual_prob=False,
         product='excision',
         eligibility=excision_eligible,
         label='excision'
@@ -189,8 +156,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
                                             + sim.get_intervention('txv_assigner').outcomes['radiation'].tolist()))
     radiation = hpv.treat_num(
         prob=treat_coverage/4,  # assume an additional dropoff in CaTx coverage
-        years=np.arange(start_year, end_year + 1),
-        annual_prob=False,
         product=hpv.radiation(),
         eligibility=radiation_eligible,
         label='radiation'
@@ -209,7 +174,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             txv_prod.df = txv_pars
     txv = hpv.linked_txvx(
         prob=[future_treat_cov] * (end_year - start_year + 1),
-        years=np.arange(start_year, end_year + 1),
         product=txv_prod,
         eligibility=txv_eligible,
         label='txv'
