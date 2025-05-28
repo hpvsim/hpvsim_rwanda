@@ -33,11 +33,11 @@ to_run = [
     'run_calibration',  # Make sure this is uncommented if you want to _run_ the calibrations (usually on VMs)
     'plot_calibration',  # Make sure this is uncommented if you want to _plot_ the calibrations (usually locally)
 ]
-debug = True  # If True, this will do smaller runs that can be run locally for debugging
+debug = False  # If True, this will do smaller runs that can be run locally for debugging
 do_save = True
 
 # Run settings for calibration (dependent on debug)
-n_trials = [20000, 10][debug]  # How many trials to run for calibration
+n_trials = [1, 10][debug]  # How many trials to run for calibration
 n_workers = 1   # How many cores to use
 storage = "sqlite:///D:/TxV_modeling/rwanda_calib.db"  # Storage for calibrations 
 
