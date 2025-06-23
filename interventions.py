@@ -81,8 +81,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # Treatment options
 
     # Ablation treatment
-    print("Ablation Treatment")
-    print(f"Years: {len(treat_years)}, Probabilities: {len(treat_coverage)}")
     ablation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['ablation']
     ablation = hpv.treat_num(
         prob=treat_coverage,
@@ -91,8 +89,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         label='ablation'
     )
     # Excision treatment
-    print("Excision Treatment")
-    print(f"Years: {len(treat_years)}, Probabilities: {len(treat_coverage)}")
     excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner').outcomes['excision'].tolist()
                                             + sim.get_intervention('ablation').outcomes['unsuccessful'].tolist()))
     excision = hpv.treat_num(
@@ -102,8 +98,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         label='excision'
     )
     # Radiation treatment
-    print("Radiation Treatment")
-    print(f"Years: {len(treat_years)}, Probabilities: {len(treat_coverage / 4)}")
     radiation_eligible = lambda sim: list(set(sim.get_intervention('tx assigner').outcomes['radiation'].tolist()
                                             + sim.get_intervention('txv_assigner').outcomes['radiation'].tolist()))
     radiation = hpv.treat_num(
@@ -115,8 +109,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # TxV treatment
     txv_years = np.arange(start_year, end_year + 1)
     txv_prob = [future_treat_cov] * len(txv_years)  # Ensure lengths match
-    print("TxV Treatment")
-    print(f"Years: {len(txv_years)}, Probabilities: {len(txv_prob)}")
     txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
     txv_prod = hpv.default_tx('txvx2')
     if txv_pars is not None:

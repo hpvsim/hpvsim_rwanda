@@ -113,14 +113,14 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filest
                             calib_pars=calib_pars, 
                             genotype_pars=genotype_pars,
                             hiv_pars=hiv_pars,
-                            name=f'{location}_calib',
+                            name=f'rwanda_calib',
                             datafiles=datafiles,
                             extra_sim_result_keys=extra_sim_result_keys,
                             total_trials=n_trials, n_workers=n_workers,
                             storage=storage
                             )
     calib.calibrate()
-    filename = f'{location}_calib{filestem}'
+    filename = f'rwanda_calib{filestem}'
     if do_plot:
         calib.plot(do_save=True, fig_path=f'figures/{filename}.png')
     if do_save:
@@ -141,7 +141,7 @@ def load_calib(do_plot=True, which_pars=0, save_pars=True, filestem=''):
         sc.fonts(add=sc.thisdir(aspath=True) / 'Libertinus Sans')
         sc.options(font='Libertinus Sans')
         fig = calib.plot(res_to_plot=200, plot_type='sns.boxplot', do_save=False)
-        fig.suptitle(f'Calibration results, {location.capitalize()}')
+        fig.suptitle(f'Calibration results')
         fig.tight_layout()
         fig.savefig(f'figures/{filename}.png')
 
