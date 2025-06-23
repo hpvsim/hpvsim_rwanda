@@ -34,7 +34,7 @@ def make_sim(calib=False, calib_pars=None, debug=debug, add_vax=True, add_st=Tru
     Define the simulation
     """
     if end is None: end = 2100
-    if calib: end = 2020
+    if calib: end = 2025
         
     # Basic parameters
     pars = sc.objdict(
@@ -219,7 +219,7 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
         )
         )
 
-        sim = run_sim(calib_pars=calib_pars, end=2100, analyzers=az1, debug=debug)  # Run the simulation
+        sim = run_sim(calib_pars=calib_pars, end=2020, analyzers=az1, debug=debug)  # Run the simulation
         sim.plot()  # Plot the simulation
         hpv.savefig('my-fig.png')  # Save the plot to a file
         a = sim.get_analyzer()
