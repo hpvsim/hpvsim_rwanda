@@ -7,21 +7,13 @@ import hpvsim as hpv
 import numpy as np
 import pandas as pd
 
+
 def make_vx(end_year=2100):
     vx_years = np.arange(2011, end_year + 1)
     scaleup = [.2, .4, .6, .8, .9]
     final_cov = 0.9
     vx_cov = np.concatenate([scaleup+[final_cov]*(len(vx_years)-len(scaleup))])
-    print("vx_years:", len(vx_years), vx_years)
-    print("vx_cov:", len(vx_cov), vx_cov)
-    print("Routine Vaccination")
-    print(f"Years: {len(vx_years)}, Probabilities: {len(vx_cov)}")
-   
-    assert len(vx_years) == len(vx_cov)
-
     routine_vx = hpv.routine_vx(product='bivalent', age_range=[11, 12], prob=vx_cov, years=vx_years)
-    print("Routine Vaccination")
-    print(f"Years: {len(vx_years)}, Probabilities: {len(vx_cov)}")
     return routine_vx
 
 
@@ -30,63 +22,23 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     """
     Make screening and treatment interventions
     """
-    print("end_year:", end_year)
-    
     age_range = [30, 50]
-    len_age_range = (age_range[1]-age_range[0])/2
 
     # Determine screening years
     screen_years = np.arange(start_year, end_year + 1)
     n_prev_years = screen_change_year - start_year + 1
     n_future_years = end_year - screen_change_year  
-    print("start_year:", start_year)
-    print("screen_change_year:", screen_change_year)
-    print("end_year:", end_year)
-    print("n_prev_years:", n_prev_years)
-    print("n_future_years:", n_future_years)
-    print("screen_years:", len(screen_years), screen_years)
-    
+
     # Define screening coverage
     screen_cov = np.array([prev_screen_cov]*n_prev_years+[future_screen_cov]*n_future_years)
-    # Debugging: Print lengths of screen_years and screen_cov
-    print(f"Length of screen_years: {len(screen_years)}")
-    print(f"Length of screen_cov: {len(screen_cov)}")
-
- # Ensure lengths match
-    if len(screen_cov) > len(screen_years):  # Truncate screen_cov if it's longer
-        screen_cov = screen_cov[:len(screen_years)]
-    elif len(screen_years) > len(screen_cov):  # Extend screen_cov if it's shorter
-        screen_cov = np.append(screen_cov, [screen_cov[-1]] * (len(screen_years) - len(screen_cov)))
-    
-    print(f"Adjusted Length of screen_cov: {len(screen_cov)}")
-
-    print("screen_years:", len(screen_years), "screen_cov:", len(screen_cov))
-    print("screen_cov:", len(screen_cov), screen_cov)
-    assert len(screen_years) == len(screen_cov)
-
-    # Calculate annual screening probability
     model_annual_screen_prob = 1 - (1 - screen_cov)**(1/1) # 1 year of screening
-    # Interpolate prob to match the simulation's time step
-    #timepoints = np.arange(start_year, end_year + dt, dt)  # Generate timepoints based on dt
-    #model_annual_screen_prob = np.interp(timepoints, screen_years, model_annual_screen_prob)
-    print(f"Length of model_annual_screen_prob: {len(model_annual_screen_prob)}")
 
     # Determine treatment coverage
     treat_years = np.arange(start_year, end_year + 1)  # Define treat_years here
     treat_change_year = min(treat_change_year, end_year)
     n_prev_years_treat = treat_change_year - start_year
     n_future_years_treat = end_year - treat_change_year 
-    #treat_coverage = np.array([prev_treat_cov]*n_prev_years_treat+[future_treat_cov]*n_future_years_treat)
-    treat_coverage = np.array(
-    [prev_treat_cov] * n_prev_years_treat + [future_treat_cov] * (n_future_years_treat + 1)
- )
-
-    # Ensure lengths match for treatment coverage
-    if len(treat_coverage) > len(treat_years):  # Truncate treat_coverage if it's longer
-       treat_coverage = treat_coverage[:len(treat_years)]
-    elif len(treat_years) > len(treat_coverage):  # Extend treat_coverage if it's shorter
-       treat_coverage = np.append(treat_coverage, [treat_coverage[-1]] * (len(treat_years) - len(treat_coverage)))
-    print(f"Adjusted Length of treat_coverage: {len(treat_coverage)}")
+    treat_coverage = np.array([prev_treat_cov] * n_prev_years_treat + [future_treat_cov] * (n_future_years_treat + 1))
 
     # Routine screening
     screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \

@@ -1,14 +1,14 @@
 """
 This file is used to run calibrations for TxV in Rwanda.
-
 Instructions: Go to the CONFIGURATIONS section on lines 29-36 to set up the script before running it.
 """
-#Set the working directory
-import os
-os.chdir('D:\TxV_modeling\hpvsim_rwanda-main')
 
-#To check the working directory in Python
-print(os.getcwd())
+import os
+
+# # Set the working directory
+# os.chdir('D:\TxV_modeling\hpvsim_rwanda-main')
+# # To check the working directory in Python
+# print(os.getcwd())
 
 
 # Additions to handle numpy multithreading
@@ -31,15 +31,15 @@ import run_sim_hiv as rs
 # CONFIGURATIONS TO BE SET BY USERS BEFORE RUNNING
 to_run = [
     'run_calibration',  # Make sure this is uncommented if you want to _run_ the calibrations (usually on VMs)
-    'plot_calibration',  # Make sure this is uncommented if you want to _plot_ the calibrations (usually locally)
+    # 'plot_calibration',  # Make sure this is uncommented if you want to _plot_ the calibrations (usually locally)
 ]
 debug = False  # If True, this will do smaller runs that can be run locally for debugging
 do_save = True
 
 # Run settings for calibration (dependent on debug)
-n_trials = [1, 10][debug]  # How many trials to run for calibration
-n_workers = 1   # How many cores to use
-storage = "sqlite:///D:/TxV_modeling/rwanda_calib.db"  # Storage for calibrations 
+n_trials = [10000, 10][debug]  # How many trials to run for calibration
+n_workers = 100   # How many cores to use
+storage = None
 
 ########################################################################
 # Run calibration
@@ -48,108 +48,46 @@ def make_priors():
                                                       
     return
 
-def run_calib(location=None, n_trials=None, n_workers=None,
-              do_plot=False, do_save=True, filestem=''):
-    dflocation=location.replace(" ", "_")
-    if location == 'rwanda':
-        hiv_datafile = ['data/hiv_incidence_rwanda.csv',
-                        'data/rwanda_female_hiv_mortality.csv',
-                        'data/rwanda_male_hiv_mortality.csv']
-        art_datafile = ['data/rwanda_art_coverage_by_age_males.csv',
-                        'data/rwanda_art_coverage_by_age_females.csv']
+
+def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filestem=''):
 
     hiv_pars = {
         'cd4_trajectory': lambda y: np.full_like(np.atleast_1d(y), 0.5, dtype=float)
     }
-                                                         ##### HIV/ART Data: Defined before rs.make_sim() because they are simulation inputs, whias Cancer Data are Defined after rs.make_sim() because they are calibration targets (e.g., the model adjusts parameters to match cancer incidence).
-                                                    ##### Cancer Data are Calibration targets: Used to compare model outputs to real-world data during calibration (not as direct inputs to the simulation).
-    sim = rs.make_sim(location, art_datafile=art_datafile, hiv_datafile=hiv_datafile, calib=True,add_vax=False, analyzers=[],hiv_pars=hiv_pars
-    )
-    #cd4_traj = sim['hiv_pars'].get('cd4_trajectory', None)
-    #if not callable(cd4_traj):
-       # val = cd4_traj if isinstance(cd4_traj, (float, int)) else 0.5
-        #sim['hiv_pars']['cd4_trajectory'] = lambda y: np.full_like(np.atleast_1d(y), float(val), dtype=float)
+    sim = rs.make_sim(calib=True, add_vax=False, hiv_pars=hiv_pars)
 
-    #sim['hiv_pars']['time_to_hiv_death_scale'] = lambda age: np.ones_like(age) * 1.0
-    #sim['hiv_pars']['cd4_reconstitution'] = lambda months_on_ART: np.ones_like(months_on_ART) * 1.0  
-    #sim.run()
-
-    for intervention in sim['interventions']:
-        print(f"Intervention: {type(intervention).__name__}")
-    if hasattr(intervention, 'years'):
-        print(f"Years: {intervention.years}")
-    if hasattr(intervention, 'prob'):
-        print(f"Probabilities: {intervention.prob}")
-    
+    dataloc = 'data/rwanda'  # Location of data files
     datafiles = [
-        f'data/{dflocation}_cancer_cases.csv', #Globocan
-        f'data/{dflocation}_cancer_incidence_by_age_no_hiv.csv', 
-        f'data/{dflocation}_cancer_incidence_by_age_with_hiv.csv', 
-        f'data/{dflocation}_asr_cancer_incidence.csv',
-        f'data/{dflocation}_cin_types.csv',
-        f'data/{dflocation}_cancer_types.csv',
+        f'{dataloc}_cancer_cases.csv',  # Globocan
+        f'{dataloc}_cancer_incidence_by_age_no_hiv.csv',
+        f'{dataloc}_cancer_incidence_by_age_with_hiv.csv',
+        f'{dataloc}_asr_cancer_incidence.csv',
+        f'{dataloc}_cin_types.csv',
+        f'{dataloc}_cancer_types.csv',
     ]
     
     # Define the calibration parameters
     calib_pars = dict(
         beta=[0.05, 0.02, 0.5, 0.02],
-        own_imm_hr=[0.5, 0.25, 1, 0.05],
-        age_risk=dict(risk=[3.2, 1, 4, 0.1],
-                      age=[38, 30, 45, 1]),
-        # sev_dist=dict(par1=[1, 1, 2, 0.1]),
-        cell_imm_init=dict(par1=[0.2, 0.2, 0.8, 0.05]),
-        # hpv_control_prob=[0,0,1, 0.25],
-        # hpv_reactivation=[0.025, 0, 0.1, 0.025]
     )
-
-    if location is None:
-        sexual_behavior_pars = dict(
-            m_cross_layer=[0.9, 0.5, 0.95, 0.05],
-            m_partners=dict(
-                c=dict(par1=[10, 5, 12, 1])
-            ),
-            f_cross_layer=[0.1, 0.05, 0.5, 0.05],
-            f_partners=dict(
-                c=dict(par1=[1, .5, 2, .1], par2=[.2, .1, 1, .05])
-            )
+    sexual_behavior_pars = dict(
+        m_cross_layer=[0.3, 0.1, 0.7, 0.05],
+        m_partners=dict(
+            c=dict(par1=[0.5, 0.1, 0.6, 0.05])
+        ),
+        f_cross_layer=[0.4, 0.05, 0.7, 0.05],
+        f_partners=dict(
+            c=dict(par1=[0.2, 0.1, 0.6, 0.05])
         )
-    else:
-        sexual_behavior_pars = dict(
-            m_cross_layer=[0.3, 0.1, 0.7, 0.05],
-            m_partners=dict(
-                c=dict(par1=[0.5, 0.1, 0.6, 0.05])
-            ),
-            f_cross_layer=[0.4, 0.05, 0.7, 0.05],
-            f_partners=dict(
-                c=dict(par1=[0.2, 0.1, 0.6, 0.05])
-            )
-        )
+    )
     calib_pars = sc.mergedicts(calib_pars, sexual_behavior_pars)
 
     genotype_pars = dict(
-        hpv16=dict(
-            dur_precin=dict(par1=[3, 1, 10, 0.5], par2=[9, 5, 15, 0.5]),
-            cancer_fn=dict(transform_prob=[2e-3, 1e-3, 3e-3, 2e-4]),
-            cin_fn=dict(k=[.35, .2, .4, 0.01]),
-            dur_cin=dict(par1=[5, 4, 6, 0.5], par2=[20, 16, 24, 0.5]),
-        ),
-        hpv18=dict(
-            dur_precin=dict(par1=[2.5, 1, 10, 0.5], par2=[9, 5, 15, 0.5]),
-            cancer_fn=dict(transform_prob=[2e-3, 1e-3, 3e-3, 2e-4]),
-            cin_fn=dict(k=[.4, .15, .35, 0.01]),
-            dur_cin=dict(par1=[5, 4, 6, 0.5], par2=[20, 16, 24, 0.5]),
-        ),
         hi5=dict(
-            dur_precin=dict(par1=[2.5, 1, 10, 0.5], par2=[9, 5, 15, 0.5]),
-            cancer_fn=dict(transform_prob=[1.5e-3, 0.5e-3, 2.5e-3, 2e-4]),
             cin_fn=dict(k=[.15, .1, .25, 0.01]),
-            dur_cin=dict(par1=[4.5, 3.5, 5.5, 0.5], par2=[20, 16, 24, 0.5]),
         ),
         ohr=dict(
-            dur_precin=dict(par1=[2.5, 1, 10, 0.5], par2=[9, 5, 15, 0.5]),
-            cancer_fn=dict(transform_prob=[1.5e-3, 0.5e-3, 2.5e-3, 2e-4]),
             cin_fn=dict(k=[.15, .1, .25, 0.01]),
-            dur_cin=dict(par1=[4.5, 3.5, 5.5, 0.5], par2=[20, 16, 24, 0.5]),
         ),
     )
 
@@ -162,8 +100,6 @@ def run_calib(location=None, n_trials=None, n_workers=None,
             lt200=[1.5, 2, 5, 0.25],
             gt200=[1.5, 1.25, 3, 0.25]
         ),
-        rel_reactivation_prob=[3, 2, 5, 0.5],
-        #time_to_hiv_death_scale=lambda age: np.ones_like(age) * 1.0  # or whatever scale is appropriate
     )
 
 
@@ -194,12 +130,12 @@ def run_calib(location=None, n_trials=None, n_workers=None,
 
     return sim, calib
 
+
 ########################################################################
 # Load pre-run calibration
 ########################################################################
-def load_calib(location=None, do_plot=True, which_pars=0, save_pars=True, filestem=''):
-    fnlocation = location.replace(' ', '_')
-    filename = f'{fnlocation}_calib{filestem}'
+def load_calib(do_plot=True, which_pars=0, save_pars=True, filestem=''):
+    filename = f'rwanda_calib{filestem}'
     calib = sc.load(f'results/rwanda_calib.obj')
     if do_plot:
         sc.fonts(add=sc.thisdir(aspath=True) / 'Libertinus Sans')
@@ -210,15 +146,8 @@ def load_calib(location=None, do_plot=True, which_pars=0, save_pars=True, filest
         fig.savefig(f'figures/{filename}.png')
 
     if save_pars:
-       pars_path = f'results/{filename}_pars.obj'
-       if os.path.exists(pars_path):
-        calib_pars = sc.load(pars_path)
-    else:
-        print(f"Calibration parameter file {pars_path} not found. Run calibration first.")
-        calib_pars = None 
-    # If you want to save new parameters after calibration, keep this:
-    calib_pars = calib.trial_pars_to_sim_pars(which_pars=which_pars)
-    sc.save(pars_path, calib_pars)
+       calib_pars = calib.trial_pars_to_sim_pars(which_pars=which_pars)
+       sc.save(f'results/rwanda_pars{filestem}.obj', calib_pars)
 
     return calib
 
@@ -227,19 +156,14 @@ def load_calib(location=None, do_plot=True, which_pars=0, save_pars=True, filest
 if __name__ == '__main__':
 
     T = sc.timer()
-    location = 'rwanda'
 
     # Run calibration - usually on VMs
     if 'run_calibration' in to_run:
-        filestem = ''
-        sim, calib = run_calib(location=location, n_trials=n_trials, n_workers=n_workers,
-                                   do_save=do_save, do_plot=False, filestem=filestem)
+        sim, calib = run_calib(n_trials=n_trials, n_workers=n_workers, do_save=do_save)
 
     # Load the calibration, plot it, and save the best parameters -- usually locally
     if 'plot_calibration' in to_run:
-        filestem = ''
-
-        calib = load_calib(location=location, do_plot=True, save_pars=True, filestem=filestem)
+        calib = load_calib(do_plot=True, save_pars=True)
 
         best_par_ind = calib.df.index[0]
         extra_sim_results = calib.extra_sim_results[best_par_ind]
