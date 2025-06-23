@@ -121,7 +121,7 @@ def make_sim(calib=False, calib_pars=None, debug=debug, add_vax=True, add_st=Tru
         pars = sc.mergedicts(pars, calib_pars)
 
     pars = sc.mergedicts(pars, calib_pars)
-    pars['n_agents'] = [20e3, 1e3][debug]
+    pars['n_agents'] = [10e3, 1e3][debug]
 
     # Ensure hiv_pars below are functions after merging to avoid: TypeError: 'float' object is not subscriptable
     pars.hiv_pars['cd4_trajectory'] = lambda f: (24.363 - 16.672 * f)
