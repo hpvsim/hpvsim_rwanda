@@ -26,7 +26,8 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
     # Determine screening years
     screen_years = np.arange(start_year, end_year + 1)
-    prev_years = np.arange(start_year, screen_change_year + 1)
+    final_prev_year = min(screen_change_year, end_year)
+    prev_years = np.arange(start_year, final_prev_year + 1)
     future_years = np.arange(screen_change_year + 1, end_year + 1)
     n_prev_years = len(prev_years)
     n_future_years = len(future_years)
