@@ -27,6 +27,7 @@ import hpvsim as hpv
 
 # Imports from this repository
 import run_sim_hiv as rs
+import utils as ut
 
 # CONFIGURATIONS TO BE SET BY USERS BEFORE RUNNING
 to_run = [
@@ -37,20 +38,16 @@ debug = False  # If True, this will do smaller runs that can be run locally for 
 do_save = True
 
 # Run settings for calibration (dependent on debug)
-n_trials = [10000, 10][debug]  # How many trials to run for calibration
+n_trials = [3000, 10][debug]  # How many trials to run for calibration
 n_workers = 100   # How many cores to use
 storage = None
 
 ########################################################################
 # Run calibration
 ########################################################################
-
 def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filestem=''):
 
-    hiv_pars = {
-        'cd4_trajectory': lambda y: np.full_like(np.atleast_1d(y), 0.5, dtype=float)
-    }
-    sim = rs.make_sim(calib=True, add_vax=False, hiv_pars=hiv_pars)
+    sim = rs.make_sim(calib=True, add_vax=True)
 
     dataloc = 'data/rwanda'  # Location of data files
     datafiles = [
@@ -98,7 +95,6 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filest
         ),
     )
 
-
     # Save some extra sim results
     extra_sim_result_keys = ['cancers', 'cancers_with_hiv', 'cancers_no_hiv',
                              'cancers_by_age_with_hiv', 'cancers_by_age_no_hiv',
@@ -120,7 +116,11 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filest
     if do_plot:
         calib.plot(do_save=True, fig_path=f'figures/{filename}.png')
     if do_save:
-        sc.saveobj(f'results/{filename}.obj', calib)
+        calib_pars = calib.trial_pars_to_sim_pars(which_pars=0)
+        sc.save(f'results/rwanda_pars{filestem}.obj', calib_pars)
+        n_to_save = max(len(calib.sim_results), 100)
+        cal = ut.shrink_calib(calib, n_results=n_to_save)
+        sc.saveobj(f'results/{filename}.obj', cal)
 
     print(f'Best pars are {calib.best_pars}')
 
@@ -130,7 +130,7 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filest
 ########################################################################
 # Load pre-run calibration
 ########################################################################
-def load_calib(do_plot=True, which_pars=0, save_pars=True, filestem=''):
+def load_calib(do_plot=True, filestem=''):
     filename = f'rwanda_calib{filestem}'
     calib = sc.load(f'results/rwanda_calib.obj')
     if do_plot:
@@ -140,10 +140,6 @@ def load_calib(do_plot=True, which_pars=0, save_pars=True, filestem=''):
         fig.suptitle(f'Calibration results')
         fig.tight_layout()
         fig.savefig(f'figures/{filename}.png')
-
-    if save_pars:
-       calib_pars = calib.trial_pars_to_sim_pars(which_pars=which_pars)
-       sc.save(f'results/rwanda_pars{filestem}.obj', calib_pars)
 
     return calib
 
@@ -159,7 +155,7 @@ if __name__ == '__main__':
 
     # Load the calibration, plot it, and save the best parameters -- usually locally
     if 'plot_calibration' in to_run:
-        calib = load_calib(do_plot=True, save_pars=True)
+        calib = load_calib(do_plot=True)
 
         best_par_ind = calib.df.index[0]
         extra_sim_results = calib.extra_sim_results[best_par_ind]
