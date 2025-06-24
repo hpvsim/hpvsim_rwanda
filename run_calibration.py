@@ -41,7 +41,7 @@ do_save = True
 n_trials = [1000, 10][debug]  # How many trials to run for calibration
 n_workers = 100   # How many cores to use
 n_to_save = 100  # How many results to save in the calibration
-storage = None
+storage = ["mysql://hpvsim_user@localhost/hpvsim_db", None][debug]  # Storage for calibrations
 
 ########################################################################
 # Run calibration
