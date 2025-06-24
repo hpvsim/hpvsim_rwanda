@@ -28,7 +28,7 @@ save_plots = True
 # calib=True: run default calibration
 # calib_pars=None: use default calibration parameters
 # calib_pars=calib_pars: use custom calibration parameters
-def make_sim(calib=False, calib_pars=None, debug=debug, add_vax=True, add_st=True, interventions=None,
+def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=True, add_st=True, interventions=None,
             analyzers=None, datafile=None, seed=1, end=2100, hiv_pars=None):
     """
     Define the simulation
@@ -112,7 +112,7 @@ def make_sim(calib=False, calib_pars=None, debug=debug, add_vax=True, add_st=Tru
     # If calibration parameters have been supplied, use them here
     if calib_pars is None:
         # Use defaults
-       calib_pars = sc.loadobj(f'results/rwanda_pars.obj')
+       if use_calib: calib_pars = sc.loadobj(f'results/rwanda_pars.obj')
 
     if hiv_pars is not None:
        pars.hiv_pars = sc.mergedicts(pars.hiv_pars, hiv_pars)
@@ -123,16 +123,15 @@ def make_sim(calib=False, calib_pars=None, debug=debug, add_vax=True, add_st=Tru
     pars = sc.mergedicts(pars, calib_pars)
     pars['n_agents'] = [10e3, 1e3][debug]
 
-    # Ensure hiv_pars below are functions after merging to avoid: TypeError: 'float' object is not subscriptable
-    pars.hiv_pars['cd4_trajectory'] = lambda f: (24.363 - 16.672 * f)
-    pars.hiv_pars['time_to_hiv_death_scale'] = lambda a: 21.182
-    pars.hiv_pars['cd4_reconstitution'] = lambda m: 15.584 * m
+    # # Ensure hiv_pars below are functions after merging to avoid: TypeError: 'float' object is not subscriptable
+    # pars.hiv_pars['cd4_trajectory'] = lambda f: (24.363 - 16.672 * f)
+    # pars.hiv_pars['time_to_hiv_death_scale'] = lambda a: 21.182
+    # pars.hiv_pars['cd4_reconstitution'] = lambda m: 15.584 * m
 
     # Interventions
     if add_vax:
         interventions = sc.autolist(interventions)
         interventions += make_vx(end_year=end)
-        #interventions += [make_vx(start_year=pars['start'], end_year=pars['end'], dt=pars['dt'])]
 
     if add_st:
         interventions = sc.autolist(interventions)
@@ -183,7 +182,7 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
         'run_single',
     ]
 
-    calib_pars = None  # sc.loadobj(f'results/rwanda_calib.obj')
+    use_calib = False
 
     # Run and plot a single simulation
     # Takes <1min to run
@@ -219,7 +218,7 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
         )
         )
 
-        sim = run_sim(calib_pars=calib_pars, end=2020, analyzers=az1, debug=debug)  # Run the simulation
+        sim = run_sim(use_calib=use_calib, end=2025, analyzers=az1, debug=debug)  # Run the simulation
         sim.plot()  # Plot the simulation
         hpv.savefig('my-fig.png')  # Save the plot to a file
         a = sim.get_analyzer()
