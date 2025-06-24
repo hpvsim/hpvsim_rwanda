@@ -98,9 +98,6 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         c=dict(dist='poisson1', par1=0.2),
     )
 
-    # sev_dist parameters
-    pars.sev_dist = dict(dist='normal_pos', par1=1.33, par2=0.2)
-
     # HIV parameters and data
     pars.hiv_pars['art_failure_prob'] = 0.1
     hiv_datafile = ['data/hiv_incidence_rwanda.csv',

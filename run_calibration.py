@@ -57,13 +57,14 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, n_to_s
         f'{dataloc}_cancer_incidence_by_age_no_hiv.csv',
         f'{dataloc}_cancer_incidence_by_age_with_hiv.csv',
         f'{dataloc}_asr_cancer_incidence.csv',
-        f'{dataloc}_cin_types.csv',
+        # f'{dataloc}_cin_types.csv',
         f'{dataloc}_cancer_types.csv',
     ]
     
     # Define the calibration parameters
     calib_pars = dict(
         beta=[0.05, 0.02, 0.5, 0.02],
+        sev_dist=dict(par1=[1, 0.5, 1.5, 0.01]),
     )
     sexual_behavior_pars = dict(
         m_cross_layer=[0.3, 0.1, 0.7, 0.05],
@@ -136,7 +137,7 @@ def load_calib(do_plot=True, filestem=''):
     filename = f'rwanda_calib{filestem}'
     calib = sc.load(f'results/rwanda_calib.obj')
     if do_plot:
-        fig = calib.plot(res_to_plot=n_to_save, plot_type='sns.boxplot', do_save=False)
+        fig = calib.plot(res_to_plot=None, plot_type='sns.boxplot', do_save=False)
         fig.suptitle(f'Calibration results')
         fig.tight_layout()
         fig.savefig(f'figures/{filename}.png')
