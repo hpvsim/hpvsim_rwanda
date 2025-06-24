@@ -31,8 +31,8 @@ import utils as ut
 
 # CONFIGURATIONS TO BE SET BY USERS BEFORE RUNNING
 to_run = [
-    'run_calibration',  # Make sure this is uncommented if you want to _run_ the calibrations (usually on VMs)
-    # 'plot_calibration',  # Make sure this is uncommented if you want to _plot_ the calibrations (usually locally)
+    # 'run_calibration',  # Make sure this is uncommented if you want to _run_ the calibrations (usually on VMs)
+    'plot_calibration',  # Make sure this is uncommented if you want to _plot_ the calibrations (usually locally)
 ]
 debug = False  # If True, this will do smaller runs that can be run locally for debugging
 do_save = True
@@ -47,7 +47,7 @@ storage = None
 ########################################################################
 def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filestem=''):
 
-    sim = rs.make_sim(calib=True, add_vax=True)
+    sim = rs.make_sim(calib=True)
 
     dataloc = 'data/rwanda'  # Location of data files
     datafiles = [
@@ -136,7 +136,7 @@ def load_calib(do_plot=True, filestem=''):
     if do_plot:
         sc.fonts(add=sc.thisdir(aspath=True) / 'Libertinus Sans')
         sc.options(font='Libertinus Sans')
-        fig = calib.plot(res_to_plot=200, plot_type='sns.boxplot', do_save=False)
+        fig = calib.plot(res_to_plot=100, plot_type='sns.boxplot', do_save=False)
         fig.suptitle(f'Calibration results')
         fig.tight_layout()
         fig.savefig(f'figures/{filename}.png')
