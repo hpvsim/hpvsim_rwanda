@@ -100,10 +100,12 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, n_to_s
     )
 
     # Save some extra sim results
-    extra_sim_result_keys = ['cancers', 'cancers_with_hiv', 'cancers_no_hiv',
-                             'cancers_by_age_with_hiv', 'cancers_by_age_no_hiv',
-                             'asr_cancer_incidence', 'cancer_incidence_by_age_with_hiv',
-                             'cancer_incidence_by_age_no_hiv']
+    extra_sim_result_keys = [
+        'cancers', 'cancers_with_hiv', 'cancers_no_hiv',
+        'cancers_by_age_with_hiv', 'cancers_by_age_no_hiv',
+        'asr_cancer_incidence',
+        'cancer_incidence_by_age_with_hiv', 'cancer_incidence_by_age_no_hiv',
+        'art_coverage', 'female_hiv_prevalence', 'male_hiv_prevalence']
 
     calib = hpv.Calibration(sim, 
                             calib_pars=calib_pars, 
