@@ -47,7 +47,7 @@ storage = None  # Use local storage for now
 ########################################################################
 # Run calibration
 ########################################################################
-def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filestem=''):
+def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, n_to_save=None, filestem=''):
 
     sim = rs.make_sim(calib=True, use_calib=False)
 
@@ -151,7 +151,7 @@ if __name__ == '__main__':
 
     # Run calibration - usually on VMs
     if 'run_calibration' in to_run:
-        sim, calib = run_calib(n_trials=n_trials, n_workers=n_workers, do_save=do_save)
+        sim, calib = run_calib(n_trials=n_trials, n_workers=n_workers, n_to_save=n_to_save, do_save=do_save)
 
     # Load the calibration, plot it, and save the best parameters -- usually locally
     if 'plot_calibration' in to_run:
