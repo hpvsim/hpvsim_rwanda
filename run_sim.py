@@ -142,7 +142,7 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
     
 # %% Simulation running functions
 def run_sim(
-        analyzers=None, interventions=None, debug=debug, seed=1, verbose=0.2,
+        analyzers=None, interventions=None, debug=debug, seed=1, verbose=1/4,
         do_save=False, end=None, add_vax=True, add_st=True, use_calib=True):
 
     # Make sim
