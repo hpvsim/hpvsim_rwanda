@@ -29,7 +29,7 @@ save_plots = True
 # calib_pars=None: use default calibration parameters
 # calib_pars=calib_pars: use custom calibration parameters
 def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=True, add_st=True, interventions=None,
-            analyzers=None, datafile=None, seed=1, end=2100, hiv_pars=None):
+            analyzers=None, seed=1, end=2100, hiv_pars=None):
     """
     Define the simulation
     """
@@ -137,9 +137,9 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         interventions = sc.autolist(interventions)
         interventions += make_st(end_year=end)
             
-# Create the sim
-    sim = hpv.Sim(pars=pars, interventions=interventions, analyzers=sc.tolist(analyzers), rand_seed=seed, datafile=datafile,
-                  hiv_datafile=hiv_datafile, art_datafile=art_datafile, end=2100)
+    # Create the sim
+    sim = hpv.Sim(pars=pars, interventions=interventions, analyzers=sc.tolist(analyzers),
+                  hiv_datafile=hiv_datafile, art_datafile=art_datafile)
 
     return sim
                  
