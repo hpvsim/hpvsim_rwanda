@@ -38,9 +38,9 @@ debug = False  # If True, this will do smaller runs that can be run locally for 
 do_save = True
 
 # Run settings for calibration (dependent on debug)
-n_trials = [3000, 10][debug]  # How many trials to run for calibration
+n_trials = [1000, 10][debug]  # How many trials to run for calibration
 n_workers = 100   # How many cores to use
-n_to_save = 300  # How many results to save in the calibration
+n_to_save = 100  # How many results to save in the calibration
 storage = None
 
 ########################################################################
