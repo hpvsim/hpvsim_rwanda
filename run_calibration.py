@@ -48,7 +48,7 @@ storage = None
 ########################################################################
 def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, filestem=''):
 
-    sim = rs.make_sim(calib=True)
+    sim = rs.make_sim(calib=True, use_calib=False)
 
     dataloc = 'data/rwanda'  # Location of data files
     datafiles = [
