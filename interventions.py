@@ -17,7 +17,7 @@ def make_vx(end_year=2100):
     return routine_vx
 
 
-def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2025,
+def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026,
             start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, future_treat_cov=0.7, treat_change_year=2030):
     """
     Make screening and treatment interventions
@@ -53,26 +53,12 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
     assign_treatment = hpv.routine_triage(
         start_year=start_year,
-        end_year=treat_change_year,
+        end_year=final_prev_year,
         prob=1,
         annual_prob=False,
         product='tx_assigner',
         eligibility=screen_positive,
         label='tx assigner'
-    )
-
-    # Assign treatment - future
-    screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
-    txv_assigner = hpv.default_dx('txvx_assigner')
-    txv_assigner.df = pd.read_csv('txv_assigner.csv')
-    txv_assigner.hierarchy = ['radiation', 'txv', 'none']
-    assign_treatment2 = hpv.routine_triage(
-        start_year=treat_change_year,
-        prob=1.0,
-        annual_prob=False,
-        product=txv_assigner,
-        eligibility=screen_positive,
-        label='txv_assigner'
     )
 
     # Treatment options - previous
@@ -94,8 +80,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         label='excision'
     )
     # Radiation treatment
-    radiation_eligible = lambda sim: list(set(sim.get_intervention('tx assigner').outcomes['radiation'].tolist()
-                                            + sim.get_intervention('txv_assigner').outcomes['radiation'].tolist()))
+    radiation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['radiation']
     radiation = hpv.treat_num(
         prob=prev_treat_cov/4,  # assume an additional dropoff in CaTx coverage
         product=hpv.radiation(),
@@ -103,26 +88,50 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         label='radiation'
     )
 
-    # TxV treatment
-    txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
-    txv_prod = hpv.default_tx('txvx2')
-    if txv_pars is not None:
-        if isinstance(txv_pars, str):
-            txv_prod.df = pd.read_csv(txv_pars)
-        elif isinstance(txv_pars, pd.DataFrame):
-            txv_prod.df = txv_pars
-    txv = hpv.linked_txvx(
-        prob=future_treat_cov,
-        product=txv_prod,
-        eligibility=txv_eligible,
-        label='txv'
-    )
-
     st_intvs = [
         screening,
         assign_treatment, ablation, excision, radiation,
-        assign_treatment2, txv
     ]
+
+    # Assign treatment - future
+    if n_future_years > 0:
+        txv_assigner = hpv.default_dx('txvx_assigner')
+        txv_assigner.df = pd.read_csv('txv_assigner.csv')
+        txv_assigner.hierarchy = ['radiation', 'txv', 'none']
+        assign_treatment2 = hpv.routine_triage(
+            start_year=screen_change_year,
+            prob=1.0,
+            annual_prob=False,
+            product=txv_assigner,
+            eligibility=screen_positive,
+            label='txv_assigner'
+        )
+
+        # TxV treatment
+        txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
+        txv_prod = hpv.default_tx('txvx2')
+        if txv_pars is not None:
+            if isinstance(txv_pars, str):
+                txv_prod.df = pd.read_csv(txv_pars)
+            elif isinstance(txv_pars, pd.DataFrame):
+                txv_prod.df = txv_pars
+        txv = hpv.linked_txvx(
+            prob=future_treat_cov,
+            product=txv_prod,
+            eligibility=txv_eligible,
+            label='txv'
+        )
+
+        # Radiation
+        religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
+        radiation2 = hpv.treat_num(
+            prob=prev_treat_cov/4,  # assume an additional dropoff in CaTx coverage
+            product=hpv.radiation(),
+            eligibility=religible,
+            label='radiation'
+        )
+
+        st_intvs += [assign_treatment2, txv, radiation2]
 
     return st_intvs
 

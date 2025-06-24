@@ -38,7 +38,7 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         
     # Basic parameters
     pars = sc.objdict(
-        n_agents=[20e3, 1e3][debug],
+        n_agents=[10e3, 1e3][debug],
         dt=[0.25, 1.0][debug],
         start=[1960, 1980][debug],
         end=end,
@@ -121,7 +121,6 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         pars = sc.mergedicts(pars, calib_pars)
 
     pars = sc.mergedicts(pars, calib_pars)
-    pars['n_agents'] = [10e3, 1e3][debug]
 
     # # Ensure hiv_pars below are functions after merging to avoid: TypeError: 'float' object is not subscriptable
     # pars.hiv_pars['cd4_trajectory'] = lambda f: (24.363 - 16.672 * f)
@@ -129,13 +128,10 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
     # pars.hiv_pars['cd4_reconstitution'] = lambda m: 15.584 * m
 
     # Interventions
-    if add_vax:
-        interventions = sc.autolist(interventions)
-        interventions += make_vx(end_year=end)
+    interventions = sc.autolist(interventions)
 
-    if add_st:
-        interventions = sc.autolist(interventions)
-        interventions += make_st(end_year=end)
+    if add_vax: interventions += make_vx(end_year=end)
+    if add_st: interventions += make_st(end_year=end)
             
     # Create the sim
     sim = hpv.Sim(pars=pars, interventions=interventions, analyzers=sc.tolist(analyzers),
