@@ -93,9 +93,10 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, n_to_s
             gt200=[2.25, 2, 4, 0.25]
         ),
         rel_sev=dict(
-            lt200=[1.5, 2, 5, 0.25],
-            gt200=[1.5, 1.25, 3, 0.25]
+            lt200=[2.25, 1.5, 5, 0.25],
+            gt200=[2.25, 1.5, 5, 0.25]
         ),
+        art_failure_prob=[0.1, 0.05, 0.3, 0.01],  # Probability of ART failure
     )
 
     # Save some extra sim results
