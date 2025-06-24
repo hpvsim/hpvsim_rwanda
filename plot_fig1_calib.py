@@ -26,7 +26,7 @@ if __name__ == '__main__':
     # plot_calib(calib)
 
     ut.set_font(16)
-    fig, axes = pl.subplot(2, 3, figsize=(12, 10))
+    fig, axes = pl.subplots(2, 3, figsize=(12, 10))
     axes = axes.flatten()
     pn = 0
 
