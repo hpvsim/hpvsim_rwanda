@@ -43,6 +43,7 @@ def make_st_scenarios():
             scendict[f'TxV {effpars} with {int(future_screen_cov*100)}% screening'] = make_st(
                 future_screen_cov=future_screen_cov,
                 txv_pars=f'txvx_pars_{indication}.csv',
+                txv=True,
                 screen_change_year=2027,)
 
     return scendict
@@ -66,7 +67,7 @@ def make_vx_scenarios():
         scendict[f'Mass vx {cov_val*100:.0f}%'] = mass_intvs
         hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
         scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
+        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, st=True)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
 
     return scendict

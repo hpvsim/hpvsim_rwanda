@@ -30,8 +30,8 @@ def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=Tru
 
 
 def plot_fig1():
-    ut.set_font(16)
-    fig, axes = pl.subplots(2, 2, figsize=(16, 10))
+    ut.set_font(24)
+    fig, axes = sc.getrowscols(n=5, nrows=3, ncols=2, make=True, remove_extra=True, figsize=(16, 16))
     axes = axes.ravel()
     resname = 'asr_cancer_incidence'
 
@@ -44,9 +44,10 @@ def plot_fig1():
     mbase = msim_dict['Baseline']
     si = sc.findinds(mbase.year, start_year)[0]
     ei = sc.findinds(mbase.year, end_year)[0]
+    pn = 0
 
     # Virus-clearing TxV
-    ax = axes[0]
+    ax = axes[pn]
     this_dict = {
         'No interventions': msim_dict['No interventions'],
         'Status quo': msim_dict['Baseline'],
@@ -64,9 +65,10 @@ def plot_fig1():
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('Virus-clearing TxV')
     ax.legend(loc="upper right", frameon=False)
+    pn += 1
 
     # Lesion-regressing TxV
-    ax = axes[1]
+    ax = axes[pn]
     this_dict = {
         'No interventions': msim_dict['No interventions'],
         'Status quo': msim_dict['Baseline'],
@@ -84,9 +86,31 @@ def plot_fig1():
     ax.set_ylim(bottom=0, top=ymax)
     ax.legend(loc="upper right", frameon=False)
     ax.set_title('Lesion-regressing TxV')
+    pn += 1
+
+    # Scaled-up S&T
+    ax = axes[pn]
+    this_dict = {
+        'No interventions': msim_dict['No interventions'],
+        'Status quo': msim_dict['Baseline'],
+        '10% screening': msim_dict['S&T 10%'],
+        '50% screening': msim_dict['S&T 50%'],
+        '90% screening': msim_dict['S&T 90%'],
+    }
+    vc = sc.vectocolor(3).tolist()
+    colors = ['k']*2 + vc
+    cn = 0
+    for slabel, mres in this_dict.items():
+        ls = ':' if cn == 0 else '-'
+        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], ls=ls, label=slabel)
+        cn += 1
+    ax.set_ylim(bottom=0, top=ymax)
+    ax.set_title('Scaled up screening & POC ablation')
+    ax.legend(loc="upper right", frameon=False)
+    pn += 1
 
     # Mass vax
-    ax = axes[2]
+    ax = axes[pn]
     this_dict = {
         'No interventions': msim_dict['No interventions'],
         'Status quo': msim_dict['Baseline'],
@@ -104,9 +128,10 @@ def plot_fig1():
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('One-time mass screen, treat & vaccinate 20-25yos, 2027')
     ax.legend(loc="upper right", frameon=False)
+    pn += 1
 
     # HIV+ vax
-    ax = axes[3]
+    ax = axes[pn]
     this_dict = {
         'No interventions': msim_dict['No interventions'],
         'Status quo': msim_dict['Baseline'],
