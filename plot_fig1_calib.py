@@ -118,34 +118,29 @@ if __name__ == '__main__':
     ####################
     # Cancers by genotype
     ####################
-    ax = fig.add_subplot(gs1[2])
-    # Plot data
-    datadf = calib.target_data[-1]
-    ydata = datadf.value.values
-    x = np.arange(len(ydata))
+    rkeys = ['precin_genotype_dist', 'cancerous_genotype_dist']
+    rlabels = ['Share of LSILs\nby genotype, 2020',
+               'Share of cancers\nby genotype, 2020']
+    for ri, rkey in enumerate(rkeys):
+        ax = fig.add_subplot(gs1[ri+2])
+        bins = []
+        values = []
+        for run_num, run in enumerate(sim_results):
+            bins += np.arange(4).tolist()
+            values += run[rkey].tolist()
+        modeldf = pd.DataFrame({'bins': bins, 'values': values})
+        sns.boxplot(ax=ax, x='bins', y='values', data=modeldf, color=gen_cols[ri], showfliers=False)
+        for patch in ax.patches: patch.set_alpha(0.5)
 
-    bins = []
-    values = []
-    for run_num, run in enumerate(sim_results):
-        bins += x.tolist()
-        values += run['cancerous_genotype_dist'].tolist()
-    modeldf = pd.DataFrame({'bins': bins, 'values': values})
-    sns.boxplot(ax=ax, x='bins', y='values', data=modeldf, color=sc.gridcolors(3)[0], showfliers=False)
-    for patch in ax.patches: patch.set_alpha(0.5)
-    ax.scatter(x, ydata, color='k', marker='d', s=ms)
+        datadf = calib.target_data[ri+4]
+        ydata = datadf.value.values
+        x = np.arange(len(ydata))
+        ax.scatter(x, ydata, color='k', marker='d', s=ms)
 
-    ax.set_ylim([0, 1])
-    ax.set_xticks(np.arange(4), ['16', '18', 'Hi5', 'OHR'])
-    # ax.get_legend().remove()
-    ax.set_ylabel('')
-    ax.set_xlabel('')
-    ax.set_title('Share of cancers\nby genotype, 2020')
-
-    ####################
-    # CINs by genotype
-    ####################
-    ax = fig.add_subplot(gs1[3])
-    ax.set_title('Share of HSILs\nby genotype, 2020')
+        ax.set_xticks(np.arange(4), ['16', '18', 'Hi5', 'OHR'])
+        ax.set_ylabel('')
+        ax.set_xlabel('')
+        ax.set_title(rlabels[ri])
 
     ####################
     # ART coverage over time

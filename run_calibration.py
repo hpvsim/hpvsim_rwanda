@@ -106,7 +106,9 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, n_to_s
         # 'asr_cancer_incidence',
         'asr_cancer_incidence', 'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv',
         # 'cancer_incidence_by_age_with_hiv', 'cancer_incidence_by_age_no_hiv',
-        'art_coverage', 'female_hiv_prevalence', 'male_hiv_prevalence']
+        'art_coverage', 'female_hiv_prevalence', 'male_hiv_prevalence',
+        'n_females_with_hiv_alive', 'n_males_with_hiv_alive',
+        'hiv_infections', 'hiv_deaths']
 
     calib = hpv.Calibration(sim, 
                             calib_pars=calib_pars, 
