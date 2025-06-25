@@ -84,9 +84,10 @@ if __name__ == '__main__':
         ax.set_ylim(bottom=0)
         ax.set_xticks(x, age_labels)
         ax.set_ylabel('')
-        ax.set_xlabel('Age')
-        ax.set_title('Cancers by age, 2020')
-        pn += 1
+        ax.set_xlabel('')
+        if rn == 0: ax.set_title('Cancers by age, 2020')
+        elif rn == 1: ax.set_title('Cancer incidence by age,\n2017, HIV- women')
+        elif rn == 2: ax.set_title('Cancer incidence by age,\n2017, HIV+ women')
 
     ####################
     # Cancer incidence (3 lines on 1 plot)
@@ -110,6 +111,9 @@ if __name__ == '__main__':
     datadf = calib.target_data[3]
     ax.scatter(datadf.year.values[0], datadf.value.values[0], marker='d', s=ms, color='k',label='GLOBOCAN')
     ax.legend(loc='upper left', frameon=False, fontsize=12)
+    ax.set_title('Cancer incidence, 2020')
+    ax.set_ylabel('')
+    ax.set_xlabel('')
 
     ####################
     # Cancers by genotype
@@ -126,20 +130,22 @@ if __name__ == '__main__':
         bins += x.tolist()
         values += run['cancerous_genotype_dist'].tolist()
     modeldf = pd.DataFrame({'bins': bins, 'values': values})
-    sns.boxplot(ax=ax, x='bins', y='values', data=modeldf, hue='bins', palette=gen_cols, showfliers=False)
+    sns.boxplot(ax=ax, x='bins', y='values', data=modeldf, color=sc.gridcolors(3)[0], showfliers=False)
+    for patch in ax.patches: patch.set_alpha(0.5)
     ax.scatter(x, ydata, color='k', marker='d', s=ms)
 
     ax.set_ylim([0, 1])
     ax.set_xticks(np.arange(4), ['16', '18', 'Hi5', 'OHR'])
-    ax.legend(loc='upper right', frameon=False, title='', labels=['16', '18', 'Hi5', 'OHR'], fontsize=12)
+    # ax.get_legend().remove()
     ax.set_ylabel('')
     ax.set_xlabel('')
-    ax.set_title('Cancers by genotype, 2020')
+    ax.set_title('Share of cancers\nby genotype, 2020')
 
     ####################
     # CINs by genotype
     ####################
     ax = fig.add_subplot(gs1[3])
+    ax.set_title('Share of HSILs\nby genotype, 2020')
 
     ####################
     # ART coverage over time
@@ -155,30 +161,40 @@ if __name__ == '__main__':
     for run_num, run in enumerate(extra_sim_results):
         bins += x.tolist()
         values += run[rkey][si:].tolist()
-    modeldf = pd.DataFrame({'bins': bins, 'values': values})
+    modeldf = pd.DataFrame({'bins': bins, 'values': [v*100 for v in values]})
     sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=prev_col, errorbar=('pi', 95))
-    datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
-    sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey], marker='d', s=ms, color='k', label=rlabel)
+    datadf = hiv_df.loc[(hiv_df.index >= 2010) & (hiv_df.index <= 2025)]
+    sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey]*100, marker='d', s=ms, color='k', label=rlabel)
     ax.set_ylim(bottom=0)
-    ax.set_ylabel('ART coverage (%)')
+    ax.set_xlabel('')
+    ax.set_title('ART coverage (%)')
+    ax.get_legend().remove()
 
     ####################
     # HIV prevalence over time
     ####################
     ax = fig.add_subplot(gs2[1])
     rkeys = ['female_hiv_prevalence', 'male_hiv_prevalence']
-    rlabels = ['F', 'M']
+    rlabels = ['Female', 'Male']
     colors = sc.gridcolors(len(rkeys))
+    x = np.arange(1960, 2026)
+    si = sc.findfirst(x, 2000)  # Start index for plotting
+    x = x[si:]
+
     for ai, rkey in enumerate(rkeys):
         bins = []
         values = []
         for run_num, run in enumerate(extra_sim_results):
             bins += x.tolist()
             values += run[rkey][si:].tolist()
-        modeldf = pd.DataFrame({'bins': bins, 'values': values})
+        modeldf = pd.DataFrame({'bins': bins, 'values': [v*100 for v in values]})
         sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=colors[ai], errorbar=('pi', 95), label=rlabels[ai])
-        sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey], marker='d', s=ms, color=colors[ai])
-    ax.legend(loc='upper left', frameon=False)
+        datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
+        sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey]*100, marker='d', s=ms, color=colors[ai])
+    ax.legend(loc='upper right', frameon=False)
+    ax.set_xlabel('')
+    ax.set_ylabel('')
+    ax.set_title('HIV prevalence (%)')
 
     fig.tight_layout()
     pl.savefig(f"figures/fig_calib.png", dpi=300)

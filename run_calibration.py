@@ -57,7 +57,7 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True, n_to_s
         f'{dataloc}_cancer_incidence_by_age_no_hiv.csv',
         f'{dataloc}_cancer_incidence_by_age_with_hiv.csv',
         f'{dataloc}_asr_cancer_incidence.csv',
-        # f'{dataloc}_cin_types.csv',
+        f'{dataloc}_precin_types.csv',
         f'{dataloc}_cancer_types.csv',
     ]
     
