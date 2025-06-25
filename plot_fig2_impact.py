@@ -23,8 +23,8 @@ def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=Tru
 
     ax.plot(years, best, color=color, label=label, ls=ls)
     ax.fill_between(years, low, high, alpha=0.1, color=color)
-    # Add horizontal line at 4
 
+    # Add horizontal line at 4
     ax.axhline(4, color='k', ls='--', lw=0.5)
     return ax
 
@@ -55,10 +55,11 @@ def plot_fig1():
         '90% screening': msim_dict['TxV 90/50 with 90% screening'],
     }
     vc = sc.vectocolor(3).tolist()
-    colors = ['k'] + vc
+    colors = ['k']*2 + vc
     cn = 0
     for slabel, mres in this_dict.items():
-        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+        ls = ':' if cn == 0 else '-'
+        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], ls=ls, label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('Virus-clearing TxV')
@@ -74,10 +75,11 @@ def plot_fig1():
         '90% screening': msim_dict['TxV 50/90 with 90% screening'],
     }
     vc = sc.vectocolor(3).tolist()
-    colors = ['k'] + vc
+    colors = ['k']*2 + vc
     cn = 0
     for slabel, mres in this_dict.items():
-        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+        ls = ':' if cn == 0 else '-'
+        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], ls=ls, label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
     ax.legend(loc="upper right", frameon=False)
@@ -93,13 +95,14 @@ def plot_fig1():
         '90% coverage, 2027': msim_dict['Mass vx 90%'],
     }
     vc = sc.vectocolor(3).tolist()
-    colors = ['k'] + vc
+    colors = ['k']*2 + vc
     cn = 0
     for slabel, mres in this_dict.items():
-        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+        ls = ':' if cn == 0 else '-'
+        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], ls=ls, label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Screen, treat & vaccinate 20-25yos')
+    ax.set_title('One-time mass screen, treat & vaccinate 20-25yos, 2027')
     ax.legend(loc="upper right", frameon=False)
 
     # HIV+ vax
@@ -112,16 +115,18 @@ def plot_fig1():
         '90% coverage, 2027': msim_dict['HIV+ vx 90%'],
     }
     vc = sc.vectocolor(3).tolist()
-    colors = ['k'] + vc
+    colors = ['k']*2 + vc
     cn = 0
     for slabel, mres in this_dict.items():
-        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+        ls = ':' if cn == 0 else '-'
+        ax = plot_single(ax, mres, resname, si, ei, color=colors[cn], ls=ls, label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Screen, treat & vaccinate WLHIV')
+    ax.set_title('One-time mass screen, treat & vaccinate WLHIV, 2027')
+    ax.legend(loc="upper right", frameon=False)
 
     fig.tight_layout()
-    fig_name = 'figures/fig1_vx_scens_all.png'
+    fig_name = 'figures/fig2_scens.png'
     sc.savefig(fig_name, dpi=100)
 
     return
