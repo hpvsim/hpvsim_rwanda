@@ -43,8 +43,7 @@ def make_st_scenarios():
             scendict[f'TxV {effpars} with {int(future_screen_cov*100)}% screening'] = make_st(
                 future_screen_cov=future_screen_cov,
                 txv_pars=f'txvx_pars_{indication}.csv',
-                treat_change_year=2030
-            )
+                screen_change_year=2027,)
 
     return scendict
 
