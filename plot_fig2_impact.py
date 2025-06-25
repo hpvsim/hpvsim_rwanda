@@ -48,7 +48,8 @@ def plot_fig1():
     # Virus-clearing TxV
     ax = axes[0]
     this_dict = {
-        'Baseline': msim_dict['Baseline'],
+        'No interventions': msim_dict['No interventions'],
+        'Status quo': msim_dict['Baseline'],
         '10% screening': msim_dict['TxV 90/50 with 10% screening'],
         '50% screening': msim_dict['TxV 90/50 with 50% screening'],
         '90% screening': msim_dict['TxV 90/50 with 90% screening'],
@@ -66,7 +67,8 @@ def plot_fig1():
     # Lesion-regressing TxV
     ax = axes[1]
     this_dict = {
-        'Baseline': msim_dict['Baseline'],
+        'No interventions': msim_dict['No interventions'],
+        'Status quo': msim_dict['Baseline'],
         '10% screening': msim_dict['TxV 50/90 with 10% screening'],
         '50% screening': msim_dict['TxV 50/90 with 50% screening'],
         '90% screening': msim_dict['TxV 50/90 with 90% screening'],
@@ -84,7 +86,8 @@ def plot_fig1():
     # Mass vax
     ax = axes[2]
     this_dict = {
-        'Baseline': msim_dict['Baseline'],
+        'No interventions': msim_dict['No interventions'],
+        'Status quo': msim_dict['Baseline'],
         '10% coverage, 2027': msim_dict['Mass vx 10%'],
         '50% coverage, 2027': msim_dict['Mass vx 50%'],
         '90% coverage, 2027': msim_dict['Mass vx 90%'],
@@ -102,7 +105,8 @@ def plot_fig1():
     # HIV+ vax
     ax = axes[3]
     this_dict = {
-        'Baseline': msim_dict['Baseline'],
+        'No interventions': msim_dict['No interventions'],
+        'Status quo': msim_dict['Baseline'],
         '10% coverage, 2027': msim_dict['HIV+ vx 10%'],
         '50% coverage, 2027': msim_dict['HIV+ vx 50%'],
         '90% coverage, 2027': msim_dict['HIV+ vx 90%'],
