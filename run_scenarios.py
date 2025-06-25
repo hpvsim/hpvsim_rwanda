@@ -25,7 +25,7 @@ from interventions import make_st, make_st_20_25, make_st_hiv
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [1, 1][debug]  # How many seeds to run per cluster
+n_seeds = [10, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
