@@ -172,7 +172,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
         annual_prob=False,
         product='tx_assigner',
         eligibility=screen_positive,
-        label='tx assigner_20_25'
+        label='tx assigner_older'
     )
 
     # Ablation treatment
