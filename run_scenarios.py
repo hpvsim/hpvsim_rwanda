@@ -58,7 +58,7 @@ def make_vx_scenarios():
     scendict = dict()
 
     start_year = 2027
-    mass_vx_age_range = [20, 25]
+    mass_vx_age_range = [20, 50]
     cov_array = [.1, .5, .9]
     for cov_val in cov_array:
 
