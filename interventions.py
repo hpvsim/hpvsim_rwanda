@@ -143,6 +143,8 @@ def make_st_20_25(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
                                   (sim.t > (sim.people.date_screened + 5 / sim['dt']))
     screening = hpv.campaign_screening(
         prob=screen_cov,
+        interpolate=False,
+        annual_prob=False,
         eligibility=screen_eligible,
         years=start_year,
         product=primary,
@@ -184,7 +186,7 @@ def make_st_20_25(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
         prob=treat_cov/4,  # assume an additional dropoff in CaTx coverage
         product=hpv.radiation(),
         eligibility=radiation_eligible,
-        label='radiation'
+        label='radiation_20_25'
     )
 
     # Add vaccination
@@ -194,6 +196,7 @@ def make_st_20_25(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
                                 (sim.people.age <= age_range[1])
     mass_vx = hpv.campaign_vx(
         product='bivalent',
+        label='mass_vax',
         eligibility=mass_eligible,
         age_range=[20, 25],
         prob=screen_cov,
@@ -221,6 +224,8 @@ def make_st_hiv(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, r
     # Routine screening
     screening = hpv.campaign_screening(
         prob=screen_cov,
+        interpolate=False,
+        annual_prob=False,
         eligibility=screen_eligible,
         years=start_year,
         product=primary,

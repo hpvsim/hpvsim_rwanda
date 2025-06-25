@@ -25,7 +25,7 @@ from interventions import make_st, make_st_20_25, make_st_hiv
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [10, 1][debug]  # How many seeds to run per cluster
+n_seeds = [1, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
@@ -35,6 +35,7 @@ def make_st_scenarios():
     scendict = dict()
 
     # Baseline
+    scendict['No interventions'] = []
     scendict['Baseline'] = make_st(screen_change_year=2100)
 
     for future_screen_cov in [0.1, 0.5, 0.9]:
@@ -70,15 +71,18 @@ def make_vx_scenarios():
     return scendict
 
 
-def make_sims(st_scenarios=None, end=2100):
+def make_sims(scenarios=None, end=2100):
     """ Set up scenarios """
 
     all_msims = sc.autolist()
-    for name, st_intv in st_scenarios.items():
+    for name, interventions in scenarios.items():
         sims = sc.autolist()
         for seed in range(n_seeds):
-            interventions = st_intv
-            sim = rs.make_sim(debug=debug, add_st=False, interventions=interventions, end=end, seed=seed)
+            if name == 'No interventions':
+                add_vx = False
+            else:
+                add_vx = True
+            sim = rs.make_sim(debug=debug, add_st=False, add_vx=add_vx, interventions=interventions, end=end, seed=seed)
             sim.label = name
             sims += sim
         all_msims += hpv.MultiSim(sims)
@@ -88,9 +92,9 @@ def make_sims(st_scenarios=None, end=2100):
     return msim
 
 
-def run_sims(st_scenarios=None, end=2100, verbose=-1):
+def run_sims(scenarios=None, end=2100, verbose=-1):
     """ Run the simulations """
-    msim = make_sims(st_scenarios=st_scenarios, end=end)
+    msim = make_sims(scenarios=scenarios, end=end)
     msim.run(verbose=verbose)
     return msim
 
@@ -107,7 +111,7 @@ if __name__ == '__main__':
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
     if do_run:
         scenarios = sc.mergedicts(make_st_scenarios(), make_vx_scenarios())
-        msim = run_sims(st_scenarios=scenarios, end=end)
+        msim = run_sims(scenarios=scenarios, end=end)
 
         if do_process:
 
