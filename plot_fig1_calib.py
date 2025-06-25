@@ -7,7 +7,6 @@ Plot the calibration
 import numpy as np  # Add this at the top if not already imported
 import sciris as sc
 import pylab as pl
-import hpvsim as hpv
 import pandas as pd
 import seaborn as sns
 
@@ -15,21 +14,7 @@ import seaborn as sns
 import utils as ut
 
 
-def plot_calib(calib):
-    return
-
-
-# %% Run as a script
-if __name__ == '__main__':
-
-    T = sc.timer()
-
-    calib = sc.loadobj('results/rwanda_calib.obj')
-    hiv_df = pd.read_csv('data/rwanda_data.csv').set_index('Unnamed: 0').T
-    hiv_df.index = hiv_df.index.astype(int)  # Convert index to integers
-
-    # plot_calib(calib)
-
+def plot_calib(calib, hiv_df):
     ut.set_font(16)
     fig = pl.figure(layout="tight", figsize=(16, 10))
 
@@ -147,7 +132,7 @@ if __name__ == '__main__':
     ####################
     ax = fig.add_subplot(gs2[0])
     x = np.arange(1960, 2026)
-    si = sc.findfirst(x, 2010)  # Start index for plotting
+    si = sc.findfirst(x, 2000)  # Start index for plotting
     x = x[si:]
     rkey = 'art_coverage'
     rlabel = 'ART coverage'
@@ -158,7 +143,7 @@ if __name__ == '__main__':
         values += run[rkey][si:].tolist()
     modeldf = pd.DataFrame({'bins': bins, 'values': [v*100 for v in values]})
     sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=prev_col, errorbar=('pi', 95))
-    datadf = hiv_df.loc[(hiv_df.index >= 2010) & (hiv_df.index <= 2025)]
+    datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
     sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey]*100, marker='d', s=ms, color='k', label=rlabel)
     ax.set_ylim(bottom=0)
     ax.set_xlabel('')
@@ -208,15 +193,31 @@ if __name__ == '__main__':
             values += run[rkey][si:].tolist()
         modeldf = pd.DataFrame({'bins': bins, 'values': values})  # Convert to thousands
         sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=prev_col, errorbar=('pi', 95), label=rlabels[ri])
-        datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
-        sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey], marker='d', s=ms, color='k')
+        if rkey == 'hiv_infections':
+            datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
+            sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey], marker='d', s=ms, color='k')
         ax.set_xlabel('')
         ax.set_ylabel('')
         ax.set_title(rlabels[ri])
+        sc.SIticks()
+        ax.get_legend().remove()
 
     fig.tight_layout()
     pl.savefig(f"figures/fig_calib.png", dpi=300)
 
+    return
+
+
+# %% Run as a script
+if __name__ == '__main__':
+
+    T = sc.timer()
+
+    calib = sc.loadobj('results/rwanda_calib.obj')
+    hiv_df = pd.read_csv('data/rwanda_data.csv').set_index('Unnamed: 0').T
+    hiv_df.index = hiv_df.index.astype(int)  # Convert index to integers
+
+    plot_calib(calib, hiv_df)
 
     T.toc('Done')
  

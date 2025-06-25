@@ -17,13 +17,11 @@ def make_vx(end_year=2100):
     return routine_vx
 
 
-def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026,
+def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
             start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, future_treat_cov=0.7, treat_change_year=2030):
     """
     Make screening and treatment interventions
     """
-    age_range = [30, 50]
-
     # Determine screening years
     screen_years = np.arange(start_year, end_year + 1)
     final_prev_year = min(screen_change_year, end_year)
@@ -134,4 +132,156 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         st_intvs += [assign_treatment2, txv, radiation2]
 
     return st_intvs
+
+
+def make_st_20_25(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, age_range=[20, 25]):
+    """
+    Make screening campaign for 20-25yo
+    """
+    # Routine screening
+    screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
+                                  (sim.t > (sim.people.date_screened + 5 / sim['dt']))
+    screening = hpv.campaign_screening(
+        prob=screen_cov,
+        eligibility=screen_eligible,
+        years=start_year,
+        product=primary,
+        age_range=age_range,
+        label='screening_20_25'
+    )
+
+    # Assign treatment
+    screen_positive = lambda sim: sim.get_intervention('screening_20_25').outcomes['positive']
+    assign_treatment = hpv.campaign_triage(
+        years=start_year,
+        prob=1,
+        annual_prob=False,
+        product='tx_assigner',
+        eligibility=screen_positive,
+        label='tx assigner_20_25'
+    )
+
+    # Ablation treatment
+    ablation_eligible = lambda sim: sim.get_intervention('tx assigner_20_25').outcomes['ablation']
+    ablation = hpv.treat_num(
+        prob=treat_cov,
+        product='ablation',
+        eligibility=ablation_eligible,
+        label='ablation_20_25'
+    )
+    # Excision treatment
+    excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner_20_25').outcomes['excision'].tolist()
+                                            + sim.get_intervention('ablation_20_25').outcomes['unsuccessful'].tolist()))
+    excision = hpv.treat_num(
+        prob=treat_cov,
+        product='excision',
+        eligibility=excision_eligible,
+        label='excision_20_25'
+    )
+    # Radiation treatment
+    radiation_eligible = lambda sim: sim.get_intervention('tx assigner_20_25').outcomes['radiation']
+    radiation = hpv.treat_num(
+        prob=treat_cov/4,  # assume an additional dropoff in CaTx coverage
+        product=hpv.radiation(),
+        eligibility=radiation_eligible,
+        label='radiation'
+    )
+
+    # Add vaccination
+    mass_eligible = lambda sim: (sim.people.date_screened == sim.t) & \
+                                  np.isnan(sim.people.date_vaccinated) & \
+                                (sim.people.age >= age_range[0]) & \
+                                (sim.people.age <= age_range[1])
+    mass_vx = hpv.campaign_vx(
+        product='bivalent',
+        eligibility=mass_eligible,
+        age_range=[20, 25],
+        prob=screen_cov,
+        years=start_year
+    )
+
+    intvs = [
+        screening, assign_treatment, ablation, excision, radiation,
+        mass_vx
+    ]
+
+    return intvs
+
+
+def make_st_hiv(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, rel_imm_lt200=1.0):
+    """
+    Make screening campaign for 20-25yo
+    """
+    # Routine screening
+    screen_eligible = lambda sim: (np.isnan(sim.people.date_screened) | \
+                                  (sim.t > (sim.people.date_screened + 5 / sim['dt']))) & \
+                                  (sim.people.hiv == True) & (sim.people.art == True)
+
+    # Routine screening
+    screening = hpv.campaign_screening(
+        prob=screen_cov,
+        eligibility=screen_eligible,
+        years=start_year,
+        product=primary,
+        age_range=[20, 60],
+        label='screening_hiv'
+    )
+
+    # Assign treatment
+    screen_positive = lambda sim: sim.get_intervention('screening_hiv').outcomes['positive']
+    assign_treatment = hpv.campaign_triage(
+        years=start_year,
+        prob=1,
+        annual_prob=False,
+        product='tx_assigner',
+        eligibility=screen_positive,
+        label='tx assigner_hiv'
+    )
+
+    # Ablation treatment
+    ablation_eligible = lambda sim: sim.get_intervention('tx assigner_hiv').outcomes['ablation']
+    ablation = hpv.treat_num(
+        prob=treat_cov,
+        product='ablation',
+        eligibility=ablation_eligible,
+        label='ablation_hiv'
+    )
+    # Excision treatment
+    excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner_hiv').outcomes['excision'].tolist()
+                                            + sim.get_intervention('ablation_hiv').outcomes['unsuccessful'].tolist()))
+    excision = hpv.treat_num(
+        prob=treat_cov,
+        product='excision',
+        eligibility=excision_eligible,
+        label='excision_hiv'
+    )
+    # Radiation treatment
+    radiation_eligible = lambda sim: sim.get_intervention('tx assigner_hiv').outcomes['radiation']
+    radiation = hpv.treat_num(
+        prob=treat_cov/4,  # assume an additional dropoff in CaTx coverage
+        product=hpv.radiation(),
+        eligibility=radiation_eligible,
+        label='radiation_hiv'
+    )
+
+    hiv_eligible = lambda sim: (sim.people.date_screened == sim.t) & \
+                                  np.isnan(sim.people.date_vaccinated) & \
+                                (sim.people.hiv == True) & (sim.people.art == True)
+
+    plwh_prod = hpv.default_vx(prod_name='bivalent')
+    plwh_prod.imm_init['par1'] *= rel_imm_lt200
+    hiv_vx = hpv.campaign_vx(
+        product=plwh_prod,
+        eligibility=hiv_eligible,
+        age_range=[20, 60],
+        prob=screen_cov,
+        years=start_year,
+        label='PxV for PLWH',
+    )
+
+    intvs = [
+        screening, assign_treatment, ablation, excision, radiation,
+        hiv_vx
+    ]
+    return intvs
 
