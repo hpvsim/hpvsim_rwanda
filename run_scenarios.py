@@ -79,10 +79,10 @@ def make_sims(scenarios=None, end=2100):
         sims = sc.autolist()
         for seed in range(n_seeds):
             if name == 'No interventions':
-                add_vx = False
+                add_vax = False
             else:
-                add_vx = True
-            sim = rs.make_sim(debug=debug, add_st=False, add_vx=add_vx, interventions=interventions, end=end, seed=seed)
+                add_vax = True
+            sim = rs.make_sim(debug=debug, add_st=False, add_vax=add_vax, interventions=interventions, end=end, seed=seed)
             sim.label = name
             sims += sim
         all_msims += hpv.MultiSim(sims)
