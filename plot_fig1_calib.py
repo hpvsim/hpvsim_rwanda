@@ -36,7 +36,7 @@ if __name__ == '__main__':
     gs = fig.add_gridspec(3, 1)
     gs0 = gs[0].subgridspec(1, 4)
     gs1 = gs[1].subgridspec(1, 4)
-    gs2 = gs[2].subgridspec(1, 2)
+    gs2 = gs[2].subgridspec(1, 4)
 
     prev_col = '#5f5cd2'
     canc_col = sc.gridcolors(5)[3]
@@ -190,6 +190,29 @@ if __name__ == '__main__':
     ax.set_xlabel('')
     ax.set_ylabel('')
     ax.set_title('HIV prevalence (%)')
+
+    ####################
+    # HIV infections and deaths
+    ####################
+    rkeys = ['hiv_infections', 'hiv_deaths']
+    rlabels = ['HIV infections', 'HIV deaths']
+    for ri, rkey in enumerate(rkeys):
+        ax = fig.add_subplot(gs2[ri+2])
+        x = np.arange(1960, 2026)
+        si = sc.findfirst(x, 2000)  # Start index for plotting
+        x = x[si:]
+        bins = []
+        values = []
+        for run_num, run in enumerate(extra_sim_results):
+            bins += x.tolist()
+            values += run[rkey][si:].tolist()
+        modeldf = pd.DataFrame({'bins': bins, 'values': values})  # Convert to thousands
+        sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=prev_col, errorbar=('pi', 95), label=rlabels[ri])
+        datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
+        sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey], marker='d', s=ms, color='k')
+        ax.set_xlabel('')
+        ax.set_ylabel('')
+        ax.set_title(rlabels[ri])
 
     fig.tight_layout()
     pl.savefig(f"figures/fig_calib.png", dpi=300)
