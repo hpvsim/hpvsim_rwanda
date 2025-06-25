@@ -21,7 +21,7 @@ import hpvsim as hpv
 
 # Imports from this repository
 import run_sim as rs
-from interventions import make_st, make_st_20_25, make_st_hiv
+from interventions import make_st, make_st_older, make_st_hiv
 
 # Settings - used here and imported elsewhere
 debug = 0
@@ -62,8 +62,8 @@ def make_vx_scenarios():
     cov_array = [.1, .5, .9]
     for cov_val in cov_array:
 
-        # Screen, treat, & vaccinate 20-25yos
-        mass_intvs = make_st_20_25(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
+        # Screen, treat, & vaccinate older women
+        mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
         scendict[f'Mass vx {cov_val*100:.0f}%'] = mass_intvs
         hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
         scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
