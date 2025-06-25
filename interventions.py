@@ -200,7 +200,8 @@ def make_st_20_25(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
         years=start_year
     )
 
-    intvs = [
+    normal_intvs = make_st(screen_change_year=2100)
+    intvs = normal_intvs + [
         screening, assign_treatment, ablation, excision, radiation,
         mass_vx
     ]
@@ -279,7 +280,8 @@ def make_st_hiv(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, r
         label='PxV for PLWH',
     )
 
-    intvs = [
+    normal_intvs = make_st(screen_change_year=2100)
+    intvs = normal_intvs + [
         screening, assign_treatment, ablation, excision, radiation,
         hiv_vx
     ]

@@ -88,7 +88,7 @@ def make_sims(st_scenarios=None, end=2100):
     return msim
 
 
-def run_sims(st_scenarios=None, end=2100, verbose=0.2):
+def run_sims(st_scenarios=None, end=2100, verbose=-1):
     """ Run the simulations """
     msim = make_sims(st_scenarios=st_scenarios, end=end)
     msim.run(verbose=verbose)

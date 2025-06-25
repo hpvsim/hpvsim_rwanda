@@ -35,8 +35,8 @@ def plot_fig1():
     end_year = 2100
 
     msim_dict = sc.loadobj('results/st_scens.obj')
-    vc = sc.vectocolor(3)
-    colors = ['k'] + [vc[0], vc[0], vc[1], vc[1], vc[2], vc[2]]
+    vc = sc.vectocolor(9)
+    colors = ['k'] + [vc[0], vc[0], vc[1], vc[1], vc[2], vc[2], vc[3], vc[4], vc[5], vc[6], vc[7], vc[8]]
     mbase = msim_dict['Baseline']
     si = sc.findinds(mbase.year, start_year)[0]
     ei = sc.findinds(mbase.year, end_year)[0]
@@ -53,7 +53,7 @@ def plot_fig1():
     if resname == 'asr_cancer_incidence': ax.axhline(y=4, color='k', ls='--')
 
     fig.tight_layout()
-    fig_name = 'figures/fig1_vx_scens.png'
+    fig_name = 'figures/fig1_vx_scens_all.png'
     sc.savefig(fig_name, dpi=100)
 
     return
