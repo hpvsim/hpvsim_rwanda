@@ -38,7 +38,7 @@ def make_st_scenarios():
     scendict['No interventions'] = []
     scendict['Baseline'] = make_st(screen_change_year=2100)
 
-    for future_screen_cov in [0.1, 0.5, 0.9]:
+    for future_screen_cov in [0.18, 0.35, 0.7]:
         for indication, effpars in {'cin': '50/90', 'precin': '90/50'}.items():
             scendict[f'TxV {effpars} with {int(future_screen_cov*100)}% screening'] = make_st(
                 future_screen_cov=future_screen_cov,
