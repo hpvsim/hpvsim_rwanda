@@ -157,6 +157,33 @@ def run_sim(
     return sim
 
 
+def get_age_causal_df(sim=None):
+    """
+    Make age causal dataframe
+    """
+    dt_res = sim.get_analyzer('age_causal_infection')
+    dt_dfs = sc.autolist()
+
+    dt_df = pd.DataFrame()
+    dt_df['Age'] = np.array(dt_res.age_causal)[np.array(dt_res.age_causal)<50]
+    dt_df['Health event'] = 'Causal\ninfection'
+    dt_dfs += dt_df
+
+    dt_df = pd.DataFrame()
+    dt_df['Age'] = np.array(dt_res.age_cin)[np.array(dt_res.age_causal)<65]
+    dt_df['Health event'] = 'HSIL'
+    dt_dfs += dt_df
+
+    dt_df = pd.DataFrame()
+    dt_df['Age'] = np.array(dt_res.age_cancer)[np.array(dt_res.age_causal)<90]
+    dt_df['Health event'] = 'Cancer'
+    dt_dfs += dt_df
+
+    age_causal_df = pd.concat(dt_dfs)
+
+    return age_causal_df
+
+
 # %% Run as a script
 if __name__ == '__main__':            # This is Python's standard way of saying: Only run the following code if this file is executed directly.But if another script imports this file (e.g., import my_script), the code in this block won’t run — which prevents unwanted side effects.
 
@@ -173,118 +200,16 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
     # Takes <1min to run
     if 'run_single' in to_run:
 
-        az1 = hpv.age_results(
-        result_args=sc.objdict( 
-            cancers_no_hiv=sc.objdict(
-                years=2020,
-                edges=np.array([0.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,60.,65.,70.,75.,80.,100.]),
-            ),
-            cancers_with_hiv=sc.objdict(
-                years=2020,
-                edges=np.array([0.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,60.,65.,70.,75.,80.,100.]),
-            ),
-            cancers=sc.objdict(
-                years=2020,
-                edges=np.array([0.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,60.,65.,70.,75.,80.,100.]),
-                #datafile='data/rwanda_cancer_cases.csv',
-            ),           
-            cancer_incidence_no_hiv=sc.objdict(
-                years=2020,
-                edges=np.array([0.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,60.,65.,70.,75.,80.,100.]),
-            ),
-            cancer_incidence_with_hiv=sc.objdict(
-                years=2020,
-                edges=np.array([0.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,60.,65.,70.,75.,80.,100.]),
-            ),
-            cancer_incidence=sc.objdict(
-                years=2020,
-                edges=np.array([0.,5.,10.,15.,20.,25.,30.,35.,40.,45.,50.,55.,60.,65.,70.,75.,80.,100.]),
-            ),
-        )
-        )
+        sim = run_sim(use_calib=use_calib, end=2025, analyzers=hpv.age_causal_infection(start_year=2020), debug=debug)  # Run the simulation
+        # sim.plot()  # Plot the simulation
+        # a = sim.get_analyzer()
+        # a.plot()  # Save the plot to a file
+        df = get_age_causal_df(sim)
+        # save the dataframe to a file
+        sc.saveobj('results/age_causal_infection.obj', df)
 
-        sim = run_sim(use_calib=use_calib, end=2025, analyzers=az1, debug=debug)  # Run the simulation
-        sim.plot()  # Plot the simulation
-        hpv.savefig('my-fig.png')  # Save the plot to a file
-        a = sim.get_analyzer()
-        a.plot()  # Save the plot to a file
-
-        # Extract results from dictionary
-        print("Available years in cancers_with_hiv:", a.results['cancers_with_hiv'].keys())
-
-        # Get the available years (excluding 'bins')
-        years = [k for k in a.results['cancers_with_hiv'].keys() if k != 'bins']
-        if years:
-              year = years[0]  # or use years[-1] for the last year
-              cancers_with_hiv = a.results['cancers_with_hiv'][year]
-              cancers_no_hiv = a.results['cancers_no_hiv'][year]
-              cancers = a.results['cancers'][year]
-              cancer_incidence_no_hiv = a.results['cancer_incidence_no_hiv'][year]
-              cancer_incidence_with_hiv = a.results['cancer_incidence_with_hiv'][year]
-              cancer_incidence = a.results['cancer_incidence'][year]
-        else:
-            print("No year data available in cancers_with_hiv")
-
-            cancers_with_hiv = a.results['cancers_with_hiv'][np.int64(2060)]
-            cancers_no_hiv = a.results['cancers_no_hiv'][np.int64(2060)]
-            cancers = a.results['cancers'][np.int64(2060)]
-            cancer_incidence_no_hiv = a.results['cancer_incidence_no_hiv'][np.int64(2060)]
-            cancer_incidence_with_hiv = a.results['cancer_incidence_with_hiv'][np.int64(2060)]
-            cancer_incidence = a.results['cancer_incidence'][np.int64(2060)]
-
-        # Perform division
-        cancer_ratio = cancer_incidence_with_hiv/cancer_incidence_no_hiv
-
-        # Before creating the DataFrame
-        bins = a.results['cancers']['bins']
-        print("Bins used:", bins)
-        print("Is sorted:", np.all(np.diff(bins) > 0) or np.all(np.diff(bins) < 0))
-
-        # Create a DataFrame
-        df = pd.DataFrame({
-                   'bins': a.results['cancers']['bins'],
-                   'cancers': cancers,
-                   'cancers_with_hiv': cancers_with_hiv,
-                   'cancers_no_hiv': cancers_no_hiv,
-                   'cancer_incidence': cancer_incidence,
-                   'cancer_incidence_with_hiv': cancer_incidence_with_hiv,
-                   'cancer_incidence_no_hiv': cancer_incidence_no_hiv,
-                   'cancer_ratio': cancer_ratio
-            })
-
-        # Save the DataFrame to an Excel file
-        #df.to_excel('/storage/homefs/ja22x644/HPVSim_rwanda/rwanda_hiv_sim_2020-11.xlsx', index=False)
- 
-    # Example of how to run a scenario with and without vaccination
-    # Takes ~2min to run
-    if 'run_scenario' in to_run:
-        routine_vx = hpv.routine_vx(product='bivalent', age_range=[9, 10], prob=0.9, start_year=2025)
-        sim_baseline = make_sim(calib_pars=calib_pars, end=2060)
-        sim_scenario = make_sim(calib_pars=calib_pars, end=2060, interventions=routine_vx)
-        msim = hpv.MultiSim(sims=[sim_baseline, sim_scenario])  # Make a multisim for running in parallel
-        msim.run(verbose=0.1)
-
-
-        # Now plot cancers with & without vaccination
-        pl.figure()
-        res0 = msim.sims[0].results
-        res1 = msim.sims[1].results
-        pl.plot(res0['year'][60:], res0['cancer_incidence'][60:], label='No vaccination')
-        pl.plot(res0['year'][60:], res1['cancer_incidence'][60:], color='r', label='With vaccination')
-        pl.legend()
-        pl.title('Cancer incidence')
-        pl.savefig('cancer_incidence_vax_vs_no_vax.png')
-        pl.show()
-
-        # Now plot cancers with & without vaccination
-        pl.figure()
-        si = 20
-        res = sim.results
-        pl.plot(res['year'][si:], res['asr_cancer_incidence'][si:], label='Residual burden')
-        pl.legend()
-        pl.title('ASR cancer incidence')
-        pl.savefig('asr_cancer_incidence.png')
-        pl.show()
 
     T.toc('Done')  # Print out how long the run took
+
+
 
