@@ -17,6 +17,12 @@ def make_vx(end_year=2100):
     return routine_vx
 
 
+def make_male_vx(prob=None):
+    routine_vx = hpv.routine_vx(product='bivalent', sex=1, age_range=[11, 12], prob=prob, start_year=2027, label='male vx')
+    normal_intvs = make_st(screen_change_year=2100)
+    intvs = normal_intvs + [routine_vx]
+    return intvs
+
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
             start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, st=False, txv=False, future_treat_cov=0.7):
     """

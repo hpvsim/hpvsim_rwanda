@@ -21,7 +21,7 @@ import hpvsim as hpv
 
 # Imports from this repository
 import run_sim as rs
-from interventions import make_st, make_st_older, make_st_hiv
+from interventions import make_st, make_st_older, make_st_hiv, make_male_vx
 
 # Settings - used here and imported elsewhere
 debug = 0
@@ -69,6 +69,8 @@ def make_vx_scenarios():
         scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
         st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, st=True)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
+        intvs = make_male_vx(prob=cov_val)
+        scendict[f'Male vx {cov_val*100:.0f}%'] = intvs
 
     return scendict
 

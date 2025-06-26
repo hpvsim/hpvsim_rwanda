@@ -31,7 +31,7 @@ def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=Tru
 
 def plot_fig1():
     ut.set_font(24)
-    fig, axes = sc.getrowscols(n=5, nrows=3, ncols=2, make=True, remove_extra=True, figsize=(16, 16))
+    fig, axes = sc.getrowscols(n=6, nrows=3, ncols=2, make=True, remove_extra=True, figsize=(16, 16))
     axes = axes.ravel()
     resname = 'asr_cancer_incidence'
 
@@ -149,6 +149,24 @@ def plot_fig1():
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('One-time mass screen, treat & vaccinate WLHIV, 2027')
     ax.legend(loc="upper right", frameon=False)
+    pn += 1
+
+    # Assemble cumulative results
+    cum_res = dict()
+    resname = 'cancers'
+    for sname, scen in msim_dict.items():
+        cum_res[sname] = scen[resname].values[si:].sum()
+    # Make a bar plot
+    ax = axes[pn]
+    bars = list(cum_res.values())
+    labels = list(cum_res.keys())
+    x = np.arange(len(labels))
+    ax.bar(x, bars, color=sc.vectocolor(len(bars)))
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=45, ha='right')
+    ax.set_title('Cumulative cancers')
+
+
 
     fig.tight_layout()
     fig_name = 'figures/fig2_scens.png'
