@@ -67,7 +67,7 @@ def make_vx_scenarios():
         scendict[f'Mass vx {cov_val*100:.0f}%'] = mass_intvs
         # hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
         # scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, st=True)
+        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
         # intvs = make_male_vx(prob=cov_val)
         # scendict[f'Male vx {cov_val*100:.0f}%'] = intvs
