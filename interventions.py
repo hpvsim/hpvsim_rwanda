@@ -137,17 +137,17 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
             st_intvs += [assign_treatment2, txv, radiation2]
 
-        else:
-
-            # Just do ablation
-            ablation_eligible = lambda sim: sim.get_intervention('screening').outcomes['positive']
-            ablation_all = hpv.treat_num(
-                prob=future_treat_cov,
-                product='ablation',
-                eligibility=ablation_eligible,
-                label='ablation'
-            )
-            st_intvs += [ablation_all]
+        # else:
+        #
+        #     # Just do ablation
+        #     ablation_eligible = lambda sim: sim.get_intervention('screening').outcomes['positive']
+        #     ablation_all = hpv.treat_num(
+        #         prob=future_treat_cov,
+        #         product='ablation',
+        #         eligibility=ablation_eligible,
+        #         label='ablation'
+        #     )
+        #     st_intvs += [ablation_all]
 
     return st_intvs
 

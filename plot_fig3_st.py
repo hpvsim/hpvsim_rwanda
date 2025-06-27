@@ -33,9 +33,9 @@ def plot_fig3():
     ax = axes[pn]
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '10% screening': msim_dict['TxV 90/50 with 10% screening'],
-        '50% screening': msim_dict['TxV 90/50 with 50% screening'],
-        '90% screening': msim_dict['TxV 90/50 with 90% screening'],
+        '20% screening': msim_dict['TxV 90/50 with 18% screening'],
+        '35% screening': msim_dict['TxV 90/50 with 35% screening'],
+        '70% screening': msim_dict['TxV 90/50 with 70% screening'],
     }
     vc = sc.vectocolor(3).tolist()
     colors = ['k'] + vc
@@ -44,16 +44,16 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Virus-clearing TxV')
+    ax.set_title('Virus-clearing therapeutic')
     pn += 1
 
     # Lesion-regressing TxV
     ax = axes[pn]
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '10% screening': msim_dict['TxV 50/90 with 10% screening'],
-        '50% screening': msim_dict['TxV 50/90 with 50% screening'],
-        '90% screening': msim_dict['TxV 50/90 with 90% screening'],
+        '20% screening': msim_dict['TxV 50/90 with 18% screening'],
+        '35% screening': msim_dict['TxV 50/90 with 35% screening'],
+        '70% screening': msim_dict['TxV 50/90 with 70% screening'],
     }
     vc = sc.vectocolor(3).tolist()
     colors = ['k'] + vc
@@ -62,16 +62,16 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Lesion-regressing TxV')
+    ax.set_title('Lesion-regressing therapeutic')
     pn += 1
 
     # Scaled-up S&T
     ax = axes[pn]
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '10% screening': msim_dict['S&T 10%'],
-        '50% screening': msim_dict['S&T 50%'],
-        '90% screening': msim_dict['S&T 90%'],
+        '20% screening': msim_dict['S&T 18%'],
+        '35% screening': msim_dict['S&T 35%'],
+        '70% screening': msim_dict['S&T 70%'],
     }
     vc = sc.vectocolor(3).tolist()
     colors = ['k'] + vc
@@ -81,24 +81,9 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Scaled up screening & POC ablation')
+    ax.set_title('Scaled up screening & ablation')
     ax.legend(loc="upper right", frameon=False, bbox_to_anchor=(1, 0.95), fontsize=18)
     pn += 1
-
-    # # Assemble cumulative results
-    # cum_res = dict()
-    # resname = 'cancers'
-    # for sname, scen in msim_dict.items():
-    #     cum_res[sname] = scen[resname].values[si:].sum()
-    # # Make a bar plot
-    # ax = axes[pn]
-    # bars = list(cum_res.values())
-    # labels = list(cum_res.keys())
-    # x = np.arange(len(labels))
-    # ax.bar(x, bars, color=sc.vectocolor(len(bars)))
-    # ax.set_xticks(x)
-    # ax.set_xticklabels(labels, rotation=45, ha='right')
-    # ax.set_title('Cumulative cancers')
 
     fig.tight_layout()
     fig_name = 'figures/fig3_st.png'

@@ -32,9 +32,9 @@ def plot_fig2():
     ax = fig.add_subplot(gs[:2])
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '10% coverage, 2027': msim_dict['Mass vx 10%'],
-        '50% coverage, 2027': msim_dict['Mass vx 50%'],
-        '90% coverage, 2027': msim_dict['Mass vx 90%'],
+        '20% coverage, 2027': msim_dict['Mass vx 18%'],
+        '35% coverage, 2027': msim_dict['Mass vx 35%'],
+        '70% coverage, 2027': msim_dict['Mass vx 70%'],
     }
 
     cn = 0
