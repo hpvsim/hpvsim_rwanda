@@ -24,7 +24,7 @@ def make_male_vx(prob=None):
     return intvs
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
-            start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, st=False, txv=False, future_treat_cov=0.7):
+            start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, txv=False, future_treat_cov=0.7):
     """
     Make screening and treatment interventions
     """
@@ -55,9 +55,10 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
+    end_year = 2030 if txv else final_prev_year
     assign_treatment = hpv.routine_triage(
         start_year=start_year,
-        end_year=final_prev_year,
+        end_year=end_year,
         prob=1,
         annual_prob=False,
         product='tx_assigner',
@@ -103,7 +104,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             txv_assigner.df = pd.read_csv('txv_assigner.csv')
             txv_assigner.hierarchy = ['radiation', 'txv', 'none']
             assign_treatment2 = hpv.routine_triage(
-                start_year=screen_change_year,
+                start_year=2030,
                 prob=1.0,
                 annual_prob=False,
                 product=txv_assigner,
