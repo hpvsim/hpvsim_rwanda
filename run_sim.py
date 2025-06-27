@@ -194,13 +194,13 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
         'run_single',
     ]
 
-    use_calib = False
+    use_calib = True
 
     # Run and plot a single simulation
     # Takes <1min to run
     if 'run_single' in to_run:
 
-        sim = run_sim(use_calib=use_calib, end=2025, analyzers=hpv.age_causal_infection(start_year=2020), debug=debug)  # Run the simulation
+        sim = run_sim(use_calib=use_calib, end=2035, analyzers=hpv.age_causal_infection(start_year=2020), debug=debug)  # Run the simulation
         # sim.plot()  # Plot the simulation
         # a = sim.get_analyzer()
         # a.plot()  # Save the plot to a file

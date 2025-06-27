@@ -24,7 +24,7 @@ def make_male_vx(prob=None):
     return intvs
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
-            start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, txv=False, future_treat_cov=0.7):
+            start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, txv=False, future_treat_cov=0.9):
     """
     Make screening and treatment interventions
     """
@@ -40,6 +40,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     screen_cov = np.array([prev_screen_cov]*n_prev_years+[future_screen_cov]*n_future_years)
     len_age_range = (age_range[1]-age_range[0])/2
     model_annual_screen_prob = 1 - (1 - screen_cov)**(1/len_age_range)  # Adjusted for age range
+
     # Routine screening
     screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
                                   (sim.t > (sim.people.date_screened + 5 / sim['dt']))
@@ -55,11 +56,15 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
-    end_year = 2030 if txv else final_prev_year
+    triage_end_year = 2030 if txv else end_year
+    future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
+    n_future_screen_years = len(future_screen_years)
+    triage_years = np.arange(start_year, triage_end_year + 1)
+    triage_prob = np.array([prev_treat_cov]*n_prev_years+[future_treat_cov]*n_future_screen_years)
+    n_future_years = len(future_years)
     assign_treatment = hpv.routine_triage(
-        start_year=start_year,
-        end_year=end_year,
-        prob=1,
+        years=triage_years,
+        prob=triage_prob,
         annual_prob=False,
         product='tx_assigner',
         eligibility=screen_positive,
@@ -70,7 +75,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # Ablation treatment
     ablation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['ablation']
     ablation = hpv.treat_num(
-        prob=prev_treat_cov,
+        prob=1,
         product='ablation',
         eligibility=ablation_eligible,
         label='ablation'
@@ -79,7 +84,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner').outcomes['excision'].tolist()
                                             + sim.get_intervention('ablation').outcomes['unsuccessful'].tolist()))
     excision = hpv.treat_num(
-        prob=prev_treat_cov,
+        prob=1,
         product='excision',
         eligibility=excision_eligible,
         label='excision'
@@ -87,7 +92,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # Radiation treatment
     radiation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['radiation']
     radiation = hpv.treat_num(
-        prob=prev_treat_cov/4,  # assume an additional dropoff in CaTx coverage
+        prob=1/4,  # assume an additional dropoff in CaTx coverage
         product=hpv.radiation(),
         eligibility=radiation_eligible,
         label='radiation'
@@ -130,25 +135,13 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             # Radiation
             religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
             radiation2 = hpv.treat_num(
-                prob=future_treat_cov/4,  # assume an additional dropoff in CaTx coverage
+                prob=1/4,  # assume an additional dropoff in CaTx coverage
                 product=hpv.radiation(),
                 eligibility=religible,
                 label='radiation'
             )
 
             st_intvs += [assign_treatment2, txv, radiation2]
-
-        # else:
-        #
-        #     # Just do ablation
-        #     ablation_eligible = lambda sim: sim.get_intervention('screening').outcomes['positive']
-        #     ablation_all = hpv.treat_num(
-        #         prob=future_treat_cov,
-        #         product='ablation',
-        #         eligibility=ablation_eligible,
-        #         label='ablation'
-        #     )
-        #     st_intvs += [ablation_all]
 
     return st_intvs
 
