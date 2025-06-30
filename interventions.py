@@ -42,8 +42,8 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     model_annual_screen_prob = 1 - (1 - screen_cov)**(1/len_age_range)  # Adjusted for age range
 
     # Routine screening
-    screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
-                                  (sim.t > (sim.people.date_screened + 5 / sim['dt']))
+    screen_eligible = lambda sim: np.isnan(sim.people.date_screened)  #| \
+                                  # (sim.t > (sim.people.date_screened + 5 / sim['dt']))
     screening = hpv.routine_screening(
         prob=model_annual_screen_prob,
         eligibility=screen_eligible,

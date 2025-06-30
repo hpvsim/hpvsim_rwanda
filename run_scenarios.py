@@ -99,6 +99,8 @@ def make_sims(scenarios=None, end=2100):
 def run_sims(scenarios=None, end=2100, verbose=-1):
     """ Run the simulations """
     msim = make_sims(scenarios=scenarios, end=end)
+    # for sim in msim.sims:
+    #     sim.run()
     msim.run(verbose=verbose)
     return msim
 
@@ -115,7 +117,7 @@ if __name__ == '__main__':
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
     if do_run:
         scenarios = sc.mergedicts(make_st_scenarios(), make_vx_scenarios())
-        # scenarios = {k:v for k, v in scenarios.items() if k == 'Mass vx 18%'}
+        # scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
         msim = run_sims(scenarios=scenarios, end=end)
 
         if do_process:

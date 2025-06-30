@@ -10,7 +10,7 @@ import numpy as np
 import utils as ut
 
 
-def plot_fig4():
+def plot_fig4(end_year=2060):
     """
     Plot the residual burden of cervical cancer in Rwanda under screening and treatment scenarios.
     """
@@ -22,6 +22,7 @@ def plot_fig4():
     msim_dict = sc.loadobj('results/st_scens.obj')
     mbase = msim_dict['Baseline']
     fi = sc.findinds(mbase.year, 2025)[0]
+    ei = sc.findinds(mbase.year, end_year+1)[0]
 
     # Remove some results
     msim_dict.pop('No interventions')
@@ -50,7 +51,7 @@ def plot_fig4():
     resname = 'cancers'
     for sname, scen in msim_dict.items():
         sl = sname.split('%')[0][-2:]
-        cum_res[sl][sname] = scen[resname].values[fi:].sum()
+        cum_res[sl][sname] = scen[resname].values[fi:ei].sum()
 
     new_order = [
         'One-time\nvax',
@@ -79,8 +80,8 @@ def plot_fig4():
         ax.text(1.5, text_loc, f'{slevel}% coverage', va="center", ha="center")
 
         ax = fig.add_subplot(gs2[pn])
-        new_bars = [mbase['cancers'].values[fi:].sum()-b for b in bars]
-        perc_averted[slevel] = [100*b/mbase['cancers'].values[fi:].sum() for b in new_bars]
+        new_bars = [mbase['cancers'].values[fi:ei].sum()-b for b in bars]
+        perc_averted[slevel] = [100*b/mbase['cancers'].values[fi:ei].sum() for b in new_bars]
         ax.bar(x, new_bars, color=sc.gridcolors(len(new_bars)))
         ax.set_xticks(x)
         ax.set_xticklabels(remap.keys(), ha='center')
@@ -92,7 +93,7 @@ def plot_fig4():
         ax.text(1.5, text_loc, f'{slevel}% coverage', va="center", ha="center")
 
     fig.tight_layout()
-    fig_name = 'figures/fig4_bars.png'
+    fig_name = f'figures/fig4_bars_{end_year}.png'
     sc.savefig(fig_name, dpi=100)
 
     return perc_averted, new_bars
