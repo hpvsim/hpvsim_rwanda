@@ -59,7 +59,7 @@ def make_vx_scenarios():
 
     start_year = 2027
     mass_vx_age_range = [20, 50]
-    cov_array = [.18]  #, .35, .70]
+    cov_array = [.18, .35, .70]
     for cov_val in cov_array:
 
         # Screen, treat, & vaccinate older women
