@@ -42,8 +42,8 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     model_annual_screen_prob = 1 - (1 - screen_cov)**(1/len_age_range)  # Adjusted for age range
 
     # Routine screening
-    screen_eligible = lambda sim: np.isnan(sim.people.date_screened)  #| \
-                                  # (sim.t > (sim.people.date_screened + 5 / sim['dt']))
+    screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
+                                  (sim.t > (sim.people.date_screened + 10 / sim['dt']))
     screening = hpv.routine_screening(
         prob=model_annual_screen_prob,
         eligibility=screen_eligible,
@@ -110,7 +110,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             txv_assigner.hierarchy = ['radiation', 'txv', 'none']
             assign_treatment2 = hpv.routine_triage(
                 start_year=2030,
-                prob=1.0,
+                prob=future_treat_cov,
                 annual_prob=False,
                 product=txv_assigner,
                 eligibility=screen_positive,
@@ -126,7 +126,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
                 elif isinstance(txv_pars, pd.DataFrame):
                     txv_prod.df = txv_pars
             txv = hpv.linked_txvx(
-                prob=future_treat_cov,
+                prob=1,
                 product=txv_prod,
                 eligibility=txv_eligible,
                 label='txv'
@@ -135,7 +135,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             # Radiation
             religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
             radiation2 = hpv.treat_num(
-                prob=1/4,  # assume an additional dropoff in CaTx coverage
+                prob=1,  # assume an additional dropoff in CaTx coverage
                 product=hpv.radiation(),
                 eligibility=religible,
                 label='radiation'
@@ -151,13 +151,13 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9,
     Make screening campaign for 20-25yo
     """
     # Routine screening
-    screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
-                                  (sim.t > (sim.people.date_screened + 5 / sim['dt']))
+    # screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
+    #                               (sim.t > (sim.people.date_screened + 5 / sim['dt']))
     screening = hpv.campaign_screening(
         prob=screen_cov,
         interpolate=False,
         annual_prob=False,
-        eligibility=screen_eligible,
+        # eligibility=screen_eligible,
         years=start_year,
         product=primary,
         age_range=age_range,

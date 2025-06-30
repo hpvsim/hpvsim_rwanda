@@ -22,7 +22,7 @@ def plot_fig4(end_year=2060):
     msim_dict = sc.loadobj('results/st_scens.obj')
     mbase = msim_dict['Baseline']
     fi = sc.findinds(mbase.year, 2025)[0]
-    ei = sc.findinds(mbase.year, end_year+1)[0]
+    ei = sc.findinds(mbase.year, end_year)[0]+1
 
     # Remove some results
     msim_dict.pop('No interventions')
@@ -103,7 +103,7 @@ def plot_fig4(end_year=2060):
 if __name__ == '__main__':
 
     # Load scenarios and construct figure
-    perc_averted, num_averted = plot_fig4()
+    perc_averted, num_averted = plot_fig4(end_year=2100)
 
 
 
