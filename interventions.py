@@ -146,7 +146,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     return st_intvs
 
 
-def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, age_range=[20, 25]):
+def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9, age_range=[20, 25]):
     """
     Make screening campaign for 20-25yo
     """
@@ -165,12 +165,14 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
     )
 
     # Assign treatment
+    tx_assigner = hpv.default_dx('tx_assigner')
+    tx_assigner.df = pd.read_csv('txv_assigner.csv')
     screen_positive = lambda sim: sim.get_intervention('screening_older').outcomes['positive']
     assign_treatment = hpv.campaign_triage(
         years=start_year,
-        prob=1,
+        prob=treat_cov,
         annual_prob=False,
-        product='tx_assigner',
+        product=tx_assigner,
         eligibility=screen_positive,
         label='tx assigner_older'
     )
@@ -178,7 +180,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
     # Ablation treatment
     ablation_eligible = lambda sim: sim.get_intervention('tx assigner_older').outcomes['ablation']
     ablation = hpv.treat_num(
-        prob=treat_cov,
+        prob=1,
         product='ablation',
         eligibility=ablation_eligible,
         label='ablation_older'
@@ -187,7 +189,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
     excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner_older').outcomes['excision'].tolist()
                                             + sim.get_intervention('ablation_older').outcomes['unsuccessful'].tolist()))
     excision = hpv.treat_num(
-        prob=treat_cov,
+        prob=1,
         product='excision',
         eligibility=excision_eligible,
         label='excision_20_25'
@@ -195,7 +197,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7,
     # Radiation treatment
     radiation_eligible = lambda sim: sim.get_intervention('tx assigner_older').outcomes['radiation']
     radiation = hpv.treat_num(
-        prob=treat_cov/4,  # assume an additional dropoff in CaTx coverage
+        prob=1,  # assume an additional dropoff in CaTx coverage
         product=hpv.radiation(),
         eligibility=radiation_eligible,
         label='radiation_older'
