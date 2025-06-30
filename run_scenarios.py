@@ -25,7 +25,7 @@ from interventions import make_st, make_st_older, make_st_hiv, make_male_vx
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [1, 1][debug]  # How many seeds to run per cluster
+n_seeds = [10, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
@@ -99,9 +99,7 @@ def make_sims(scenarios=None, end=2100):
 def run_sims(scenarios=None, end=2100, verbose=-1):
     """ Run the simulations """
     msim = make_sims(scenarios=scenarios, end=end)
-    for sim in msim.sims:
-        sim.run()
-    # msim.run(verbose=verbose)
+    msim.run(verbose=verbose)
     return msim
 
 
