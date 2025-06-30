@@ -76,13 +76,21 @@ if __name__ == '__main__':
 
     msim_dict = sc.loadobj('results/st_scens.obj')
     mbase = msim_dict['Baseline']
-    m90 = msim_dict['Mass vx 90%']
+    m70 = msim_dict['Mass vx 70%']
     fi = sc.findinds(mbase.year, 2025)[0]
-
     elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][fi:]<4)+fi
-
     print(f'Elim year: {mbase.year[elim_year]}')
-    print(f'Cancers averted: {mbase.cancers[fi:].sum()-m90.cancers[fi:].sum()}')
+    print(f'Cancers averted: {mbase.cancers[fi:].sum()-m70.cancers[fi:].sum()}')
 
+    # Print quantiles of age of causal infection
+    ac_df = sc.loadobj('results/age_causal_infection.obj')
+    lb = np.quantile(ac_df.loc[ac_df["Health event"] == 'Causal\ninfection']["Age"], 0.9)
+    med = np.quantile(ac_df.loc[ac_df["Health event"] == 'Causal\ninfection']["Age"], 0.5)
+    ub = np.quantile(ac_df.loc[ac_df["Health event"] == 'Causal\ninfection']["Age"], 0.1)
+    print(f'90% of causal infections occur between ages {lb:.1f} and {ub:.1f}, median {med:.1f}')
 
-
+    # As above but for HSIL
+    lb = np.quantile(ac_df.loc[ac_df["Health event"] == 'HSIL']["Age"], 0.9)
+    med = np.quantile(ac_df.loc[ac_df["Health event"] == 'HSIL']["Age"], 0.5)
+    ub = np.quantile(ac_df.loc[ac_df["Health event"] == 'HSIL']["Age"], 0.1)
+    print(f'90% of HSIL occur between ages {lb:.1f} and {ub:.1f}, median {med:.1f}')

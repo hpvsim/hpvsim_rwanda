@@ -44,7 +44,7 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Virus-clearing therapeutic')
+    ax.set_title('ASR cervical cancer incidence, 2025-2100\nVirus-clearing therapeutic')
     pn += 1
 
     # Lesion-regressing TxV
@@ -62,7 +62,7 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Lesion-regressing therapeutic')
+    ax.set_title('ASR cervical cancer incidence, 2025-2100\nLesion-regressing therapeutic')
     pn += 1
 
     # Scaled-up S&T
@@ -81,7 +81,7 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('Scaled up screening & ablation')
+    ax.set_title('ASR cervical cancer incidence, 2025-2100\nScaled up screening & ablation')
     ax.legend(loc="upper right", frameon=False, bbox_to_anchor=(1, 0.95), fontsize=18)
     pn += 1
 
@@ -98,6 +98,24 @@ if __name__ == '__main__':
     # Load scenarios and construct figure
     plot_fig3()
 
+    msim_dict = sc.loadobj('results/st_scens.obj')
+    mbase = msim_dict['Baseline']
+    strategies = [
+        'TxV 50/90 with 18% screening',
+        'TxV 90/50 with 18% screening',
+        'TxV 50/90 with 35% screening',
+        'TxV 90/50 with 35% screening',
+        'TxV 50/90 with 70% screening',
+        'TxV 90/50 with 70% screening',
+        'S&T 18%',
+        'S&T 35%',
+        'S&T 70%',
+        ]
 
+    fi = sc.findinds(mbase.year, 2025)[0]
+    for sname in strategies:
+        mres = msim_dict[sname]
+        elim_year = sc.findfirst(mres['asr_cancer_incidence'][fi:]<4)+fi
+        print(f'{sname} elim year: {mbase.year[elim_year]}')
 
 
