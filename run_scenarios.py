@@ -25,7 +25,7 @@ from interventions import make_st, make_st_older, make_st_hiv, make_male_vx
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [10, 1][debug]  # How many seeds to run per cluster
+n_seeds = [1, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
@@ -59,7 +59,7 @@ def make_vx_scenarios():
 
     start_year = 2027
     mass_vx_age_range = [20, 50]
-    cov_array = [.18, .35, .70]
+    cov_array = [.18]  #, .35, .70]
     for cov_val in cov_array:
 
         # Screen, treat, & vaccinate older women
@@ -99,7 +99,9 @@ def make_sims(scenarios=None, end=2100):
 def run_sims(scenarios=None, end=2100, verbose=-1):
     """ Run the simulations """
     msim = make_sims(scenarios=scenarios, end=end)
-    msim.run(verbose=verbose)
+    for sim in msim.sims:
+        sim.run()
+    # msim.run(verbose=verbose)
     return msim
 
 
@@ -115,6 +117,7 @@ if __name__ == '__main__':
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
     if do_run:
         scenarios = sc.mergedicts(make_st_scenarios(), make_vx_scenarios())
+        scenarios = {k:v for k, v in scenarios.items() if k == 'Mass vx 18%'}
         msim = run_sims(scenarios=scenarios, end=end)
 
         if do_process:

@@ -146,7 +146,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     return st_intvs
 
 
-def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9, age_range=[20, 25]):
+def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9, age_range=[20, 50]):
     """
     Make screening campaign for 20-25yo
     """
@@ -166,7 +166,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9,
 
     # Assign treatment
     tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv('txv_assigner.csv')
+    tx_assigner.df = pd.read_csv('tx_assigner.csv')
     screen_positive = lambda sim: sim.get_intervention('screening_older').outcomes['positive']
     assign_treatment = hpv.campaign_triage(
         years=start_year,
@@ -212,7 +212,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9,
         product='bivalent',
         label='mass_vax',
         eligibility=mass_eligible,
-        age_range=[20, 25],
+        age_range=age_range,
         prob=screen_cov,
         years=start_year
     )
