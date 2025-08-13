@@ -79,7 +79,7 @@ if __name__ == '__main__':
     ei = sc.findinds(mbase.year, end_year)[0]
     fi = sc.findinds(mbase.year, 2025)[0]
 
-    elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][si:]<4)+si
+    elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][si:]<4, die=False)+si
 
     print(f'Elim year: {mbase.year[elim_year]}')
     print(f'Cancers in 2025: {mbase.cancers[si]} ({mbase.cancers.low[si]}, {mbase.cancers.high[si]})')

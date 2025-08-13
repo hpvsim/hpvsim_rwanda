@@ -87,9 +87,9 @@ def plot_fig4(end_year=2060):
         ax.set_xticklabels(remap.keys(), ha='center')
         ax.set_title('Cancers averted')
         sc.SIticks(ax)
-        ax.set_ylim(bottom=0, top=40_000)
+        ax.set_ylim(bottom=0, top=30_000)
         if pn != 0: ax.set_yticklabels([])
-        text_loc = 40_000*.95
+        text_loc = 30_000*.95
         ax.text(1.5, text_loc, f'{slevel}% coverage', va="center", ha="center")
 
     fig.tight_layout()
@@ -103,7 +103,7 @@ def plot_fig4(end_year=2060):
 if __name__ == '__main__':
 
     # Load scenarios and construct figure
-    perc_averted, num_averted = plot_fig4(end_year=2100)
+    perc_averted, num_averted = plot_fig4(end_year=2060)
 
 
 

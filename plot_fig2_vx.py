@@ -78,7 +78,11 @@ if __name__ == '__main__':
     mbase = msim_dict['Baseline']
     m70 = msim_dict['Mass vx 70%']
     fi = sc.findinds(mbase.year, 2025)[0]
-    elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][fi:]<4)+fi
+    elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][fi:]<4, die=False)
+    if elim_year is None:
+        elim_year = len(mbase.year) - 1
+    else:
+        elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][fi:]<4)+fi
     print(f'Elim year: {mbase.year[elim_year]}')
     print(f'Cancers averted: {mbase.cancers[fi:].sum()-m70.cancers[fi:].sum()}')
 

@@ -23,8 +23,9 @@ def make_male_vx(prob=None):
     intvs = normal_intvs + [routine_vx]
     return intvs
 
+
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
-            start_year=2020, end_year=2100, prev_treat_cov=0.3, txv_pars=None, txv=False, future_treat_cov=0.9):
+            start_year=2020, end_year=2100, prev_treat_cov=0.3, future_treat_cov=0.9, txv_pars=None, txv=False):
     """
     Make screening and treatment interventions
     """
@@ -62,11 +63,15 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     triage_years = np.arange(start_year, triage_end_year + 1)
     triage_prob = np.array([prev_treat_cov]*n_prev_years+[future_treat_cov]*n_future_screen_years)
     n_future_years = len(future_years)
+
+    tx_assigner = hpv.default_dx('tx_assigner')
+    tx_assigner.df = pd.read_csv('tx_assigner.csv')
+
     assign_treatment = hpv.routine_triage(
         years=triage_years,
         prob=triage_prob,
         annual_prob=False,
-        product='tx_assigner',
+        product=tx_assigner,
         eligibility=screen_positive,
         label='tx assigner'
     )
@@ -119,7 +124,8 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
             # TxV treatment
             txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
-            txv_prod = hpv.default_tx('txvx2')
+            txv_prod = hpv.default_tx('txvx1')
+            txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
             if txv_pars is not None:
                 if isinstance(txv_pars, str):
                     txv_prod.df = pd.read_csv(txv_pars)
