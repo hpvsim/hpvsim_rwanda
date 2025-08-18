@@ -39,6 +39,7 @@ def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=Tru
 
     ax.plot(years, best, color=color, label=label, ls=ls)
     ax.fill_between(years, low, high, alpha=0.1, color=color)
+    # ax.set_yscale('log')
 
     # Add horizontal line at 4
     ax.axhline(4, color='k', ls='--', lw=0.5)

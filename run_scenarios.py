@@ -65,8 +65,8 @@ def make_vx_scenarios():
         # Screen, treat, & vaccinate older women
         mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
         scendict[f'Mass vx {cov_val*100:.0f}%'] = mass_intvs
-        # hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
-        # scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
+        hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
+        scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
         st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
         # intvs = make_male_vx(prob=cov_val)
@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
         if do_process:
 
-            metrics = ['year', 'asr_cancer_incidence', 'cancers', 'cancer_deaths']
+            metrics = ['year', 'asr_cancer_incidence', 'cancers', 'cancer_deaths', 'cancers_with_hiv', 'cancers_no_hiv', 'cancer_incidence_no_hiv', 'cancer_incidence_with_hiv']
 
             # Process results
             scen_labels = list(scenarios.keys())
