@@ -108,48 +108,137 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     ]
 
     # Assign treatment - future
-    if n_future_years > 0:
-        if txv:
-            txv_assigner = hpv.default_dx('txvx_assigner')
-            txv_assigner.df = pd.read_csv('txv_assigner.csv')
-            txv_assigner.hierarchy = ['radiation', 'txv', 'none']
-            assign_treatment2 = hpv.routine_triage(
-                start_year=2030,
-                prob=future_treat_cov,
-                annual_prob=False,
-                product=txv_assigner,
-                eligibility=screen_positive,
-                label='txv_assigner'
-            )
+    if (n_future_years > 0) and txv:
 
-            # TxV treatment
-            txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
-            txv_prod = hpv.default_tx('txvx1')
-            txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
-            if txv_pars is not None:
-                if isinstance(txv_pars, str):
-                    txv_prod.df = pd.read_csv(txv_pars)
-                elif isinstance(txv_pars, pd.DataFrame):
-                    txv_prod.df = txv_pars
-            txv = hpv.linked_txvx(
-                prob=1,
-                product=txv_prod,
-                eligibility=txv_eligible,
-                label='txv'
-            )
+        # Make assigner
+        txv_assigner = hpv.default_dx('txvx_assigner')
+        txv_assigner.df = pd.read_csv(f'txv_{txv_pars}_assigner.csv')
+        txv_assigner.hierarchy = ['radiation', 'excision', 'ablation', 'txv', 'none']
 
-            # Radiation
-            religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
-            radiation2 = hpv.treat_num(
-                prob=1,  # assume an additional dropoff in CaTx coverage
-                product=hpv.radiation(),
-                eligibility=religible,
-                label='radiation'
-            )
+        # Make product
+        txv_prod = hpv.default_tx('txvx1')
+        txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
+        txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
 
-            st_intvs += [assign_treatment2, txv, radiation2]
+        assign_treatment2 = hpv.routine_triage(
+            start_year=2030,
+            prob=future_treat_cov,
+            annual_prob=False,
+            product=txv_assigner,
+            eligibility=screen_positive,
+            label='txv_assigner'
+        )
+
+        # TxV treatment
+        txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
+
+        txv = hpv.linked_txvx(
+            prob=1,
+            product=txv_prod,
+            eligibility=txv_eligible,
+            label='txv'
+        )
+
+        # Ablation treatment
+        ablation2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['ablation']
+        ablation2 = hpv.treat_num(
+            prob=1,
+            product='ablation',
+            eligibility=ablation_eligible2,
+            label='ablation'
+        )
+        # Excision treatment
+        excision2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['excision']
+        excision2 = hpv.treat_num(
+            prob=1,
+            product='excision',
+            eligibility=excision_eligible,
+            label='excision'
+        )
+        # Radiation
+        religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
+        radiation2 = hpv.treat_num(
+            prob=1,  # assume an additional dropoff in CaTx coverage
+            product=hpv.radiation(),
+            eligibility=religible,
+            label='radiation'
+        )
+
+        st_intvs += [assign_treatment2, txv, ablation2, excision2, radiation2]
 
     return st_intvs
+
+
+def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, dose2_uptake=0.8, intro_year=2030):
+    """ Make mass txvx interventions """
+
+    # Handle inputs
+    campaign_years = [intro_year]
+    campaign_dose2_years = [intro_year, intro_year + 1]
+    campaign_age = [25, 50]
+    routine_age = [25, 26]
+
+    # Create product
+    dose1 = hpv.default_tx('txvx1')
+    dose2 = hpv.default_tx('txvx2')
+    dose2.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
+    dose2.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
+
+    # Eligibility
+    first_dose_eligible = lambda sim: (sim.people.txvx_doses == 0)
+    second_dose_eligible = lambda sim: (sim.people.txvx_doses == 1) & (
+        sim.t > (sim.people.date_tx_vaccinated + 0.25 / sim["dt"])
+    )
+
+    # Campaign txvx
+    campaign_txvx_dose1 = hpv.campaign_txvx(
+        prob=campaign_coverage,
+        annual_prob=True,
+        years=campaign_years,
+        age_range=campaign_age,
+        product=dose1,
+        eligibility=first_dose_eligible,
+        label="campaign txvx",
+    )
+
+    campaign_txvx_dose2 = hpv.campaign_txvx(
+        prob=dose2_uptake,
+        annual_prob=True,
+        years=campaign_dose2_years,
+        age_range=campaign_age,
+        product=dose2,
+        eligibility=second_dose_eligible,
+        label="campaign txvx 2nd dose",
+    )
+
+    routine_txvx_dose1 = hpv.routine_txvx(
+        prob=routine_coverage,
+        annual_prob=True,
+        start_year=intro_year + 1,
+        age_range=routine_age,
+        eligibility=first_dose_eligible,
+        product=dose1,
+        label="routine txvx",
+    )
+
+    routine_txvx_dose2 = hpv.routine_txvx(
+        prob=dose2_uptake,
+        annual_prob=True,
+        start_year=intro_year + 1,
+        age_range=routine_age,
+        product=dose2,
+        eligibility=second_dose_eligible,
+        label="routine txvx 2nd dose",
+    )
+
+    mv_intvs = [
+        campaign_txvx_dose1,
+        campaign_txvx_dose2,
+        routine_txvx_dose1,
+        routine_txvx_dose2,
+    ]
+
+    return mv_intvs
 
 
 def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9, age_range=[20, 50]):

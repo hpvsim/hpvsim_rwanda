@@ -21,7 +21,7 @@ import hpvsim as hpv
 
 # Imports from this repository
 import run_sim as rs
-from interventions import make_st, make_st_older, make_st_hiv, make_male_vx
+from interventions import make_st, make_st_older, make_st_hiv, make_male_vx, make_mv_intvs
 
 # Settings - used here and imported elsewhere
 debug = 0
@@ -31,20 +31,42 @@ n_seeds = [10, 1][debug]  # How many seeds to run per cluster
 # %% Create interventions
 
 
-def make_st_scenarios():
+def make_txv_scenarios():
     scendict = dict()
 
     # Baseline
     scendict['No interventions'] = []
     scendict['Baseline'] = make_st(screen_change_year=2100)
 
-    for future_screen_cov in [0.18, 0.35, 0.7]:
-        for indication, effpars in {'cin': '50/90', 'precin': '90/50'}.items():
-            scendict[f'TxV {effpars} with {int(future_screen_cov*100)}% screening'] = make_st(
-                future_screen_cov=future_screen_cov,
-                txv_pars=f'txvx_pars_{indication}.csv',
-                txv=True,
-                screen_change_year=2027,)
+    for cov in [0.18, 0.35, 0.7]:
+        # Virus-clearing TxV within S&T. Triaged such that women with precin are given TxV
+        # and women with CIN are given ablation
+        scendict[f'TxV 90/50 within screening, {int(cov*100)}%'] = make_st(
+            future_screen_cov=cov,
+            txv_pars='precin',
+            txv=True,
+            screen_change_year=2027,)
+
+        # Lesion-regressing TxV within S&T. Triaged such that women with both precin and CIN are given TxV
+        scendict[f'TxV 50/90 within screening, {int(cov*100)}%'] = make_st(
+            future_screen_cov=cov,
+            txv_pars='cin',
+            txv=True,
+            screen_change_year=2027,)
+
+        # Virus-clearing mass TxV
+        scendict[f'Mass TxV 90/50, {int(cov*100)}%'] = make_mv_intvs(
+            txv_pars='precin',
+            campaign_coverage=cov,
+            routine_coverage=cov,
+        )
+
+        # Virus-clearing mass TxV
+        scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
+            txv_pars='cin',
+            campaign_coverage=cov,
+            routine_coverage=cov,
+        )
 
     return scendict
 
@@ -52,8 +74,8 @@ def make_st_scenarios():
 def make_vx_scenarios():
     """
     Compare vaccination strategies:
-        1. Test & vaccinate WLHIV
-        2. Test & mass vaccinate women aged 20-25
+        1. Test & mass vaccinate women aged 20-25
+        2. Test & vaccinate WLHIV
     """
     scendict = dict()
 
@@ -64,11 +86,16 @@ def make_vx_scenarios():
 
         # Screen, treat, & vaccinate older women
         mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
-        scendict[f'Mass vx {cov_val*100:.0f}%'] = mass_intvs
+        scendict[f'HPV-Faster {cov_val*100:.0f}%'] = mass_intvs
+
+        # Screen, treat, & vaccinate WLHIV
         hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
         scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
-        scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
+
+        # Excluded strategies: scale up S&T
+        # st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
+        # scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
+        # Excluded strategies: vaccinate males
         # intvs = make_male_vx(prob=cov_val)
         # scendict[f'Male vx {cov_val*100:.0f}%'] = intvs
 
@@ -116,7 +143,7 @@ if __name__ == '__main__':
 
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
     if do_run:
-        scenarios = sc.mergedicts(make_st_scenarios(), make_vx_scenarios())
+        scenarios = sc.mergedicts(make_txv_scenarios(), make_vx_scenarios())
         # scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
         msim = run_sims(scenarios=scenarios, end=end)
 
