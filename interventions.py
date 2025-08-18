@@ -237,9 +237,10 @@ def make_st_hiv(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, r
     Make screening campaign for 20-25yo
     """
     # Routine screening
-    screen_eligible = lambda sim: (np.isnan(sim.people.date_screened) | \
-                                  (sim.t > (sim.people.date_screened + 5 / sim['dt']))) & \
-                                  (sim.people.hiv == True) & (sim.people.art == True)
+    # screen_eligible = lambda sim: (np.isnan(sim.people.date_screened) | \
+    #                               (sim.t > (sim.people.date_screened + 5 / sim['dt']))) & \
+    #                               (sim.people.hiv == True) & (sim.people.art == True)
+    screen_eligible = lambda sim: (sim.people.hiv == True)  #& (sim.people.art == True)
 
     # Routine screening
     screening = hpv.campaign_screening(
