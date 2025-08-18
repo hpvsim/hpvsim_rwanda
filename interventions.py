@@ -131,7 +131,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
         # TxV treatment
         txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
-
         txv = hpv.linked_txvx(
             prob=1,
             product=txv_prod,
@@ -144,7 +143,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         ablation2 = hpv.treat_num(
             prob=1,
             product='ablation',
-            eligibility=ablation_eligible2,
+            eligibility=ablation2_eligible,
             label='ablation'
         )
         # Excision treatment
@@ -152,7 +151,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         excision2 = hpv.treat_num(
             prob=1,
             product='excision',
-            eligibility=excision_eligible,
+            eligibility=excision2_eligible,
             label='excision'
         )
         # Radiation
@@ -169,7 +168,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     return st_intvs
 
 
-def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, dose2_uptake=0.8, intro_year=2030):
+def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, dose2_uptake=1, intro_year=2030):
     """ Make mass txvx interventions """
 
     # Handle inputs
