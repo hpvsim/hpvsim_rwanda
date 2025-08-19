@@ -32,9 +32,9 @@ def plot_fig2():
     ax = fig.add_subplot(gs[:2])
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '20% coverage, 2027': msim_dict['Mass vx 18%'],
-        '35% coverage, 2027': msim_dict['Mass vx 35%'],
-        '70% coverage, 2027': msim_dict['Mass vx 70%'],
+        '20% coverage, 2027': msim_dict['HPV-Faster 18%'],
+        '35% coverage, 2027': msim_dict['HPV-Faster 35%'],
+        '70% coverage, 2027': msim_dict['HPV-Faster 70%'],
     }
 
     cn = 0
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     msim_dict = sc.loadobj('results/st_scens.obj')
     mbase = msim_dict['Baseline']
-    m70 = msim_dict['Mass vx 70%']
+    m70 = msim_dict['HPV-Faster 70%']
     fi = sc.findinds(mbase.year, 2025)[0]
     elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][fi:]<4, die=False)
     if elim_year is None:

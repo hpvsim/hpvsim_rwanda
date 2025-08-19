@@ -25,7 +25,7 @@ def make_male_vx(prob=None):
 
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
-            start_year=2020, end_year=2100, prev_treat_cov=0.3, future_treat_cov=0.9, txv_pars=None, txv=False):
+            start_year=2020, end_year=2100, prev_treat_cov=0.3, future_treat_cov=0.7, txv_pars=None, txv=False):
     """
     Make screening and treatment interventions
     """
@@ -61,7 +61,8 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     n_future_screen_years = len(future_screen_years)
     triage_years = np.arange(start_year, triage_end_year + 1)
-    triage_prob = np.array([prev_treat_cov]*n_prev_years+[future_treat_cov]*n_future_screen_years)
+    future_triage_cov = 1
+    triage_prob = np.array([prev_treat_cov]*n_prev_years+[future_triage_cov]*n_future_screen_years)
     n_future_years = len(future_years)
 
     tx_assigner = hpv.default_dx('tx_assigner')
@@ -80,7 +81,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # Ablation treatment
     ablation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['ablation']
     ablation = hpv.treat_num(
-        prob=1,
+        prob=future_treat_cov,
         product='ablation',
         eligibility=ablation_eligible,
         label='ablation'
@@ -89,7 +90,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner').outcomes['excision'].tolist()
                                             + sim.get_intervention('ablation').outcomes['unsuccessful'].tolist()))
     excision = hpv.treat_num(
-        prob=1,
+        prob=future_treat_cov,
         product='excision',
         eligibility=excision_eligible,
         label='excision'
@@ -141,7 +142,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         # Ablation treatment
         ablation2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['ablation']
         ablation2 = hpv.treat_num(
-            prob=1,
+            prob=future_treat_cov,
             product='ablation',
             eligibility=ablation2_eligible,
             label='ablation'
@@ -149,7 +150,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         # Excision treatment
         excision2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['excision']
         excision2 = hpv.treat_num(
-            prob=1,
+            prob=future_treat_cov,
             product='excision',
             eligibility=excision2_eligible,
             label='excision'

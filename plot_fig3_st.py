@@ -14,7 +14,7 @@ def plot_fig3():
     Plot the residual burden of cervical cancer in Rwanda under screening and treatment scenarios.
     """
     ut.set_font(20)
-    fig, axes = pl.subplots(3, 1, layout="tight", figsize=(12, 10))
+    fig, axes = pl.subplots(2, 2, layout="tight", figsize=(12, 10))
     axes = axes.ravel()
     resname = 'asr_cancer_incidence'
 
@@ -29,13 +29,13 @@ def plot_fig3():
     ei = sc.findinds(mbase.year, end_year)[0]
     pn = 0
  
-    # Virus-clearing TxV
+    # Virus-clearing TxV within screening
     ax = axes[pn]
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '20% screening': msim_dict['TxV 90/50 with 18% screening'],
-        '35% screening': msim_dict['TxV 90/50 with 35% screening'],
-        '70% screening': msim_dict['TxV 90/50 with 70% screening'],
+        '20% screening': msim_dict['TxV 90/50 within screening, 18%'],
+        '35% screening': msim_dict['TxV 90/50 within screening, 35%'],
+        '70% screening': msim_dict['TxV 90/50 within screening, 70%'],
     }
     vc = sc.vectocolor(3).tolist()
     colors = ['k'] + vc
@@ -44,16 +44,54 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('ASR cervical cancer incidence, 2025-2100\nVirus-clearing therapeutic')
+    ax.set_ylabel('ASR cervical cancer incidence')
+    ax.set_title('Virus-clearing therapeutic\nwithin screening program')
+    pn += 1
+
+    # Lesion-regressing TxV within screening
+    ax = axes[pn]
+    this_dict = {
+        'Status quo': msim_dict['Baseline'],
+        '20% screening': msim_dict['TxV 50/90 within screening, 18%'],
+        '35% screening': msim_dict['TxV 50/90 within screening, 35%'],
+        '70% screening': msim_dict['TxV 50/90 within screening, 70%'],
+    }
+    vc = sc.vectocolor(3).tolist()
+    colors = ['k'] + vc
+    cn = 0
+    for slabel, mres in this_dict.items():
+        ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+        cn += 1
+    ax.set_ylim(bottom=0, top=ymax)
+    ax.set_title('Lesion-regressing therapeutic\nwithin screening program')
+    pn += 1
+
+    # Virus-clearing TxV
+    ax = axes[pn]
+    this_dict = {
+        'Status quo': msim_dict['Baseline'],
+        '20% screening': msim_dict['Mass TxV 90/50, 18%'],
+        '35% screening': msim_dict['Mass TxV 90/50, 35%'],
+        '70% screening': msim_dict['Mass TxV 90/50, 70%'],
+    }
+    vc = sc.vectocolor(3).tolist()
+    colors = ['k'] + vc
+    cn = 0
+    for slabel, mres in this_dict.items():
+        ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+        cn += 1
+    ax.set_ylim(bottom=0, top=ymax)
+    ax.set_ylabel('ASR cervical cancer incidence')
+    ax.set_title('Virus-clearing therapeutic\nmass delivery')
     pn += 1
 
     # Lesion-regressing TxV
     ax = axes[pn]
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '20% screening': msim_dict['TxV 50/90 with 18% screening'],
-        '35% screening': msim_dict['TxV 50/90 with 35% screening'],
-        '70% screening': msim_dict['TxV 50/90 with 70% screening'],
+        '20% coverage': msim_dict['Mass TxV 50/90, 18%'],
+        '35% coverage': msim_dict['Mass TxV 50/90, 35%'],
+        '70% coverage': msim_dict['Mass TxV 50/90, 70%'],
     }
     vc = sc.vectocolor(3).tolist()
     colors = ['k'] + vc
@@ -62,28 +100,28 @@ def plot_fig3():
         ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
         cn += 1
     ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('ASR cervical cancer incidence, 2025-2100\nLesion-regressing therapeutic')
+    ax.set_title('Lesion-regressing therapeutic\nmass delivery')
     pn += 1
 
-    # Scaled-up S&T
-    ax = axes[pn]
-    this_dict = {
-        'Status quo': msim_dict['Baseline'],
-        '20% screening': msim_dict['S&T 18%'],
-        '35% screening': msim_dict['S&T 35%'],
-        '70% screening': msim_dict['S&T 70%'],
-    }
-    vc = sc.vectocolor(3).tolist()
-    colors = ['k'] + vc
-    cn = 0
-    for slabel, mres in this_dict.items():
-        ls = ':' if cn == 0 else '-'
-        ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
-        cn += 1
-    ax.set_ylim(bottom=0, top=ymax)
-    ax.set_title('ASR cervical cancer incidence, 2025-2100\nScaled up screening & ablation')
+    # # Scaled-up S&T
+    # ax = axes[pn]
+    # this_dict = {
+    #     'Status quo': msim_dict['Baseline'],
+    #     '20% screening': msim_dict['S&T 18%'],
+    #     '35% screening': msim_dict['S&T 35%'],
+    #     '70% screening': msim_dict['S&T 70%'],
+    # }
+    # vc = sc.vectocolor(3).tolist()
+    # colors = ['k'] + vc
+    # cn = 0
+    # for slabel, mres in this_dict.items():
+    #     ls = ':' if cn == 0 else '-'
+    #     ax = ut.plot_single(ax, mres, resname, si, ei, color=colors[cn], label=slabel)
+    #     cn += 1
+    # ax.set_ylim(bottom=0, top=ymax)
+    # ax.set_title('ASR cervical cancer incidence, 2025-2100\nScaled up screening & ablation')
     ax.legend(loc="upper right", frameon=False, bbox_to_anchor=(1, 0.95), fontsize=18)
-    pn += 1
+    # pn += 1
 
     fig.tight_layout()
     fig_name = 'figures/fig3_st.png'
@@ -153,15 +191,21 @@ if __name__ == '__main__':
 
     mbase = msim_dict['Baseline']
     strategies = [
-        'TxV 50/90 with 18% screening',
-        'TxV 90/50 with 18% screening',
-        'TxV 50/90 with 35% screening',
-        'TxV 90/50 with 35% screening',
-        'TxV 50/90 with 70% screening',
-        'TxV 90/50 with 70% screening',
-        'S&T 18%',
-        'S&T 35%',
-        'S&T 70%',
+        'TxV 50/90 within screening, 18%',
+        'TxV 90/50 within screening, 18%',
+        'TxV 50/90 within screening, 35%',
+        'TxV 90/50 within screening, 35%',
+        'TxV 50/90 within screening, 70%',
+        'TxV 90/50 within screening, 70%',
+        'Mass TxV 50/90, 18%',
+        'Mass TxV 90/50, 18%',
+        'Mass TxV 50/90, 35%',
+        'Mass TxV 90/50, 35%',
+        'Mass TxV 50/90, 70%',
+        'Mass TxV 90/50, 70%',
+        # 'S&T 18%',
+        # 'S&T 35%',
+        # 'S&T 70%',
         ]
 
     fi = sc.findinds(mbase.year, 2025)[0]
