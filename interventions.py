@@ -57,10 +57,6 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
-
-    # Triage with VIA prior to treatment
-
-
     triage_end_year = 2030 if txv else end_year
     future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     n_future_screen_years = len(future_screen_years)
@@ -70,7 +66,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     n_future_years = len(future_years)
 
     tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv('tx_assigner.csv')
+    tx_assigner.df = pd.read_csv('tx_assigner.csv')  # Implicitly assumes VIA triage
 
     assign_treatment = hpv.routine_triage(
         years=triage_years,
