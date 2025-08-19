@@ -57,6 +57,10 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
+
+    # Triage with VIA prior to treatment
+
+
     triage_end_year = 2030 if txv else end_year
     future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     n_future_screen_years = len(future_screen_years)
@@ -241,7 +245,7 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
     return mv_intvs
 
 
-def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9, age_range=[20, 50]):
+def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.5, age_range=[20, 50]):
     """
     Make screening campaign for 20-25yo
     """
@@ -261,7 +265,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.9,
 
     # Assign treatment
     tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv('tx_assigner.csv')
+    tx_assigner.df = pd.read_csv('tx_assigner_faster.csv')
     screen_positive = lambda sim: sim.get_intervention('screening_older').outcomes['positive']
     assign_treatment = hpv.campaign_triage(
         years=start_year,
