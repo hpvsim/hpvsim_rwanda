@@ -189,29 +189,3 @@ if __name__ == '__main__':
     plot_fig3()
     plot_fig_hiv(msim_dict)
 
-    mbase = msim_dict['Baseline']
-    strategies = [
-        'TxV 50/90 within screening, 18%',
-        'TxV 90/50 within screening, 18%',
-        'TxV 50/90 within screening, 35%',
-        'TxV 90/50 within screening, 35%',
-        'TxV 50/90 within screening, 70%',
-        'TxV 90/50 within screening, 70%',
-        'Mass TxV 50/90, 18%',
-        'Mass TxV 90/50, 18%',
-        'Mass TxV 50/90, 35%',
-        'Mass TxV 90/50, 35%',
-        'Mass TxV 50/90, 70%',
-        'Mass TxV 90/50, 70%',
-        # 'S&T 18%',
-        # 'S&T 35%',
-        # 'S&T 70%',
-        ]
-
-    fi = sc.findinds(mbase.year, 2025)[0]
-    for sname in strategies:
-        mres = msim_dict[sname]
-        elim_year = sc.findfirst(mres['asr_cancer_incidence'][fi:]<4)+fi
-        print(f'{sname} elim year: {mbase.year[elim_year]}')
-
-

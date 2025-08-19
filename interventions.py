@@ -123,7 +123,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
         assign_treatment2 = hpv.routine_triage(
             start_year=2030,
-            prob=future_treat_cov,
+            prob=1,
             annual_prob=False,
             product=txv_assigner,
             eligibility=screen_positive,

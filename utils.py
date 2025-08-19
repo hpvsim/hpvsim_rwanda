@@ -38,6 +38,14 @@ def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=Tru
         years = years[4:]
 
     ax.plot(years, best, color=color, label=label, ls=ls)
+
+    if to_plot == 'asr_cancer_incidence':
+        try:
+            elim_year = sc.findfirst(best<4)
+            print(f'{label} elim year: {years[elim_year]}')
+        except:
+            print(f'{label} not eliminated')
+
     ax.fill_between(years, low, high, alpha=0.1, color=color)
     # ax.set_yscale('log')
 
