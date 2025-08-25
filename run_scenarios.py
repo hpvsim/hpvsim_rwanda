@@ -38,7 +38,7 @@ def make_txv_scenarios():
     scendict['No interventions'] = []
     scendict['Baseline'] = make_st(screen_change_year=2100)
 
-    for cov in [0.18, 0.35, 0.7]:
+    for cov in [0.7]:  #[0.18, 0.35, 0.7]:
         # Virus-clearing TxV within S&T. Triaged such that women with precin are given TxV
         # and women with CIN are given ablation
         scendict[f'TxV 90/50 within screening, {int(cov*100)}%'] = make_st(

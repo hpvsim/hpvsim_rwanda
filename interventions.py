@@ -179,63 +179,38 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
     routine_age = [25, 26]
 
     # Create product
-    dose1 = hpv.default_tx('txvx1')
-    dose2 = hpv.default_tx('txvx2')
-    dose2.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
-    dose2.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
+    # Make product
+    txv_prod = hpv.default_tx('txvx1')
+    txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
+    txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
 
     # Eligibility
-    first_dose_eligible = lambda sim: (sim.people.txvx_doses == 0)
-    second_dose_eligible = lambda sim: (sim.people.txvx_doses == 1) & (
-        sim.t > (sim.people.date_tx_vaccinated + 0.25 / sim["dt"])
-    )
+    eligible = lambda sim: (sim.people.txvx_doses == 0)
 
     # Campaign txvx
-    campaign_txvx_dose1 = hpv.campaign_txvx(
+    campaign_txvx = hpv.campaign_txvx(
         prob=campaign_coverage,
-        annual_prob=True,
+        annual_prob=False,
         years=campaign_years,
         age_range=campaign_age,
-        product=dose1,
-        eligibility=first_dose_eligible,
+        product=txv_prod,
+        eligibility=eligible,
         label="campaign txvx",
     )
 
-    campaign_txvx_dose2 = hpv.campaign_txvx(
-        prob=dose2_uptake,
-        annual_prob=True,
-        years=campaign_dose2_years,
-        age_range=campaign_age,
-        product=dose2,
-        eligibility=second_dose_eligible,
-        label="campaign txvx 2nd dose",
-    )
-
-    routine_txvx_dose1 = hpv.routine_txvx(
+    routine_txvx = hpv.routine_txvx(
         prob=routine_coverage,
         annual_prob=True,
         start_year=intro_year + 1,
         age_range=routine_age,
-        eligibility=first_dose_eligible,
-        product=dose1,
+        eligibility=eligible,
+        product=txv_prod,
         label="routine txvx",
     )
 
-    routine_txvx_dose2 = hpv.routine_txvx(
-        prob=dose2_uptake,
-        annual_prob=True,
-        start_year=intro_year + 1,
-        age_range=routine_age,
-        product=dose2,
-        eligibility=second_dose_eligible,
-        label="routine txvx 2nd dose",
-    )
-
     mv_intvs = [
-        campaign_txvx_dose1,
-        campaign_txvx_dose2,
-        routine_txvx_dose1,
-        routine_txvx_dose2,
+        campaign_txvx,
+        routine_txvx,
     ]
 
     return mv_intvs
