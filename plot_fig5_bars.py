@@ -10,7 +10,7 @@ import numpy as np
 import utils as ut
 
 
-def plot_fig4(end_year=2100):
+def plot_fig5(end_year=2100):
     """
     Plot the residual burden of cervical cancer in Rwanda under screening and treatment scenarios.
     """
@@ -152,7 +152,7 @@ def plot_fig4(end_year=2100):
 if __name__ == '__main__':
 
     # Load scenarios and construct figure
-    perc_averted, num_averted = plot_fig4()
+    perc_averted, num_averted = plot_fig5()
 
 
 
