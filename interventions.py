@@ -236,11 +236,11 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.5,
 
     # Assign treatment
     tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv('tx_assigner_faster.csv')
+    tx_assigner.df = pd.read_csv('tx_assigner_no_triage.csv')
     screen_positive = lambda sim: sim.get_intervention('screening_older').outcomes['positive']
     assign_treatment = hpv.campaign_triage(
         years=start_year,
-        prob=treat_cov,
+        prob=.9,
         annual_prob=False,
         product=tx_assigner,
         eligibility=screen_positive,
