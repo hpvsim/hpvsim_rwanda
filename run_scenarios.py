@@ -84,17 +84,22 @@ def make_vx_scenarios():
     cov_array = [.18, .35, .70]
     for cov_val in cov_array:
 
+        # Scale up S&T&T
+        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
+        scendict[f'S&T&T {cov_val*100:.0f}%'] = st_intvs
+
+        # Scale up S&T
+        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, tx_assigner='tx_assigner_no_triage')
+        scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
+
         # Screen, treat, & vaccinate older women
         mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
         scendict[f'HPV-Faster {cov_val*100:.0f}%'] = mass_intvs
 
-        # Screen, treat, & vaccinate WLHIV
-        hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
-        scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
-
-        # Excluded strategies: scale up S&T
-        # st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
-        # scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
+        # # Screen, treat, & vaccinate WLHIV
+        # hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
+        # scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
+        #
         # Excluded strategies: vaccinate males
         # intvs = make_male_vx(prob=cov_val)
         # scendict[f'Male vx {cov_val*100:.0f}%'] = intvs

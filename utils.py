@@ -25,7 +25,7 @@ def shrink_calib(calib, n_results=100):
     return calib
 
 
-def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=True):
+def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=True, add_bounds=True):
     years = mres.year[si:ei]
     best = mres[to_plot][si:ei]
     low = mres[to_plot].low[si:ei]
@@ -46,7 +46,7 @@ def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=Tru
         except:
             print(f'{label} not eliminated')
 
-    ax.fill_between(years, low, high, alpha=0.1, color=color)
+    if add_bounds: ax.fill_between(years, low, high, alpha=0.1, color=color)
     # ax.set_yscale('log')
 
     # Add horizontal line at 4

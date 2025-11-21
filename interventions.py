@@ -13,7 +13,7 @@ def make_vx(end_year=2100):
     scaleup = [.2, .4, .6, .8, .9]
     final_cov = 0.9
     vx_cov = np.concatenate([scaleup+[final_cov]*(len(vx_years)-len(scaleup))])
-    routine_vx = hpv.routine_vx(product='bivalent', age_range=[11, 12], prob=vx_cov, years=vx_years)
+    routine_vx = hpv.campaign_vx(product='bivalent', age_range=[11, 12], prob=vx_cov, interpolate=False, annual_prob=False, years=vx_years)
     return routine_vx
 
 
@@ -25,7 +25,8 @@ def make_male_vx(prob=None):
 
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2026, age_range=[30, 50],
-            start_year=2020, end_year=2100, prev_treat_cov=0.3, future_treat_cov=0.7, txv_pars=None, txv=False):
+            start_year=2020, end_year=2100, prev_treat_cov=0.3, future_treat_cov=0.75, txv_pars=None, txv=False,
+            tx_assigner_csv='tx_assigner'):
     """
     Make screening and treatment interventions
     """
@@ -61,12 +62,12 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     n_future_screen_years = len(future_screen_years)
     triage_years = np.arange(start_year, triage_end_year + 1)
-    future_triage_cov = 1
+    future_triage_cov = 0.9
     triage_prob = np.array([prev_treat_cov]*n_prev_years+[future_triage_cov]*n_future_screen_years)
     n_future_years = len(future_years)
 
     tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv('tx_assigner.csv')  # Implicitly assumes VIA triage
+    tx_assigner.df = pd.read_csv(f'{tx_assigner_csv}.csv')  # 60/70 sens/spec if using VIA
 
     assign_treatment = hpv.routine_triage(
         years=triage_years,
@@ -169,12 +170,11 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     return st_intvs
 
 
-def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, dose2_uptake=1, intro_year=2030):
+def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, intro_year=2030):
     """ Make mass txvx interventions """
 
     # Handle inputs
     campaign_years = [intro_year]
-    campaign_dose2_years = [intro_year, intro_year + 1]
     campaign_age = [25, 50]
     routine_age = [25, 26]
 

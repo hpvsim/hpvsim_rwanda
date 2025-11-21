@@ -4,6 +4,8 @@ Plot 1 for infant vaccination scenarios
 
 
 import pylab as pl
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import sciris as sc
 import numpy as np
 import utils as ut
@@ -16,12 +18,13 @@ def plot_fig1():
     gs = fig.add_gridspec(1, 3)
     ax = fig.add_subplot(gs[:2])
 
-    resname = 'asr_cancer_incidence'
+    resnames = ['asr_cancer_incidence', 'cancer_incidence_with_hiv']
+    colors = ['k', 'r']
 
     # What to plot
     start_year = 2016
     end_year = 2100
-    ymax = 25
+    ymax = 60
 
     msim_dict = sc.loadobj('results/st_scens.obj')
     mbase = msim_dict['Baseline']
@@ -34,10 +37,29 @@ def plot_fig1():
     }
     for slabel, mres in this_dict.items():
         ls = ':' if slabel == 'No interventions' else '-'
-        ax = ut.plot_single(ax, mres, resname, si, ei, color='k', ls=ls, label=slabel)
+        for resname in resnames:
+            color = colors[resnames.index(resname)]
+            add_bounds = True if resname == 'asr_cancer_incidence' else False
+            ax = ut.plot_single(ax, mres, resname, si, ei, color=color, ls=ls, label=slabel, add_bounds=add_bounds)
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('ASR cervical cancer incidence, 2025-2100')
-    ax.legend(loc="upper right", frameon=False, bbox_to_anchor=(1, 0.7))
+
+    # Create handles and labels for the color legend
+    # color_handles = [plt.Line2D([0], [0], color='k', lw=2),
+    #                  plt.Line2D([0], [0], color='r', lw=2)]
+    # color_labels = ['All', 'HIV+']
+    circ1 = mpatches.Patch(facecolor='k', label='All')
+    circ2 = mpatches.Patch(facecolor='r', label='HIV+')
+
+    # Create handles and labels for the linestyle legend
+    linestyle_handles = [plt.Line2D([0], [0], color='k', linestyle='-', lw=2),
+                         plt.Line2D([0], [0], color='k', linestyle=':', lw=2)]
+    linestyle_labels = ['Status quo', 'No interventions']
+
+    # Create the second legend for linestyles
+    legend1 = ax.legend(frameon=False, handles=[circ1, circ2], title='', loc='upper right', bbox_to_anchor=(0.6, 1))
+    ax.add_artist(legend1)
+    ax.legend(linestyle_handles, linestyle_labels, title='', loc='upper right', frameon=False)
 
     # Assemble cumulative results
     cum_res = dict()
