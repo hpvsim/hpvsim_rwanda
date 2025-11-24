@@ -142,7 +142,7 @@ if __name__ == '__main__':
 
     T = sc.timer()
     do_run = True
-    do_save = False
+    do_save = True
     do_process = True
     end = 2100
 
@@ -151,6 +151,7 @@ if __name__ == '__main__':
         scenarios = sc.mergedicts(make_txv_scenarios(), make_vx_scenarios())
         # scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
         msim = run_sims(scenarios=scenarios, end=end)
+        if do_save: sc.saveobj('results/st_scens_msim.obj', msim)
 
         if do_process:
 
