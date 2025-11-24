@@ -26,7 +26,7 @@ from interventions import make_st, make_st_older, make_st_hiv, make_male_vx, mak
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [10, 1][debug]  # How many seeds to run per cluster
+n_seeds = [1, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
@@ -97,14 +97,6 @@ def make_vx_scenarios():
         mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
         scendict[f'HPV-Faster {cov_val*100:.0f}%'] = mass_intvs
 
-        # # Screen, treat, & vaccinate WLHIV
-        # hiv_intvs = make_st_hiv(screen_cov=cov_val, start_year=start_year)
-        # scendict[f'HIV+ vx {cov_val*100:.0f}%'] = hiv_intvs
-        #
-        # Excluded strategies: vaccinate males
-        # intvs = make_male_vx(prob=cov_val)
-        # scendict[f'Male vx {cov_val*100:.0f}%'] = intvs
-
     return scendict
 
 
@@ -148,14 +140,14 @@ if __name__ == '__main__':
 
     T = sc.timer()
     do_run = True
-    do_save = True
+    do_save = False
     do_process = True
     end = 2100
 
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
     if do_run:
         scenarios = sc.mergedicts(make_txv_scenarios(), make_vx_scenarios())
-        # scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
+        scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
         msim = run_sims(scenarios=scenarios, end=end)
         if do_save: sc.saveobj('results/st_scens_msim.obj', msim)
 
@@ -188,6 +180,8 @@ if __name__ == '__main__':
                     mres[df_key] = np.zeros_like(mres.year)
                     if reduced_sim.get_intervention(intv_name, die=False) is not None:
                         mres[df_key] += reduced_sim.get_intervention(intv_name).n_products_used.values
+
+                msim_dict[scen_label] = mres
 
             sc.saveobj('results/st_scens.obj', msim_dict)
 
