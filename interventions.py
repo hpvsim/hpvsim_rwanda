@@ -13,7 +13,7 @@ def make_vx(end_year=2100):
     scaleup = [.2, .4, .6, .8, .9]
     final_cov = 0.9
     vx_cov = np.concatenate([scaleup+[final_cov]*(len(vx_years)-len(scaleup))])
-    routine_vx = hpv.campaign_vx(product='bivalent', age_range=[11, 12], prob=vx_cov, interpolate=False, annual_prob=False, years=vx_years)
+    routine_vx = hpv.campaign_vx(label='routine_vx', product='bivalent', age_range=[11, 12], prob=vx_cov, interpolate=False, annual_prob=False, years=vx_years)
     return routine_vx
 
 
@@ -146,7 +146,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             prob=future_treat_cov,
             product='ablation',
             eligibility=ablation2_eligible,
-            label='ablation'
+            label='ablation2'
         )
         # Excision treatment
         excision2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['excision']
@@ -154,7 +154,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             prob=future_treat_cov,
             product='excision',
             eligibility=excision2_eligible,
-            label='excision'
+            label='excision2'
         )
         # Radiation
         religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
@@ -162,7 +162,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
             prob=1,  # assume an additional dropoff in CaTx coverage
             product=hpv.radiation(),
             eligibility=religible,
-            label='radiation'
+            label='radiation2'
         )
 
         st_intvs += [assign_treatment2, txv, ablation2, excision2, radiation2]
@@ -212,6 +212,10 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
         campaign_txvx,
         routine_txvx,
     ]
+
+    # Add historical screening and treatment
+    hist_intvs = make_st(screen_change_year=2100)
+    mv_intvs = hist_intvs + mv_intvs
 
     return mv_intvs
 

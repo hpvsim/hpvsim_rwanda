@@ -23,6 +23,7 @@ import hpvsim as hpv
 import run_sim as rs
 from interventions import make_st, make_st_older, make_st_hiv, make_male_vx, make_mv_intvs
 
+
 # Settings - used here and imported elsewhere
 debug = 0
 n_seeds = [10, 1][debug]  # How many seeds to run per cluster
@@ -118,7 +119,14 @@ def make_sims(scenarios=None, end=2100):
                 add_vax = False
             else:
                 add_vax = True
-            sim = rs.make_sim(debug=debug, add_st=False, add_vax=add_vax, interventions=interventions, end=end, seed=seed)
+            sim = rs.make_sim(
+                debug=debug,
+                add_st=False,
+                add_vax=add_vax,
+                interventions=interventions,
+                end=end,
+                seed=seed,
+            )
             sim.label = name
             sims += sim
         all_msims += hpv.MultiSim(sims)
@@ -166,10 +174,27 @@ if __name__ == '__main__':
                 reduced_sim = mlist[si].reduce(output=True)
                 mres = sc.objdict({metric: reduced_sim.results[metric] for metric in metrics})
 
-                for ii, intv in enumerate(reduced_sim['interventions']):
-                    intv_label = intv.label
-                    mres[intv_label] = reduced_sim['interventions'][ii].n_products_used
-                msim_dict[scen_label] = mres
+                # Pull out characteristics of sim to decide what resources we need
+                mres["vaccinations"] = reduced_sim.get_intervention("routine_vx").n_products_used.values
+                mres["screens"] = reduced_sim.get_intervention("screening").n_products_used.values
+                mres["ablations"] = reduced_sim.get_intervention("ablation").n_products_used.values
+                mres["leeps"] = reduced_sim.get_intervention("excision").n_products_used.values
+                mres["cancer_treatments"] = reduced_sim.get_intervention("radiation").n_products_used.values
+
+                # Add TxV if it exists
+                if reduced_sim.get_intervention("txv", die=False) is not None:
+                    mres["txvs"] = reduced_sim.get_intervention("txv").n_products_used.values
+
+                # Add any secondary ablations
+                optional_programs = {'ablation2': 'ablations', 'excision2': 'excisions', 'radiation2': 'cancer_treatments'}
+                for intv_name, df_key in optional_programs.items():
+                    if reduced_sim.get_intervention(intv_name, die=False) is not None:
+                        mres[df_key] += reduced_sim.get_intervention(intv_name).n_products_used.values
+
+                # for ii, intv in enumerate(reduced_sim['interventions']):
+                #     intv_label = intv.label
+                #     mres[intv_label] = reduced_sim['interventions'][ii].n_products_used
+                # msim_dict[scen_label] = mres
 
             sc.saveobj('results/st_scens.obj', msim_dict)
 
