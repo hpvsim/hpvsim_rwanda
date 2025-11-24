@@ -185,7 +185,7 @@ if __name__ == '__main__':
                     'radiation2': 'cancer_treatments',
                 }
                 for intv_name, df_key in programs.items():
-                    mres[df_key] = np.zeros_like(mres.year.values)
+                    mres[df_key] = np.zeros_like(mres.year)
                     if reduced_sim.get_intervention(intv_name, die=False) is not None:
                         mres[df_key] += reduced_sim.get_intervention(intv_name).n_products_used.values
 
