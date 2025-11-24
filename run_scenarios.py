@@ -26,7 +26,7 @@ from interventions import make_st, make_st_older, make_st_hiv, make_male_vx, mak
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [1, 1][debug]  # How many seeds to run per cluster
+n_seeds = [10, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
@@ -145,44 +145,46 @@ if __name__ == '__main__':
     end = 2100
 
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
+    scenarios = sc.mergedicts(make_txv_scenarios(), make_vx_scenarios())
+    # scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
+
     if do_run:
-        scenarios = sc.mergedicts(make_txv_scenarios(), make_vx_scenarios())
-        scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
         msim = run_sims(scenarios=scenarios, end=end)
         if do_save: sc.saveobj('results/st_scens_msim.obj', msim)
 
-        if do_process:
+    if do_process:
+        # msim = sc.loadobj('results/st_scens_msim.obj')
 
-            metrics = ['year', 'asr_cancer_incidence', 'cancers', 'cancer_deaths', 'cancers_with_hiv', 'cancers_no_hiv', 'cancer_incidence_no_hiv', 'cancer_incidence_with_hiv']
+        metrics = ['year', 'asr_cancer_incidence', 'cancers', 'cancer_deaths', 'cancers_with_hiv', 'cancers_no_hiv', 'cancer_incidence_no_hiv', 'cancer_incidence_with_hiv']
 
-            # Process results
-            scen_labels = list(scenarios.keys())
-            mlist = msim.split(chunks=len(scen_labels))
+        # Process results
+        scen_labels = list(scenarios.keys())
+        mlist = msim.split(chunks=len(scen_labels))
 
-            msim_dict = sc.objdict()
-            for si, scen_label in enumerate(scen_labels):
-                reduced_sim = mlist[si].reduce(output=True)
-                mres = sc.objdict({metric: reduced_sim.results[metric] for metric in metrics})
+        msim_dict = sc.objdict()
+        for si, scen_label in enumerate(scen_labels):
+            reduced_sim = mlist[si].reduce(output=True)
+            mres = sc.objdict({metric: reduced_sim.results[metric] for metric in metrics})
 
-                # Pull out characteristics of sim to decide what resources we need
-                programs = {
-                    "routine_vx": "vaccinations",
-                    "screening": "screens",
-                    "ablation": "ablations",
-                    "excision": "leeps",
-                    "radiation": "cancer_treatments",
-                    "txv": "txvs",
-                    'ablation2': 'ablations',
-                    'excision2': 'excisions',
-                    'radiation2': 'cancer_treatments',
-                }
-                for intv_name, df_key in programs.items():
-                    mres[df_key] = np.zeros_like(mres.year)
-                    if reduced_sim.get_intervention(intv_name, die=False) is not None:
-                        mres[df_key] += reduced_sim.get_intervention(intv_name).n_products_used.values
+            # Pull out characteristics of sim to decide what resources we need
+            programs = {
+                "routine_vx": "vaccinations",
+                "screening": "screens",
+                "ablation": "ablations",
+                "excision": "leeps",
+                "radiation": "cancer_treatments",
+                "txv": "txvs",
+                'ablation2': 'ablations',
+                'excision2': 'excisions',
+                'radiation2': 'cancer_treatments',
+            }
+            for intv_name in set(programs.values()): mres[intv_name] = np.zeros_like(mres.year)
+            for intv_name, df_key in programs.items():
+                if reduced_sim.get_intervention(intv_name, die=False) is not None:
+                    mres[df_key] += reduced_sim.get_intervention(intv_name).n_products_used.values
 
-                msim_dict[scen_label] = mres
+            msim_dict[scen_label] = mres
 
-            sc.saveobj('results/st_scens.obj', msim_dict)
+        sc.saveobj('results/st_scens.obj', msim_dict)
 
     print('Done.')
