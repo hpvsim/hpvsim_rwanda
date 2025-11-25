@@ -16,13 +16,15 @@ def plot_fig3():
     gs = fig.add_gridspec(2, 3)  # Changed to 2x3 grid
     msim_dict = sc.loadobj('results/st_scens.obj')  # Updated to load therapeutic scenarios
 
+    text_height = [-0.1, 1.2]
+
     # What to plot
     start_year = 2016
     end_year = 2100
     ymax = 25
     si = sc.findinds(msim_dict['S&T&T 18%'].year, start_year)[0]
     ei = sc.findinds(msim_dict['S&T&T 18%'].year, end_year)[0]
-    vc = sc.vectocolor(3).tolist()
+    vc = sc.gridcolors(3)
     colors = vc
 
     # Define the three strategies and coverage levels
@@ -65,9 +67,10 @@ def plot_fig3():
     sc.SIticks()
     ax.set_xlabel('')
     ax.legend(loc='upper right', frameon=False)
+    ax.set_ylim([0, 100e3])
 
     # Add panel label
-    ax.text(-0.1, 1.05, 'A', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
+    ax.text(*text_height, 'A', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     ######################################################
     # Top Middle: Cumulative cancers in HIV+ women
@@ -92,7 +95,7 @@ def plot_fig3():
     ax.set_xlabel('')
 
     # Add panel label
-    ax.text(-0.1, 1.05, 'B', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
+    ax.text(*text_height, 'B', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     ######################################################
     # Top Right: Combined resource use (ablations + therapeutics)
@@ -131,7 +134,7 @@ def plot_fig3():
     ax.legend(handles=legend_elements, loc='upper left', frameon=False)
 
     # Add panel label
-    ax.text(-0.1, 1.05, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
+    ax.text(*text_height, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     ######################################################
     # Bottom Left + Middle: Time series (spanning 2 columns)
@@ -150,28 +153,27 @@ def plot_fig3():
             if scen_key == 'S&T&T 18%':  # Skip baseline, already plotted
                 continue
             ax = ut.plot_single(ax, msim_dict[scen_key], 'asr_cancer_incidence', si, ei,
-                               color=colors[strat_idx], ls=line_styles[cov_idx],
+                               color=colors[cov_idx], ls=line_styles[strat_idx],
                                label=f'{strat_label} {cov}' if cov_idx == 0 and strat_idx == 1 else '')
 
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('ASR cervical cancer incidence, 2025-2100\nComparison of screening strategies')
 
     # Create legends
-    # Strategy legend
-    strat_handles = [Patch(facecolor=colors[i], label=list(strategies.keys())[i])
-                     for i in range(len(strategies))]
-    legend1 = ax.legend(handles=strat_handles, title='Strategy', loc='upper right',
+    # Coverage legend
+    cov_handles = [Patch(facecolor=colors[i], label=coverage_levels[i]) for i in range(len(coverage_levels))]
+    legend1 = ax.legend(handles=cov_handles, title='Coverage', loc='upper right',
                        bbox_to_anchor=(1, 0.7), frameon=False)
     ax.add_artist(legend1)
 
     # Coverage legend
     from matplotlib.lines import Line2D
-    cov_handles = [Line2D([0], [0], color='k', linestyle=line_styles[i], lw=2, label=coverage_levels[i])
+    strat_handles = [Line2D([0], [0], color='k', linestyle=line_styles[i], lw=2, label=list(strategies.keys())[i])
                    for i in range(len(coverage_levels))]
-    ax.legend(handles=cov_handles, title='Coverage', loc='upper right', frameon=False)
+    ax.legend(handles=strat_handles, title='Strategy', loc='upper right', frameon=False)
 
     # Add panel label
-    ax.text(-0.05, 1.05, 'D', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
+    ax.text(-0.05, 1.2, 'D', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     ######################################################
     # Bottom Right: Total treatments per cancer averted
@@ -220,7 +222,7 @@ def plot_fig3():
     ax.set_xlabel('')
 
     # Add panel label
-    ax.text(-0.1, 1.05, 'E', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
+    ax.text(*text_height, 'E', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     fig.tight_layout()
     fig_name = 'figures/fig3_txv.png'
