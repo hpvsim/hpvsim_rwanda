@@ -31,9 +31,9 @@ def plot_fig3():
     # Define the three strategies and coverage levels
     coverage_levels = ['18%', '35%', '70%']
     strategies = {
-        'S&T&T': 'Status quo',
-        'S&TxV&T&T': 'Virus-clearing TxV',
-        'S&TxV': 'Lesion-regressing TxV'
+        'Status quo': 'S&T&T',
+        'Virus-clearing TxV': 'S&TxV&T&T',
+        'Lesion-regressing TxV': 'S&TxV'
     }
 
     # Common setup for bar plots
