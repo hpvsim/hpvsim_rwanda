@@ -24,8 +24,9 @@ def plot_fig3():
     ymax = 25
     si = sc.findinds(msim_dict['S&T&T 18%'].year, start_year)[0]
     ei = sc.findinds(msim_dict['S&T&T 18%'].year, end_year)[0]
-    vc = sc.gridcolors(3)
-    colors = vc
+    vc = sc.vectocolor(3).tolist()
+    vc2 = sc.vectocolor(4, cmap='magma').tolist()
+    colors = [vc[0], vc2[1], vc2[2]]  # Custom color selection
 
     # Define the three strategies and coverage levels
     coverage_levels = ['18%', '35%', '70%']

@@ -25,7 +25,7 @@ def make_male_vx(prob=None):
 
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2025, age_range=[30, 50],
-            start_year=2020, end_year=2100, prev_treat_cov=0.3, future_treat_cov=0.75, txv_pars=None, txv=False,
+            start_year=2020, end_year=2100, future_treat_cov=0.75, txv_pars=None, txv=False,
             tx_assigner_csv='tx_assigner'):
     """
     Make screening and treatment interventions
@@ -112,7 +112,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     ]
 
     # Assign treatment - future
-    if (n_future_years > 0) and txv:
+    if txv:
 
         # Make product
         txv_prod = hpv.default_tx('txvx1')
