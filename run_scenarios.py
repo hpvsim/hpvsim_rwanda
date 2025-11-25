@@ -97,16 +97,14 @@ def make_vx_scenarios():
         st_intvs = make_st(
             future_screen_cov=cov_val,
             txv_pars='precin',
-            txv=True,
-            screen_change_year=2027,)
+            txv=True)
         scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = st_intvs
 
         # Scale up S&TxV
         st_intvs = make_st(
             future_screen_cov=cov_val,
             txv_pars='cin',
-            txv=True,
-            screen_change_year=2027,)
+            txv=True)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
 
         # Screen, treat, & vaccinate older women

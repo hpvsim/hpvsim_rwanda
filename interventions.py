@@ -25,7 +25,7 @@ def make_male_vx(prob=None):
 
 
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_change_year=2025, age_range=[30, 50],
-            start_year=2020, end_year=2100, future_treat_cov=0.25, txv_pars=None, txv=False,
+            start_year=2020, end_year=2100, future_treat_cov=0.75, txv_pars=None, txv=False,
             tx_assigner_csv='tx_assigner'):
     """
     Make screening and treatment interventions
@@ -119,13 +119,15 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
         txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
         txv_eligible = screen_positive
-        campaign_years = np.arange(2030, end_year + 1)
 
-        txv = hpv.campaign_txvx(
-            prob=0.9,
+        # Create a prob array that's zero until 2030 then is 0.9
+        prob = np.array([0.0]*(2030 - start_year) + [0.9]*(end_year - 2030 + 1))
+
+        txv = hpv.linked_txvx(
+            prob=prob,
             interpolate=False,
             annual_prob=False,
-            years=campaign_years,
+            years=None,
             product=txv_prod,
             eligibility=txv_eligible,
             label='txv'
