@@ -59,14 +59,14 @@ def make_txv_scenarios():
         scendict[f'Mass TxV 90/50, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='precin',
             campaign_coverage=cov,
-            routine_coverage=cov,
+            # routine_coverage=cov,
         )
 
         # Virus-clearing mass TxV
         scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='cin',
             campaign_coverage=cov,
-            routine_coverage=cov,
+            # routine_coverage=cov,
         )
 
     return scendict
@@ -185,14 +185,15 @@ if __name__ == '__main__':
             # Pull out characteristics of sim to decide what resources we need
             programs = {
                 "routine_vx": "vaccinations",
+                "mass_vx": "vaccinations",
                 "screening": "screens",
                 "ablation": "ablations",
                 "excision": "leeps",
                 "radiation": "cancer_treatments",
                 "txv": "txvs",
-                'ablation2': 'ablations',
-                'excision2': 'excisions',
-                'radiation2': 'cancer_treatments',
+                'ablation_older': 'ablations',
+                'excision_older': 'excisions',
+                'radiation_older': 'cancer_treatments',
             }
             for intv_name in set(programs.values()): mres[intv_name] = np.zeros_like(mres.year)
             for intv_name, df_key in programs.items():

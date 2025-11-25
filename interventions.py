@@ -119,16 +119,13 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
         txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
         def txv_eligible(sim):
-            if sim.yearvec[sim.t]>=2030:
+            if sim.yearvec[sim.t] >= 2030:
                 return sim.get_intervention('screening').outcomes['positive']
             else:
                 return np.array([], dtype=int)
 
-        # Create a prob array that's zero until 2030 then is 0.9
-        prob = 0.9
-
         txv = hpv.linked_txvx(
-            prob=prob,
+            prob=0.9,
             product=txv_prod,
             eligibility=txv_eligible,
             label='txv'
@@ -144,7 +141,7 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
     # Handle inputs
     campaign_years = [intro_year]
     campaign_age = [25, 50]
-    routine_age = [25, 26]
+    # routine_age = [25, 26]
 
     # Create product
     # Make product
@@ -166,19 +163,19 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
         label="campaign txvx",
     )
 
-    routine_txvx = hpv.routine_txvx(
-        prob=routine_coverage,
-        annual_prob=True,
-        start_year=intro_year + 1,
-        age_range=routine_age,
-        eligibility=eligible,
-        product=txv_prod,
-        label="routine txvx",
-    )
+    # routine_txvx = hpv.routine_txvx(
+    #     prob=routine_coverage,
+    #     annual_prob=True,
+    #     start_year=intro_year + 1,
+    #     age_range=routine_age,
+    #     eligibility=eligible,
+    #     product=txv_prod,
+    #     label="routine txvx",
+    # )
 
     mv_intvs = [
         campaign_txvx,
-        routine_txvx,
+        # routine_txvx,
     ]
 
     # Add historical screening and treatment
@@ -188,7 +185,7 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
     return mv_intvs
 
 
-def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.5, age_range=[20, 50]):
+def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.75, age_range=[20, 50]):
     """
     Make screening campaign for 20-25yo
     """
@@ -222,7 +219,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.5,
     # Ablation treatment
     ablation_eligible = lambda sim: sim.get_intervention('tx assigner_older').outcomes['ablation']
     ablation = hpv.treat_num(
-        prob=1,
+        prob=treat_cov,
         product='ablation',
         eligibility=ablation_eligible,
         label='ablation_older'
@@ -231,15 +228,15 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.5,
     excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner_older').outcomes['excision'].tolist()
                                             + sim.get_intervention('ablation_older').outcomes['unsuccessful'].tolist()))
     excision = hpv.treat_num(
-        prob=1,
+        prob=treat_cov,
         product='excision',
         eligibility=excision_eligible,
-        label='excision_20_25'
+        label='excision_older'
     )
     # Radiation treatment
     radiation_eligible = lambda sim: sim.get_intervention('tx assigner_older').outcomes['radiation']
     radiation = hpv.treat_num(
-        prob=1,  # assume an additional dropoff in CaTx coverage
+        prob=treat_cov,  # assume an additional dropoff in CaTx coverage
         product=hpv.radiation(),
         eligibility=radiation_eligible,
         label='radiation_older'

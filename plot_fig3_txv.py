@@ -148,30 +148,32 @@ def plot_fig3():
                         color='k', label='Status quo (S&T&T 18%)')
 
     # Plot each strategy at different coverage levels
-    line_styles = ['-', '--', ':']
-    for cov_idx, cov in enumerate(coverage_levels):
+    # line_styles = ['-', '--', ':']
+    for cov_idx, cov in enumerate(['70%']):
         for strat_idx, (strat_label, strat_key) in enumerate(strategies.items()):
             scen_key = f'{strat_key} {cov}'
             if scen_key == 'S&T&T 18%':  # Skip baseline, already plotted
                 continue
             ax = ut.plot_single(ax, msim_dict[scen_key], 'asr_cancer_incidence', si, ei,
-                               color=colors[cov_idx], ls=line_styles[strat_idx],
+                               color=colors[strat_idx], # ls=line_styles[strat_idx],
                                label=f'{strat_label} {cov}' if cov_idx == 0 and strat_idx == 1 else '')
 
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('ASR cervical cancer incidence, 2025-2100\nComparison of screening strategies')
+    thesecolors = ['k'] + colors
+    labels = ['Status quo', 'SOC algorithm, 70% coverage', '+TxV 90/0, 70% coverage', '+TxV 50/90, 70% coverage']
 
     # Create legends
     # Coverage legend
-    cov_handles = [Patch(facecolor=colors[i], label=f'{coverage_levels[i]} coverage') for i in range(len(coverage_levels))]
-    legend1 = ax.legend(handles=cov_handles, loc='upper right', bbox_to_anchor=(1, 0.7), frameon=False)
+    strat_handles = [Patch(facecolor=thesecolors[i], label=labels[i]) for i in range(4)]
+    legend1 = ax.legend(handles=strat_handles, loc='upper right', bbox_to_anchor=(1, 0.7), frameon=False)
     ax.add_artist(legend1)
 
-    # Coverage legend
-    from matplotlib.lines import Line2D
-    strat_handles = [Line2D([0], [0], color='k', linestyle=line_styles[i], lw=2, label=list(strategies.keys())[i])
-                   for i in range(len(coverage_levels))]
-    ax.legend(handles=strat_handles, loc='upper right', frameon=False)
+    # # Coverage legend
+    # from matplotlib.lines import Line2D
+    # strat_handles = [Line2D([0], [0], color='k', linestyle=line_styles[i], lw=2, label=list(strategies.keys())[i])
+    #                for i in range(len(coverage_levels))]
+    # ax.legend(handles=strat_handles, loc='upper right', frameon=False)
 
     # Add panel label
     ax.text(-0.05, 1.2, 'D', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
