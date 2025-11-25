@@ -32,8 +32,8 @@ def plot_fig3():
     coverage_levels = ['18%', '35%', '70%']
     strategies = {
         'Status quo': 'S&T&T',
-        'Virus-clearing TxV': 'S&TxV&T&T',
-        'Lesion-regressing TxV': 'S&TxV'
+        'TxV 90/0': 'S&TxV&T&T',
+        'TxV 50/90': 'S&TxV'
     }
 
     # Common setup for bar plots
@@ -67,7 +67,8 @@ def plot_fig3():
     ax.set_title('Cumulative cancers\n2025-2100')
     sc.SIticks()
     ax.set_xlabel('')
-    ax.legend(loc='upper right', frameon=False)
+    # Two columns
+    ax.legend(loc='upper right', frameon=False, fontsize=16)
     ax.set_ylim([0, 100e3])
 
     # Add panel label

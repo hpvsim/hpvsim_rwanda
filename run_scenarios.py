@@ -95,6 +95,7 @@ def make_vx_scenarios():
 
         # Scale up S&TxV&T&T
         st_intvs = make_st(
+            screen_change_year=start_year,
             future_screen_cov=cov_val,
             txv_pars='precin',
             txv=True)
@@ -102,6 +103,7 @@ def make_vx_scenarios():
 
         # Scale up S&TxV
         st_intvs = make_st(
+            screen_change_year=start_year,
             future_screen_cov=cov_val,
             txv_pars='cin',
             txv=True)
