@@ -59,6 +59,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
     triage_end_year = 2030 if txv_pars == 'cin' else end_year  # IMPORTANT: if it's lesion regressing. stop other Tx
+    # triage_end_year = end_year
     future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     n_future_screen_years = len(future_screen_years)
     triage_years = np.arange(start_year, triage_end_year + 1)
@@ -116,11 +117,11 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         txv_prod = hpv.default_tx('txvx1')
         txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
         txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
-        txv_eligible = lambda sim: np.concatenate([v for v in sim.get_intervention('tx assigner').outcomes.values()])
+        txv_eligible = screen_positive
         campaign_years = np.arange(2030, end_year + 1)
 
         txv = hpv.campaign_txvx(
-            prob=1,
+            prob=0.9,
             interpolate=False,
             annual_prob=False,
             years=campaign_years,
