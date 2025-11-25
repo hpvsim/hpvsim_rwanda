@@ -140,7 +140,7 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
 
     # Handle inputs
     campaign_years = [intro_year]
-    campaign_age = [25, 50]
+    campaign_age = [20, 50]
     # routine_age = [25, 26]
 
     # Create product

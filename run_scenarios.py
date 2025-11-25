@@ -56,7 +56,7 @@ def make_txv_scenarios():
         #     screen_change_year=2027,)
 
         # Virus-clearing mass TxV
-        scendict[f'Mass TxV 90/50, {int(cov*100)}%'] = make_mv_intvs(
+        scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='precin',
             campaign_coverage=cov,
             # routine_coverage=cov,
