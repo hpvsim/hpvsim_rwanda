@@ -29,31 +29,30 @@ def plot_fig2():
     si = sc.findinds(mbase.year, start_year)[0]
     ei = sc.findinds(mbase.year, end_year)[0]
     vc = sc.vectocolor(3).tolist()
-    colors = ['k'] + vc
+    colors = vc
 
     this_dict = {
-        'Status quo': msim_dict['Baseline'],
         '18% coverage': msim_dict['S&T 18%'],
         '35% coverage': msim_dict['S&T 35%'],
         '70% coverage': msim_dict['S&T 70%'],
     }
-    triage_list = [
-        msim_dict['S&T&T 18%'],
-        msim_dict['S&T&T 35%'],
-        msim_dict['S&T&T 70%'],
-    ]
+    triage_dict = {
+        '18% coverage': msim_dict['S&T&T 18%'],  # This is the actual status quo
+        '35% coverage': msim_dict['S&T&T 35%'],
+        '70% coverage': msim_dict['S&T&T 70%'],
+    }
+    triage_list = list(triage_dict.values())
 
     # Common setup for bar plots
     fi = sc.findinds(mbase.year, 2025)[0]
     bar_width = 0.35
     labels = list(this_dict.keys())
     x = np.arange(len(labels)).astype(float)
-    llabels = ['SQ', '18%', '35%', '70%']
+    llabels = ['18%', '35%', '70%']
 
     # Calculate positions for side-by-side bars
-    no_triage_x = x.copy()
-    no_triage_x[1:] = x[1:] - bar_width/2  # Shift coverage bars left
-    triage_x = x[1:] + bar_width/2  # Shift triage bars right
+    no_triage_x = x - bar_width/2  # Shift no-triage bars left
+    triage_x = x + bar_width/2  # Shift triage bars right
 
     ######################################################
     # Top Left: Cumulative cancers
@@ -72,15 +71,15 @@ def plot_fig2():
 
     # Assemble VIA triage results
     triage_cum_res = dict()
-    for sname, scen in zip(['18% coverage', '35% coverage', '70% coverage'], triage_list):
+    for sname, scen in triage_dict.items():
         triage_cum_res[sname] = scen[resname].values[fi:].sum()
         lb, ub = scen[resname].low[fi:].sum(), scen[resname].high[fi:].sum()
         print(f'Triage {sname}: {triage_cum_res[sname]} ({lb}, {ub}) cancers')
-    triage_bars = [triage_cum_res[sname] for sname in ['18% coverage', '35% coverage', '70% coverage']]
+    triage_bars = list(triage_cum_res.values())
 
     # Plot bars
     ax.bar(no_triage_x, bars, width=bar_width, color=colors)
-    ax.bar(triage_x, triage_bars, width=bar_width, color=colors[1:], edgecolor='k',
+    ax.bar(triage_x, triage_bars, width=bar_width, color=colors, edgecolor='k',
            hatch='//', linewidth=1.5)
 
     ax.set_xticks(x)
@@ -114,14 +113,14 @@ def plot_fig2():
 
     # Assemble VIA triage results for HIV+
     triage_cum_hiv_res = dict()
-    for sname, scen in zip(['18% coverage', '35% coverage', '70% coverage'], triage_list):
+    for sname, scen in triage_dict.items():
         triage_cum_hiv_res[sname] = scen[resname].values[fi:].sum()
         print(f'Triage {sname}: {triage_cum_hiv_res[sname]} cancers in HIV+ women')
-    triage_hiv_bars = [triage_cum_hiv_res[sname] for sname in ['18% coverage', '35% coverage', '70% coverage']]
+    triage_hiv_bars = list(triage_cum_hiv_res.values())
 
     # Plot bars
     ax.bar(no_triage_x, hiv_bars, width=bar_width, color=colors)
-    ax.bar(triage_x, triage_hiv_bars, width=bar_width, color=colors[1:], edgecolor='k',
+    ax.bar(triage_x, triage_hiv_bars, width=bar_width, color=colors, edgecolor='k',
            hatch='//', linewidth=1.5)
 
     ax.set_xticks(x)
@@ -147,14 +146,14 @@ def plot_fig2():
 
     # Assemble VIA triage ablations
     triage_cum_ablations = dict()
-    for sname, scen in zip(['18% coverage', '35% coverage', '70% coverage'], triage_list):
+    for sname, scen in triage_dict.items():
         triage_cum_ablations[sname] = scen['ablations'][fi:].sum()
         print(f'Triage {sname}: {triage_cum_ablations[sname]} ablations')
-    triage_ablation_bars = [triage_cum_ablations[sname] for sname in ['18% coverage', '35% coverage', '70% coverage']]
+    triage_ablation_bars = list(triage_cum_ablations.values())
 
     # Plot bars
     ax.bar(no_triage_x, ablation_bars, width=bar_width, color=colors)
-    ax.bar(triage_x, triage_ablation_bars, width=bar_width, color=colors[1:], edgecolor='k',
+    ax.bar(triage_x, triage_ablation_bars, width=bar_width, color=colors, edgecolor='k',
            hatch='//', linewidth=1.5)
 
     ax.set_xticks(x)
@@ -170,21 +169,25 @@ def plot_fig2():
     ######################################################
     ax = fig.add_subplot(gs[1, :2])  # Bottom row, first two columns
 
+    # Add status quo (18% with triage) first
+    ax = ut.plot_single(ax, triage_dict['18% coverage'], 'asr_cancer_incidence', si, ei, color='k', label='Status quo (18% + triage)')
+
     cn = 0
     for slabel, mres in this_dict.items():
         ax = ut.plot_single(ax, mres, 'asr_cancer_incidence', si, ei, color=colors[cn], label=slabel)
         cn += 1
-    cn = 1  # Reset counter to match triage scenarios
-    for mres in triage_list:
-        ax = ut.plot_single(ax, mres, 'asr_cancer_incidence', si, ei, color=colors[cn], ls='--', label='')
-        cn += 1
+
+    # Plot triage scenarios for 35% and 70%
+    for cn, sname in enumerate(['35% coverage', '70% coverage'], start=1):
+        ax = ut.plot_single(ax, triage_dict[sname], 'asr_cancer_incidence', si, ei, color=colors[cn], ls='--', label='')
+
     ax.set_ylim(bottom=0, top=ymax)
     ax.set_title('ASR cervical cancer incidence, 2025-2100\nScaled-up screening with/without VIA triage')
 
     # Create handles and labels for the color legend
-    circ1 = mpatches.Patch(facecolor=colors[1], label='18% coverage')
-    circ2 = mpatches.Patch(facecolor=colors[2], label='35% coverage')
-    circ3 = mpatches.Patch(facecolor=colors[3], label='70% coverage')
+    circ1 = mpatches.Patch(facecolor=colors[0], label='18% coverage')
+    circ2 = mpatches.Patch(facecolor=colors[1], label='35% coverage')
+    circ3 = mpatches.Patch(facecolor=colors[2], label='70% coverage')
 
     # Create handles and labels for the linestyle legend
     linestyle_handles = [plt.Line2D([0], [0], color='k', linestyle='-', lw=2),
@@ -203,21 +206,21 @@ def plot_fig2():
     ######################################################
     ax = fig.add_subplot(gs[1, 2])
 
-    # Calculate cancers averted (baseline - scenario)
-    baseline_cancers = cum_res['Status quo']
+    # Calculate cancers averted relative to 18% + triage baseline
+    baseline_cancers = triage_cum_res['18% coverage']
     cancers_averted = dict()
-    for sname in ['18% coverage', '35% coverage', '70% coverage']:
+    for sname in labels:
         cancers_averted[sname] = baseline_cancers - cum_res[sname]
         print(f'{sname}: {cancers_averted[sname]} cancers averted')
 
     triage_cancers_averted = dict()
-    for sname in ['18% coverage', '35% coverage', '70% coverage']:
+    for sname in labels:
         triage_cancers_averted[sname] = baseline_cancers - triage_cum_res[sname]
         print(f'Triage {sname}: {triage_cancers_averted[sname]} cancers averted')
 
     # Calculate ablations per cancer averted
     ablations_per_cancer = []
-    for sname in ['18% coverage', '35% coverage', '70% coverage']:
+    for sname in labels:
         if cancers_averted[sname] > 0:
             ratio = cum_ablations[sname] / cancers_averted[sname]
             ablations_per_cancer.append(ratio)
@@ -226,7 +229,7 @@ def plot_fig2():
             ablations_per_cancer.append(0)
 
     triage_ablations_per_cancer = []
-    for sname in ['18% coverage', '35% coverage', '70% coverage']:
+    for sname in labels:
         if triage_cancers_averted[sname] > 0:
             ratio = triage_cum_ablations[sname] / triage_cancers_averted[sname]
             triage_ablations_per_cancer.append(ratio)
@@ -234,17 +237,13 @@ def plot_fig2():
         else:
             triage_ablations_per_cancer.append(0)
 
-    # Plot bars (no status quo for this metric)
-    x_no_sq = x[1:]  # Exclude status quo
-    no_triage_x_no_sq = x_no_sq - bar_width/2
-    triage_x_no_sq = x_no_sq + bar_width/2
-
-    ax.bar(no_triage_x_no_sq, ablations_per_cancer, width=bar_width, color=colors[1:])
-    ax.bar(triage_x_no_sq, triage_ablations_per_cancer, width=bar_width, color=colors[1:],
+    # Plot bars
+    ax.bar(no_triage_x, ablations_per_cancer, width=bar_width, color=colors)
+    ax.bar(triage_x, triage_ablations_per_cancer, width=bar_width, color=colors,
            edgecolor='k', hatch='//', linewidth=1.5)
 
-    ax.set_xticks(x_no_sq)
-    ax.set_xticklabels(llabels[1:])
+    ax.set_xticks(x)
+    ax.set_xticklabels(llabels)
     ax.set_title('Ablations per cancer averted\n2025-2100')
     ax.set_xlabel('')
     # Add panel label

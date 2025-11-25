@@ -42,18 +42,18 @@ def make_txv_scenarios():
     for cov in [0.18, 0.35, 0.7]:
         # Virus-clearing TxV within S&T. Triaged such that women with precin are given TxV
         # and women with CIN are given ablation
-        scendict[f'TxV 90/50 within screening, {int(cov*100)}%'] = make_st(
-            future_screen_cov=cov,
-            txv_pars='precin',
-            txv=True,
-            screen_change_year=2027,)
-
-        # Lesion-regressing TxV within S&T. Triaged such that women with both precin and CIN are given TxV
-        scendict[f'TxV 50/90 within screening, {int(cov*100)}%'] = make_st(
-            future_screen_cov=cov,
-            txv_pars='cin',
-            txv=True,
-            screen_change_year=2027,)
+        # scendict[f'TxV 90/50 within screening, {int(cov*100)}%'] = make_st(
+        #     future_screen_cov=cov,
+        #     txv_pars='precin',
+        #     txv=True,
+        #     screen_change_year=2027,)
+        #
+        # # Lesion-regressing TxV within S&T. Triaged such that women with both precin and CIN are given TxV
+        # scendict[f'TxV 50/90 within screening, {int(cov*100)}%'] = make_st(
+        #     future_screen_cov=cov,
+        #     txv_pars='cin',
+        #     txv=True,
+        #     screen_change_year=2027,)
 
         # Virus-clearing mass TxV
         scendict[f'Mass TxV 90/50, {int(cov*100)}%'] = make_mv_intvs(
@@ -92,6 +92,22 @@ def make_vx_scenarios():
         # Scale up S&T
         st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, tx_assigner_csv='tx_assigner_no_triage')
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
+
+        # Scale up S&TxV&T&T
+        st_intvs = make_st(
+            future_screen_cov=cov_val,
+            txv_pars='precin',
+            txv=True,
+            screen_change_year=2027,)
+        scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = st_intvs
+
+        # Scale up S&TxV
+        st_intvs = make_st(
+            future_screen_cov=cov,
+            txv_pars='cin',
+            txv=True,
+            screen_change_year=2027,)
+        scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
 
         # Screen, treat, & vaccinate older women
         mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)

@@ -58,7 +58,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
-    triage_end_year = 2030 if txv else end_year
+    triage_end_year = 2030 if txv_pars == 'cin' else end_year  # IMPORTANT: if it's lesion regressing. stop other Tx
     future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     n_future_screen_years = len(future_screen_years)
     triage_years = np.arange(start_year, triage_end_year + 1)
@@ -112,60 +112,23 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
     # Assign treatment - future
     if (n_future_years > 0) and txv:
 
-        # Make assigner
-        txv_assigner = hpv.default_dx('txvx_assigner')
-        txv_assigner.df = pd.read_csv(f'txv_{txv_pars}_assigner.csv')
-        txv_assigner.hierarchy = ['radiation', 'excision', 'ablation', 'txv', 'none']
-
         # Make product
         txv_prod = hpv.default_tx('txvx1')
         txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
         txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
+        txv_eligible = lambda sim: np.concatenate([v for v in sim.get_intervention('tx assigner').outcomes.values()])
+        campaign_years = np.arange(2030, end_year + 1)
 
-        assign_treatment2 = hpv.routine_triage(
-            start_year=2030,
+        txv = hpv.campaign_txvx(
             prob=1,
+            interpolate=False,
             annual_prob=False,
-            product=txv_assigner,
-            eligibility=screen_positive,
-            label='txv_assigner'
-        )
-
-        # TxV treatment
-        txv_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['txv']
-        txv = hpv.linked_txvx(
-            prob=1,
+            years=campaign_years,
             product=txv_prod,
             eligibility=txv_eligible,
             label='txv'
         )
-
-        # Ablation treatment
-        ablation2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['ablation']
-        ablation2 = hpv.treat_num(
-            prob=future_treat_cov,
-            product='ablation',
-            eligibility=ablation2_eligible,
-            label='ablation2'
-        )
-        # Excision treatment
-        excision2_eligible = lambda sim: sim.get_intervention('txv_assigner').outcomes['excision']
-        excision2 = hpv.treat_num(
-            prob=future_treat_cov,
-            product='excision',
-            eligibility=excision2_eligible,
-            label='excision2'
-        )
-        # Radiation
-        religible = lambda sim: sim.get_intervention('txv_assigner').outcomes['radiation']
-        radiation2 = hpv.treat_num(
-            prob=1,  # assume an additional dropoff in CaTx coverage
-            product=hpv.radiation(),
-            eligibility=religible,
-            label='radiation2'
-        )
-
-        st_intvs += [assign_treatment2, txv, ablation2, excision2, radiation2]
+        st_intvs += [txv]
 
     return st_intvs
 
