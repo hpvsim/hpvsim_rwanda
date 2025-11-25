@@ -68,7 +68,8 @@ def plot_fig4():
     ax.set_title('Cumulative cancers\n2025-2100')
     sc.SIticks()
     ax.set_xlabel('')
-    ax.legend(loc='upper right', frameon=False)
+    ax.legend(loc='upper right', frameon=False, fontsize=16)
+    ax.set_ylim([0, 100e3])
 
     # Add panel label
     ax.text(*text_height, 'A', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
@@ -129,7 +130,7 @@ def plot_fig4():
 
     ax.set_xticks(x)
     ax.set_xticklabels(llabels)
-    ax.set_title('Cumulative interventions\n2025-2100')
+    ax.set_title('Cumulative products\n2025-2100')
     sc.SIticks()
     ax.set_xlabel('')
 
@@ -192,7 +193,7 @@ def plot_fig4():
             if cancers_averted > 0:
                 ratio = total_interventions / cancers_averted
                 nnt_per_cancer.append(ratio)
-                print(f'{scen_key}: {ratio} interventions per cancer averted')
+                print(f'{scen_key}: {ratio} products per cancer averted')
             else:
                 nnt_per_cancer.append(0)
 
