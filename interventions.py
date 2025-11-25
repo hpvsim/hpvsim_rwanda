@@ -118,10 +118,10 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
         txv_prod = hpv.default_tx('txvx1')
         txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
         txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
-        txv_eligible = lambda sim: sim.get_intervention('screening').outcomes['positive']
+        txv_eligible = lambda sim: (sim.get_intervention('screening').outcomes['positive'] & sim.yearvec[sim.t]>=2030)
 
         # Create a prob array that's zero until 2030 then is 0.9
-        prob = np.array([0.0]*(2030 - start_year) + [0.9]*(end_year - 2030 + 1))
+        prob = 0.9
 
         txv = hpv.linked_txvx(
             prob=prob,
