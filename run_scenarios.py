@@ -37,7 +37,7 @@ def make_txv_scenarios():
 
     # Baseline
     scendict['No interventions'] = []
-    scendict['Baseline'] = make_st(screen_change_year=2100)
+    scendict['Baseline'] = make_st(future_screen_cov=0.18, screen_change_year=2025)
 
     for cov in [0.18, 0.35, 0.7]:
         # Virus-clearing TxV within S&T. Triaged such that women with precin are given TxV

@@ -45,9 +45,6 @@ def plot_fig1():
     ax.set_title('ASR cervical cancer incidence, 2025-2100')
 
     # Create handles and labels for the color legend
-    # color_handles = [plt.Line2D([0], [0], color='k', lw=2),
-    #                  plt.Line2D([0], [0], color='r', lw=2)]
-    # color_labels = ['All', 'HIV+']
     circ1 = mpatches.Patch(facecolor='k', label='All')
     circ2 = mpatches.Patch(facecolor='r', label='HIV+')
 
@@ -69,6 +66,7 @@ def plot_fig1():
         cum_res[sname] = scen[resname].values[fi:].sum()
         lb, ub = scen[resname].low[fi:].sum(), scen[resname].high[fi:].sum()
         print(f'{sname}: {cum_res[sname]} ({lb}, {ub}) cancers')
+
     # Make a bar plot
     ax = fig.add_subplot(gs[2])
     bars = list(cum_res.values())
@@ -101,9 +99,12 @@ if __name__ == '__main__':
     ei = sc.findinds(mbase.year, end_year)[0]
     fi = sc.findinds(mbase.year, 2025)[0]
 
-    elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][si:]<4, die=False)+si
+    try:
+        elim_year = sc.findfirst(msim_dict['Baseline']['asr_cancer_incidence'][si:]<4, die=False)+si
+        print(f'Elim year: {mbase.year[elim_year]}')
+    except:
+        print('Elimination not reached by 2100')
 
-    print(f'Elim year: {mbase.year[elim_year]}')
     print(f'Cancers in 2025: {mbase.cancers[si]} ({mbase.cancers.low[si]}, {mbase.cancers.high[si]})')
     print(f'Cancers in 2100: {mbase.cancers[ei]} ({mbase.cancers.low[ei]}, {mbase.cancers.high[ei]})')
     print(f'Cancers averted: {mno.cancers[fi:].sum()-mbase.cancers[fi:].sum()}')
