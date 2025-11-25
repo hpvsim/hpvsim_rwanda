@@ -133,7 +133,7 @@ def plot_fig3():
         Patch(facecolor='gray', label='Ablations'),
         Patch(facecolor='white', edgecolor='k', hatch='//', label='Therapeutics')
     ]
-    ax.legend(handles=legend_elements, loc='upper left', frameon=False)
+    ax.legend(handles=legend_elements, loc='upper left', frameon=False, fontsize=16)
 
     # Add panel label
     ax.text(*text_height, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
@@ -166,7 +166,7 @@ def plot_fig3():
     # Create legends
     # Coverage legend
     strat_handles = [Patch(facecolor=thesecolors[i], label=labels[i]) for i in range(4)]
-    legend1 = ax.legend(handles=strat_handles, loc='upper right', bbox_to_anchor=(1, 0.7), frameon=False)
+    legend1 = ax.legend(handles=strat_handles, loc='upper right', bbox_to_anchor=(1, 0.8), frameon=False)
     ax.add_artist(legend1)
 
     # # Coverage legend

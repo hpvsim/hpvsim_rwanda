@@ -15,11 +15,12 @@ def plot_fig5(end_year=2100):
     Plot the residual burden of cervical cancer in Rwanda under screening and treatment scenarios.
     """
     ut.set_font(20)
-    fig = pl.figure(layout="tight", figsize=(12, 12))
+    fig = pl.figure(layout="tight", figsize=(14, 12))
     gs = fig.add_gridspec(2, 1)  # 2 rows, 1 column
 
     # Load all scenario data from single dictionary
     msim_dict = sc.loadobj('results/st_scens.obj')
+    text_font = 14
 
     # Common setup
     fi = sc.findinds(msim_dict['S&T&T 18%'].year, 2025)[0]
@@ -29,8 +30,8 @@ def plot_fig5(end_year=2100):
     all_strategies = [
         ('S&T', 'Screen+\ntreat'),
         ('S&T&T', 'Screen+\ntriage+\ntreat'),
-        ('S&TxV&T&T', 'TxV\n+triage'),
-        ('S&TxV', 'TxV\nonly'),
+        ('S&TxV&T&T', 'Screen+\nTxV 90/0+\ntriage+treat'),
+        ('S&TxV', 'Screen+\nTxV 50/90'),
         ('HPV-Faster', 'HPV-Faster'),
         ('Mass TxV 90/0,', 'Mass TxV\n90/0'),
         ('Mass TxV 50/90,', 'Mass TxV\n50/90'),
@@ -47,7 +48,7 @@ def plot_fig5(end_year=2100):
     ######################################################
     ax = fig.add_subplot(gs[0])
 
-    bar_width = 0.25
+    bar_width = 0.28
     x_base = np.arange(len(all_strategies))
     offsets = [-bar_width, 0, bar_width]
 
@@ -67,8 +68,8 @@ def plot_fig5(end_year=2100):
         for bar in bars:
             height = bar.get_height()
             ax.text(bar.get_x() + bar.get_width()/2., height,
-                    f'{int(height):,}',
-                    ha='center', va='bottom', fontsize=11)
+                    f'{sc.sigfig(height/1e3, 3)}k',
+                    ha='center', va='bottom', fontsize=text_font)
 
     ax.set_xticks(x_base)
     ax.set_xticklabels([label for _, label in all_strategies])
@@ -103,8 +104,8 @@ def plot_fig5(end_year=2100):
             height = bar.get_height()
             if height > 0:  # Only label positive values
                 ax.text(bar.get_x() + bar.get_width()/2., height,
-                        f'{int(height):,}',
-                        ha='center', va='bottom', fontsize=11)
+                        f'{sc.sigfig(height/1e3, 3)}k',
+                        ha='center', va='bottom', fontsize=text_font)
 
     ax.set_xticks(x_base)
     ax.set_xticklabels([label for _, label in all_strategies])
