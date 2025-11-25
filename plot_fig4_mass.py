@@ -141,7 +141,8 @@ def plot_fig4():
         Patch(facecolor='white', edgecolor='k', hatch='//', label='Therapeutics'),
         Patch(facecolor='white', edgecolor='k', hatch='\\\\', label='Vaccinations')
     ]
-    ax.legend(handles=legend_elements, loc='upper left', frameon=False)
+    ax.legend(handles=legend_elements, loc='upper left', frameon=False, fontsize=16)
+    ax.set_ylim([0, 4e6])
 
     # Add panel label
     ax.text(*text_height, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
