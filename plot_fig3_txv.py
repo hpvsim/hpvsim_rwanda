@@ -31,9 +31,9 @@ def plot_fig3():
     # Define the three strategies and coverage levels
     coverage_levels = ['18%', '35%', '70%']
     strategies = {
-        'S&T&T': 'S&T&T',
-        'S&TxV&T&T': 'S&TxV&T&T',
-        'S&TxV': 'S&TxV'
+        'S&T&T': 'Status quo',
+        'S&TxV&T&T': 'Virus-clearing TxV',
+        'S&TxV': 'Lesion-regressing TxV'
     }
 
     # Common setup for bar plots
@@ -162,16 +162,15 @@ def plot_fig3():
 
     # Create legends
     # Coverage legend
-    cov_handles = [Patch(facecolor=colors[i], label=coverage_levels[i]) for i in range(len(coverage_levels))]
-    legend1 = ax.legend(handles=cov_handles, title='Coverage', loc='upper right',
-                       bbox_to_anchor=(1, 0.7), frameon=False)
+    cov_handles = [Patch(facecolor=colors[i], label=f'{coverage_levels[i]} coverage') for i in range(len(coverage_levels))]
+    legend1 = ax.legend(handles=cov_handles, loc='upper right', bbox_to_anchor=(1, 0.7), frameon=False)
     ax.add_artist(legend1)
 
     # Coverage legend
     from matplotlib.lines import Line2D
     strat_handles = [Line2D([0], [0], color='k', linestyle=line_styles[i], lw=2, label=list(strategies.keys())[i])
                    for i in range(len(coverage_levels))]
-    ax.legend(handles=strat_handles, title='Strategy', loc='upper right', frameon=False)
+    ax.legend(handles=strat_handles, loc='upper right', frameon=False)
 
     # Add panel label
     ax.text(-0.05, 1.2, 'D', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')

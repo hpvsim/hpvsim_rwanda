@@ -125,9 +125,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.4, screen_ch
 
         txv = hpv.linked_txvx(
             prob=prob,
-            interpolate=False,
             annual_prob=False,
-            years=None,
             product=txv_prod,
             eligibility=txv_eligible,
             label='txv'
