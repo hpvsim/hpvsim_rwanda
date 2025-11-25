@@ -184,13 +184,14 @@ if __name__ == '__main__':
 
             # Pull out characteristics of sim to decide what resources we need
             programs = {
-                "routine_vx": "vaccinations",
+                # "routine_vx": "vaccinations",
                 "mass_vx": "vaccinations",
                 "screening": "screens",
                 "ablation": "ablations",
                 "excision": "leeps",
                 "radiation": "cancer_treatments",
                 "txv": "txvs",
+                "campaign txvx": "txvs",
                 'ablation_older': 'ablations',
                 'excision_older': 'excisions',
                 'radiation_older': 'cancer_treatments',
