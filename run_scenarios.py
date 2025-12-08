@@ -30,53 +30,52 @@ n_seeds = [10, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
-
-
-def make_txv_scenarios():
+def make_baselines():
+    """
+    Baseline scenarios:
+        1. No interventions
+        2. Status quo screening + treatment
+    """
     scendict = dict()
-
-    # Baseline
     scendict['No interventions'] = []
     scendict['Baseline'] = make_st(future_screen_cov=0.18, screen_change_year=2025)
+    return scendict
+
+
+def make_campaign_scenarios():
+    """
+    Scenarios for mass one-time campaigns:
+        1. Mass delivery of virus-clearing TxV
+        2. Mass delivery of lesion-regressing TxV
+        3. "HPV-faster", with screening+treatment+vaccination
+    """
+    scendict = dict()
+    age_range = [20, 50]
 
     for cov in [0.18, 0.35, 0.7]:
-        # Virus-clearing TxV within S&T. Triaged such that women with precin are given TxV
-        # and women with CIN are given ablation
-        # scendict[f'TxV 90/50 within screening, {int(cov*100)}%'] = make_st(
-        #     future_screen_cov=cov,
-        #     txv_pars='precin',
-        #     txv=True,
-        #     screen_change_year=2027,)
-        #
-        # # Lesion-regressing TxV within S&T. Triaged such that women with both precin and CIN are given TxV
-        # scendict[f'TxV 50/90 within screening, {int(cov*100)}%'] = make_st(
-        #     future_screen_cov=cov,
-        #     txv_pars='cin',
-        #     txv=True,
-        #     screen_change_year=2027,)
 
         # Virus-clearing mass TxV
         scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='precin',
             campaign_coverage=cov,
-            # routine_coverage=cov,
         )
 
         # Virus-clearing mass TxV
         scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='cin',
             campaign_coverage=cov,
-            # routine_coverage=cov,
         )
+
+        # Screen, treat, & vaccinate older women
+        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range, start_year=2026)
+        scendict[f'HPV-Faster {cov*100:.0f}%'] = mass_intvs
 
     return scendict
 
 
-def make_vx_scenarios():
+def make_st_scenarios():
     """
     Compare vaccination strategies:
-        1. Test & mass vaccinate women aged 20-25
-        2. Test & vaccinate WLHIV
     """
     scendict = dict()
 
@@ -85,15 +84,15 @@ def make_vx_scenarios():
     cov_array = [.18, .35, .70]
     for cov_val in cov_array:
 
-        # Scale up S&T&T
+        # Scale up S&T&T - default algorithm, screening + triage + treatment
         st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
         scendict[f'S&T&T {cov_val*100:.0f}%'] = st_intvs
 
-        # Scale up S&T
+        # Scale up S&T - streamlined algorithm, screening + treatment only
         st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, tx_assigner_csv='tx_assigner_no_triage')
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
 
-        # Scale up S&TxV&T&T
+        # Scale up S&TxV&T&T - enhanced algorithm with virus-clearing TxV used in addition to triage and treatment
         st_intvs = make_st(
             screen_change_year=start_year,
             future_screen_cov=cov_val,
@@ -101,17 +100,13 @@ def make_vx_scenarios():
             txv=True)
         scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = st_intvs
 
-        # Scale up S&TxV
+        # Scale up S&TxV - enhanced and streamlined algorithm with virus-clearing TxV used instead of treatment
         st_intvs = make_st(
             screen_change_year=start_year,
             future_screen_cov=cov_val,
             txv_pars='cin',
             txv=True)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
-
-        # Screen, treat, & vaccinate older women
-        mass_intvs = make_st_older(screen_cov=cov_val, age_range=mass_vx_age_range, start_year=start_year)
-        scendict[f'HPV-Faster {cov_val*100:.0f}%'] = mass_intvs
 
     return scendict
 

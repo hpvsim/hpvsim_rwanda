@@ -135,13 +135,11 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18, screen_c
     return st_intvs
 
 
-def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, intro_year=2030):
+def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campaign_age=[20, 50]):
     """ Make mass txvx interventions """
 
     # Handle inputs
     campaign_years = [intro_year]
-    campaign_age = [20, 50]
-    # routine_age = [25, 26]
 
     # Create product
     # Make product
@@ -155,6 +153,7 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
     # Campaign txvx
     campaign_txvx = hpv.campaign_txvx(
         prob=campaign_coverage,
+        interpolate=False,
         annual_prob=False,
         years=campaign_years,
         age_range=campaign_age,
@@ -163,19 +162,8 @@ def make_mv_intvs(campaign_coverage=None, routine_coverage=None, txv_pars=None, 
         label="campaign txvx",
     )
 
-    # routine_txvx = hpv.routine_txvx(
-    #     prob=routine_coverage,
-    #     annual_prob=True,
-    #     start_year=intro_year + 1,
-    #     age_range=routine_age,
-    #     eligibility=eligible,
-    #     product=txv_prod,
-    #     label="routine txvx",
-    # )
-
     mv_intvs = [
         campaign_txvx,
-        # routine_txvx,
     ]
 
     # Add historical screening and treatment
@@ -251,6 +239,8 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.75
         product='bivalent',
         label='mass_vax',
         eligibility=mass_eligible,
+        annual_prob=False,
+        interpolate=False,
         age_range=age_range,
         prob=screen_cov,
         years=start_year
