@@ -166,7 +166,7 @@ def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campai
     return mv_intvs
 
 
-def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.75, age_range=[20, 50]):
+def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50]):
     """
     Make screening campaign for 20-25yo
     """
@@ -190,7 +190,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.75
     screen_positive = lambda sim: sim.get_intervention('screening_older').outcomes['positive']
     assign_treatment = hpv.campaign_triage(
         years=start_year,
-        prob=.9,
+        prob=1,  # ASSUME NO LTFU
         annual_prob=False,
         product=tx_assigner,
         eligibility=screen_positive,
