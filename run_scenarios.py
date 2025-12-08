@@ -79,8 +79,7 @@ def make_st_scenarios():
     """
     scendict = dict()
 
-    start_year = 2027
-    mass_vx_age_range = [20, 50]
+    start_year = 2026
     cov_array = [.18, .35, .70]
     for cov_val in cov_array:
 
@@ -156,8 +155,7 @@ if __name__ == '__main__':
     end = 2100
 
     # Run scenarios (usually on VMs, runs n_seeds in parallel over M scenarios)
-    scenarios = sc.mergedicts(make_txv_scenarios(), make_vx_scenarios())
-    # scenarios = {k: v for k, v in scenarios.items() if k in ['S&T 18%', 'Mass vx 18%']}
+    scenarios = sc.mergedicts(make_baselines(), make_st_scenarios(), make_campaign_scenarios())
 
     if do_run:
         msim = run_sims(scenarios=scenarios, end=end)
