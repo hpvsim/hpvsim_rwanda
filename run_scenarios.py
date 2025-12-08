@@ -21,7 +21,7 @@ import hpvsim as hpv
 
 # Imports from this repository
 import run_sim as rs
-from interventions import make_st, make_st_older, make_st_hiv, make_male_vx, make_mv_intvs
+from interventions import make_st, make_st_older, make_mv_intvs
 
 
 # Settings - used here and imported elsewhere
