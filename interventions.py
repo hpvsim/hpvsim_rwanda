@@ -17,13 +17,6 @@ def make_vx(end_year=2100):
     return routine_vx
 
 
-def make_male_vx(prob=None):
-    routine_vx = hpv.routine_vx(product='bivalent', sex=1, age_range=[11, 12], prob=prob, start_year=2027, label='male vx')
-    normal_intvs = make_st(screen_change_year=2100)
-    intvs = normal_intvs + [routine_vx]
-    return intvs
-
-
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18, screen_change_year=2025, age_range=[30, 50],
             start_year=2020, end_year=2100, future_treat_cov=0.75, txv_pars=None, txv=False,
             tx_assigner_csv='tx_assigner'):
@@ -167,7 +160,7 @@ def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campai
     ]
 
     # Add historical screening and treatment
-    hist_intvs = make_st(screen_change_year=2100)
+    hist_intvs = make_st(screen_change_year=2026)
     mv_intvs = hist_intvs + mv_intvs
 
     return mv_intvs
@@ -254,84 +247,4 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.75
 
     return intvs
 
-
-def make_st_hiv(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=0.7, rel_imm_lt200=1.0):
-    """
-    Make screening campaign for 20-25yo
-    """
-    # Routine screening
-    screen_eligible = lambda sim: (np.isnan(sim.people.date_screened) | \
-                                  (sim.t > (sim.people.date_screened + 5 / sim['dt']))) & \
-                                  (sim.people.hiv == True) & (sim.people.art == True)
-
-    # Routine screening
-    screening = hpv.campaign_screening(
-        prob=screen_cov,
-        interpolate=False,
-        annual_prob=False,
-        eligibility=screen_eligible,
-        years=start_year,
-        product=primary,
-        age_range=[20, 60],
-        label='screening_hiv'
-    )
-
-    # Assign treatment
-    screen_positive = lambda sim: sim.get_intervention('screening_hiv').outcomes['positive']
-    assign_treatment = hpv.campaign_triage(
-        years=start_year,
-        prob=1,
-        annual_prob=False,
-        product='tx_assigner',
-        eligibility=screen_positive,
-        label='tx assigner_hiv'
-    )
-
-    # Ablation treatment
-    ablation_eligible = lambda sim: sim.get_intervention('tx assigner_hiv').outcomes['ablation']
-    ablation = hpv.treat_num(
-        prob=treat_cov,
-        product='ablation',
-        eligibility=ablation_eligible,
-        label='ablation_hiv'
-    )
-    # Excision treatment
-    excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner_hiv').outcomes['excision'].tolist()
-                                            + sim.get_intervention('ablation_hiv').outcomes['unsuccessful'].tolist()))
-    excision = hpv.treat_num(
-        prob=treat_cov,
-        product='excision',
-        eligibility=excision_eligible,
-        label='excision_hiv'
-    )
-    # Radiation treatment
-    radiation_eligible = lambda sim: sim.get_intervention('tx assigner_hiv').outcomes['radiation']
-    radiation = hpv.treat_num(
-        prob=treat_cov/4,  # assume an additional dropoff in CaTx coverage
-        product=hpv.radiation(),
-        eligibility=radiation_eligible,
-        label='radiation_hiv'
-    )
-
-    hiv_eligible = lambda sim: (sim.people.date_screened == sim.t) & \
-                                  np.isnan(sim.people.date_vaccinated) & \
-                                (sim.people.hiv == True) & (sim.people.art == True)
-
-    plwh_prod = hpv.default_vx(prod_name='bivalent')
-    plwh_prod.imm_init['par1'] *= rel_imm_lt200
-    hiv_vx = hpv.campaign_vx(
-        product=plwh_prod,
-        eligibility=hiv_eligible,
-        age_range=[20, 60],
-        prob=screen_cov,
-        years=start_year,
-        label='PxV for PLWH',
-    )
-
-    normal_intvs = make_st(screen_change_year=2026)
-    intvs = normal_intvs + [
-        screening, assign_treatment, ablation, excision, radiation,
-        hiv_vx
-    ]
-    return intvs
 

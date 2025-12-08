@@ -125,7 +125,7 @@ def plot_fig5(poster=False, end_year=2100):
 if __name__ == '__main__':
 
     # Load scenarios and construct figure
-    plot_fig5(poster=True)
+    plot_fig5(poster=False)
 
 
 
