@@ -17,6 +17,13 @@ def make_vx(end_year=2100):
     return routine_vx
 
 
+def make_hpv_test():
+    hpvdna = hpv.default_dx('hpv')
+    hpvdna.df = pd.read_csv('hpvdna.csv')
+    return hpvdna
+
+
+
 def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18, screen_change_year=2025, age_range=[30, 50],
             start_year=2020, end_year=2100, future_treat_cov=0.75, txv_pars=None, txv=False,
             tx_assigner_csv='tx_assigner'):
@@ -166,19 +173,20 @@ def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campai
     return mv_intvs
 
 
-def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50]):
+def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50]):
     """
     Make screening campaign for 20-25yo
     """
     # Routine screening
     # screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
     #                               (sim.t > (sim.people.date_screened + 5 / sim['dt']))
+    primary = make_hpv_test()
     screening = hpv.campaign_screening(
         prob=screen_cov,
         interpolate=False,
         annual_prob=False,
         # eligibility=screen_eligible,
-        years=start_year,
+        years=[start_year],
         product=primary,
         age_range=age_range,
         label='screening_older'
