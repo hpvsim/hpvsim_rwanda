@@ -192,6 +192,7 @@ def make_st_older(primary='hpv', start_year=2027, screen_cov=0.4, treat_cov=1, a
         years=start_year,
         prob=1,  # ASSUME NO LTFU
         annual_prob=False,
+        interpolate=False,
         product=tx_assigner,
         eligibility=screen_positive,
         label='tx assigner_older'
