@@ -2,10 +2,9 @@
 Utilities
 '''
 
-# Imports
-import sciris as sc
-import hpvsim as hpv
 import numpy as np
+import pandas as pd
+import sciris as sc
 
 
 def set_font(size=None, font='Libertinus Sans'):
@@ -25,33 +24,46 @@ def shrink_calib(calib, n_results=100):
     return calib
 
 
-def plot_single(ax, mres, to_plot, si, ei, color, ls='-', label=None, smooth=True, add_bounds=True):
-    years = mres.year[si:ei]
-    best = mres[to_plot][si:ei]
-    low = mres[to_plot].low[si:ei]
-    high = mres[to_plot].high[si:ei]
+# ---------- Scenario CSV loaders (produced by run_scenarios.py) ----------
+
+def load_scens(resfolder='results'):
+    ts = pd.read_csv(f'{resfolder}/scens_timeseries.csv')
+    cum = pd.read_csv(f'{resfolder}/scens_cumulative.csv')
+    return ts, cum
+
+
+def get_ts(ts_df, scenario, metric):
+    sub = ts_df[(ts_df.scenario == scenario) & (ts_df.metric == metric)].sort_values('year')
+    return sub.year.values, sub.value.values, sub.low.values, sub.high.values
+
+
+def get_cum(cum_df, scenario, metric):
+    row = cum_df[(cum_df.scenario == scenario) & (cum_df.metric == metric)].iloc[0]
+    return float(row.value), float(row.low), float(row.high)
+
+
+def plot_ts(ax, ts_df, scenario, metric, start_year, end_year,
+            color, ls='-', label=None, smooth=True, add_bounds=True):
+    years, best, low, high = get_ts(ts_df, scenario, metric)
+    mask = (years >= start_year) & (years <= end_year)
+    years, best, low, high = years[mask], best[mask], low[mask], high[mask]
 
     if smooth:
-        best = np.convolve(list(best), np.ones(5), "valid")/5
-        low = np.convolve(list(low), np.ones(5), "valid")/5
-        high = np.convolve(list(high), np.ones(5), "valid")/5
+        best = np.convolve(best, np.ones(5), 'valid') / 5
+        low = np.convolve(low, np.ones(5), 'valid') / 5
+        high = np.convolve(high, np.ones(5), 'valid') / 5
         years = years[4:]
 
     ax.plot(years, best, color=color, label=label, ls=ls)
 
-    if to_plot == 'asr_cancer_incidence':
-        try:
-            elim_year = sc.findfirst(best<4)
-            print(f'{label} elim year: {years[elim_year]}')
-        except:
+    if metric == 'asr_cancer_incidence':
+        below = np.where(best < 4)[0]
+        if len(below):
+            print(f'{label} elim year: {years[below[0]]}')
+        else:
             print(f'{label} not eliminated')
 
-    if add_bounds: ax.fill_between(years, low, high, alpha=0.1, color=color)
-    # ax.set_yscale('log')
-
-    # Add horizontal line at 4
+    if add_bounds:
+        ax.fill_between(years, low, high, alpha=0.1, color=color)
     ax.axhline(4, color='k', ls='--', lw=0.5)
     return ax
-
-
- 
