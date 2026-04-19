@@ -1,131 +1,105 @@
 """
-Plot residual burden of cervical cancer in Rwanda under vaccination scenarios
+Fig 5: cumulative cancers and cancers averted across all seven strategies.
+
+Plots from plot-ready CSVs produced by `run_scenarios.py --run-sim`.
 """
-import pandas as pd
+import argparse
+import os
 
-
+import numpy as np
 import pylab as pl
 import sciris as sc
-import numpy as np
+
 import utils as ut
 
 
-def plot_fig5(poster=False, end_year=2100):
-    """
-    Plot the residual burden of cervical cancer in Rwanda under screening and treatment scenarios.
-    """
+ALL_STRATEGIES = [
+    ('S&T', 'Screen+\ntreat'),
+    ('S&T&T', 'Screen+\ntriage+\ntreat'),
+    ('S&TxV&T&T', 'Screen+\nTxV 90/0+\ntriage+treat'),
+    ('S&TxV', 'Screen+\nTxV 50/90'),
+    ('HPV-Faster', 'HPV-Faster'),
+    ('Mass TxV 90/0,', 'Mass TxV\n90/0'),
+    ('Mass TxV 50/90,', 'Mass TxV\n50/90'),
+]
+
+
+def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster=False):
     fs = 20 if not poster else 24
     ut.set_font(fs)
-    figsize=(14, 12) if not poster else (14, 12)
-    fig = pl.figure(layout="tight", figsize=figsize)
-    gs = fig.add_gridspec(2, 1)  # 2 rows, 1 column
+    _, cum_df = ut.load_scens(resfolder)
 
-    # Load all scenario data from single dictionary
-    msim_dict = sc.loadobj('results/st_scens.obj')
+    figsize = (14, 12)
+    fig = pl.figure(layout="tight", figsize=figsize)
+    gs = fig.add_gridspec(2, 1)
     text_font = 14 if not poster else 20
 
-    # Common setup
-    fi = sc.findinds(msim_dict['S&T&T 18%'].year, 2025)[0]
     coverage_levels = ['18%', '35%', '70%']
-
-    # Define all strategies with keys and display labels
-    all_strategies = [
-        ('S&T', 'Screen+\ntreat'),
-        ('S&T&T', 'Screen+\ntriage+\ntreat'),
-        ('S&TxV&T&T', 'Screen+\nTxV 90/0+\ntriage+treat'),
-        ('S&TxV', 'Screen+\nTxV 50/90'),
-        ('HPV-Faster', 'HPV-Faster'),
-        ('Mass TxV 90/0,', 'Mass TxV\n90/0'),
-        ('Mass TxV 50/90,', 'Mass TxV\n50/90'),
-    ]
-
-    # Create color palette for coverage levels
     coverage_colors = sc.vectocolor(len(coverage_levels)).tolist()
 
-    # Get baseline cancers
-    baseline_cancers = msim_dict['S&T&T 18%']['cancers'].values[fi:].sum()
+    def cum(scen):
+        return ut.get_cum(cum_df, scen, 'cancers')[0]
 
-    ######################################################
-    # Top Panel: Cumulative cancers
-    ######################################################
+    baseline_cancers = cum('S&T&T 18%')
+
+    # ---- Top: cumulative cancers ----
     ax = fig.add_subplot(gs[0])
-
     bar_width = 0.28
-    x_base = np.arange(len(all_strategies))
+    x_base = np.arange(len(ALL_STRATEGIES))
     offsets = [-bar_width, 0, bar_width]
 
     for cov_idx, cov in enumerate(coverage_levels):
         cum_cancers = []
-
-        for strat_key, strat_label in all_strategies:
-            scen_key = f'{strat_key} {cov}'
-            val = msim_dict[scen_key]['cancers'].values[fi:].sum()
-            cum_cancers.append(val)
-            print(f'{scen_key}: {val} cancers')
-
+        for strat_key, _ in ALL_STRATEGIES:
+            v = cum(f'{strat_key} {cov}')
+            cum_cancers.append(v)
+            print(f'{strat_key} {cov}: {v:.0f} cancers')
         bars = ax.bar(x_base + offsets[cov_idx], cum_cancers, width=bar_width,
                       color=coverage_colors[cov_idx], label=cov)
-
-        # Add value labels on bars
         for bar in bars:
             height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width()/2., height,
-                    f'{sc.sigfig(height/1e3, 3)}',
+            ax.text(bar.get_x() + bar.get_width() / 2., height,
+                    f'{sc.sigfig(height / 1e3, 3)}',
                     ha='center', va='bottom', fontsize=text_font)
 
     ax.set_xticks(x_base)
-    ax.set_xticklabels([label for _, label in all_strategies])
-    ax.set_title('Cumulative cancers 2025-2100')
-    sc.SIticks()
+    ax.set_xticklabels([label for _, label in ALL_STRATEGIES])
+    ax.set_title('Cumulative cancers 2025-2100'); sc.SIticks()
     ax.set_ylim([0, 100e3])
     ax.legend(title='Coverage', loc='upper right', frameon=False, fontsize=14, ncols=3)
 
-    ######################################################
-    # Bottom Panel: Cancers averted
-    ######################################################
+    # ---- Bottom: cancers averted ----
     ax = fig.add_subplot(gs[1])
-
     for cov_idx, cov in enumerate(coverage_levels):
-        cancers_averted = []
-
-        for strat_key, strat_label in all_strategies:
-            scen_key = f'{strat_key} {cov}'
-            val = msim_dict[scen_key]['cancers'].values[fi:].sum()
-            averted = max(baseline_cancers - val, 0)
-            cancers_averted.append(averted)
-            print(f'{scen_key}: {averted} cancers averted')
-
-        bars = ax.bar(x_base + offsets[cov_idx], cancers_averted, width=bar_width,
+        averted = []
+        for strat_key, _ in ALL_STRATEGIES:
+            val = cum(f'{strat_key} {cov}')
+            averted.append(max(baseline_cancers - val, 0))
+            print(f'{strat_key} {cov}: {averted[-1]:.0f} cancers averted')
+        bars = ax.bar(x_base + offsets[cov_idx], averted, width=bar_width,
                       color=coverage_colors[cov_idx], label=cov)
-
-        # Add value labels on bars
         for bar in bars:
             height = bar.get_height()
-            if height > 0:  # Only label positive values
-                ax.text(bar.get_x() + bar.get_width()/2., height,
-                        f'{sc.sigfig(height/1e3, 3)}',
+            if height > 0:
+                ax.text(bar.get_x() + bar.get_width() / 2., height,
+                        f'{sc.sigfig(height / 1e3, 3)}',
                         ha='center', va='bottom', fontsize=text_font)
 
     ax.set_xticks(x_base)
-    ax.set_xticklabels([label for _, label in all_strategies])
-    ax.set_title('Cancers averted 2025-2100 (vs. S&T&T 18%)')
-    sc.SIticks()
+    ax.set_xticklabels([label for _, label in ALL_STRATEGIES])
+    ax.set_title('Cancers averted 2025-2100 (vs. S&T&T 18%)'); sc.SIticks()
     ax.set_ylim([0, 38e3])
-    # ax.legend(title='Coverage', loc='upper right', frameon=False, fontsize=14)
 
     fig.tight_layout()
-    folder = 'figures/' if not poster else 'figures/poster/'
-    fig_name = f'{folder}fig5_comparison.png'
-    sc.savefig(fig_name, dpi=100)
-    # return perc_averted, new_bars
-    return
+    os.makedirs(os.path.dirname(outpath), exist_ok=True)
+    sc.savefig(outpath, dpi=100)
 
 
-# %% Run as a script
 if __name__ == '__main__':
-
-    # Load scenarios and construct figure
-    plot_fig5(poster=False)
-
-
-
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
+    parser.add_argument('--outpath', default='figures/fig5_comparison.png')
+    parser.add_argument('--poster', action='store_true')
+    args = parser.parse_args()
+    plot_fig5(resfolder=args.resfolder, outpath=args.outpath, poster=args.poster)
+    print('Done.')

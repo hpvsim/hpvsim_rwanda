@@ -157,35 +157,8 @@ def run_sim(
     return sim
 
 
-def get_age_causal_df(sim=None):
-    """
-    Make age causal dataframe
-    """
-    dt_res = sim.get_analyzer('age_causal_infection')
-    dt_dfs = sc.autolist()
-
-    dt_df = pd.DataFrame()
-    dt_df['Age'] = np.array(dt_res.age_causal)[np.array(dt_res.age_causal)<50]
-    dt_df['Health event'] = 'Causal\ninfection'
-    dt_dfs += dt_df
-
-    dt_df = pd.DataFrame()
-    dt_df['Age'] = np.array(dt_res.age_cin)[np.array(dt_res.age_causal)<65]
-    dt_df['Health event'] = 'HSIL'
-    dt_dfs += dt_df
-
-    dt_df = pd.DataFrame()
-    dt_df['Age'] = np.array(dt_res.age_cancer)[np.array(dt_res.age_causal)<90]
-    dt_df['Health event'] = 'Cancer'
-    dt_dfs += dt_df
-
-    age_causal_df = pd.concat(dt_dfs)
-
-    return age_causal_df
-
-
 # %% Run as a script
-if __name__ == '__main__':            # This is Python's standard way of saying: Only run the following code if this file is executed directly.But if another script imports this file (e.g., import my_script), the code in this block won’t run — which prevents unwanted side effects.
+if __name__ == '__main__':
 
     T = sc.timer()
 
@@ -196,20 +169,11 @@ if __name__ == '__main__':            # This is Python's standard way of saying:
 
     use_calib = True
 
-    # Run and plot a single simulation
-    # Takes <1min to run
+    # Run and plot a single simulation (<1 min)
     if 'run_single' in to_run:
+        sim = run_sim(use_calib=use_calib, end=2025, debug=debug)
 
-        sim = run_sim(use_calib=use_calib, end=2025, analyzers=hpv.age_causal_infection(start_year=2020), debug=debug)  # Run the simulation
-        # sim.plot()  # Plot the simulation
-        # a = sim.get_analyzer()
-        # a.plot()  # Save the plot to a file
-        df = get_age_causal_df(sim)
-        # save the dataframe to a file
-        sc.saveobj('results/age_causal_infection.obj', df)
-
-
-    T.toc('Done')  # Print out how long the run took
+    T.toc('Done')
 
 
 

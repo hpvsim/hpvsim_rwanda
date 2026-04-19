@@ -1,20 +1,21 @@
 """
-Plot the calibration
+Fig S2: calibration diagnostic.
+
+Plots from plot-ready CSVs produced by `run_calibration.py` (extract step).
 """
+import argparse
+import os
 
-
-# Standard imports
-import numpy as np  # Add this at the top if not already imported
-import sciris as sc
-import pylab as pl
+import numpy as np
 import pandas as pd
-import seaborn as sns
+import pylab as pl
+import sciris as sc
 
-# Imports from this repository
 import utils as ut
 
 
-def plot_calib(calib, hiv_df):
+def plot_calib(resfolder='results', outpath='figures/fig_calib.png',
+               hiv_datafile='data/rwanda_data.csv'):
     ut.set_font(16)
     fig = pl.figure(layout="tight", figsize=(16, 10))
 
@@ -27,197 +28,121 @@ def plot_calib(calib, hiv_df):
     canc_col = sc.gridcolors(5)[3]
     ms = 80
     gen_cols = sc.gridcolors(4)
-    pn = 0
 
-    # Pull out the results
-    analyzer_results = calib.analyzer_results
-    sim_results = calib.sim_results
-    extra_sim_results = calib.extra_sim_results
+    # ---- Row 0: cancers by age ----
+    age_metrics = [
+        ('cancers', ['0', '15', '20', '25', '30', '35', '40', '45', '50', '55',
+                     '60', '65', '70', '75', '80', '85'],
+         'Cancers by age, 2020', gs0[:2]),
+        ('cancer_incidence_no_hiv', ['25-35', '35-45', '45-55', '55+'],
+         'Cancer incidence by age,\n2017, HIV- women', gs0[2]),
+        ('cancer_incidence_with_hiv', ['25-35', '35-45', '45-55', '55+'],
+         'Cancer incidence by age,\n2017, HIV+ women', gs0[3]),
+    ]
+    for rkey, age_labels, title, spec in age_metrics:
+        ax = fig.add_subplot(spec)
+        model_df = pd.read_csv(f'{resfolder}/figS2_{rkey}.csv').sort_values('bin')
+        target_df = pd.read_csv(f'{resfolder}/figS2_target_{rkey}.csv')
 
-    ####################
-    # Cancers by age (3 plots)
-    ####################
-    for rn, res in enumerate(calib.analyzer_results[0].keys()):
-
-        # Data
-        if rn == 0: ax = fig.add_subplot(gs0[:2])
-        else: ax = fig.add_subplot(gs0[rn+1])
-
-        datadf = calib.target_data[rn]
-        if rn == 0:
-            age_labels = ['0', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60', '65', '70', '75', '80', '85']
-        else:
-            age_labels = ['25-35', '35-45', '45-55', '55+']
+        stats = [dict(med=r.med, q1=r.q1, q3=r.q3, whislo=r.whislo, whishi=r.whishi,
+                      fliers=[], label=str(int(r.bin)))
+                 for _, r in model_df.iterrows()]
+        bp = ax.bxp(stats, positions=model_df['bin'].values,
+                    patch_artist=True, showfliers=False, manage_ticks=False)
+        for patch in bp['boxes']:
+            patch.set_facecolor(canc_col); patch.set_alpha(0.7)
         x = np.arange(len(age_labels))
-        best = datadf.value.values
+        ax.scatter(x, target_df.value.values, marker='d', s=ms, color='k')
+        ax.set_xticks(x); ax.set_xticklabels(age_labels)
+        ax.set_ylim(bottom=0); ax.set_ylabel(''); ax.set_xlabel('')
+        ax.set_title(title)
 
-        # Extract model results
-        bins = []
-        values = []
-        for run_num, run in enumerate(analyzer_results):
-            bins += x.tolist()
-            yearkey = 2020 if res == 'cancers' else 2017
-            values += list(run[res][yearkey])
-        modeldf = pd.DataFrame({'bins': bins, 'values': values})
-
-        sns.boxplot(ax=ax, x='bins', y='values', data=modeldf, color=canc_col, showfliers=False)
-        # Adjust alpha for the boxes
-        for patch in ax.patches:
-            patch.set_alpha(0.7)  # Set alpha to 0.7 for the boxes
-        ax.scatter(x, best, marker='d', s=ms, color='k')
-
-        ax.set_ylim(bottom=0)
-        ax.set_xticks(x, age_labels)
-        ax.set_ylabel('')
-        ax.set_xlabel('')
-        if rn == 0: ax.set_title('Cancers by age, 2020')
-        elif rn == 1: ax.set_title('Cancer incidence by age,\n2017, HIV- women')
-        elif rn == 2: ax.set_title('Cancer incidence by age,\n2017, HIV+ women')
-
-    ####################
-    # Cancer incidence (3 lines on 1 plot)
-    ####################
+    # ---- Row 1, left: time series (asr + by HIV status) ----
+    ts_df = pd.read_csv(f'{resfolder}/figS2_timeseries.csv')
     ax = fig.add_subplot(gs1[:2])
-    x = np.arange(1960, 2026)
-    si = sc.findfirst(x, 2000)  # Start index for plotting
-    x = x[si:]
-    rkeys = ['asr_cancer_incidence', 'cancer_incidence_with_hiv',
-             'cancer_incidence_no_hiv']
+    rkeys = ['asr_cancer_incidence', 'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
     rlabels = ['Total', 'HIV+', 'HIV-']
-    for ai, rkey in enumerate(rkeys):
-        bins = []
-        values = []
-        for run_num, run in enumerate(extra_sim_results):
-            bins += x.tolist()
-            values += run[rkey][si:].tolist()
-        modeldf = pd.DataFrame({'bins': bins, 'values': values})
-        sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, errorbar=('pi', 95), label= rlabels[ai])
+    for rkey, rlabel in zip(rkeys, rlabels):
+        sub = ts_df[ts_df.metric == rkey].sort_values('year')
+        ax.plot(sub.year, sub.med, label=rlabel)
+        ax.fill_between(sub.year, sub.pi95_low, sub.pi95_high, alpha=0.2)
 
-    datadf = calib.target_data[3]
-    ax.scatter(datadf.year.values[0], datadf.value.values[0], marker='d', s=ms, color='k',label='GLOBOCAN')
+    target = pd.read_csv(f'{resfolder}/figS2_target_asr_cancer_incidence.csv')
+    ax.scatter(target.year.values[0], target.value.values[0], marker='d', s=ms,
+               color='k', label='GLOBOCAN')
     ax.legend(loc='upper left', frameon=False, fontsize=12)
     ax.set_title('Cancer incidence, 2020')
-    ax.set_ylabel('')
-    ax.set_xlabel('')
+    ax.set_ylabel(''); ax.set_xlabel('')
 
-    ####################
-    # Cancers by genotype
-    ####################
-    rkeys = ['precin_genotype_dist', 'cancerous_genotype_dist']
-    rlabels = ['Share of LSILs\nby genotype, 2020',
-               'Share of cancers\nby genotype, 2020']
-    for ri, rkey in enumerate(rkeys):
-        ax = fig.add_subplot(gs1[ri+2])
-        bins = []
-        values = []
-        for run_num, run in enumerate(sim_results):
-            bins += np.arange(4).tolist()
-            values += run[rkey].tolist()
-        modeldf = pd.DataFrame({'bins': bins, 'values': values})
-        sns.boxplot(ax=ax, x='bins', y='values', data=modeldf, color=gen_cols[ri], showfliers=False)
-        for patch in ax.patches: patch.set_alpha(0.5)
+    # ---- Row 1, right: genotype distributions ----
+    geno_metrics = [
+        ('precin_genotype_dist', 'Share of LSILs\nby genotype, 2020', gs1[2], gen_cols[0]),
+        ('cancerous_genotype_dist', 'Share of cancers\nby genotype, 2020', gs1[3], gen_cols[1]),
+    ]
+    for rkey, title, spec, color in geno_metrics:
+        ax = fig.add_subplot(spec)
+        model_df = pd.read_csv(f'{resfolder}/figS2_{rkey}.csv').sort_values('bin')
+        target_df = pd.read_csv(f'{resfolder}/figS2_target_{rkey}.csv')
 
-        datadf = calib.target_data[ri+4]
-        ydata = datadf.value.values
-        x = np.arange(len(ydata))
-        ax.scatter(x, ydata, color='k', marker='d', s=ms)
+        stats = [dict(med=r.med, q1=r.q1, q3=r.q3, whislo=r.whislo, whishi=r.whishi,
+                      fliers=[], label=str(int(r.bin)))
+                 for _, r in model_df.iterrows()]
+        bp = ax.bxp(stats, positions=model_df['bin'].values,
+                    patch_artist=True, showfliers=False, manage_ticks=False)
+        for patch in bp['boxes']:
+            patch.set_facecolor(color); patch.set_alpha(0.5)
 
-        ax.set_xticks(np.arange(4), ['16', '18', 'Hi5', 'OHR'])
-        ax.set_ylabel('')
-        ax.set_xlabel('')
-        ax.set_title(rlabels[ri])
+        ax.scatter(np.arange(len(target_df)), target_df.value.values, color='k', marker='d', s=ms)
+        ax.set_xticks(np.arange(4)); ax.set_xticklabels(['16', '18', 'Hi5', 'OHR'])
+        ax.set_ylabel(''); ax.set_xlabel('')
+        ax.set_title(title)
 
-    ####################
-    # ART coverage over time
-    ####################
+    # ---- Row 2: ART, HIV prevalence, HIV infections, HIV deaths ----
+    hiv_df = pd.read_csv(hiv_datafile).set_index('Unnamed: 0').T
+    hiv_df.index = hiv_df.index.astype(int)
+    hiv_window = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
+
+    def plot_ts_panel(ax, rkey, color, title, scale=1.0, legend=False, label=None):
+        sub = ts_df[ts_df.metric == rkey].sort_values('year')
+        ax.plot(sub.year, sub.med * scale, color=color, label=label)
+        ax.fill_between(sub.year, sub.pi95_low * scale, sub.pi95_high * scale,
+                        alpha=0.2, color=color)
+        if rkey in hiv_window.columns:
+            ax.scatter(hiv_window.index, hiv_window[rkey] * scale, marker='d',
+                       s=ms, color='k')
+        ax.set_xlabel(''); ax.set_ylabel(''); ax.set_title(title)
+        if not legend and ax.get_legend() is not None:
+            ax.get_legend().remove()
+
     ax = fig.add_subplot(gs2[0])
-    x = np.arange(1960, 2026)
-    si = sc.findfirst(x, 2000)  # Start index for plotting
-    x = x[si:]
-    rkey = 'art_coverage'
-    rlabel = 'ART coverage'
-    bins = []
-    values = []
-    for run_num, run in enumerate(extra_sim_results):
-        bins += x.tolist()
-        values += run[rkey][si:].tolist()
-    modeldf = pd.DataFrame({'bins': bins, 'values': [v*100 for v in values]})
-    sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=prev_col, errorbar=('pi', 95))
-    datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
-    sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey]*100, marker='d', s=ms, color='k', label=rlabel)
+    plot_ts_panel(ax, 'art_coverage', prev_col, 'ART coverage (%)', scale=100)
     ax.set_ylim(bottom=0)
-    ax.set_xlabel('')
-    ax.set_title('ART coverage (%)')
-    ax.get_legend().remove()
 
-    ####################
-    # HIV prevalence over time
-    ####################
     ax = fig.add_subplot(gs2[1])
-    rkeys = ['female_hiv_prevalence', 'male_hiv_prevalence']
-    rlabels = ['Female', 'Male']
-    colors = sc.gridcolors(len(rkeys))
-    x = np.arange(1960, 2026)
-    si = sc.findfirst(x, 2000)  # Start index for plotting
-    x = x[si:]
-
-    for ai, rkey in enumerate(rkeys):
-        bins = []
-        values = []
-        for run_num, run in enumerate(extra_sim_results):
-            bins += x.tolist()
-            values += run[rkey][si:].tolist()
-        modeldf = pd.DataFrame({'bins': bins, 'values': [v*100 for v in values]})
-        sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=colors[ai], errorbar=('pi', 95), label=rlabels[ai])
-        datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
-        sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey]*100, marker='d', s=ms, color=colors[ai])
+    sex_colors = sc.gridcolors(2)
+    plot_ts_panel(ax, 'female_hiv_prevalence', sex_colors[0], 'HIV prevalence (%)', scale=100, label='Female')
+    plot_ts_panel(ax, 'male_hiv_prevalence', sex_colors[1], 'HIV prevalence (%)', scale=100, label='Male')
     ax.legend(loc='upper right', frameon=False)
-    ax.set_xlabel('')
-    ax.set_ylabel('')
-    ax.set_title('HIV prevalence (%)')
 
-    ####################
-    # HIV infections and deaths
-    ####################
-    rkeys = ['hiv_infections', 'hiv_deaths']
-    rlabels = ['HIV infections', 'HIV deaths']
-    for ri, rkey in enumerate(rkeys):
-        ax = fig.add_subplot(gs2[ri+2])
-        x = np.arange(1960, 2026)
-        si = sc.findfirst(x, 2000)  # Start index for plotting
-        x = x[si:]
-        bins = []
-        values = []
-        for run_num, run in enumerate(extra_sim_results):
-            bins += x.tolist()
-            values += run[rkey][si:].tolist()
-        modeldf = pd.DataFrame({'bins': bins, 'values': values})  # Convert to thousands
-        sns.lineplot(ax=ax, x='bins', y='values', data=modeldf, color=prev_col, errorbar=('pi', 95), label=rlabels[ri])
-        if rkey == 'hiv_infections':
-            datadf = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
-            sns.scatterplot(ax=ax, x=datadf.index, y=datadf[rkey], marker='d', s=ms, color='k')
-        ax.set_xlabel('')
-        ax.set_ylabel('')
-        ax.set_title(rlabels[ri])
-        sc.SIticks()
-        ax.get_legend().remove()
+    ax = fig.add_subplot(gs2[2])
+    plot_ts_panel(ax, 'hiv_infections', prev_col, 'HIV infections')
+    sc.SIticks()
+
+    ax = fig.add_subplot(gs2[3])
+    plot_ts_panel(ax, 'hiv_deaths', prev_col, 'HIV deaths')
+    sc.SIticks()
 
     fig.tight_layout()
-    pl.savefig(f"figures/fig_calib.png", dpi=300)
+    os.makedirs(os.path.dirname(outpath), exist_ok=True)
+    pl.savefig(outpath, dpi=300)
 
-    return
 
-
-# %% Run as a script
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
+    parser.add_argument('--outpath', default='figures/fig_calib.png')
+    args = parser.parse_args()
 
     T = sc.timer()
-
-    calib = sc.loadobj('results/rwanda_calib.obj')
-    hiv_df = pd.read_csv('data/rwanda_data.csv').set_index('Unnamed: 0').T
-    hiv_df.index = hiv_df.index.astype(int)  # Convert index to integers
-
-    plot_calib(calib, hiv_df)
-
+    plot_calib(resfolder=args.resfolder, outpath=args.outpath)
     T.toc('Done')
- 
