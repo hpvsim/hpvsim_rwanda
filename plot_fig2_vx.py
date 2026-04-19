@@ -32,7 +32,7 @@ def plot_fig2():
     ax = fig.add_subplot(gs[:2])
     this_dict = {
         'Status quo': msim_dict['Baseline'],
-        '20% coverage, 2027': msim_dict['HPV-Faster 18%'],
+        '18% coverage, 2027': msim_dict['HPV-Faster 18%'],
         '35% coverage, 2027': msim_dict['HPV-Faster 35%'],
         '70% coverage, 2027': msim_dict['HPV-Faster 70%'],
     }
