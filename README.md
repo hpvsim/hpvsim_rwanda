@@ -20,6 +20,9 @@ A `Dockerfile` and `docker-compose.yml` are included for a reproducible environm
 # Build once
 docker compose build
 
+# Start the REST API (default service command) at http://localhost:8000
+docker compose up
+
 # Render a figure from the committed v2.2.6 baseline
 docker compose run --rm hpvsim python plot_fig1_residual.py
 
@@ -27,7 +30,7 @@ docker compose run --rm hpvsim python plot_fig1_residual.py
 docker compose run --rm hpvsim python run_scenarios.py --run-sim
 
 # Interactive shell
-docker compose run --rm hpvsim
+docker compose run --rm hpvsim bash
 ```
 
 Plain Docker (no compose):
@@ -39,6 +42,23 @@ docker run --rm \
   -v "$PWD/figures:/app/figures" \
   hpvsim_rwanda python plot_fig1_residual.py
 ```
+
+### REST API
+
+`run_rest_api.py` exposes the heavy `run_scenarios.py --run-sim` workflow as a queued background job. Each job writes to `results/<job_id>/` so outputs never collide; a single worker drains the queue to keep CPU pressure sane (hpvsim already saturates cores via its own multiprocessing pool).
+
+```bash
+# Submit a job (end year is optional, defaults to 2100)
+curl -X POST http://localhost:8000/submit-job \
+  -H 'Content-Type: application/json' \
+  -d '{"end": 2100}'
+# → {"status":"created","job_id":"..."}
+
+# List all jobs and their status
+curl http://localhost:8000/jobs
+```
+
+Interactive docs at `http://localhost:8000/docs`.
 
 ## Workflow: heavy sims on VM, plots locally
 

@@ -1,3 +1,5 @@
 hpvsim==2.2.6
 seaborn
 optuna
+fastapi
+uvicorn[standard]
