@@ -12,6 +12,34 @@ pip install hpvsim==2.2.6 seaborn optuna
 
 Python 3.9+.
 
+### Docker
+
+A `Dockerfile` and `docker-compose.yml` are included for a reproducible environment. `results/` and `figures/` are bind-mounted, so CSVs and plots land on the host.
+
+```bash
+# Build once
+docker compose build
+
+# Render a figure from the committed v2.2.6 baseline
+docker compose run --rm hpvsim python plot_fig1_residual.py
+
+# Heavy run (intended for a VM)
+docker compose run --rm hpvsim python run_scenarios.py --run-sim
+
+# Interactive shell
+docker compose run --rm hpvsim
+```
+
+Plain Docker (no compose):
+
+```bash
+docker build -t hpvsim_rwanda .
+docker run --rm \
+  -v "$PWD/results:/app/results" \
+  -v "$PWD/figures:/app/figures" \
+  hpvsim_rwanda python plot_fig1_residual.py
+```
+
 ## Workflow: heavy sims on VM, plots locally
 
 Every heavy script has two modes: `--run-sim` runs the simulation and saves lightweight CSVs under `results/`; running without the flag loads the CSVs and produces the figure. The intended flow is:

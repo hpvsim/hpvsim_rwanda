@@ -1,0 +1,10 @@
+services:
+  hpvsim:
+    build: .
+    image: hpvsim_rwanda
+    working_dir: /app
+    volumes:
+      - ./results:/app/results
+      - ./figures:/app/figures
+    stdin_open: true
+    tty: true
