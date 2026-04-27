@@ -44,7 +44,7 @@ n_seeds = [10, 1][debug]  # How many seeds to run per cluster
 
 
 # %% Create interventions
-def make_baselines():
+def make_baselines(end_year=2100):
     """
     Baseline scenarios:
         1. No interventions
@@ -52,11 +52,11 @@ def make_baselines():
     """
     scendict = dict()
     scendict['No interventions'] = []
-    scendict['Baseline'] = make_st(future_screen_cov=0.18, screen_change_year=2025)
+    scendict['Baseline'] = make_st(future_screen_cov=0.18, screen_change_year=2025, end_year=end_year)
     return scendict
 
 
-def make_campaign_scenarios():
+def make_campaign_scenarios(end_year=2100):
     """
     Scenarios for mass one-time campaigns:
         1. Mass delivery of virus-clearing TxV
@@ -72,22 +72,24 @@ def make_campaign_scenarios():
         scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='precin',
             campaign_coverage=cov,
+            end_year=end_year,
         )
 
         # Virus-clearing mass TxV
         scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
             txv_pars='cin',
             campaign_coverage=cov,
+            end_year=end_year,
         )
 
         # Screen, treat, & vaccinate older women
-        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range, start_year=2026)
+        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range, start_year=2026, end_year=end_year)
         scendict[f'HPV-Faster {cov*100:.0f}%'] = mass_intvs
 
     return scendict
 
 
-def make_st_scenarios():
+def make_st_scenarios(end_year=2100):
     """
     Compare vaccination strategies:
     """
@@ -98,11 +100,11 @@ def make_st_scenarios():
     for cov_val in cov_array:
 
         # Scale up S&T&T - default algorithm, screening + triage + treatment
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val)
+        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, end_year=end_year)
         scendict[f'S&T&T {cov_val*100:.0f}%'] = st_intvs
 
         # Scale up S&T - streamlined algorithm, screening + treatment only
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, tx_assigner_csv='tx_assigner_no_triage')
+        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, tx_assigner_csv='tx_assigner_no_triage', end_year=end_year)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
 
         # Scale up S&TxV&T&T - enhanced algorithm with virus-clearing TxV used in addition to triage and treatment
@@ -110,7 +112,8 @@ def make_st_scenarios():
             screen_change_year=start_year,
             future_screen_cov=cov_val,
             txv_pars='precin',
-            txv=True)
+            txv=True,
+            end_year=end_year)
         scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = st_intvs
 
         # Scale up S&TxV - enhanced and streamlined algorithm with virus-clearing TxV used instead of treatment
@@ -118,7 +121,8 @@ def make_st_scenarios():
             screen_change_year=start_year,
             future_screen_cov=cov_val,
             txv_pars='cin',
-            txv=True)
+            txv=True,
+            end_year=end_year)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
 
     return scendict
@@ -254,7 +258,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     T = sc.timer()
-    scenarios = sc.mergedicts(make_baselines(), make_st_scenarios(), make_campaign_scenarios())
+    scenarios = sc.mergedicts(make_baselines(args.end), make_st_scenarios(args.end), make_campaign_scenarios(args.end))
 
     if args.run_sim:
         msim = run_sims(scenarios=scenarios, end=args.end)

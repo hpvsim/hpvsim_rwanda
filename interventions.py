@@ -58,7 +58,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18, screen_c
 
     # Assign treatment - historical and status quo
     screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
-    triage_end_year = 2030 if txv_pars == 'cin' else end_year  # IMPORTANT: if it's lesion regressing. stop other Tx
+    triage_end_year = min(2030, end_year) if txv_pars == 'cin' else end_year  # IMPORTANT: if it's lesion regressing. stop other Tx
     # # triage_end_year = end_year
     # future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
     # n_future_screen_years = len(future_screen_years)
@@ -135,7 +135,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18, screen_c
     return st_intvs
 
 
-def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campaign_age=[20, 50]):
+def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campaign_age=[20, 50], end_year=2100):
     """ Make mass txvx interventions """
 
     # Handle inputs
@@ -167,13 +167,13 @@ def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campai
     ]
 
     # Add historical screening and treatment
-    hist_intvs = make_st(screen_change_year=2026)
+    hist_intvs = make_st(screen_change_year=2026, end_year=end_year)
     mv_intvs = hist_intvs + mv_intvs
 
     return mv_intvs
 
 
-def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50]):
+def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50], end_year=2100):
     """
     Make screening campaign for 20-25yo
     """
@@ -248,7 +248,7 @@ def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 5
         years=start_year
     )
 
-    normal_intvs = make_st(screen_change_year=2026)
+    normal_intvs = make_st(screen_change_year=2026, end_year=end_year)
     intvs = normal_intvs + [
         screening, assign_treatment, ablation, excision, radiation,
         mass_vx
