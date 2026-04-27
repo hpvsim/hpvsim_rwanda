@@ -24,6 +24,38 @@ do_shrink = True  # Do not keep people when running sims (saves memory)
 do_save = True
 save_plots = True
 
+
+# %% v2.3 compatibility helpers
+def _to_annual_prob(p, dt):
+    """Convert per-timestep probability to annual (HPVsim v2.3+)."""
+    p = np.clip(p, 0, 1 - 1e-10)
+    return 1 - (1 - p) ** (1 / dt)
+
+
+def _layer_probs_to_annual(layer_probs, dt):
+    """Convert layer_probs dict from per-timestep to annual."""
+    out = {}
+    for lkey, lp in layer_probs.items():
+        lp_new = np.asarray(lp).copy().astype(float)
+        for row in [1, 2]:  # row 0 is age bins
+            lp_new[row, :] = _to_annual_prob(lp_new[row, :], dt)
+        out[lkey] = lp_new
+    return out
+
+
+def _convert_calib_pars_to_annual(calib_pars, dt):
+    """Convert any layer_probs / m_cross_layer / f_cross_layer in calib_pars to annual."""
+    if calib_pars is None:
+        return calib_pars
+    out = dict(calib_pars)
+    for key in ('m_cross_layer', 'f_cross_layer'):
+        if key in out and out[key] is not None:
+            out[key] = float(_to_annual_prob(out[key], dt))
+    if 'layer_probs' in out and out['layer_probs'] is not None:
+        out['layer_probs'] = _layer_probs_to_annual(out['layer_probs'], dt)
+    return out
+
+
 # %% Simulation creation functions #calib=False: do not run default calibration
 # calib=True: run default calibration
 # calib_pars=None: use default calibration parameters
@@ -106,6 +138,10 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
     art_datafile = ['data/rwanda_art_coverage_by_age_males.csv',
                     'data/rwanda_art_coverage_by_age_females.csv']
 
+    # HPVsim v2.3+ treats layer_probs and cross-layer probabilities as annual,
+    # but this project's values were calibrated as per-timestep.
+    pars.layer_probs = _layer_probs_to_annual(pars.layer_probs, pars.dt)
+
     # If calibration parameters have been supplied, use them here
     if calib_pars is None:
         # Use defaults
@@ -115,6 +151,7 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
        pars.hiv_pars = sc.mergedicts(pars.hiv_pars, hiv_pars)
 
     if calib_pars is not None:
+        calib_pars = _convert_calib_pars_to_annual(calib_pars, pars.dt)
         pars = sc.mergedicts(pars, calib_pars)
 
     # Interventions
