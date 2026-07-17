@@ -1,0 +1,45 @@
+scenario,metric,value,low,high
+No interventions,cancers,19.333333894610405,13.333333730697632,25.333334058523178
+No interventions,cancers_with_hiv,4.000000104308128,2.0000000596046448,6.000000149011612
+No interventions,cancers_no_hiv,15.333333775401115,10.333333641290665,20.333333909511566
+No interventions,cancer_deaths,13.666667073965073,8.66666692495346,18.666667222976685
+No interventions,ablations,0.0,,
+No interventions,txvs,0.0,,
+No interventions,vaccinations,0.0,,
+No interventions,screens,0.0,,
+No interventions,excisions,0.0,,
+No interventions,leeps,0.0,,
+No interventions,cancer_treatments,0.0,,
+Baseline,cancers,15.333333790302277,10.333333641290665,20.33333393931389
+Baseline,cancers_with_hiv,3.6666667759418488,1.666666716337204,5.6666668355464935
+Baseline,cancers_no_hiv,11.333333656191826,6.333333522081375,16.333333790302277
+Baseline,cancer_deaths,12.33333370089531,7.000000208616257,17.666667193174362
+Baseline,ablations,105.0,,
+Baseline,txvs,0.0,,
+Baseline,vaccinations,0.0,,
+Baseline,screens,1225.5,,
+Baseline,excisions,0.0,,
+Baseline,leeps,56.5,,
+Baseline,cancer_treatments,0.0,,
+S&T&T 70%,cancers,14.833333775401115,9.666666954755783,20.000000596046448
+S&T&T 70%,cancers_with_hiv,3.5000001043081284,1.3333333730697632,5.6666668355464935
+S&T&T 70%,cancers_no_hiv,11.166666984558105,5.6666668355464935,16.666667133569717
+S&T&T 70%,cancer_deaths,11.833333685994148,5.6666668355464935,18.000000536441803
+S&T&T 70%,ablations,339.5,,
+S&T&T 70%,txvs,0.0,,
+S&T&T 70%,vaccinations,0.0,,
+S&T&T 70%,screens,4519.5,,
+S&T&T 70%,excisions,0.0,,
+S&T&T 70%,leeps,180.0,,
+S&T&T 70%,cancer_treatments,0.5,,
+S&T 70%,cancers,13.666667059063911,9.333333611488342,18.00000050663948
+S&T 70%,cancers_with_hiv,3.5000001043081284,1.3333333730697632,5.6666668355464935
+S&T 70%,cancers_no_hiv,9.833333611488342,5.6666668355464935,14.000000387430191
+S&T 70%,cancer_deaths,11.333333671092987,5.333333492279053,17.33333384990692
+S&T 70%,ablations,945.0,,
+S&T 70%,txvs,0.0,,
+S&T 70%,vaccinations,0.0,,
+S&T 70%,screens,4512.0,,
+S&T 70%,excisions,0.0,,
+S&T 70%,leeps,592.5,,
+S&T 70%,cancer_treatments,0.5,,

@@ -46,11 +46,11 @@ from interventions import make_st, make_vx  # noqa: E402
 # %% Reduced-scale defaults (shared by run_scenarios.py and the v2 reference)
 # Modest ms_agent_ratio so HIV+ cancer (sparse) is still resolved, small pop +
 # few seeds so each scenario runs in a few minutes.
-N_AGENTS = 6000
+N_AGENTS = 5000
 DT = 0.25
-START = 1970
-STOP = 2061          # +1 over the last fully-covered annual year (2060)
-MS_AGENT_RATIO = 5
+START = 1975
+STOP = 2051          # +1 over the last fully-covered annual year (2050)
+MS_AGENT_RATIO = 3
 
 
 # %% Reporting analyzer -----------------------------------------------------

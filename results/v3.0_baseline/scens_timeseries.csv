@@ -1,0 +1,913 @@
+scenario,year,metric,value,low,high
+No interventions,1975.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1976.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1977.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1978.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1979.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1980.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1981.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1982.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1983.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1984.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1985.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1986.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1987.0,asr_cancer_incidence,8.108161850605365,0.0,16.21632370121073
+No interventions,1988.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1989.0,asr_cancer_incidence,3.9788005724094204,0.0,7.957601144818841
+No interventions,1990.0,asr_cancer_incidence,6.696487159731997,0.0,13.392974319463994
+No interventions,1991.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1992.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1993.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1994.0,asr_cancer_incidence,14.818295218184725,7.802365705537493,21.834224730831956
+No interventions,1995.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1996.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1997.0,asr_cancer_incidence,8.596048927949985,0.0,17.19209785589997
+No interventions,1998.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,1999.0,asr_cancer_incidence,13.714964732892193,0.0,27.429929465784387
+No interventions,2000.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2001.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2002.0,asr_cancer_incidence,4.354148902182934,0.0,8.708297804365868
+No interventions,2003.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2004.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2005.0,asr_cancer_incidence,16.065253653852455,15.463840144332869,16.666667163372043
+No interventions,2006.0,asr_cancer_incidence,5.084649129514938,0.0,10.169298259029876
+No interventions,2007.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2008.0,asr_cancer_incidence,8.486050461492145,5.576184305506158,11.39591661747813
+No interventions,2009.0,asr_cancer_incidence,10.872432187838154,9.244902150004656,12.499962225671652
+No interventions,2010.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2011.0,asr_cancer_incidence,12.973794256442908,8.968561038807884,16.97902747407793
+No interventions,2012.0,asr_cancer_incidence,13.808917217899422,9.762043050811897,17.855791384986947
+No interventions,2013.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2014.0,asr_cancer_incidence,3.7082237482665796,0.0,7.416447496533159
+No interventions,2015.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2016.0,asr_cancer_incidence,7.802234079078945,7.13003190248831,8.474436255669579
+No interventions,2017.0,asr_cancer_incidence,13.853021978761191,6.571685473736221,21.134358483786162
+No interventions,2018.0,asr_cancer_incidence,8.237754868479614,6.147482732073189,10.328027004886039
+No interventions,2019.0,asr_cancer_incidence,2.832826008101711,0.0,5.665652016203422
+No interventions,2020.0,asr_cancer_incidence,14.937438715229653,7.352855598914507,22.522021831544798
+No interventions,2021.0,asr_cancer_incidence,2.4772626019665163,0.0,4.9545252039330325
+No interventions,2022.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2023.0,asr_cancer_incidence,8.853972673172638,4.489326885483328,13.21861846086195
+No interventions,2024.0,asr_cancer_incidence,10.02101274726731,4.294865268602409,15.747160225932213
+No interventions,2025.0,asr_cancer_incidence,9.146562404411135,7.692214022459373,10.600910786362896
+No interventions,2026.0,asr_cancer_incidence,11.203840383027874,10.000882828230543,12.406797937825203
+No interventions,2027.0,asr_cancer_incidence,1.727107029220117,0.0,3.454214058440234
+No interventions,2028.0,asr_cancer_incidence,21.594539117394113,18.50815124907759,24.680926985710634
+No interventions,2029.0,asr_cancer_incidence,6.70817330189419,3.9318040530124585,9.484542550775922
+No interventions,2030.0,asr_cancer_incidence,4.270997281676065,0.0,8.54199456335213
+No interventions,2031.0,asr_cancer_incidence,8.947782022186843,0.0,17.895564044373685
+No interventions,2032.0,asr_cancer_incidence,9.067993136604752,7.299374353232525,10.836611919976978
+No interventions,2033.0,asr_cancer_incidence,12.066706850564604,8.648518169211028,15.48489553191818
+No interventions,2034.0,asr_cancer_incidence,14.887307553854374,11.648928286947182,18.125686820761565
+No interventions,2035.0,asr_cancer_incidence,12.30114135278735,10.58722846095889,14.01505424461581
+No interventions,2036.0,asr_cancer_incidence,0.0,0.0,0.0
+No interventions,2037.0,asr_cancer_incidence,6.3055907525630674,3.851180573042031,8.760000932084104
+No interventions,2038.0,asr_cancer_incidence,14.619030274728043,9.557449141942259,19.680611407513826
+No interventions,2039.0,asr_cancer_incidence,5.800520918610187,3.7221679101793588,7.878873927041014
+No interventions,2040.0,asr_cancer_incidence,5.43068493542949,3.1822688908909984,7.6791009799679815
+No interventions,2041.0,asr_cancer_incidence,5.91929888421477,0.0,11.83859776842954
+No interventions,2042.0,asr_cancer_incidence,14.557177499125794,10.817012039231521,18.297342959020067
+No interventions,2043.0,asr_cancer_incidence,10.408259781509743,8.143427620609263,12.673091942410224
+No interventions,2044.0,asr_cancer_incidence,6.074099182719145,2.691836114812007,9.456362250626283
+No interventions,2045.0,asr_cancer_incidence,6.84242901855612,2.761472352879421,10.92338568423282
+No interventions,2046.0,asr_cancer_incidence,7.290353067899355,6.034020099511767,8.546686036286943
+No interventions,2047.0,asr_cancer_incidence,3.1156030972637225,0.0,6.231206194527445
+No interventions,2048.0,asr_cancer_incidence,11.078825489526198,7.924803593048534,14.232847386003861
+No interventions,2049.0,asr_cancer_incidence,6.874340546766179,5.873624920992508,7.87505617253985
+No interventions,2050.0,asr_cancer_incidence,5.358652443658615,5.093098366411178,5.624206520906052
+No interventions,1975.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1976.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1977.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1978.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1979.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1980.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1981.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1982.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1983.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1984.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1985.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1986.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1987.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1988.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1989.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1990.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1991.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1992.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1993.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1994.0,cancer_incidence_with_hiv,122.24939695719775,0.0,244.4987939143955
+No interventions,1995.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1996.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1997.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1998.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1999.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2000.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2001.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2002.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2003.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2004.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2005.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2006.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2007.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2008.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2009.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2010.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2011.0,cancer_incidence_with_hiv,124.37809899636466,0.0,248.7561979927293
+No interventions,2012.0,cancer_incidence_with_hiv,131.57895393153652,0.0,263.15790786307304
+No interventions,2013.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2014.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2015.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2016.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2017.0,cancer_incidence_with_hiv,118.48339871673784,0.0,236.96679743347568
+No interventions,2018.0,cancer_incidence_with_hiv,136.98629972567414,0.0,273.9725994513483
+No interventions,2019.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2020.0,cancer_incidence_with_hiv,121.06537443778477,0.0,242.13074887556954
+No interventions,2021.0,cancer_incidence_with_hiv,142.04546493624406,0.0,284.0909298724881
+No interventions,2022.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2023.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2024.0,cancer_incidence_with_hiv,266.3266772815979,256.41026405187756,276.2430905113182
+No interventions,2025.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2026.0,cancer_incidence_with_hiv,272.0283755536475,263.1578603114503,280.8988907958447
+No interventions,2027.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2028.0,cancer_incidence_with_hiv,854.6067724158288,536.1930345030463,1173.0205103286112
+No interventions,2029.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2030.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2031.0,cancer_incidence_with_hiv,130.89005364268132,0.0,261.78010728536265
+No interventions,2032.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2033.0,cancer_incidence_with_hiv,283.9357237469641,266.66667461395264,301.2047728799755
+No interventions,2034.0,cancer_incidence_with_hiv,576.2902369645651,539.0835518455586,613.4969220835717
+No interventions,2035.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2036.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2037.0,cancer_incidence_with_hiv,159.74439813132258,0.0,319.48879626264517
+No interventions,2038.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2039.0,cancer_incidence_with_hiv,160.25639151974582,0.0,320.51278303949164
+No interventions,2040.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2041.0,cancer_incidence_with_hiv,162.33765913324683,0.0,324.67531826649366
+No interventions,2042.0,cancer_incidence_with_hiv,144.50868119983699,0.0,289.01736239967397
+No interventions,2043.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2044.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2045.0,cancer_incidence_with_hiv,495.0494675551713,0.0,990.0989351103426
+No interventions,2046.0,cancer_incidence_with_hiv,302.11478477468484,0.0,604.2295695493697
+No interventions,2047.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2048.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2049.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,2050.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+No interventions,1975.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1976.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1977.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1978.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1979.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1980.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1981.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1982.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1983.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1984.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1985.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1986.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1987.0,cancer_incidence_no_hiv,4.532269695168039,0.0,9.064539390336078
+No interventions,1988.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1989.0,cancer_incidence_no_hiv,4.260395491659519,0.0,8.520790983319039
+No interventions,1990.0,cancer_incidence_no_hiv,4.151789376639974,0.0,8.303578753279949
+No interventions,1991.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1992.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1993.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1994.0,cancer_incidence_no_hiv,3.9932910782220112,0.0,7.9865821564440225
+No interventions,1995.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1996.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1997.0,cancer_incidence_no_hiv,3.952882073709583,0.0,7.905764147419166
+No interventions,1998.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,1999.0,cancer_incidence_no_hiv,7.205130774298779,0.0,14.410261548597559
+No interventions,2000.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2001.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2002.0,cancer_incidence_no_hiv,3.5250988078198056,0.0,7.050197615639611
+No interventions,2003.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2004.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2005.0,cancer_incidence_no_hiv,6.512422544801919,6.4871884083929405,6.537656681210898
+No interventions,2006.0,cancer_incidence_no_hiv,3.1932561379825213,0.0,6.386512275965043
+No interventions,2007.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2008.0,cancer_incidence_no_hiv,6.0459558705603555,6.039741679062163,6.052170062058549
+No interventions,2009.0,cancer_incidence_no_hiv,5.912971186184666,5.879931968026827,5.946010404342505
+No interventions,2010.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2011.0,cancer_incidence_no_hiv,5.6322177372480215,5.629362769169103,5.635072705326941
+No interventions,2012.0,cancer_incidence_no_hiv,8.244953698237683,5.483358171861174,11.006549224614192
+No interventions,2013.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2014.0,cancer_incidence_no_hiv,2.629088445556068,0.0,5.258176891112136
+No interventions,2015.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2016.0,cancer_incidence_no_hiv,5.007642416237802,5.002250917674033,5.013033914801572
+No interventions,2017.0,cancer_incidence_no_hiv,7.33640751452012,4.883289529262244,9.789525499777996
+No interventions,2018.0,cancer_incidence_no_hiv,4.771220365457661,0.0,9.542440730915322
+No interventions,2019.0,cancer_incidence_no_hiv,2.3401666896057343,0.0,4.6803333792114685
+No interventions,2020.0,cancer_incidence_no_hiv,6.864050319387006,4.58106192420109,9.147038714572924
+No interventions,2021.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2022.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2023.0,cancer_incidence_no_hiv,6.416655414828568,4.27899028584648,8.554320543810656
+No interventions,2024.0,cancer_incidence_no_hiv,4.205214677609744,0.0,8.410429355219488
+No interventions,2025.0,cancer_incidence_no_hiv,6.157557958141991,4.11099720431153,8.204118711972454
+No interventions,2026.0,cancer_incidence_no_hiv,4.020668331825162,4.017677744343866,4.023658919306458
+No interventions,2027.0,cancer_incidence_no_hiv,1.9640963024729279,0.0,3.9281926049458558
+No interventions,2028.0,cancer_incidence_no_hiv,1.923372956162872,0.0,3.846745912325744
+No interventions,2029.0,cancer_incidence_no_hiv,5.655475235057082,3.7760072232271717,7.534943246886994
+No interventions,2030.0,cancer_incidence_no_hiv,3.7024696575301657,0.0,7.404939315060331
+No interventions,2031.0,cancer_incidence_no_hiv,5.459310493997094,0.0,10.918620987994188
+No interventions,2032.0,cancer_incidence_no_hiv,7.134598894587888,7.122000565152832,7.1471972240229436
+No interventions,2033.0,cancer_incidence_no_hiv,7.02142533226085,3.508033501025477,10.534817163496223
+No interventions,2034.0,cancer_incidence_no_hiv,5.1622089240956734,3.439972582739327,6.88444526545202
+No interventions,2035.0,cancer_incidence_no_hiv,11.828352042565378,10.119409328094742,13.537294757036012
+No interventions,2036.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+No interventions,2037.0,cancer_incidence_no_hiv,3.260308634431361,3.2559505531700146,3.2646667156927074
+No interventions,2038.0,cancer_incidence_no_hiv,12.815945311098865,9.606763747992249,16.025126874205483
+No interventions,2039.0,cancer_incidence_no_hiv,3.1496084566676465,3.147029298219796,3.152187615115497
+No interventions,2040.0,cancer_incidence_no_hiv,4.621077008512825,3.0850866899318894,6.15706732709376
+No interventions,2041.0,cancer_incidence_no_hiv,3.0252608401609336,0.0,6.050521680321867
+No interventions,2042.0,cancer_incidence_no_hiv,10.40471498517045,5.971754131678563,14.837675838662337
+No interventions,2043.0,cancer_incidence_no_hiv,10.248662994036899,8.770903748392742,11.726422239681057
+No interventions,2044.0,cancer_incidence_no_hiv,5.736833928457269,2.883340309433028,8.59032754748151
+No interventions,2045.0,cancer_incidence_no_hiv,2.832903515367132,2.830455709485291,2.8353513212489725
+No interventions,2046.0,cancer_incidence_no_hiv,4.184930082201559,2.796811565311415,5.5730485990917025
+No interventions,2047.0,cancer_incidence_no_hiv,2.7567195117332415,0.0,5.513439023466483
+No interventions,2048.0,cancer_incidence_no_hiv,10.880800396943336,8.141333793066208,13.620267000820464
+No interventions,2049.0,cancer_incidence_no_hiv,6.686357788322153,5.355612841700527,8.01710273494378
+No interventions,2050.0,cancer_incidence_no_hiv,5.282002679301696,5.274679061119405,5.289326297483986
+Baseline,1975.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1976.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1977.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1978.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1979.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1980.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1981.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1982.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1983.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1984.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1985.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1986.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1987.0,asr_cancer_incidence,8.108161850605365,0.0,16.21632370121073
+Baseline,1988.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1989.0,asr_cancer_incidence,3.9788005724094204,0.0,7.957601144818841
+Baseline,1990.0,asr_cancer_incidence,6.696487159731997,0.0,13.392974319463994
+Baseline,1991.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1992.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1993.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1994.0,asr_cancer_incidence,14.818295218184725,7.802365705537493,21.834224730831956
+Baseline,1995.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1996.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1997.0,asr_cancer_incidence,8.596048927949985,0.0,17.19209785589997
+Baseline,1998.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,1999.0,asr_cancer_incidence,13.714964732892193,0.0,27.429929465784387
+Baseline,2000.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2001.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2002.0,asr_cancer_incidence,4.354148902182934,0.0,8.708297804365868
+Baseline,2003.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2004.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2005.0,asr_cancer_incidence,16.065253653852455,15.463840144332869,16.666667163372043
+Baseline,2006.0,asr_cancer_incidence,5.084649129514938,0.0,10.169298259029876
+Baseline,2007.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2008.0,asr_cancer_incidence,8.486050461492145,5.576184305506158,11.39591661747813
+Baseline,2009.0,asr_cancer_incidence,10.872432187838154,9.244902150004656,12.499962225671652
+Baseline,2010.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2011.0,asr_cancer_incidence,12.973794256442908,8.968561038807884,16.97902747407793
+Baseline,2012.0,asr_cancer_incidence,13.808917217899422,9.762043050811897,17.855791384986947
+Baseline,2013.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2014.0,asr_cancer_incidence,3.7082237482665796,0.0,7.416447496533159
+Baseline,2015.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2016.0,asr_cancer_incidence,7.802234079078945,7.13003190248831,8.474436255669579
+Baseline,2017.0,asr_cancer_incidence,13.853021978761191,6.571685473736221,21.134358483786162
+Baseline,2018.0,asr_cancer_incidence,8.237754868479614,6.147482732073189,10.328027004886039
+Baseline,2019.0,asr_cancer_incidence,2.832826008101711,0.0,5.665652016203422
+Baseline,2020.0,asr_cancer_incidence,14.949116297385071,7.352855598914507,22.545376995855634
+Baseline,2021.0,asr_cancer_incidence,2.4772626019665163,0.0,4.9545252039330325
+Baseline,2022.0,asr_cancer_incidence,0.0,0.0,0.0
+Baseline,2023.0,asr_cancer_incidence,8.843939463280591,4.469260465699232,13.21861846086195
+Baseline,2024.0,asr_cancer_incidence,11.842839258485473,4.291796154431638,19.39388236253931
+Baseline,2025.0,asr_cancer_incidence,9.153485779916252,7.677442680788799,10.629528879043706
+Baseline,2026.0,asr_cancer_incidence,11.199198252250136,10.037605914663907,12.360790589836366
+Baseline,2027.0,asr_cancer_incidence,1.7340972457957087,0.0,3.4681944915914173
+Baseline,2028.0,asr_cancer_incidence,23.224469043947796,21.840403807835216,24.608534280060375
+Baseline,2029.0,asr_cancer_incidence,4.1553475754548,3.9343835160000618,4.376311634909539
+Baseline,2030.0,asr_cancer_incidence,2.345192197008914,0.0,4.690384394017828
+Baseline,2031.0,asr_cancer_incidence,8.923340396760171,0.0,17.846680793520342
+Baseline,2032.0,asr_cancer_incidence,9.089294469874387,7.434998442698803,10.743590497049972
+Baseline,2033.0,asr_cancer_incidence,12.364758011452798,8.632012490547933,16.097503532357663
+Baseline,2034.0,asr_cancer_incidence,12.874705579877896,7.593200456167274,18.156210703588517
+Baseline,2035.0,asr_cancer_incidence,12.617775370758121,11.433556003881778,13.801994737634462
+Baseline,2036.0,asr_cancer_incidence,1.5606681618257046,0.0,3.121336323651409
+Baseline,2037.0,asr_cancer_incidence,5.166824198282801,3.8462261930909833,6.487422203474619
+Baseline,2038.0,asr_cancer_incidence,10.072064278492384,6.689121803042134,13.455006753942632
+Baseline,2039.0,asr_cancer_incidence,5.748512109274673,3.6969378615438258,7.8000863570055206
+Baseline,2040.0,asr_cancer_incidence,2.4351036120327834,0.0,4.870207224065567
+Baseline,2041.0,asr_cancer_incidence,9.537986052743237,4.60131672478635,14.474655380700124
+Baseline,2042.0,asr_cancer_incidence,7.1772115094724676,2.995536038630648,11.358886980314287
+Baseline,2043.0,asr_cancer_incidence,5.037884177122495,3.5356919477296924,6.540076406515299
+Baseline,2044.0,asr_cancer_incidence,3.1342265108698024,2.9070366623517563,3.361416359387848
+Baseline,2045.0,asr_cancer_incidence,1.6863754054630626,0.0,3.3727508109261253
+Baseline,2046.0,asr_cancer_incidence,1.6129388414524926,0.0,3.225877682904985
+Baseline,2047.0,asr_cancer_incidence,7.558513864491939,5.772004324322854,9.345023404661024
+Baseline,2048.0,asr_cancer_incidence,3.021599472582789,0.0,6.043198945165578
+Baseline,2049.0,asr_cancer_incidence,4.334530317358663,2.795950324148868,5.873110310568459
+Baseline,2050.0,asr_cancer_incidence,7.056109908138021,5.602430827154735,8.509788989121306
+Baseline,1975.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1976.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1977.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1978.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1979.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1980.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1981.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1982.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1983.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1984.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1985.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1986.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1987.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1988.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1989.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1990.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1991.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1992.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1993.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1994.0,cancer_incidence_with_hiv,122.24939695719775,0.0,244.4987939143955
+Baseline,1995.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1996.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1997.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1998.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1999.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2000.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2001.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2002.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2003.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2004.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2005.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2006.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2007.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2008.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2009.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2010.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2011.0,cancer_incidence_with_hiv,124.37809899636466,0.0,248.7561979927293
+Baseline,2012.0,cancer_incidence_with_hiv,131.57895393153652,0.0,263.15790786307304
+Baseline,2013.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2014.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2015.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2016.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2017.0,cancer_incidence_with_hiv,118.48339871673784,0.0,236.96679743347568
+Baseline,2018.0,cancer_incidence_with_hiv,136.98629972567414,0.0,273.9725994513483
+Baseline,2019.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2020.0,cancer_incidence_with_hiv,122.24938327472131,0.0,244.49876654944262
+Baseline,2021.0,cancer_incidence_with_hiv,142.45014669548752,0.0,284.90029339097504
+Baseline,2022.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2023.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2024.0,cancer_incidence_with_hiv,271.51487020387987,265.25195435155905,277.7777860562007
+Baseline,2025.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2026.0,cancer_incidence_with_hiv,273.68436213415214,268.81719577283576,278.5515284954686
+Baseline,2027.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2028.0,cancer_incidence_with_hiv,856.4028221537718,563.3803226956788,1149.4253216118648
+Baseline,2029.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2030.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2031.0,cancer_incidence_with_hiv,138.1215539886739,0.0,276.2431079773478
+Baseline,2032.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2033.0,cancer_incidence_with_hiv,287.25683653636685,277.7777860562007,296.735887016533
+Baseline,2034.0,cancer_incidence_with_hiv,431.5012980009825,301.2048144102756,561.7977815916894
+Baseline,2035.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2036.0,cancer_incidence_with_hiv,138.50416510670902,0.0,277.00833021341805
+Baseline,2037.0,cancer_incidence_with_hiv,153.37423052089292,0.0,306.74846104178584
+Baseline,2038.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2039.0,cancer_incidence_with_hiv,155.27951509159467,0.0,310.55903018318935
+Baseline,2040.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2041.0,cancer_incidence_with_hiv,144.9275405510612,0.0,289.8550811021224
+Baseline,2042.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2043.0,cancer_incidence_with_hiv,166.11294491943968,0.0,332.22588983887937
+Baseline,2044.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2045.0,cancer_incidence_with_hiv,170.0680190393472,0.0,340.1360380786944
+Baseline,2046.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2047.0,cancer_incidence_with_hiv,149.25372899308942,0.0,298.50745798617885
+Baseline,2048.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,2049.0,cancer_incidence_with_hiv,173.61111628512543,0.0,347.22223257025087
+Baseline,2050.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+Baseline,1975.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1976.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1977.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1978.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1979.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1980.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1981.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1982.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1983.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1984.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1985.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1986.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1987.0,cancer_incidence_no_hiv,4.532269695168039,0.0,9.064539390336078
+Baseline,1988.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1989.0,cancer_incidence_no_hiv,4.260395491659519,0.0,8.520790983319039
+Baseline,1990.0,cancer_incidence_no_hiv,4.151789376639974,0.0,8.303578753279949
+Baseline,1991.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1992.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1993.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1994.0,cancer_incidence_no_hiv,3.9932910782220112,0.0,7.9865821564440225
+Baseline,1995.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1996.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1997.0,cancer_incidence_no_hiv,3.952882073709583,0.0,7.905764147419166
+Baseline,1998.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,1999.0,cancer_incidence_no_hiv,7.205130774298779,0.0,14.410261548597559
+Baseline,2000.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2001.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2002.0,cancer_incidence_no_hiv,3.5250988078198056,0.0,7.050197615639611
+Baseline,2003.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2004.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2005.0,cancer_incidence_no_hiv,6.512422544801919,6.4871884083929405,6.537656681210898
+Baseline,2006.0,cancer_incidence_no_hiv,3.1932561379825213,0.0,6.386512275965043
+Baseline,2007.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2008.0,cancer_incidence_no_hiv,6.0459558705603555,6.039741679062163,6.052170062058549
+Baseline,2009.0,cancer_incidence_no_hiv,5.912971186184666,5.879931968026827,5.946010404342505
+Baseline,2010.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2011.0,cancer_incidence_no_hiv,5.6322177372480215,5.629362769169103,5.635072705326941
+Baseline,2012.0,cancer_incidence_no_hiv,8.244953698237683,5.483358171861174,11.006549224614192
+Baseline,2013.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2014.0,cancer_incidence_no_hiv,2.629088445556068,0.0,5.258176891112136
+Baseline,2015.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2016.0,cancer_incidence_no_hiv,5.007642416237802,5.002250917674033,5.013033914801572
+Baseline,2017.0,cancer_incidence_no_hiv,7.33640751452012,4.883289529262244,9.789525499777996
+Baseline,2018.0,cancer_incidence_no_hiv,4.771220365457661,0.0,9.542440730915322
+Baseline,2019.0,cancer_incidence_no_hiv,2.3402762758169504,0.0,4.680552551633901
+Baseline,2020.0,cancer_incidence_no_hiv,6.863317916049857,4.580851970075309,9.145783862024405
+Baseline,2021.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2022.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2023.0,cancer_incidence_no_hiv,6.426735622422317,4.285591967953726,8.567879276890908
+Baseline,2024.0,cancer_incidence_no_hiv,6.291154952908667,0.0,12.582309905817334
+Baseline,2025.0,cancer_incidence_no_hiv,6.153426032992952,4.101049990987215,8.20580207499869
+Baseline,2026.0,cancer_incidence_no_hiv,4.018325698212077,4.015419486891275,4.02123190953288
+Baseline,2027.0,cancer_incidence_no_hiv,1.959324333371636,0.0,3.918648666743272
+Baseline,2028.0,cancer_incidence_no_hiv,3.85326754073966,0.0,7.70653508147932
+Baseline,2029.0,cancer_incidence_no_hiv,3.767849728205724,3.7585510907747253,3.777148365636723
+Baseline,2030.0,cancer_incidence_no_hiv,1.8554940388950283,0.0,3.7109880777900566
+Baseline,2031.0,cancer_incidence_no_hiv,5.448008393963235,0.0,10.89601678792647
+Baseline,2032.0,cancer_incidence_no_hiv,7.133813107456691,7.1316504764108,7.135975738502582
+Baseline,2033.0,cancer_incidence_no_hiv,7.024261046348796,3.5100034942960496,10.538518598401543
+Baseline,2034.0,cancer_incidence_no_hiv,5.157181202649559,3.4408013522536347,6.873561053045484
+Baseline,2035.0,cancer_incidence_no_hiv,11.825010082658991,10.161569249083655,13.488450916234328
+Baseline,2036.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2037.0,cancer_incidence_no_hiv,3.2557948122263998,3.2524555976063905,3.2591340268464095
+Baseline,2038.0,cancer_incidence_no_hiv,8.009078001977471,6.40122962690008,9.616926377054861
+Baseline,2039.0,cancer_incidence_no_hiv,3.1479220184642696,3.146039037174377,3.1498049997541617
+Baseline,2040.0,cancer_incidence_no_hiv,1.5394562173516948,0.0,3.0789124347033896
+Baseline,2041.0,cancer_incidence_no_hiv,6.0558352000823366,0.0,12.111670400164673
+Baseline,2042.0,cancer_incidence_no_hiv,5.944077971489054,2.9792054102065424,8.908950532771565
+Baseline,2043.0,cancer_incidence_no_hiv,2.923976695328428,0.0,5.847953390656856
+Baseline,2044.0,cancer_incidence_no_hiv,2.8738681875520324,2.867136962561851,2.8805994125422143
+Baseline,2045.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+Baseline,2046.0,cancer_incidence_no_hiv,1.392020977480334,0.0,2.784041954960668
+Baseline,2047.0,cancer_incidence_no_hiv,5.516481489530606,2.756643593015554,8.276319386045659
+Baseline,2048.0,cancer_incidence_no_hiv,2.719090817093081,0.0,5.438181634186162
+Baseline,2049.0,cancer_incidence_no_hiv,2.6809650869697665,0.0,5.361930173939533
+Baseline,2050.0,cancer_incidence_no_hiv,6.596203974954443,5.292265511906657,7.900142438002231
+S&T&T 70%,1975.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1976.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1977.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1978.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1979.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1980.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1981.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1982.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1983.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1984.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1985.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1986.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1987.0,asr_cancer_incidence,8.108161850605365,0.0,16.21632370121073
+S&T&T 70%,1988.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1989.0,asr_cancer_incidence,3.9788005724094204,0.0,7.957601144818841
+S&T&T 70%,1990.0,asr_cancer_incidence,6.696487159731997,0.0,13.392974319463994
+S&T&T 70%,1991.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1992.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1993.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1994.0,asr_cancer_incidence,14.818295218184725,7.802365705537493,21.834224730831956
+S&T&T 70%,1995.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1996.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1997.0,asr_cancer_incidence,8.596048927949985,0.0,17.19209785589997
+S&T&T 70%,1998.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,1999.0,asr_cancer_incidence,13.714964732892193,0.0,27.429929465784387
+S&T&T 70%,2000.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2001.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2002.0,asr_cancer_incidence,4.354148902182934,0.0,8.708297804365868
+S&T&T 70%,2003.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2004.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2005.0,asr_cancer_incidence,16.065253653852455,15.463840144332869,16.666667163372043
+S&T&T 70%,2006.0,asr_cancer_incidence,5.084649129514938,0.0,10.169298259029876
+S&T&T 70%,2007.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2008.0,asr_cancer_incidence,8.486050461492145,5.576184305506158,11.39591661747813
+S&T&T 70%,2009.0,asr_cancer_incidence,10.872432187838154,9.244902150004656,12.499962225671652
+S&T&T 70%,2010.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2011.0,asr_cancer_incidence,12.973794256442908,8.968561038807884,16.97902747407793
+S&T&T 70%,2012.0,asr_cancer_incidence,13.808917217899422,9.762043050811897,17.855791384986947
+S&T&T 70%,2013.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2014.0,asr_cancer_incidence,3.7082237482665796,0.0,7.416447496533159
+S&T&T 70%,2015.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2016.0,asr_cancer_incidence,7.802234079078945,7.13003190248831,8.474436255669579
+S&T&T 70%,2017.0,asr_cancer_incidence,13.853021978761191,6.571685473736221,21.134358483786162
+S&T&T 70%,2018.0,asr_cancer_incidence,8.237754868479614,6.147482732073189,10.328027004886039
+S&T&T 70%,2019.0,asr_cancer_incidence,2.832826008101711,0.0,5.665652016203422
+S&T&T 70%,2020.0,asr_cancer_incidence,14.949116297385071,7.352855598914507,22.545376995855634
+S&T&T 70%,2021.0,asr_cancer_incidence,2.4772626019665163,0.0,4.9545252039330325
+S&T&T 70%,2022.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2023.0,asr_cancer_incidence,8.843939463280591,4.469260465699232,13.21861846086195
+S&T&T 70%,2024.0,asr_cancer_incidence,11.842839258485473,4.291796154431638,19.39388236253931
+S&T&T 70%,2025.0,asr_cancer_incidence,9.153485779916252,7.677442680788799,10.629528879043706
+S&T&T 70%,2026.0,asr_cancer_incidence,11.199198252250136,10.037605914663907,12.360790589836366
+S&T&T 70%,2027.0,asr_cancer_incidence,1.7340972457957087,0.0,3.4681944915914173
+S&T&T 70%,2028.0,asr_cancer_incidence,23.224469043947796,21.840403807835216,24.608534280060375
+S&T&T 70%,2029.0,asr_cancer_incidence,4.1553475754548,3.9343835160000618,4.376311634909539
+S&T&T 70%,2030.0,asr_cancer_incidence,2.345192197008914,0.0,4.690384394017828
+S&T&T 70%,2031.0,asr_cancer_incidence,6.707031751830421,0.0,13.414063503660842
+S&T&T 70%,2032.0,asr_cancer_incidence,9.083588904894036,7.434998442698803,10.73217936708927
+S&T&T 70%,2033.0,asr_cancer_incidence,12.364081230848177,8.633378853983327,16.094783607713026
+S&T&T 70%,2034.0,asr_cancer_incidence,10.854471102724503,7.488780279398172,14.220161926050835
+S&T&T 70%,2035.0,asr_cancer_incidence,9.242251966374894,7.04038642608494,11.444117506664849
+S&T&T 70%,2036.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T&T 70%,2037.0,asr_cancer_incidence,7.819409916275417,3.8437646013974116,11.795055231153421
+S&T&T 70%,2038.0,asr_cancer_incidence,10.053913596839436,6.65574727996762,13.452079913711252
+S&T&T 70%,2039.0,asr_cancer_incidence,5.770470424770406,3.6923921238017865,7.848548725739025
+S&T&T 70%,2040.0,asr_cancer_incidence,2.471209518301377,0.0,4.942419036602754
+S&T&T 70%,2041.0,asr_cancer_incidence,9.488509244609048,0.0,18.977018489218096
+S&T&T 70%,2042.0,asr_cancer_incidence,7.092380973341736,4.098426390493485,10.086335556189987
+S&T&T 70%,2043.0,asr_cancer_incidence,5.025221027703557,3.5108652723237475,6.5395767830833655
+S&T&T 70%,2044.0,asr_cancer_incidence,3.109043721859853,2.8819032677308547,3.3361841759888513
+S&T&T 70%,2045.0,asr_cancer_incidence,3.004723492020947,2.6281513253494118,3.381295658692482
+S&T&T 70%,2046.0,asr_cancer_incidence,2.8088091072822268,0.0,5.6176182145644535
+S&T&T 70%,2047.0,asr_cancer_incidence,10.362110879596901,8.94278933051074,11.781432428683061
+S&T&T 70%,2048.0,asr_cancer_incidence,3.0439011862949457,0.0,6.087802372589891
+S&T&T 70%,2049.0,asr_cancer_incidence,4.330162410228509,2.777830607996512,5.8824942124605055
+S&T&T 70%,2050.0,asr_cancer_incidence,4.286375051079213,2.9586611784589194,5.614088923699508
+S&T&T 70%,1975.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1976.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1977.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1978.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1979.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1980.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1981.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1982.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1983.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1984.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1985.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1986.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1987.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1988.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1989.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1990.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1991.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1992.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1993.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1994.0,cancer_incidence_with_hiv,122.24939695719775,0.0,244.4987939143955
+S&T&T 70%,1995.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1996.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1997.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1998.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1999.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2000.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2001.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2002.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2003.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2004.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2005.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2006.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2007.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2008.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2009.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2010.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2011.0,cancer_incidence_with_hiv,124.37809899636466,0.0,248.7561979927293
+S&T&T 70%,2012.0,cancer_incidence_with_hiv,131.57895393153652,0.0,263.15790786307304
+S&T&T 70%,2013.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2014.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2015.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2016.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2017.0,cancer_incidence_with_hiv,118.48339871673784,0.0,236.96679743347568
+S&T&T 70%,2018.0,cancer_incidence_with_hiv,136.98629972567414,0.0,273.9725994513483
+S&T&T 70%,2019.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2020.0,cancer_incidence_with_hiv,122.24938327472131,0.0,244.49876654944262
+S&T&T 70%,2021.0,cancer_incidence_with_hiv,142.45014669548752,0.0,284.90029339097504
+S&T&T 70%,2022.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2023.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2024.0,cancer_incidence_with_hiv,271.51487020387987,265.25195435155905,277.7777860562007
+S&T&T 70%,2025.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2026.0,cancer_incidence_with_hiv,273.68436213415214,268.81719577283576,278.5515284954686
+S&T&T 70%,2027.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2028.0,cancer_incidence_with_hiv,856.4028221537718,563.3803226956788,1149.4253216118648
+S&T&T 70%,2029.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2030.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2031.0,cancer_incidence_with_hiv,138.1215539886739,0.0,276.2431079773478
+S&T&T 70%,2032.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2033.0,cancer_incidence_with_hiv,287.6437077560008,278.5515284954686,296.735887016533
+S&T&T 70%,2034.0,cancer_incidence_with_hiv,284.0909298724881,0.0,568.1818597449762
+S&T&T 70%,2035.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2036.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2037.0,cancer_incidence_with_hiv,156.73980158870526,0.0,313.4796031774105
+S&T&T 70%,2038.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2039.0,cancer_incidence_with_hiv,156.25001955777594,0.0,312.5000391155519
+S&T&T 70%,2040.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2041.0,cancer_incidence_with_hiv,159.23566579736524,0.0,318.4713315947305
+S&T&T 70%,2042.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2043.0,cancer_incidence_with_hiv,166.6666843493793,0.0,333.3333686987586
+S&T&T 70%,2044.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2045.0,cancer_incidence_with_hiv,171.821297448243,0.0,343.642594896486
+S&T&T 70%,2046.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2047.0,cancer_incidence_with_hiv,304.8780507749918,0.0,609.7561015499836
+S&T&T 70%,2048.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,2049.0,cancer_incidence_with_hiv,181.8181620156497,0.0,363.6363240312994
+S&T&T 70%,2050.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T&T 70%,1975.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1976.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1977.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1978.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1979.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1980.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1981.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1982.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1983.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1984.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1985.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1986.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1987.0,cancer_incidence_no_hiv,4.532269695168039,0.0,9.064539390336078
+S&T&T 70%,1988.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1989.0,cancer_incidence_no_hiv,4.260395491659519,0.0,8.520790983319039
+S&T&T 70%,1990.0,cancer_incidence_no_hiv,4.151789376639974,0.0,8.303578753279949
+S&T&T 70%,1991.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1992.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1993.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1994.0,cancer_incidence_no_hiv,3.9932910782220112,0.0,7.9865821564440225
+S&T&T 70%,1995.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1996.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1997.0,cancer_incidence_no_hiv,3.952882073709583,0.0,7.905764147419166
+S&T&T 70%,1998.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,1999.0,cancer_incidence_no_hiv,7.205130774298779,0.0,14.410261548597559
+S&T&T 70%,2000.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2001.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2002.0,cancer_incidence_no_hiv,3.5250988078198056,0.0,7.050197615639611
+S&T&T 70%,2003.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2004.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2005.0,cancer_incidence_no_hiv,6.512422544801919,6.4871884083929405,6.537656681210898
+S&T&T 70%,2006.0,cancer_incidence_no_hiv,3.1932561379825213,0.0,6.386512275965043
+S&T&T 70%,2007.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2008.0,cancer_incidence_no_hiv,6.0459558705603555,6.039741679062163,6.052170062058549
+S&T&T 70%,2009.0,cancer_incidence_no_hiv,5.912971186184666,5.879931968026827,5.946010404342505
+S&T&T 70%,2010.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2011.0,cancer_incidence_no_hiv,5.6322177372480215,5.629362769169103,5.635072705326941
+S&T&T 70%,2012.0,cancer_incidence_no_hiv,8.244953698237683,5.483358171861174,11.006549224614192
+S&T&T 70%,2013.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2014.0,cancer_incidence_no_hiv,2.629088445556068,0.0,5.258176891112136
+S&T&T 70%,2015.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2016.0,cancer_incidence_no_hiv,5.007642416237802,5.002250917674033,5.013033914801572
+S&T&T 70%,2017.0,cancer_incidence_no_hiv,7.33640751452012,4.883289529262244,9.789525499777996
+S&T&T 70%,2018.0,cancer_incidence_no_hiv,4.771220365457661,0.0,9.542440730915322
+S&T&T 70%,2019.0,cancer_incidence_no_hiv,2.3402762758169504,0.0,4.680552551633901
+S&T&T 70%,2020.0,cancer_incidence_no_hiv,6.863317916049857,4.580851970075309,9.145783862024405
+S&T&T 70%,2021.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2022.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2023.0,cancer_incidence_no_hiv,6.426735622422317,4.285591967953726,8.567879276890908
+S&T&T 70%,2024.0,cancer_incidence_no_hiv,6.291154952908667,0.0,12.582309905817334
+S&T&T 70%,2025.0,cancer_incidence_no_hiv,6.153426032992952,4.101049990987215,8.20580207499869
+S&T&T 70%,2026.0,cancer_incidence_no_hiv,4.018325698212077,4.015419486891275,4.02123190953288
+S&T&T 70%,2027.0,cancer_incidence_no_hiv,1.959324333371636,0.0,3.918648666743272
+S&T&T 70%,2028.0,cancer_incidence_no_hiv,3.85326754073966,0.0,7.70653508147932
+S&T&T 70%,2029.0,cancer_incidence_no_hiv,3.7726649767785743,3.768181587920425,3.777148365636723
+S&T&T 70%,2030.0,cancer_incidence_no_hiv,1.8554940388950283,0.0,3.7109880777900566
+S&T&T 70%,2031.0,cancer_incidence_no_hiv,3.6325332023548964,0.0,7.265066404709793
+S&T&T 70%,2032.0,cancer_incidence_no_hiv,7.13737698114625,7.136485991040631,7.138267971251868
+S&T&T 70%,2033.0,cancer_incidence_no_hiv,7.027659366159087,3.5086486834638353,10.546670048854338
+S&T&T 70%,2034.0,cancer_incidence_no_hiv,5.163215542572664,3.4438820463626487,6.88254903878268
+S&T&T 70%,2035.0,cancer_incidence_no_hiv,8.447649209447789,6.73854489693648,10.1567535219591
+S&T&T 70%,2036.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T&T 70%,2037.0,cancer_incidence_no_hiv,4.88392666876477,3.2578598906414675,6.509993446888074
+S&T&T 70%,2038.0,cancer_incidence_no_hiv,8.000423241629113,6.410667140189442,9.590179343068783
+S&T&T 70%,2039.0,cancer_incidence_no_hiv,3.147426346428027,3.145841291689702,3.1490114011663524
+S&T&T 70%,2040.0,cancer_incidence_no_hiv,1.5370428217379188,0.0,3.0740856434758377
+S&T&T 70%,2041.0,cancer_incidence_no_hiv,6.056751809155268,0.0,12.113503618310537
+S&T&T 70%,2042.0,cancer_incidence_no_hiv,5.949871629554069,2.982848709328329,8.916894549779808
+S&T&T 70%,2043.0,cancer_incidence_no_hiv,2.930317231491243,0.0,5.860634462982486
+S&T&T 70%,2044.0,cancer_incidence_no_hiv,2.873488674015822,2.8686996235912607,2.8782777244403834
+S&T&T 70%,2045.0,cancer_incidence_no_hiv,1.4137072701020446,0.0,2.827414540204089
+S&T&T 70%,2046.0,cancer_incidence_no_hiv,2.786136269370117,0.0,5.572272538740234
+S&T&T 70%,2047.0,cancer_incidence_no_hiv,6.891496368305041,2.758848941756708,11.024143794853373
+S&T&T 70%,2048.0,cancer_incidence_no_hiv,2.719756390889693,0.0,5.439512781779386
+S&T&T 70%,2049.0,cancer_incidence_no_hiv,2.68154049709364,0.0,5.36308099418728
+S&T&T 70%,2050.0,cancer_incidence_no_hiv,3.9639718958949546,2.6348379042561123,5.293105887533796
+S&T 70%,1975.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1976.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1977.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1978.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1979.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1980.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1981.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1982.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1983.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1984.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1985.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1986.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1987.0,asr_cancer_incidence,8.108161850605365,0.0,16.21632370121073
+S&T 70%,1988.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1989.0,asr_cancer_incidence,3.9788005724094204,0.0,7.957601144818841
+S&T 70%,1990.0,asr_cancer_incidence,6.696487159731997,0.0,13.392974319463994
+S&T 70%,1991.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1992.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1993.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1994.0,asr_cancer_incidence,14.818295218184725,7.802365705537493,21.834224730831956
+S&T 70%,1995.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1996.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1997.0,asr_cancer_incidence,8.596048927949985,0.0,17.19209785589997
+S&T 70%,1998.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,1999.0,asr_cancer_incidence,13.714964732892193,0.0,27.429929465784387
+S&T 70%,2000.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2001.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2002.0,asr_cancer_incidence,4.354148902182934,0.0,8.708297804365868
+S&T 70%,2003.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2004.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2005.0,asr_cancer_incidence,16.065253653852455,15.463840144332869,16.666667163372043
+S&T 70%,2006.0,asr_cancer_incidence,5.084649129514938,0.0,10.169298259029876
+S&T 70%,2007.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2008.0,asr_cancer_incidence,8.486050461492145,5.576184305506158,11.39591661747813
+S&T 70%,2009.0,asr_cancer_incidence,10.872432187838154,9.244902150004656,12.499962225671652
+S&T 70%,2010.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2011.0,asr_cancer_incidence,12.973794256442908,8.968561038807884,16.97902747407793
+S&T 70%,2012.0,asr_cancer_incidence,13.808917217899422,9.762043050811897,17.855791384986947
+S&T 70%,2013.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2014.0,asr_cancer_incidence,3.7082237482665796,0.0,7.416447496533159
+S&T 70%,2015.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2016.0,asr_cancer_incidence,7.802234079078945,7.13003190248831,8.474436255669579
+S&T 70%,2017.0,asr_cancer_incidence,13.853021978761191,6.571685473736221,21.134358483786162
+S&T 70%,2018.0,asr_cancer_incidence,8.237754868479614,6.147482732073189,10.328027004886039
+S&T 70%,2019.0,asr_cancer_incidence,2.832826008101711,0.0,5.665652016203422
+S&T 70%,2020.0,asr_cancer_incidence,14.949116297385071,7.352855598914507,22.545376995855634
+S&T 70%,2021.0,asr_cancer_incidence,2.4772626019665163,0.0,4.9545252039330325
+S&T 70%,2022.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2023.0,asr_cancer_incidence,8.843939463280591,4.469260465699232,13.21861846086195
+S&T 70%,2024.0,asr_cancer_incidence,11.842839258485473,4.291796154431638,19.39388236253931
+S&T 70%,2025.0,asr_cancer_incidence,9.153485779916252,7.677442680788799,10.629528879043706
+S&T 70%,2026.0,asr_cancer_incidence,11.199198252250136,10.037605914663907,12.360790589836366
+S&T 70%,2027.0,asr_cancer_incidence,1.7340972457957087,0.0,3.4681944915914173
+S&T 70%,2028.0,asr_cancer_incidence,23.224469043947796,21.840403807835216,24.608534280060375
+S&T 70%,2029.0,asr_cancer_incidence,4.1553475754548,3.9343835160000618,4.376311634909539
+S&T 70%,2030.0,asr_cancer_incidence,2.345192197008914,0.0,4.690384394017828
+S&T 70%,2031.0,asr_cancer_incidence,6.707031751830421,0.0,13.414063503660842
+S&T 70%,2032.0,asr_cancer_incidence,9.040871434432871,7.434998442698803,10.64674442616694
+S&T 70%,2033.0,asr_cancer_incidence,12.376567649600325,8.658351691487626,16.094783607713026
+S&T 70%,2034.0,asr_cancer_incidence,10.856193422691273,7.492224919331711,14.220161926050835
+S&T 70%,2035.0,asr_cancer_incidence,7.277963517358675,7.0407753803236375,7.515151654393712
+S&T 70%,2036.0,asr_cancer_incidence,0.0,0.0,0.0
+S&T 70%,2037.0,asr_cancer_incidence,9.30883073475069,3.8437646013974116,14.773896868103968
+S&T 70%,2038.0,asr_cancer_incidence,10.079011521324862,6.705943128938473,13.452079913711252
+S&T 70%,2039.0,asr_cancer_incidence,3.27061770177431,0.0,6.54123540354862
+S&T 70%,2040.0,asr_cancer_incidence,2.4590558342960906,0.0,4.918111668592181
+S&T 70%,2041.0,asr_cancer_incidence,4.109848104610875,0.0,8.21969620922175
+S&T 70%,2042.0,asr_cancer_incidence,5.997435774852905,4.098426390493485,7.896445159212326
+S&T 70%,2043.0,asr_cancer_incidence,6.465470262317007,6.393433601290223,6.537506923343791
+S&T 70%,2044.0,asr_cancer_incidence,3.110791764908909,2.87983044581849,3.341753083999328
+S&T 70%,2045.0,asr_cancer_incidence,3.0168111988487976,2.629301901153601,3.4043204965439937
+S&T 70%,2046.0,asr_cancer_incidence,1.6190184550984503,0.0,3.2380369101969007
+S&T 70%,2047.0,asr_cancer_incidence,6.021122325981368,5.771935499511283,6.270309152451454
+S&T 70%,2048.0,asr_cancer_incidence,3.039396496587007,0.0,6.078792993174014
+S&T 70%,2049.0,asr_cancer_incidence,4.288979100409707,2.6954639883589078,5.8824942124605055
+S&T 70%,2050.0,asr_cancer_incidence,4.275081106733402,2.9326374921298584,5.617524721336945
+S&T 70%,1975.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1976.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1977.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1978.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1979.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1980.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1981.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1982.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1983.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1984.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1985.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1986.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1987.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1988.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1989.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1990.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1991.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1992.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1993.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1994.0,cancer_incidence_with_hiv,122.24939695719775,0.0,244.4987939143955
+S&T 70%,1995.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1996.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1997.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1998.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1999.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2000.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2001.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2002.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2003.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2004.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2005.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2006.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2007.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2008.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2009.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2010.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2011.0,cancer_incidence_with_hiv,124.37809899636466,0.0,248.7561979927293
+S&T 70%,2012.0,cancer_incidence_with_hiv,131.57895393153652,0.0,263.15790786307304
+S&T 70%,2013.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2014.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2015.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2016.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2017.0,cancer_incidence_with_hiv,118.48339871673784,0.0,236.96679743347568
+S&T 70%,2018.0,cancer_incidence_with_hiv,136.98629972567414,0.0,273.9725994513483
+S&T 70%,2019.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2020.0,cancer_incidence_with_hiv,122.24938327472131,0.0,244.49876654944262
+S&T 70%,2021.0,cancer_incidence_with_hiv,142.45014669548752,0.0,284.90029339097504
+S&T 70%,2022.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2023.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2024.0,cancer_incidence_with_hiv,271.51487020387987,265.25195435155905,277.7777860562007
+S&T 70%,2025.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2026.0,cancer_incidence_with_hiv,273.68436213415214,268.81719577283576,278.5515284954686
+S&T 70%,2027.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2028.0,cancer_incidence_with_hiv,856.4028221537718,563.3803226956788,1149.4253216118648
+S&T 70%,2029.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2030.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2031.0,cancer_incidence_with_hiv,138.1215539886739,0.0,276.2431079773478
+S&T 70%,2032.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2033.0,cancer_incidence_with_hiv,288.0852924921275,278.5515284954686,297.61905648878644
+S&T 70%,2034.0,cancer_incidence_with_hiv,284.0909298724881,0.0,568.1818597449762
+S&T 70%,2035.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2036.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2037.0,cancer_incidence_with_hiv,159.235654190312,0.0,318.471308380624
+S&T 70%,2038.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2039.0,cancer_incidence_with_hiv,318.471308380624,0.0,636.942616761248
+S&T 70%,2040.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2041.0,cancer_incidence_with_hiv,161.81229057128382,0.0,323.62458114256765
+S&T 70%,2042.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2043.0,cancer_incidence_with_hiv,330.03301313608,0.0,660.06602627216
+S&T 70%,2044.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2045.0,cancer_incidence_with_hiv,167.2240639164693,0.0,334.4481278329386
+S&T 70%,2046.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2047.0,cancer_incidence_with_hiv,152.4390253874959,0.0,304.8780507749918
+S&T 70%,2048.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2049.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,2050.0,cancer_incidence_with_hiv,0.0,0.0,0.0
+S&T 70%,1975.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1976.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1977.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1978.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1979.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1980.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1981.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1982.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1983.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1984.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1985.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1986.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1987.0,cancer_incidence_no_hiv,4.532269695168039,0.0,9.064539390336078
+S&T 70%,1988.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1989.0,cancer_incidence_no_hiv,4.260395491659519,0.0,8.520790983319039
+S&T 70%,1990.0,cancer_incidence_no_hiv,4.151789376639974,0.0,8.303578753279949
+S&T 70%,1991.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1992.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1993.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1994.0,cancer_incidence_no_hiv,3.9932910782220112,0.0,7.9865821564440225
+S&T 70%,1995.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1996.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1997.0,cancer_incidence_no_hiv,3.952882073709583,0.0,7.905764147419166
+S&T 70%,1998.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,1999.0,cancer_incidence_no_hiv,7.205130774298779,0.0,14.410261548597559
+S&T 70%,2000.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2001.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2002.0,cancer_incidence_no_hiv,3.5250988078198056,0.0,7.050197615639611
+S&T 70%,2003.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2004.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2005.0,cancer_incidence_no_hiv,6.512422544801919,6.4871884083929405,6.537656681210898
+S&T 70%,2006.0,cancer_incidence_no_hiv,3.1932561379825213,0.0,6.386512275965043
+S&T 70%,2007.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2008.0,cancer_incidence_no_hiv,6.0459558705603555,6.039741679062163,6.052170062058549
+S&T 70%,2009.0,cancer_incidence_no_hiv,5.912971186184666,5.879931968026827,5.946010404342505
+S&T 70%,2010.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2011.0,cancer_incidence_no_hiv,5.6322177372480215,5.629362769169103,5.635072705326941
+S&T 70%,2012.0,cancer_incidence_no_hiv,8.244953698237683,5.483358171861174,11.006549224614192
+S&T 70%,2013.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2014.0,cancer_incidence_no_hiv,2.629088445556068,0.0,5.258176891112136
+S&T 70%,2015.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2016.0,cancer_incidence_no_hiv,5.007642416237802,5.002250917674033,5.013033914801572
+S&T 70%,2017.0,cancer_incidence_no_hiv,7.33640751452012,4.883289529262244,9.789525499777996
+S&T 70%,2018.0,cancer_incidence_no_hiv,4.771220365457661,0.0,9.542440730915322
+S&T 70%,2019.0,cancer_incidence_no_hiv,2.3402762758169504,0.0,4.680552551633901
+S&T 70%,2020.0,cancer_incidence_no_hiv,6.863317916049857,4.580851970075309,9.145783862024405
+S&T 70%,2021.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2022.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2023.0,cancer_incidence_no_hiv,6.426735622422317,4.285591967953726,8.567879276890908
+S&T 70%,2024.0,cancer_incidence_no_hiv,6.291154952908667,0.0,12.582309905817334
+S&T 70%,2025.0,cancer_incidence_no_hiv,6.153426032992952,4.101049990987215,8.20580207499869
+S&T 70%,2026.0,cancer_incidence_no_hiv,4.018325698212077,4.015419486891275,4.02123190953288
+S&T 70%,2027.0,cancer_incidence_no_hiv,1.95940126538585,0.0,3.9188025307717
+S&T 70%,2028.0,cancer_incidence_no_hiv,3.85326754073966,0.0,7.70653508147932
+S&T 70%,2029.0,cancer_incidence_no_hiv,3.773233185102697,3.7693180045686714,3.777148365636723
+S&T 70%,2030.0,cancer_incidence_no_hiv,1.8554940388950283,0.0,3.7109880777900566
+S&T 70%,2031.0,cancer_incidence_no_hiv,3.6325332023548964,0.0,7.265066404709793
+S&T 70%,2032.0,cancer_incidence_no_hiv,7.133686821249707,7.1308876514587825,7.136485991040631
+S&T 70%,2033.0,cancer_incidence_no_hiv,7.026122127895178,3.5055742069360187,10.546670048854338
+S&T 70%,2034.0,cancer_incidence_no_hiv,5.1654672966053,3.4438820463626487,6.887052546847951
+S&T 70%,2035.0,cancer_incidence_no_hiv,6.756333251049509,6.741497487459617,6.7711690146394
+S&T 70%,2036.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2037.0,cancer_incidence_no_hiv,6.509200792727342,3.2578598906414675,9.760541694813217
+S&T 70%,2038.0,cancer_incidence_no_hiv,7.998677785589565,6.407176228110346,9.590179343068783
+S&T 70%,2039.0,cancer_incidence_no_hiv,0.0,0.0,0.0
+S&T 70%,2040.0,cancer_incidence_no_hiv,1.537941050417278,0.0,3.075882100834556
+S&T 70%,2041.0,cancer_incidence_no_hiv,1.512859438575483,0.0,3.025718877150966
+S&T 70%,2042.0,cancer_incidence_no_hiv,4.460941860283343,2.982759564353933,5.9391241562127535
+S&T 70%,2043.0,cancer_incidence_no_hiv,2.930231198718854,0.0,5.860462397437708
+S&T 70%,2044.0,cancer_incidence_no_hiv,2.872213939089205,2.8662329152792183,2.8781949628991916
+S&T 70%,2045.0,cancer_incidence_no_hiv,1.413667338900778,0.0,2.827334677801556
+S&T 70%,2046.0,cancer_incidence_no_hiv,1.3915947712534609,0.0,2.7831895425069217
+S&T 70%,2047.0,cancer_incidence_no_hiv,4.130833111832381,2.7582403249271064,5.503425898737655
+S&T 70%,2048.0,cancer_incidence_no_hiv,2.7206443296395757,0.0,5.441288659279151
+S&T 70%,2049.0,cancer_incidence_no_hiv,4.014838246114172,2.666595498041063,5.36308099418728
+S&T 70%,2050.0,cancer_incidence_no_hiv,3.9603358875284957,2.6344214278624896,5.2862503471945015
