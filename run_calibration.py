@@ -1,10 +1,21 @@
 """
 Run calibration for HPVsim Rwanda.
 
-Three modes:
-  python run_calibration.py --run-sim    # run calibration (heavy, VM-side)
+MIGRATION NOTE (v2 -> v3)
+-------------------------
+The v3 Rwanda HIV-HPV calibration is NOT re-run from this script. v2's params
+were fit against v2's multiscale-biased engine and overshoot ~10x on v3's
+unbiased (grow-multiscale) engine, so the natural-history + HIV-effect scalars
+were RE-CALIBRATED for v3 against the 2017 registry targets. The finalized v3
+calibration is the canonical builder `tests/regression/rwanda_calib.py` in the
+hpvsim source repo (imported by run_sim.py); the calibration driver that
+produced it is `tests/regression/calibrate_rwanda*.py`. `run_calib()` below is
+therefore NOT ported to the v3 (Starsim/Optuna) calibration API and raises if
+invoked. The plot-ready CSV extraction (`save_figS2_csvs`) is retained and
+operates on a previously-saved calibration object.
+
+Modes:
   python run_calibration.py              # extract plot-ready CSVs from existing rwanda_calib.obj
-  python run_calibration.py --plot       # run local calibration plot via hpv.Calibration
 """
 import argparse
 import os
@@ -42,8 +53,13 @@ EXTRA_SI = int(np.where(EXTRA_YEARS == 2000)[0][0])
 ########################################################################
 def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
               n_to_save=None, filestem=''):
-
-    sim = rs.make_sim(calib=True, use_calib=False)
+    raise NotImplementedError(
+        'The v2 hpv.Calibration flow is not ported to v3. The finalized v3 '
+        'Rwanda calibration lives in tests/regression/rwanda_calib.py (used by '
+        'run_sim.py); the driver is tests/regression/calibrate_rwanda*.py. Do '
+        'not re-run calibration here.'
+    )
+    sim = rs.make_sim(calib=True, use_calib=False)  # noqa: unreachable (v2 code kept for reference)
 
     dataloc = 'data/rwanda'
     datafiles = [
