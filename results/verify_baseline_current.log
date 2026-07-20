@@ -1,0 +1,20 @@
+hpvsim 3.0.0 C:\Users\ryanhu\PycharmProjects\hpvsim_claudecontrol\hpvsim\__init__.py
+config: n_agents=15000 seeds=12 ms=5 1960-2020 dt=0.25
+effects override: None
+RWANDA_HIV_EFFECTS in use: {'rel_sus': {'lt200': 3.6, 'gt200': 1.96}, 'rel_sev': {'lt200': 5.23, 'gt200': 1.98}, 'rel_imm': {'lt200': 0.36, 'gt200': 0.76}}
+
+=== adult (15-49) HIV prevalence, mean over seeds ===
+  1990: 4.58%
+  1995: 5.21%
+  2000: 4.27%
+  2005: 3.92%
+  2010: 3.71%
+  2015: 3.27%
+  2020: 2.62%
+  PEAK: 5.37% at 1993   (target ~5%)
+
+=== pooled cervical-cancer incidence per 100k, 2010-2019 ===
+  HIV+ :   68.6   (target ~33)   [cancers=47 pyears=69120]
+  HIV- :    3.6   (target ~13)   [cancers=126 pyears=3520522]
+  RR (HIV+/HIV-): 19.19   (target ~2.5)
+verify done: 198 s
