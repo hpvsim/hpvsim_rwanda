@@ -159,9 +159,13 @@ class RwandaReport(ss.Analyzer):
 
 
 def annual_from_timevec(sim, result_key, years):
-    """Aggregate a per-timestep hpvtotal flow result to annual sums."""
+    """Aggregate a per-timestep pooled-HPV flow result to annual sums."""
     tvy = np.floor(np.asarray(sim.results.timevec.years)).astype(int)
-    vals = np.asarray(sim.results.hpvtotal[result_key])
+    # v3.0 release renamed the pooled results group hpvtotal -> all_hpv.
+    pooled = getattr(sim.results, 'all_hpv', None)
+    if pooled is None:
+        pooled = sim.results.hpvtotal
+    vals = np.asarray(pooled[result_key])
     out = np.zeros(len(years))
     for i, y in enumerate(years):
         out[i] = float(np.sum(vals[tvy == int(y)]))
