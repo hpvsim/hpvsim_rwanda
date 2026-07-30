@@ -56,7 +56,7 @@ def make_vx(end_year=2100):
     final_cov = 0.9
     vx_cov = np.concatenate([scaleup + [final_cov] * (len(vx_years) - len(scaleup))])
     routine_vx = hpv.campaign_vx(
-        name='routine_vx', product='bivalent', sex='f',
+        name='routine_vx', product=_named(hpv.vx(name='bivalent'), 'routine_vx_prod'), sex='f',
         age_range=[11, 12], prob=vx_cov, interpolate=False, years=vx_years,
     )
     return routine_vx
@@ -213,7 +213,7 @@ def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 5
         scr = sim.interventions['screening_older']
         return scr.screened & (scr.ti_screened == sim.ti)
     mass_vx = hpv.campaign_vx(
-        name='mass_vax', product='nonavalent', sex='f',
+        name='mass_vax', product=_named(hpv.vx(name='nonavalent'), 'mass_vax_prod'), sex='f',
         eligibility=mass_eligible, interpolate=False, age_range=age_range,
         prob=screen_cov, years=[start_year],
     )
