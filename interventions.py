@@ -153,7 +153,7 @@ def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18,
 
 
 def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030,
-                  campaign_age=[20, 50]):
+                  campaign_age=[20, 50], end_year=2100):
     """One-time mass TxV campaign (delivered as an hpv.tx state-flip treatment)."""
     campaign_years = [intro_year]
     txv_prod = _named(hpv.tx(df=pd.read_csv(f'txvx_pars_{txv_pars}.csv')), 'txvprod')
@@ -164,12 +164,12 @@ def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030,
         eligibility=lambda sim: (sim.interventions['campaign txvx'].txvx_doses == 0),
     )
 
-    # Add historical screening and treatment
-    hist_intvs = make_st(screen_change_year=2026)
+    # Add historical screening and treatment (end_year must stay within the sim horizon)
+    hist_intvs = make_st(screen_change_year=2026, end_year=end_year)
     return hist_intvs + [campaign_txvx]
 
 
-def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50]):
+def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50], end_year=2100):
     """HPV-Faster: one-time screen + treat + vaccinate campaign for older women."""
     primary = make_hpv_test()
     screening = hpv.campaign_screening(
@@ -218,6 +218,6 @@ def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 5
         prob=screen_cov, years=[start_year],
     )
 
-    normal_intvs = make_st(screen_change_year=2026)
+    normal_intvs = make_st(screen_change_year=2026, end_year=end_year)
     return normal_intvs + [screening, assign_treatment, ablation, excision,
                            radiation, mass_vx]

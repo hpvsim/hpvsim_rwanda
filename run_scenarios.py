@@ -80,9 +80,9 @@ def make_campaign_scenarios():
     scendict = dict()
     age_range = [20, 50]
     for cov in [0.18, 0.35, 0.7]:
-        scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(txv_pars='precin', campaign_coverage=cov)
-        scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(txv_pars='cin', campaign_coverage=cov)
-        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range, start_year=2026)
+        scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(txv_pars='precin', campaign_coverage=cov, end_year=END_YEAR)
+        scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(txv_pars='cin', campaign_coverage=cov, end_year=END_YEAR)
+        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range, start_year=2026, end_year=END_YEAR)
         scendict[f'HPV-Faster {cov*100:.0f}%'] = mass_intvs
     return scendict
 
