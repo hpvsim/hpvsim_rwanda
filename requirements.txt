@@ -1,0 +1,13 @@
+# Environment that produced results/v2.2.6_baseline/ — the numbers reported in
+# the manuscript. hpvsim is the version-critical pin: v2.3.0 and v3.x change
+# model output (see the hpvsim CHANGELOG "Regression information" entries).
+# Python 3.11.
+
+hpvsim==2.2.6
+sciris==3.2.9
+numpy==2.2.6
+pandas==3.0.0
+matplotlib==3.10.8
+
+# Required by hpvsim.Calibration (run_calibration.py).
+optuna==4.7.0
