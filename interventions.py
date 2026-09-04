@@ -1,259 +1,284 @@
 """
-Interventions for the Rwanda HPVsim model
+Interventions for the Rwanda HPVsim model (v3.2)
 """
 
-import os
-import hpvsim as hpv
 import numpy as np
 import pandas as pd
+import starsim as ss
+import hpvsim as hpv
+
+
+# The paper's "no cross-protection beyond 16/18" assumption. hpv.txvx still
+# clears infection/lesions on all four genotypes per the efficacy CSV, but
+# confers *persistent* immunity only against 16/18.
+TXVX_REL_IMM = {'hpv16': 1.0, 'hpv18': 1.0, 'hi5': 0.0, 'ohr': 0.0}
+
+# Skip anyone re-screened within this many years.
+SCREEN_GAP_YEARS = 10
+
+
+def _recently_screened(sim, intv_name, gap_years=SCREEN_GAP_YEARS):
+    """UIDs screened by intervention `intv_name` within the last `gap_years`.
+    NaN ti_screened compares False, so never-screened agents are excluded."""
+    intv = sim.interventions.get(intv_name, None)
+    if intv is None:
+        return ss.uids()
+    screened_uids = intv.screened.uids
+    if not len(screened_uids):
+        return ss.uids()
+    dt_year = sim.t.dt_year
+    ti_thresh = sim.ti - int(gap_years / dt_year)
+    ti_arr = np.asarray(intv.ti_screened[screened_uids])
+    keep = ti_arr > ti_thresh
+    return ss.uids(np.asarray(screened_uids)[keep]) if keep.any() else ss.uids()
+
+
+def _ever_vaxed_uids(sim):
+    """UIDs already dosed by any prophylactic-vaccine intervention on the sim."""
+    out = ss.uids()
+    for intv in sim.interventions.values():
+        v = getattr(intv, 'vaccinated', None)
+        if v is None:
+            continue
+        out = out.union(v.uids)
+    return out
 
 
 def make_vx(end_year=2100):
+    """Routine bivalent vaccination at ages 11-12: 20-90% scale-up 2011-15, 90% thereafter."""
     vx_years = np.arange(2011, end_year + 1)
-    scaleup = [.2, .4, .6, .8, .9]
+    scaleup = [0.2, 0.4, 0.6, 0.8, 0.9]
     final_cov = 0.9
-    vx_cov = np.concatenate([scaleup+[final_cov]*(len(vx_years)-len(scaleup))])
-    routine_vx = hpv.campaign_vx(label='routine_vx', product='bivalent', age_range=[11, 12], prob=vx_cov, interpolate=False, annual_prob=False, years=vx_years)
-    return routine_vx
+    vx_cov = np.concatenate([scaleup, [final_cov] * (len(vx_years) - len(scaleup))])
+    return hpv.campaign_vx(
+        name='routine_vx',
+        product='bivalent',
+        age_range=[11, 12],
+        prob=vx_cov,
+        years=vx_years,
+        interpolate=False,
+    )
 
 
 def make_hpv_test():
-    hpvdna = hpv.default_dx('hpv')
-    hpvdna.df = pd.read_csv('hpvdna.csv')
-    return hpvdna
+    """HPV DNA diagnostic with Rwanda-specific per-genotype probabilities."""
+    return hpv.dx(
+        name='hpv_test',
+        df=pd.read_csv('hpvdna.csv'),
+        hierarchy=['positive', 'inadequate', 'negative'],
+    )
 
 
-
-def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18, screen_change_year=2025, age_range=[30, 50],
-            start_year=2020, end_year=2100, future_treat_cov=0.75, txv_pars=None, txv=False,
-            tx_assigner_csv='tx_assigner'):
+def make_st(primary='hpv', prev_screen_cov=0.1, future_screen_cov=0.18,
+            screen_change_year=2025, age_range=[30, 50],
+            start_year=2020, end_year=2100, future_treat_cov=0.75,
+            txv_pars=None, txv=False, tx_assigner_csv='tx_assigner'):
     """
-    Make screening and treatment interventions
+    Make screening and treatment interventions.
     """
-    # Determine screening years
+    # Per-year prob split across pre / post the coverage change year.
     screen_years = np.arange(start_year, end_year + 1)
     final_prev_year = min(screen_change_year, end_year)
     prev_years = np.arange(start_year, final_prev_year + 1)
     future_years = np.arange(screen_change_year + 1, end_year + 1)
-    n_prev_years = len(prev_years)
-    n_future_years = len(future_years)
+    screen_cov = np.array(
+        [prev_screen_cov] * len(prev_years) + [future_screen_cov] * len(future_years)
+    )
+    # Convert lifetime coverage across the age window to an annual probability.
+    len_age_range = (age_range[1] - age_range[0]) / 2
+    model_annual_screen_prob = 1 - (1 - screen_cov) ** (1 / len_age_range)
 
-    # Define screening coverage
-    screen_cov = np.array([prev_screen_cov]*n_prev_years+[future_screen_cov]*n_future_years)
-    len_age_range = (age_range[1]-age_range[0])/2
-    model_annual_screen_prob = 1 - (1 - screen_cov)**(1/len_age_range)  # Adjusted for age range
+    def screen_eligible(sim):
+        return sim.people.alive.uids.remove(_recently_screened(sim, 'screening'))
 
-    # Routine screening
-    screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
-                                  (sim.t > (sim.people.date_screened + 10 / sim['dt']))
     screening = hpv.routine_screening(
+        name='screening',
         prob=model_annual_screen_prob,
         eligibility=screen_eligible,
         years=screen_years,
         product=primary,
         age_range=age_range,
-        label='screening'
     )
     st_intvs = [screening]
 
-    # Assign treatment - historical and status quo
-    screen_positive = lambda sim: sim.get_intervention('screening').outcomes['positive']
-    triage_end_year = min(2030, end_year) if txv_pars == 'cin' else end_year  # IMPORTANT: if it's lesion regressing. stop other Tx
-    # # triage_end_year = end_year
-    # future_screen_years = np.arange(screen_change_year + 1, triage_end_year + 1)
-    # n_future_screen_years = len(future_screen_years)
+    # If lesion-regressing therapeutic vaccine is on, stop the ablate/excise path
+    # once it kicks in (2030).
+    triage_end_year = min(2030, end_year) if txv_pars == 'cin' else end_year
     triage_years = np.arange(start_year, triage_end_year + 1)
-    # future_triage_cov = 0.9
-    # triage_prob = np.array([prev_treat_cov]*n_prev_years+[future_triage_cov]*n_future_screen_years)
-    triage_prob = np.array([0.9]*len(triage_years))
-    # n_future_years = len(future_years)
+    triage_prob = np.full(len(triage_years), 0.9)
 
-    tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv(f'{tx_assigner_csv}.csv')  # 60/70 sens/spec if using VIA
-
+    tx_assigner = hpv.dx(
+        name='tx_assigner_product',
+        df=pd.read_csv(f'{tx_assigner_csv}.csv'),
+        hierarchy=['radiation', 'excision', 'ablation', 'none'],
+    )
+    screen_positive = lambda sim: sim.interventions['screening'].outcomes['positive']
     assign_treatment = hpv.routine_triage(
+        name='tx_assigner_intv',
         years=triage_years,
         prob=triage_prob,
         annual_prob=False,
         product=tx_assigner,
         eligibility=screen_positive,
-        label='tx assigner'
     )
 
-    # Treatment options - previous
-    # Ablation treatment
-    ablation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['ablation']
+    # Intervention names get an `_intv` suffix because v3 reserves the bare
+    # product names ('ablation', 'excision', 'radiation', 'tx_assigner').
+    ablation_eligible = lambda sim: sim.interventions['tx_assigner_intv'].outcomes['ablation']
     ablation = hpv.treat_num(
+        name='ablation_intv',
         prob=future_treat_cov,
         product='ablation',
         eligibility=ablation_eligible,
-        label='ablation'
     )
-    # Excision treatment
-    excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner').outcomes['excision'].tolist()
-                                            + sim.get_intervention('ablation').outcomes['unsuccessful'].tolist()))
+
+    def excision_eligible(sim):
+        triage_out = sim.interventions['tx_assigner_intv'].outcomes['excision']
+        abl_fail = sim.interventions['ablation_intv'].outcomes['unsuccessful']
+        return ss.uids(np.union1d(np.asarray(triage_out), np.asarray(abl_fail)))
     excision = hpv.treat_num(
+        name='excision_intv',
         prob=future_treat_cov,
         product='excision',
         eligibility=excision_eligible,
-        label='excision'
     )
-    # Radiation treatment
-    radiation_eligible = lambda sim: sim.get_intervention('tx assigner').outcomes['radiation']
+
+    radiation_eligible = lambda sim: sim.interventions['tx_assigner_intv'].outcomes['radiation']
     radiation = hpv.treat_num(
-        prob=1/4,  # assume an additional dropoff in CaTx coverage
+        name='radiation_intv',
+        prob=1/4,  # extra dropoff for cancer treatment
         product=hpv.radiation(),
         eligibility=radiation_eligible,
-        label='radiation'
     )
 
-    st_intvs += [
-        assign_treatment, ablation, excision, radiation,
-    ]
+    st_intvs += [assign_treatment, ablation, excision, radiation]
 
-    # Assign treatment - future
     if txv:
-
-        # Make product
-        txv_prod = hpv.default_tx('txvx1')
-        txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
-        txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
+        txv_prod = hpv.txvx(
+            df=pd.read_csv(f'txvx_pars_{txv_pars}.csv'),
+            rel_imm=TXVX_REL_IMM,
+            imm_init=ss.uniform(low=0.49, high=0.51),
+        )
         def txv_eligible(sim):
-            if sim.yearvec[sim.t] >= 2030:
-                return sim.get_intervention('screening').outcomes['positive']
-            else:
-                return np.array([], dtype=int)
-
-        txv = hpv.linked_txvx(
+            if sim.now.years >= 2030:
+                return sim.interventions['screening'].outcomes['positive']
+            return ss.uids()
+        st_intvs.append(hpv.linked_txvx(
+            name='txv',
             prob=0.9,
             product=txv_prod,
             eligibility=txv_eligible,
-            label='txv'
-        )
-        st_intvs += [txv]
+        ))
 
     return st_intvs
 
 
-def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030, campaign_age=[20, 50], end_year=2100):
-    """ Make mass txvx interventions """
+def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030,
+                  campaign_age=[20, 50], end_year=2100):
+    """Mass therapeutic vaccination campaign, layered on top of baseline S&T."""
+    txv_prod = hpv.txvx(
+        df=pd.read_csv(f'txvx_pars_{txv_pars}.csv'),
+        rel_imm=TXVX_REL_IMM,
+        imm_init=ss.uniform(low=0.49, high=0.51),
+    )
 
-    # Handle inputs
-    campaign_years = [intro_year]
+    def eligible(sim):
+        intv = sim.interventions.get('campaign_txvx')
+        if intv is None:
+            return sim.people.alive.uids
+        return sim.people.alive.uids.remove(intv.tx_vaccinated.uids)
 
-    # Create product
-    # Make product
-    txv_prod = hpv.default_tx('txvx1')
-    txv_prod.imm_init = dict(dist='uniform', par1=0.49, par2=0.51)
-    txv_prod.df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
-
-    # Eligibility
-    eligible = lambda sim: (sim.people.txvx_doses == 0)
-
-    # Campaign txvx
     campaign_txvx = hpv.campaign_txvx(
+        name='campaign_txvx',
         prob=campaign_coverage,
         interpolate=False,
-        annual_prob=False,
-        years=campaign_years,
+        years=[intro_year],
         age_range=campaign_age,
         product=txv_prod,
         eligibility=eligible,
-        label="campaign txvx",
     )
-
-    mv_intvs = [
-        campaign_txvx,
-    ]
-
-    # Add historical screening and treatment
     hist_intvs = make_st(screen_change_year=2026, end_year=end_year)
-    mv_intvs = hist_intvs + mv_intvs
-
-    return mv_intvs
+    return hist_intvs + [campaign_txvx]
 
 
-def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1, age_range=[20, 50], end_year=2100):
-    """
-    Make screening campaign for 20-25yo
-    """
-    # Routine screening
-    # screen_eligible = lambda sim: np.isnan(sim.people.date_screened) | \
-    #                               (sim.t > (sim.people.date_screened + 5 / sim['dt']))
+def make_st_older(start_year=2027, screen_cov=0.4, treat_cov=1,
+                  age_range=[20, 50], end_year=2100):
+    """One-off screen-and-vax campaign for 20-50yo, layered on baseline S&T."""
     primary = make_hpv_test()
     screening = hpv.campaign_screening(
+        name='screening_older',
         prob=screen_cov,
         interpolate=False,
-        annual_prob=False,
-        # eligibility=screen_eligible,
         years=[start_year],
         product=primary,
         age_range=age_range,
-        label='screening_older'
     )
 
-    # Assign treatment
-    tx_assigner = hpv.default_dx('tx_assigner')
-    tx_assigner.df = pd.read_csv('tx_assigner_no_triage.csv')
-    screen_positive = lambda sim: sim.get_intervention('screening_older').outcomes['positive']
+    tx_assigner = hpv.dx(
+        name='tx_assigner_older_product',
+        df=pd.read_csv('tx_assigner_no_triage.csv'),
+        hierarchy=['radiation', 'excision', 'ablation', 'none'],
+    )
+    screen_positive = lambda sim: sim.interventions['screening_older'].outcomes['positive']
     assign_treatment = hpv.campaign_triage(
-        years=start_year,
-        prob=1,  # ASSUME NO LTFU
-        annual_prob=False,
+        name='tx_assigner_older',
+        years=[start_year],
+        prob=1,  # no LTFU by assumption
         interpolate=False,
         product=tx_assigner,
         eligibility=screen_positive,
-        label='tx assigner_older'
     )
 
-    # Ablation treatment
-    ablation_eligible = lambda sim: sim.get_intervention('tx assigner_older').outcomes['ablation']
+    # Older-cohort treatment products carry `module_name=` so they don't
+    # collide with make_st's identically-shipped ablation/excision/radiation.
+    ablation_eligible = lambda sim: sim.interventions['tx_assigner_older'].outcomes['ablation']
     ablation = hpv.treat_num(
+        name='ablation_older',
         prob=treat_cov,
-        product='ablation',
+        product=hpv.tx(name='ablation', module_name='ablation_older_prod'),
         eligibility=ablation_eligible,
-        label='ablation_older'
-    )
-    # Excision treatment
-    excision_eligible = lambda sim: list(set(sim.get_intervention('tx assigner_older').outcomes['excision'].tolist()
-                                            + sim.get_intervention('ablation_older').outcomes['unsuccessful'].tolist()))
-    excision = hpv.treat_num(
-        prob=treat_cov,
-        product='excision',
-        eligibility=excision_eligible,
-        label='excision_older'
-    )
-    # Radiation treatment
-    radiation_eligible = lambda sim: sim.get_intervention('tx assigner_older').outcomes['radiation']
-    radiation = hpv.treat_num(
-        prob=treat_cov,  # assume an additional dropoff in CaTx coverage
-        product=hpv.radiation(),
-        eligibility=radiation_eligible,
-        label='radiation_older'
     )
 
-    # Add vaccination
-    mass_eligible = lambda sim: (sim.people.date_screened == sim.t) & \
-                                  np.isnan(sim.people.date_vaccinated) & \
-                                (sim.people.age >= age_range[0]) & \
-                                (sim.people.age <= age_range[1])
+    def excision_eligible(sim):
+        triage_out = sim.interventions['tx_assigner_older'].outcomes['excision']
+        abl_fail = sim.interventions['ablation_older'].outcomes['unsuccessful']
+        return ss.uids(np.union1d(np.asarray(triage_out), np.asarray(abl_fail)))
+    excision = hpv.treat_num(
+        name='excision_older',
+        prob=treat_cov,
+        product=hpv.tx(name='excision', module_name='excision_older_prod'),
+        eligibility=excision_eligible,
+    )
+
+    radiation_eligible = lambda sim: sim.interventions['tx_assigner_older'].outcomes['radiation']
+    radiation = hpv.treat_num(
+        name='radiation_older',
+        prob=treat_cov,
+        product=hpv.radiation(name='radiation_older_prod'),
+        eligibility=radiation_eligible,
+    )
+
+    def mass_eligible(sim):
+        scr = sim.interventions['screening_older']
+        scr_uids = scr.screened.uids
+        if not len(scr_uids):
+            return ss.uids()
+        ti_arr = np.asarray(scr.ti_screened[scr_uids])
+        just_screened = np.asarray(scr_uids)[ti_arr == sim.ti]
+        never_vaxed = np.asarray(sim.people.alive.uids.remove(_ever_vaxed_uids(sim)))
+        return ss.uids(np.intersect1d(just_screened, never_vaxed))
+
     mass_vx = hpv.campaign_vx(
+        name='mass_vax',
         product='nonavalent',
-        label='mass_vax',
         eligibility=mass_eligible,
-        annual_prob=False,
         interpolate=False,
         age_range=age_range,
         prob=screen_cov,
-        years=start_year
+        years=[start_year],
     )
 
     normal_intvs = make_st(screen_change_year=2026, end_year=end_year)
-    intvs = normal_intvs + [
-        screening, assign_treatment, ablation, excision, radiation,
-        mass_vx
+    return normal_intvs + [
+        screening, assign_treatment, ablation, excision, radiation, mass_vx,
     ]
-
-    return intvs
-
-

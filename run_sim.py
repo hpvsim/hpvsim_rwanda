@@ -49,7 +49,9 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         rand_seed=seed,
         model_hiv=True,
         hiv_data=hiv_datafolder,
-        hiv_pars=dict(art_failure_prob=0.1),
+        # v2 used `art_failure_prob=0.1`; v3 complement is `p_effective_art`
+        # (Bernoulli p that an ART recipient becomes virally suppressed).
+        hiv_pars=dict(p_effective_art=0.9),
     )
 
     # Sexual behavior parameters
