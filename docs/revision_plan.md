@@ -6,21 +6,24 @@ Current state: results produced with **HPVsim v2.2.6**, frozen in `results/v2.2.
 
 ---
 
-## Step 1 — Engineering uplift
+## Step 1 — Engineering uplift ✅ done
 
-**Branch:** `eng-uplift` → PR → you merge.
+**Branch:** `eng-uplift` → [PR #10](https://github.com/hpvsim/hpvsim_rwanda/pull/10).
 
-Pure hygiene on the v2.2.6 code. No behaviour changes, so the frozen baseline must still reproduce byte-identically at the end.
+Deliberately narrowed. A Tier 3 uplift already landed in April ([PR #4](https://github.com/hpvsim/hpvsim_rwanda/pull/4)): README, LICENSE, CHANGELOG, `.gitignore`, `compare_baselines.py`, the VM/local `--run-sim` split, and the frozen `results/v2.2.6_baseline/`. That left only a thin residue, and most of it sits in files step 2 rewrites outright — so tests and docstrings written now against the v2.2.6 API would be discarded within days.
 
-1. Run `/idm-eng-plugin:eng-quality-checker` to get a scored report, then apply fixes via the fixer skill.
-2. Known gaps visible without running anything:
-   - No `requirements.txt` / `pyproject.toml` — the hpvsim version is pinned only in prose in the README. Add a real pin (`hpvsim==2.2.6`).
-   - No tests, no CI.
-   - `utils.py` and `interventions.py` carry the shared logic but have no module docstrings.
-   - Six near-duplicate `plot_fig*_poster.py` variants duplicate their non-poster siblings.
-3. Verification gate: re-run every plot script against `results/v2.2.6_baseline/` and confirm the figures are unchanged.
+**Done:**
 
-**Deliverable:** PR that changes only code quality, with the "figures unchanged" check stated in the PR body.
+- `requirements.txt` pinning the environment that produced `results/v2.2.6_baseline/`. This was the one durable gap: the hpvsim version existed only as README prose, and it is the sole machine-readable record of what generated the numbers in the submitted paper.
+- Verified the pin reproduces the manuscript: rendering Figures 1 and 5 from the frozen baseline under the pinned env gives S&TxV 70% = 33,113 cancers averted (paper: 33,000) and HPV-Faster 70% = 22,651 (paper: 22,700).
+- Dropped `seaborn` from the install instructions — no script imports it.
+- Retargeted the README cross-version section from the stale v2.3.0 example to v3.2.0, noting the `[hiv]` extra now that stisim is optional.
+
+**After merge:** tag the merge commit `v2.2.6-results`.
+
+**Deferred to step 3** (see below): tests, function-level docstrings, poster-script deduplication.
+
+*Correction to the original draft of this plan: module-level docstrings are in fact present throughout. The gap is function-level — ~30 functions across `utils.py`, `interventions.py`, `run_calibration.py` and the plot scripts. `run_scenarios.py` is fully documented, and `plot_fig3_txv_poster.py` is already refactored to 17 lines, which is the pattern the other poster scripts should follow.*
 
 ---
 
@@ -111,7 +114,12 @@ Condition 1 is the one that matters. Expect 3 to fail in a specific direction �
 1. Check the recalibrated fit against Figure S2 targets: cancer by age, cancer by HIV status, genotype distributions in LSIL and cancer, HIV prevalence/infections/deaths/ART.
 2. Run the step 2d gate; record which of the four conditions passed.
 3. Fill in **Table S1** — prior distributions and posterior mean/95% intervals across the 50 best-fitting sets. It is currently an empty skeleton in the SM, and it is Reviewer 1's comment 1. The recalibration produces exactly this, so generate it here rather than as a separate task later.
-4. Update README: version pin, baseline folder, install line.
+4. Update README: version pin, baseline folder, install line. Add a `v3.2.0` entry to `requirements.txt` or replace it, and tag `v3.2.0-results`.
+5. **Engineering work deferred from step 1**, now that the surviving code is known:
+   - Tests for `utils.py`, `interventions.py` and the scenario builders.
+   - Function-level docstrings (~30 functions; module-level already present).
+   - Deduplicate `plot_fig2_st_poster.py` and `plot_fig4_mass_poster.py` against their non-poster siblings, following `plot_fig3_txv_poster.py`.
+   - Decide the target tier at this point: Tier 2 is defensible since the repo is the reproducibility artifact for a paper under review.
 
 ---
 
