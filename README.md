@@ -7,10 +7,12 @@ Code for modelling HPV transmission, cervical cancer burden, and prevention stra
 ## Installation
 
 ```bash
-pip install hpvsim==2.2.6 seaborn optuna
+pip install -r requirements.txt
 ```
 
-Python 3.9+.
+Python 3.11. `requirements.txt` pins the exact environment that produced
+`results/v2.2.6_baseline/`; hpvsim is the version-critical pin, since v2.3.0
+and v3.x both change model output.
 
 ## Workflow: heavy sims on VM, plots locally
 
@@ -55,7 +57,7 @@ Poster variants (`plot_fig2_st_poster.py`, `plot_fig3_txv_poster.py`, `plot_fig4
 # Clone and install
 git clone git@github.com:hpvsim/hpvsim_rwanda.git
 cd hpvsim_rwanda
-pip install hpvsim==2.2.6 seaborn
+pip install -r requirements.txt
 
 # Render all figures from the committed v2.2.6 baseline
 python plot_fig1_residual.py
@@ -66,25 +68,25 @@ python plot_fig5_bars.py
 python plot_figS2_calib.py
 ```
 
-## Cross-version comparison (v2.2.6 → v2.3 → v3.0)
+## Cross-version comparison (v2.2.6 → v3.2)
 
 When a new HPVsim version ships, regenerate the baseline in a clean env and compare side-by-side:
 
 ```bash
 # 1. On a VM, in a clean env pinned to the new version
-conda create -n hpvsim230 python=3.11 -y && conda activate hpvsim230
-pip install hpvsim==2.3.0 seaborn optuna
+conda create -n hpvsim320 python=3.11 -y && conda activate hpvsim320
+pip install 'hpvsim[hiv]==3.2.0'   # [hiv] extra: stisim is optional from v3.2
 
 # 2. Re-run the heavy scripts
 python run_calibration.py --run-sim          # calibration (slowest)
 python run_scenarios.py --run-sim            # all 23 scenarios
 
 # 3. Freeze the fresh CSVs into a versioned baseline dir
-mkdir -p results/v2.3.0_baseline
-cp results/scens_*.csv results/figS2_*.csv results/v2.3.0_baseline/
+mkdir -p results/v3.2.0_baseline
+cp results/scens_*.csv results/figS2_*.csv results/v3.2.0_baseline/
 
 # 4. Commit + push, then locally compare
-python compare_baselines.py --baselines v2.2.6_baseline v2.3.0_baseline
+python compare_baselines.py --baselines v2.2.6_baseline v3.2.0_baseline
 ```
 
 `compare_baselines.py` extends trivially to v3.0 by appending the new baseline name to `--baselines`. The comparison prints a cumulative-cancers + elimination-year table and emits `figures/compare_baselines.png` (ASR trajectories overlaid per scenario).
