@@ -35,27 +35,24 @@ Deliberately narrowed. A Tier 3 uplift already landed in April ([PR #4](https://
 
 This is not a version bump — v2.2.6 → v3.2.0 crosses a ground-up Starsim rebuild plus four sets of documented regressions. Expect to recalibrate from scratch, not to port parameters.
 
-### 2a. Blocker to resolve first: HIV results no longer exist
+### 2a. HIV result names — resolved
 
-The Rwanda model calibrates to, and Figure S2 plots, HIV results that v3.2 removed. Checked against `hpvsim/hiv.py`:
+*Earlier drafts of this plan called this a blocker and overstated it on two counts. The HIV results are **Figure S2 diagnostics, not calibration targets** — `run_calibration.py` fits only the six cancer and genotype datafiles, so none of this gates the calibration. And most of the names are relabelled, not removed.*
 
-| Used by Rwanda | Status in v3.2 |
-|---|---|
-| `female_hiv_prevalence`, `male_hiv_prevalence` | **Gone.** v3.2 exposes `prevalence` only — no sex disaggregation |
-| `hiv_infections`, `hiv_deaths` | **Gone.** Now `new_infections` / `new_deaths` on the HIV module |
-| `art_coverage` (result) | **Gone.** Now `p_on_art`; `art_coverage` survives only as an input |
-| `n_females_with_hiv_alive`, `n_males_with_hiv_alive` | **Gone** with the ~104 deleted sex-by-age strata |
-| `cancers_by_age_with_hiv` / `_no_hiv` | Rebuild via `hpv.by_age` |
-| `cancers_with_hiv`, `cancer_incidence_with_hiv` | Survive, but **redefined** — see 2b |
+Verified against `hpvsim/hiv.py`, `stisim/diseases/sti.py` and the Rwanda call sites:
 
-v3.2 deliberately ships only the 24 HIV results it recomputes with per-agent weighting. The sex-stratified ones were dropped because they shared the `count_nonzero` defect.
+| Used by Rwanda | Status in v3.2 | Action |
+|---|---|---|
+| `female_hiv_prevalence`, `male_hiv_prevalence` | Genuinely absent — stisim's `_f`/`_m` strata are suppressed for being scale-unaware | **Added upstream** as `hiv.prevalence_f` / `prevalence_m` |
+| `hiv_infections`, `hiv_deaths` | Relabelled `new_infections` / `new_deaths` | Rename at 3 call sites |
+| `art_coverage` (result) | Relabelled `p_on_art` | Rename at 3 call sites. Unrelated to the `art_coverage` *input* files in `run_sim.py` |
+| `n_females_with_hiv_alive`, `n_males_with_hiv_alive` | Gone with the sex-by-age strata | **Drop.** Listed in `extra_sim_result_keys` but never plotted or fitted — extracted and discarded |
+| `cancers_by_age_with_hiv` / `_no_hiv` | — | **Drop**, same reason. The age-binned Fig S2 panels come from `calib.analyzer_results`, so what matters is the `AgeResults` → `hpv.by_age` port in 2c |
+| `cancers_with_hiv`, `cancer_incidence_with_hiv` | Survive, redefined | See 2b |
 
-**Decision needed:** where does sex-stratified HIV prevalence go?
+**Done:** `prevalence_f` / `prevalence_m` added to `hpv.HIV` on `restore-hpv-latency` (commit `2dfa284`), scale-weighted the same way as the other recomputed stocks, with a test asserting they are fractions, weight correctly under `ms_agent_ratio=10`, and reconcile to the all-population `prevalence`. Placed in hpvsim rather than a Rwanda analyzer because sex-stratified prevalence is generic and the weighting logic was already there. Full `tests/test_hiv.py` passes (15).
 
-- **Recommended — hpvsim (layer 2).** Add scale-weighted `prevalence_f` / `prevalence_m` to `hpv.HIV` alongside the existing recomputed results. Any HIV–HPV model wants these, the weighting logic already exists in `_rescale_stisim_results`, and it is a small addition to code you are already editing on `restore-hpv-latency`.
-- Alternative — a Rwanda-local analyzer (layer 3). Faster, but every other localization re-solves it.
-
-Sex-stratified prevalence is generically useful, so it belongs upstream. Flagging rather than assuming, since it means a second PR against hpvsim.
+Note this required relaxing `test_hiv_results_are_unstratified`, which asserted no result ends in `_f`/`_m`. The invariant is now "no *inherited* stisim strata", with hpvsim's own two exempted.
 
 ### 2b. Regressions that will legitimately move the numbers
 
@@ -64,8 +61,8 @@ Do not treat these as migration bugs. Rwanda runs `dt=0.25`, `ms_agent_ratio=100
 | Change | Version | Effect on Rwanda |
 |---|---|---|
 | `ablation`/`excision` now clear precin | 3.1.0 | **Screen-and-treat averts more cancers.** Directly inflates the Fig 2/3/4 effect sizes — the paper's headline |
-| `cancer_incidence_with_hiv` / `_no_hiv` now annual, female denominator | 3.2.0 | At `dt=0.25` these read several times too low in v2.2.6. Fig 1 and Fig S2 panels change scale; calibration targets must be refitted |
-| HIV stocks scale-weighted | 3.2.0 | v2.2.6 over-reported ~6x at `ms_agent_ratio=100`. The HIV calibration targets were fitted against wrong values |
+| `cancer_incidence_with_hiv` / `_no_hiv` now annual, female denominator | 3.2.0 | These *are* calibration targets, so refit. The hpvsim changelog says they read several times too low at `dt=0.25` in v2.2.6; treat the direction as unverified — we find out on recalibration and do not need it settled beforehand |
+| HIV stocks scale-weighted | 3.2.0 | v2.2.6 over-reported ~6x at `ms_agent_ratio=100`. Affects the Fig S2 HIV panels only — HIV is not a calibration target |
 | `transm2f` default 3.69 → 2.0 | 3.1.0 | Recalibrate |
 | `layer_probs` / `f_cross_layer` / `m_cross_layer` → annual probabilities | 2.3.0 | `run_calibration.py` overrides both cross-layer pars. Convert with `1 - (1 - p)**dt` or transmission collapses |
 | Vaccine immunity now sterilizing | 2.3.0 | Vaccine efficacy differs |
@@ -152,6 +149,6 @@ Notes:
 
 ## Open questions
 
-1. Sex-stratified HIV prevalence — hpvsim (recommended) or Rwanda-local? Gates step 2.
+1. ~~Sex-stratified HIV prevalence — hpvsim or Rwanda-local?~~ Resolved: added to `hpv.HIV`, see 2a.
 2. `total_pop` convention: keep v2.2.6 absolute counts (`total_pop=n_agents`) or move to real-population scale? Affects every headline number in the abstract.
 3. Turn on HPV latency (`hpv_control_prob`, new in v3.2)? It changes cancer burden substantially and has never been fitted to data. Recommend leaving off for this paper, and noting it as a limitation.
