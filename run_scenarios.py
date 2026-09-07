@@ -20,7 +20,6 @@ os.environ.update(
 )
 
 # Standard imports
-import numpy as np
 import pandas as pd
 import sciris as sc
 import starsim as ss
@@ -33,27 +32,19 @@ from interventions import make_st, make_st_older, make_mv_intvs
 # Time-series cancer metrics (v3 module scope: sim.results.all_hpv.<key>)
 TS_METRICS = ['asr_cancer_incidence', 'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
 
-# Per-step count metrics with low/high bounds. Column names kept v2-style so
-# the plot scripts don't need to change; v3 sim.results.all_hpv exposes them
-# under new_cancers / new_cancer_deaths, mapped via _V3_ALIAS below.
+# Cancer flow metrics with plot-visible bounds. Column names kept v2-style
+# (cancers / cancer_deaths); v3 exposes them as new_cancers / new_cancer_deaths
+# on sim.results.all_hpv, mapped via _V3_ALIAS.
 CUM_METRICS_BOUNDED = ['cancers', 'cancers_with_hiv', 'cancers_no_hiv', 'cancer_deaths']
 _V3_ALIAS = {'cancers': 'new_cancers', 'cancer_deaths': 'new_cancer_deaths'}
 
-# Program-level counters extracted from per-intervention results below.
-CUM_METRICS_UNBOUNDED = ['ablations', 'txvs', 'vaccinations', 'screens', 'excisions',
-                         'leeps', 'cancer_treatments']
-
 CUM_START_YEAR = 2025
 
-# v2 read `intv.n_products_used` uniformly; v3 splits per intervention type:
-#   BaseVaccination  -> new_doses
-#   BaseScreening    -> n_screened
-#   BaseTreatment    -> new_cin_treated (CIN) OR new_cancer_treated (radiation)
-#   BaseTxVx         -> new_txvx_doses
-# The intervention `name`s here match those set in interventions.py.
+# v3 per-intervention flow counter for each program bucket. Names match
+# the intervention `name=` in interventions.py.
 INTV_TO_METRIC = {
     # baseline S&T (from make_st)
-    'screening':       ('screens',           'n_screened'),
+    'screening':       ('screens',           'new_screens'),
     'ablation_intv':   ('ablations',         'new_cin_treated'),
     'excision_intv':   ('leeps',             'new_cin_treated'),
     'radiation_intv':  ('cancer_treatments', 'new_cancer_treated'),
@@ -61,7 +52,7 @@ INTV_TO_METRIC = {
     # mass therapeutic-vax campaign (from make_mv_intvs)
     'campaign_txvx':   ('txvs',              'new_txvx_doses'),
     # older-cohort screen-and-vax (from make_st_older)
-    'screening_older': ('screens',           'n_screened'),
+    'screening_older': ('screens',           'new_screens'),
     'ablation_older':  ('ablations',         'new_cin_treated'),
     'excision_older':  ('excisions',         'new_cin_treated'),
     'radiation_older': ('cancer_treatments', 'new_cancer_treated'),
@@ -172,82 +163,59 @@ def run_sims(scenarios=None, end=2100, verbose=-1):
     return msim
 
 
+def _result_rows(result, metric):
+    """Long-format annual rows for one ss.Result: (year, metric, value)."""
+    df = result.annualize().to_df()
+    return pd.DataFrame({
+        'year': pd.to_datetime(df['timevec']).dt.year,
+        'metric': metric,
+        'value': df['value'].astype(float),
+    })
+
+
 def process_msim(msim, scenarios):
-    """Reduce per-scenario slices → dict of year + metric arrays with low/high."""
-    scen_labels = list(scenarios.keys())
-    msim_dict = sc.objdict()
-    for si, scen_label in enumerate(scen_labels):
-        scen_sims = list(msim.sims[si * n_seeds : (si + 1) * n_seeds])
-        scen_msim = ss.MultiSim(scen_sims)
-        reduced_sim = scen_msim.reduce(output=True)
-
-        # sim.results.timevec is a DateArray of ss.date; .t.yearvec is the
-        # matching float-year ndarray downstream code (save_csvs, plots) expects.
-        year = np.asarray(reduced_sim.t.yearvec)
-        mres = sc.objdict(year=year)
-        for metric in TS_METRICS + CUM_METRICS_BOUNDED:
-            mres[metric] = reduced_sim.results.all_hpv[_V3_ALIAS.get(metric, metric)]
-
-        # Zero-init program buckets, then sum per-intervention counters in.
-        for bucket in set(m for (m, _) in INTV_TO_METRIC.values()):
-            mres[bucket] = np.zeros_like(year, dtype=float)
-        for intv_name, (bucket, counter) in INTV_TO_METRIC.items():
-            intv = reduced_sim.interventions.get(intv_name)
-            if intv is None:
-                continue
-            mres[bucket] = mres[bucket] + np.asarray(intv.results[counter])
-
-        msim_dict[scen_label] = mres
-
-    return msim_dict
+    """Long-format ensemble: rows are (scenario, sim, year, metric, value)."""
+    frames = []
+    for si, scen_label in enumerate(scenarios):
+        for sim_idx, sim in enumerate(msim.sims[si * n_seeds : (si + 1) * n_seeds]):
+            for metric in TS_METRICS + CUM_METRICS_BOUNDED:
+                frames.append(_result_rows(
+                    sim.results.all_hpv[_V3_ALIAS.get(metric, metric)], metric,
+                ).assign(scenario=scen_label, sim=sim_idx))
+            for intv_name, (bucket, counter) in INTV_TO_METRIC.items():
+                if intv_name not in sim.interventions:
+                    continue
+                frames.append(_result_rows(
+                    sim.interventions[intv_name].results[counter], bucket,
+                ).assign(scenario=scen_label, sim=sim_idx))
+    return pd.concat(frames, ignore_index=True)
 
 
-def save_csvs(msim_dict, resfolder='results'):
-    """Extract two plot-ready CSVs from an msim_dict.
-
-    scens_timeseries.csv — year, scenario, metric, value, low, high
-                           (for asr + cancer_incidence_with_hiv + cancer_incidence_no_hiv)
-    scens_cumulative.csv — scenario, metric, value[, low, high]
-                           (sums 2025-2100 for cancers, cancers_with_hiv, ablations, txvs, vaccinations, ...)
-    """
+def save_csvs(long, resfolder='results'):
+    """Two plot-ready CSVs from the long-format ensemble DataFrame."""
     os.makedirs(resfolder, exist_ok=True)
 
-    # Time series (only plotted metrics, full year range)
-    ts_rows = []
-    for scen_label, mres in msim_dict.items():
-        years = np.asarray(mres.year)
-        for metric in TS_METRICS:
-            r = mres[metric]
-            for yi, yr in enumerate(years):
-                ts_rows.append({
-                    'scenario': scen_label, 'year': float(yr), 'metric': metric,
-                    'value': float(r[yi]),
-                    'low': float(r.low[yi]),
-                    'high': float(r.high[yi]),
-                })
-    pd.DataFrame(ts_rows).to_csv(f'{resfolder}/scens_timeseries.csv', index=False)
+    q = {'value': 'median',
+         'low':   lambda s: s.quantile(0.10),
+         'high':  lambda s: s.quantile(0.90)}
 
-    # Cumulative sums from CUM_START_YEAR → end
-    cum_rows = []
-    for scen_label, mres in msim_dict.items():
-        years = np.asarray(mres.year)
-        fi = int(np.where(years == CUM_START_YEAR)[0][0])
-        for metric in CUM_METRICS_BOUNDED:
-            r = mres[metric]
-            cum_rows.append({
-                'scenario': scen_label, 'metric': metric,
-                'value': float(np.sum(r.values[fi:])),
-                'low': float(np.sum(r.low[fi:])),
-                'high': float(np.sum(r.high[fi:])),
-            })
-        for metric in CUM_METRICS_UNBOUNDED:
-            r = np.asarray(mres[metric])
-            cum_rows.append({
-                'scenario': scen_label, 'metric': metric,
-                'value': float(np.sum(r[fi:])),
-                'low': np.nan, 'high': np.nan,
-            })
-    pd.DataFrame(cum_rows).to_csv(f'{resfolder}/scens_cumulative.csv', index=False)
+    ts = (long[long.metric.isin(TS_METRICS)]
+          .groupby(['scenario', 'metric', 'year'])['value'].agg(**q)
+          .reset_index())
+    ts.to_csv(f'{resfolder}/scens_timeseries.csv', index=False)
+
+    per_sim = (long[long.year >= CUM_START_YEAR]
+               .groupby(['scenario', 'sim', 'metric'])['value'].sum()
+               .reset_index())
+    cum = (per_sim.groupby(['scenario', 'metric'])['value'].agg(**q)
+                  .reset_index())
+    # Fill 0 for scenarios that didn't run a given program (e.g. txvs for
+    # non-TxV scenarios); plot scripts assume every (scenario, metric) exists.
+    scenarios = long['scenario'].unique()
+    metrics = long['metric'].unique()
+    grid = pd.MultiIndex.from_product([scenarios, metrics], names=['scenario', 'metric'])
+    cum = cum.set_index(['scenario', 'metric']).reindex(grid, fill_value=0).reset_index()
+    cum.to_csv(f'{resfolder}/scens_cumulative.csv', index=False)
 
 
 # %% Run as a script
