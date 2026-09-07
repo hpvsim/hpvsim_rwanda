@@ -16,6 +16,8 @@ os.environ.update(
     MKL_NUM_THREADS='1',
 )
 
+import numpy as np
+import pandas as pd
 import sciris as sc
 import hpvsim as hpv
 
@@ -125,23 +127,124 @@ def load_calib(filestem=''):
 ########################################################################
 # Extract plot-ready CSVs from a calib object
 ########################################################################
-def save_figS2_csvs(calib, resfolder='results'):
-    """Extract plot-ready CSVs from a calibration artifact.
 
-    v2 read directly from ``calib.analyzer_results`` / ``sim_results`` /
-    ``extra_sim_results``; v3 hpv.Calibration stores only per-trial
-    mismatch and eval-column values. Age-binned cancers, per-run genotype
-    distributions, and time-series like ``asr_cancer_incidence`` have to
-    be rebuilt by rerunning the top-N trials via
-    ``hpv.make_calib_sims(calib, n=..., extract_fn=...)``.
+# v3 result names -> v2 metric labels used in figS2_timeseries.csv and by
+# plot_figS2_calib.py.
+_HIV_TS_MAP = {
+    'art_coverage':          'p_on_art',
+    'female_hiv_prevalence': 'prevalence_f',
+    'male_hiv_prevalence':   'prevalence_m',
+    'hiv_infections':        'new_infections',
+    'hiv_deaths':            'new_deaths',
+}
+_HPV_TS_KEYS = ('asr_cancer_incidence', 'cancer_incidence_with_hiv',
+                'cancer_incidence_no_hiv')
+_GENOTYPES = ('hpv16', 'hpv18', 'hi5', 'ohr')
 
-    Deferred to step 5 of docs/revision_plan.md (port plot scripts).
+
+def _snapshot(sim):
+    ah = sim.results.all_hpv
+    hiv = sim.results.hiv
+    out = {k: ah[k].annualize().values for k in _HPV_TS_KEYS}
+    for v2_key, v3_key in _HIV_TS_MAP.items():
+        out[v2_key] = hiv[v3_key].annualize().values
+    out['years'] = ah[_HPV_TS_KEYS[0]].annualize().timevec.years
+
+    i2020 = sc.findnearest(sim.t.yearvec, 2020)
+    precin_df = hpv.results_by_genotype(sim, 'n_precin', normalize=True)
+    cancer_df = hpv.results_by_genotype(sim, 'cum_cancers', normalize=True)
+    out['precin_genotype_dist'] = np.array([precin_df.iloc[i2020].get(g, 0.0) for g in _GENOTYPES])
+    out['cancerous_genotype_dist'] = np.array([cancer_df.iloc[i2020].get(g, 0.0) for g in _GENOTYPES])
+
+    by_age = sim.analyzers.get('all_hpv_by_age')
+    if by_age is not None:
+        df = by_age.to_dataframe('cancers')
+        out['cancers_by_age'] = df.loc[2020].values
+    return out
+
+
+def _bxp_stats(arr):
+    q1, med, q3 = np.percentile(arr, [25, 50, 75])
+    iqr = q3 - q1
+    lo = float(arr[arr >= q1 - 1.5 * iqr].min())
+    hi = float(arr[arr <= q3 + 1.5 * iqr].max())
+    return dict(q1=float(q1), med=float(med), q3=float(q3), whislo=lo, whishi=hi)
+
+
+# Reruns extend one year past the calibration horizon so annualize()'s final
+# bin isn't a partial year; the extra year is dropped when writing the CSVs.
+_PLOT_YEAR_MAX = 2025
+
+
+def save_calib_results(calib, resfolder='results', n=50, n_workers=None):
+    """Rerun top-n trials via hpv.make_calib_sims, aggregate, write CSVs.
+
+    HIV-strat age-binned panels (v2 cancers_by_age_{with,no}_hiv) are not
+    produced: v3's hpv.by_age has no HIV strata. Deferred to step 5.
     """
-    raise NotImplementedError(
-        'save_figS2_csvs pending v3.2 rewrite (docs/revision_plan.md step 5). '
-        'Use hpv.make_calib_sims(calib, n=n_to_save, extract_fn=...) to pull '
-        'per-trial time series, age-binned cancers, and genotype distributions.'
+    os.makedirs(resfolder, exist_ok=True)
+    print(f'Rerunning top-{n} trials...')
+    outs = hpv.make_calib_sims(
+        calib, n=n, extract_fn=_snapshot, n_workers=n_workers,
+        sim_kwargs=dict(stop=_PLOT_YEAR_MAX + 1),
     )
+
+    years = outs[0]['years']
+    keep = years <= _PLOT_YEAR_MAX
+
+    ts_rows = []
+    for rkey in list(_HPV_TS_KEYS) + list(_HIV_TS_MAP):
+        stack = np.array([o[rkey] for o in outs])[:, keep]
+        med, lo, hi = np.nanmedian(stack, axis=0), np.nanpercentile(stack, 2.5, axis=0), np.nanpercentile(stack, 97.5, axis=0)
+        for yi, yr in enumerate(years[keep]):
+            ts_rows.append(dict(year=float(yr), metric=rkey, med=float(med[yi]),
+                                pi95_low=float(lo[yi]), pi95_high=float(hi[yi])))
+    pd.DataFrame(ts_rows).to_csv(f'{resfolder}/figS2_timeseries.csv', index=False)
+
+    for rkey in ('precin_genotype_dist', 'cancerous_genotype_dist'):
+        stack = np.array([o[rkey] for o in outs])
+        pd.DataFrame([dict(bin=bi, **_bxp_stats(stack[:, bi])) for bi in range(stack.shape[1])]) \
+          .to_csv(f'{resfolder}/figS2_{rkey}.csv', index=False)
+
+    if all('cancers_by_age' in o for o in outs):
+        stack = np.array([o['cancers_by_age'] for o in outs])
+        pd.DataFrame([dict(bin=bi, **_bxp_stats(stack[:, bi])) for bi in range(stack.shape[1])]) \
+          .to_csv(f'{resfolder}/figS2_cancers.csv', index=False)
+
+    _write_target_csvs(resfolder)
+    print(f'Wrote figS2_*.csv to {resfolder}/')
+
+
+def _write_target_csvs(resfolder):
+    """Reshape source datafiles into figS2_target_<key>.csv (value[, year])."""
+    src = 'data/rwanda'
+    # Age-binned cancers 2020 (target for `cancers` panel).
+    cases = pd.read_csv(f'{src}_cancer_cases.csv').sort_values('age')
+    cases[['value']].to_csv(f'{resfolder}/figS2_target_cancers.csv', index=False)
+    # HIV-stratified age panels: write targets so the plot can render them
+    # if/when the matching model CSVs land.
+    for stratum, out_key in [('no', 'cancer_incidence_no_hiv'),
+                              ('with', 'cancer_incidence_with_hiv')]:
+        df = pd.read_csv(f'{src}_cancer_incidence_by_age_{stratum}_hiv.csv').sort_values('age')
+        df[['value']].to_csv(f'{resfolder}/figS2_target_{out_key}.csv', index=False)
+    # ASR (single-year scalar target).
+    asr = pd.read_csv(f'{src}_asr_cancer_incidence.csv')[['year', 'value']]
+    asr.to_csv(f'{resfolder}/figS2_target_asr_cancer_incidence.csv', index=False)
+    # Genotype distributions.
+    for src_key, out_key in [('precin_types', 'precin_genotype_dist'),
+                              ('cancer_types', 'cancerous_genotype_dist')]:
+        df = pd.read_csv(f'{src}_{src_key}.csv')
+        # match genotype order used in the model extract
+        gorder = {g: i for i, g in enumerate(_GENOTYPES)}
+        df['_ord'] = df['genotype'].map(lambda g: gorder.get(_normalize_geno(g), 99))
+        df = df.sort_values('_ord')
+        df[['value']].to_csv(f'{resfolder}/figS2_target_{out_key}.csv', index=False)
+
+
+def _normalize_geno(g):
+    """CSV genotype label -> the module name used on sim.diseases (hpv16, hi5, ...)."""
+    m = {'16': 'hpv16', '18': 'hpv18', 'Hi5': 'hi5', 'hi5': 'hi5', 'OHR': 'ohr', 'ohr': 'ohr'}
+    return m.get(str(g), str(g))
 
 
 # %% Run as a script
@@ -168,6 +271,5 @@ if __name__ == '__main__':
         hpv.plot_calibration(calib, fig_path='figures/rwanda_calib.png')
 
     if args.extract_csvs:
-        save_figS2_csvs(calib, resfolder=args.resfolder)
-        print(f'Saved figS2_*.csv to {args.resfolder}/')
+        save_calib_results(calib, resfolder=args.resfolder)
     T.toc('Done')
