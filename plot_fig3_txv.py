@@ -23,7 +23,6 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
 
     text_height = [-0.1, 1.2]
     start_year, end_year = 2016, 2100
-    ymax = 25
     vc = sc.vectocolor(3).tolist()
     vc2 = sc.vectocolor(4, cmap='magma').tolist()
     colors = [vc[0], vc2[1], vc2[2]]
@@ -55,7 +54,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
     ax.set_title('Cumulative cancers\n2025-2100'); sc.SIticks()
     ax.set_xlabel('')
     ax.legend(loc='upper right', frameon=False, fontsize=16)
-    ax.set_ylim([0, 100e3])
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'A', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- B: Cumulative cancers in HIV+ ----
@@ -101,7 +100,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
             continue
         ax = ut.plot_ts(ax, ts_df, scen_key, 'asr_cancer_incidence', start_year, end_year,
                         color=colors[strat_idx], label='')
-    ax.set_ylim(bottom=0, top=ymax)
+    ax.set_ylim(bottom=0)
     ax.set_title('ASR cervical cancer incidence, 2025-2100\nComparison of screening strategies')
     legend_labels = ['Status quo', 'SOC algorithm, 70% coverage',
                      '+TxV 90/0, 70% coverage', '+TxV 50/90, 70% coverage']

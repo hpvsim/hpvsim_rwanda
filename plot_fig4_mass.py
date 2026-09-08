@@ -23,7 +23,6 @@ def plot_fig4(resfolder='results', outpath='figures/fig4_campaigns.png'):
 
     text_height = [-0.1, 1.2]
     start_year, end_year = 2016, 2100
-    ymax = 25
     colors = sc.vectocolor(3).tolist()
 
     coverage_levels = ['18%', '35%', '70%']
@@ -53,7 +52,7 @@ def plot_fig4(resfolder='results', outpath='figures/fig4_campaigns.png'):
     ax.set_title('Cumulative cancers\n2025-2100'); sc.SIticks()
     ax.set_xlabel('')
     ax.legend(loc='upper right', frameon=False, fontsize=16)
-    ax.set_ylim([0, 100e3])
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'A', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- B: Cumulative cancers in HIV+ ----
@@ -91,7 +90,7 @@ def plot_fig4(resfolder='results', outpath='figures/fig4_campaigns.png'):
         Patch(facecolor='white', edgecolor='k', hatch='//', label='Therapeutics'),
         Patch(facecolor='white', edgecolor='k', hatch='\\\\', label='Vaccinations'),
     ], loc='upper left', frameon=False, fontsize=16)
-    ax.set_ylim([0, 4e6])
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- D: Time series at 70% coverage ----
@@ -102,7 +101,7 @@ def plot_fig4(resfolder='results', outpath='figures/fig4_campaigns.png'):
         scen_key = f'{strat_key} 70%'
         ax = ut.plot_ts(ax, ts_df, scen_key, 'asr_cancer_incidence', start_year, end_year,
                         color=colors[strat_idx], label=f'{strat_label} 70%')
-    ax.set_ylim(bottom=0, top=ymax)
+    ax.set_ylim(bottom=0)
     ax.set_title('ASR cervical cancer incidence, 2025-2100\nOne-time mass campaigns at 70% coverage')
     ax.legend(loc='upper right', frameon=False)
     ax.text(-0.05, 1.2, 'D', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')

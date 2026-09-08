@@ -24,7 +24,6 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
 
     text_height = [-0.1, 1.2]
     start_year, end_year = 2016, 2100
-    ymax = 25
     vc = sc.vectocolor(3).tolist()
     colors = vc
 
@@ -56,7 +55,7 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
         mpatches.Patch(facecolor='gray', label='No triage'),
         mpatches.Patch(facecolor='white', edgecolor='k', hatch='//', label='VIA triage'),
     ], loc='upper right', frameon=False)
-    ax.set_ylim([0, 100e3])
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'A', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- B: Cumulative cancers in HIV+ ----
@@ -93,7 +92,7 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
     for cn, sname in enumerate(['35% coverage', '70% coverage'], start=1):
         ax = ut.plot_ts(ax, ts_df, triage_keys[cn], 'asr_cancer_incidence',
                         start_year, end_year, color=colors[cn], ls='--', label='')
-    ax.set_ylim(bottom=0, top=ymax)
+    ax.set_ylim(bottom=0)
     ax.set_title('ASR cervical cancer incidence, 2025-2100\nScaled-up screening with/without VIA triage')
 
     color_handles = [mpatches.Patch(facecolor=colors[i], label=labels[i]) for i in range(3)]

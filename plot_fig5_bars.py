@@ -48,12 +48,12 @@ def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster
     x_base = np.arange(len(ALL_STRATEGIES))
     offsets = [-bar_width, 0, bar_width]
 
+    all_cum = []
     for cov_idx, cov in enumerate(coverage_levels):
-        cum_cancers = []
-        for strat_key, _ in ALL_STRATEGIES:
-            v = cum(f'{strat_key} {cov}')
-            cum_cancers.append(v)
+        cum_cancers = [cum(f'{strat_key} {cov}') for strat_key, _ in ALL_STRATEGIES]
+        for strat_key, v in zip([s for s, _ in ALL_STRATEGIES], cum_cancers):
             print(f'{strat_key} {cov}: {v:.0f} cancers')
+        all_cum.extend(cum_cancers)
         bars = ax.bar(x_base + offsets[cov_idx], cum_cancers, width=bar_width,
                       color=coverage_colors[cov_idx], label=cov)
         for bar in bars:
@@ -65,17 +65,19 @@ def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster
     ax.set_xticks(x_base)
     ax.set_xticklabels([label for _, label in ALL_STRATEGIES])
     ax.set_title('Cumulative cancers 2025-2100'); sc.SIticks()
-    ax.set_ylim([0, 100e3])
+    # 15% headroom so the value labels above each bar aren't cropped.
+    ax.set_ylim(bottom=0, top=max(all_cum) * 1.15)
     ax.legend(title='Coverage', loc='upper right', frameon=False, fontsize=14, ncols=3)
 
     # ---- Bottom: cancers averted ----
     ax = fig.add_subplot(gs[1])
+    all_avr = []
     for cov_idx, cov in enumerate(coverage_levels):
-        averted = []
-        for strat_key, _ in ALL_STRATEGIES:
-            val = cum(f'{strat_key} {cov}')
-            averted.append(max(baseline_cancers - val, 0))
-            print(f'{strat_key} {cov}: {averted[-1]:.0f} cancers averted')
+        averted = [max(baseline_cancers - cum(f'{strat_key} {cov}'), 0)
+                   for strat_key, _ in ALL_STRATEGIES]
+        for (strat_key, _), v in zip(ALL_STRATEGIES, averted):
+            print(f'{strat_key} {cov}: {v:.0f} cancers averted')
+        all_avr.extend(averted)
         bars = ax.bar(x_base + offsets[cov_idx], averted, width=bar_width,
                       color=coverage_colors[cov_idx], label=cov)
         for bar in bars:
@@ -88,7 +90,7 @@ def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster
     ax.set_xticks(x_base)
     ax.set_xticklabels([label for _, label in ALL_STRATEGIES])
     ax.set_title('Cancers averted 2025-2100 (vs. S&T&T 18%)'); sc.SIticks()
-    ax.set_ylim([0, 38e3])
+    ax.set_ylim(bottom=0, top=max(all_avr) * 1.15)
 
     fig.tight_layout()
     os.makedirs(os.path.dirname(outpath), exist_ok=True)
