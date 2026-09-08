@@ -30,7 +30,8 @@ from interventions import make_st, make_st_older, make_mv_intvs
 
 
 # Time-series cancer metrics (v3 module scope: sim.results.all_hpv.<key>)
-TS_METRICS = ['asr_cancer_incidence', 'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
+TS_METRICS = ['asr_cancer_incidence', 'cancer_incidence',
+              'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
 
 # Cancer flow metrics with plot-visible bounds. Column names kept v2-style
 # (cancers / cancer_deaths); v3 exposes them as new_cancers / new_cancer_deaths
@@ -45,17 +46,17 @@ CUM_START_YEAR = 2025
 INTV_TO_METRIC = {
     # baseline S&T (from make_st)
     'screening':       ('screens',           'new_screens'),
-    'ablation_intv':   ('ablations',         'new_cin_treated'),
-    'excision_intv':   ('leeps',             'new_cin_treated'),
-    'radiation_intv':  ('cancer_treatments', 'new_cancer_treated'),
+    'ablation_intv':   ('ablations',         'new_treatments'),
+    'excision_intv':   ('leeps',             'new_treatments'),
+    'radiation_intv':  ('cancer_treatments', 'new_treatments'),
     'txv':             ('txvs',              'new_txvx_doses'),
     # mass therapeutic-vax campaign (from make_mv_intvs)
     'campaign_txvx':   ('txvs',              'new_txvx_doses'),
     # older-cohort screen-and-vax (from make_st_older)
     'screening_older': ('screens',           'new_screens'),
-    'ablation_older':  ('ablations',         'new_cin_treated'),
-    'excision_older':  ('excisions',         'new_cin_treated'),
-    'radiation_older': ('cancer_treatments', 'new_cancer_treated'),
+    'ablation_older':  ('ablations',         'new_treatments'),
+    'excision_older':  ('excisions',         'new_treatments'),
+    'radiation_older': ('cancer_treatments', 'new_treatments'),
     'mass_vax':        ('vaccinations',      'new_doses'),
     # routine childhood HPV vax (from make_vx) — attached to every non-baseline scenario
     'routine_vx':      ('vaccinations',      'new_doses'),
@@ -64,7 +65,23 @@ INTV_TO_METRIC = {
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [10, 1][debug]  # How many seeds to run per cluster
+# Ensemble size: rerun each scenario against the top-N calibration trials,
+# each carrying its own (pars, rand_seed). Captures parameter + stochastic
+# uncertainty jointly.
+n_reps = [10, 1][debug]
+
+
+def _top_pars(n):
+    """Top-``n`` (pars + rand_seed) tuples from the full calibration.
+
+    Reads the raw (unshrunk) calib so calib.df is present. Each dict has
+    flat dotted par names plus rand_seed; run_sim.make_sim routes both
+    through Pars.update and pops rand_seed as the trial seed.
+    """
+    calib = sc.loadobj('raw_results/rwanda_calib.obj')
+    top = calib.df.nsmallest(n, 'mismatch')
+    cols = [c for c in top.columns if c not in ('index', 'mismatch')]
+    return [{c: row[c] for c in cols} for _, row in top.iterrows()]
 
 
 # %% Create interventions
@@ -131,34 +148,36 @@ def make_st_scenarios(end_year=2100):
     return scendict
 
 
-def make_sims(scenarios=None, end=2100):
-    """One flat list of sims (n_scenarios * n_seeds) labelled by scenario.
+def make_sims(scenarios=None, end=2100, top_pars=None):
+    """One flat list of sims (n_scenarios * n_reps) labelled by scenario.
 
-    v2 built one MultiSim per scenario and then `hpv.MultiSim.merge`d them
-    into a super-MultiSim; v3 `ss.MultiSim` has neither `merge` nor
-    `split`, so we flatten into one MultiSim and slice back at reduce time
-    using scenario boundaries.
+    Each scenario is run once per top-N calibration trial. The trial's
+    pars (including rand_seed) flow through ``rs.make_sim`` via
+    calib_pars=, so the fitted seed drives each rep.
     """
+    if top_pars is None:
+        top_pars = _top_pars(n_reps)
     sims = sc.autolist()
     for name, interventions in scenarios.items():
         add_vax = name != 'No interventions'
-        for seed in range(n_seeds):
+        for trial_pars in top_pars:
             sim = rs.make_sim(
                 debug=debug,
                 add_st=False,
                 add_vax=add_vax,
                 interventions=interventions,
                 stop=end,
-                seed=seed,
+                calib_pars=dict(trial_pars),
+                use_calib=False,
             )
             sim.label = name
             sims += sim
     return ss.MultiSim(sims)
 
 
-def run_sims(scenarios=None, end=2100, verbose=-1):
+def run_sims(scenarios=None, end=2100, verbose=-1, top_pars=None):
     """ Run the simulations """
-    msim = make_sims(scenarios=scenarios, end=end)
+    msim = make_sims(scenarios=scenarios, end=end, top_pars=top_pars)
     msim.run(verbose=verbose)
     return msim
 
@@ -177,7 +196,7 @@ def process_msim(msim, scenarios):
     """Long-format ensemble: rows are (scenario, sim, year, metric, value)."""
     frames = []
     for si, scen_label in enumerate(scenarios):
-        for sim_idx, sim in enumerate(msim.sims[si * n_seeds : (si + 1) * n_seeds]):
+        for sim_idx, sim in enumerate(msim.sims[si * n_reps : (si + 1) * n_reps]):
             for metric in TS_METRICS + CUM_METRICS_BOUNDED:
                 frames.append(_result_rows(
                     sim.results.all_hpv[_V3_ALIAS.get(metric, metric)], metric,

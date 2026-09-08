@@ -65,6 +65,10 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         calib_pars = sc.loadobj('results/rwanda_pars.obj')
     if calib_pars is not None:
         pars = sc.mergedicts(pars, calib_pars)
+        # calib was run with reseed=True; the fitted seed lives in pars and
+        # always wins so the calibrated fit is exactly reproducible.
+        if 'rand_seed' in pars:
+            seed = int(pars.pop('rand_seed'))
 
     # v2 used `art_failure_prob=0.1`; v3 complement is `p_effective_art`
     # (Bernoulli p that an ART recipient becomes virally suppressed).
