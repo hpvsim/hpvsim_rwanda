@@ -31,6 +31,32 @@ n_workers = 75
 n_to_save = 500
 
 
+# File-level weights spread across the target columns each file produces.
+# The default eval_fn multiplies per-column gof by weight; a file whose 5
+# splits across 16 age bins contributes 5/16 per bin, matching the per-file
+# intent regardless of how many bins the loader produces.
+_FILE_WEIGHTS = {
+    'cancer_cases':              (0.5,  lambda c: c.startswith('all_hpv.cancers.')),
+    'asr_cancer_incidence':      (10.0, lambda c: c == 'all_hpv.asr_cancer_incidence'),
+    'cancer_incidence_with_hiv': (0.5,  lambda c: c == 'all_hpv.cancer_incidence_with_hiv'),
+    'cancer_types':              (0.5,  lambda c: c.startswith('by_genotype.cancerous_genotype_dist.')),
+    'precin_types':              (0.5,  lambda c: c.startswith('by_genotype.precin_genotype_dist.')),
+}
+
+
+def _build_weights(datafiles):
+    from hpvsim.data.loaders import load_calib_data
+    columns = list(load_calib_data(datafiles).columns)
+    weights = {}
+    for file_w, matches in _FILE_WEIGHTS.values():
+        cols = [c for c in columns if matches(c)]
+        if cols:
+            per_col = file_w / len(cols)
+            for c in cols:
+                weights[c] = per_col
+    return weights
+
+
 ########################################################################
 # Run calibration
 ########################################################################
@@ -41,10 +67,6 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
     sim = rs.make_sim(calib=True, use_calib=False)
 
     dataloc = 'data/rwanda'
-    # v3 hpv.by_age ships `cancers` but not the HIV-stratified age keys v2
-    # fit via AgeResults (`cancers_by_age_with_hiv` / `_no_hiv`). Fit the
-    # scalar HIV-strat incidence here; the age x HIV Fig S2 panels come
-    # back post-calibration via a custom analyzer at step 5 of the plan.
     datafiles = [
         f'{dataloc}_cancer_cases.csv',
         f'{dataloc}_cancer_incidence_with_hiv.csv',
@@ -53,18 +75,17 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
         f'{dataloc}_cancer_types.csv',
     ]
 
-    # v3 nested calib_pars: top-level keys are scopes (broadcast, hi5, ohr,
+    # v3 nested calib_pars: top-level keys are scopes (broadcast, per-genotype,
     # network, hiv); leaves are ``[best, low, high, step]`` lists.
+    # cin_fn.k priors sit tight (+/-0.05) around the shipped defaults per
+    # genotype -- natural history doesn't vary much between countries.
     calib_pars = dict(
-        # Broadcast to every HPV genotype
         beta=[0.05, 0.02, 0.5, 0.02],
 
-        # Per-genotype natural-history slope for the two pooled genotypes.
-        # v2 also carried a broadcast ``sev_dist.par1``; v3's per-genotype
-        # ``cin_fn.k`` covers the same effect, and Rwanda only ever
-        # calibrated hi5 / ohr, so the broadcast has no replacement here.
-        hi5=dict(cin_fn=dict(k=[0.15, 0.1, 0.25, 0.01])),
-        ohr=dict(cin_fn=dict(k=[0.15, 0.1, 0.25, 0.01])),
+        hpv16=dict(cin_fn=dict(k=[0.30, 0.25, 0.35, 0.01])),  # default 0.30
+        hpv18=dict(cin_fn=dict(k=[0.25, 0.20, 0.30, 0.01])),  # default 0.25
+        hi5=dict(cin_fn=dict(k=[0.20, 0.15, 0.25, 0.01])),    # default 0.20
+        ohr=dict(cin_fn=dict(k=[0.20, 0.15, 0.25, 0.01])),    # default 0.20
 
         # Sexual network. Cross-layer probabilities are ANNUAL since
         # hpvsim 2.3.0; v2.2.6 values were per-timestep at dt=0.25, so
@@ -93,9 +114,14 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
         ),
     )
 
+    # reseed=True makes rand_seed a searched par; the best trial saves both
+    # (pars, rand_seed) so the fit is exactly reproducible. Otherwise, all
+    # trials use one shared seed and the fit is a single stochastic draw.
     calib = hpv.Calibration(
         sim, calib_pars=calib_pars, data=datafiles,
+        weights=_build_weights(datafiles),
         total_trials=n_trials, n_workers=n_workers,
+        reseed=True,
         label='rwanda_calib',
     )
     calib.calibrate()
