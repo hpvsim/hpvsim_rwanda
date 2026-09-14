@@ -39,9 +39,15 @@ def make_hpv_test(name='hpv_test'):
 def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
             screen_change_year=2027, age_range=[30, 50],
             start_year=2020, end_year=2100, future_treat_cov=0.75,
-            txv_pars=None, txv=False, tx_assigner_csv='tx_assigner'):
+            txv_pars=None, txv=False, tx_assigner_csv='tx_assigner',
+            txv_start_year=2030):
     """
     Make screening and treatment interventions.
+
+    txv_start_year controls (a) the switch from ablate/excise to TxV when
+    txv_pars=='cin', and (b) the eligibility gate on linked_txvx. Exposed
+    as a parameter for the reviewer-response sensitivity sweep (R1.3,
+    intro year 2030->2050).
     """
     # Per-year prob split across pre / post the coverage change year.
     screen_years = np.arange(start_year, end_year + 1)
@@ -74,9 +80,9 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
     )
     st_intvs = [screening]
 
-    # If lesion-regressing therapeutic vaccine is on, stop the ablate/excise path
-    # once it kicks in (2030).
-    triage_end_year = min(2030, end_year) if txv_pars == 'cin' else end_year
+    # If lesion-regressing therapeutic vaccine is on, stop the ablate/excise
+    # path once TxV kicks in.
+    triage_end_year = min(txv_start_year, end_year) if txv_pars == 'cin' else end_year
     triage_years = np.arange(start_year, triage_end_year + 1)
     triage_prob = np.full(len(triage_years), 0.9)
 
@@ -132,7 +138,7 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
             imm_init=ss.uniform(low=0.49, high=0.51),
         )
         def txv_eligible(sim):
-            if sim.now.years >= 2030:
+            if sim.now.years >= txv_start_year:
                 return sim.interventions['screening'].outcomes['positive']
             return ss.uids()
         st_intvs.append(hpv.linked_txvx(
@@ -146,8 +152,12 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
 
 
 def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030,
-                  campaign_age=[20, 50], end_year=2100):
-    """Mass therapeutic vaccination campaign, layered on top of baseline S&T."""
+                  campaign_age=[20, 50], end_year=2100, st_kwargs=None):
+    """Mass therapeutic vaccination campaign, layered on top of baseline S&T.
+
+    st_kwargs is forwarded to the nested make_st() so the normalized-start
+    scenario set can strip the pre-2030 screening history.
+    """
     txv_prod = hpv.txvx(
         df=pd.read_csv(f'txvx_pars_{txv_pars}.csv'),
         imm_init=ss.uniform(low=0.49, high=0.51),
@@ -164,7 +174,7 @@ def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030,
         product=txv_prod,
         eligibility=mv_eligible,
     )
-    hist_intvs = make_st(end_year=end_year)
+    hist_intvs = make_st(end_year=end_year, **(st_kwargs or {}))
     return hist_intvs + [campaign_txvx]
 
 

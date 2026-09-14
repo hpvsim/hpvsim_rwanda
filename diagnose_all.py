@@ -215,9 +215,21 @@ def build_scenario_intvs(name, end=2100):
     raise ValueError(f'unknown scenario {name}')
 
 
-def run_one(name, top_par, seed_idx, end=2100):
+def build_normalized_scenarios(intv_start_year=2030, end_year=2100):
+    """Return the dict of normalized scenario -> intv list. Thin wrapper
+    around rsc.make_normalized_scenarios so this file owns nothing that
+    interventions.py doesn't."""
+    return rsc.make_normalized_scenarios(intv_start_year=intv_start_year,
+                                         end_year=end_year)
+
+
+def run_one(name, top_par, seed_idx, end=2100, intvs=None):
+    """intvs, if supplied, overrides the scenario-name dispatch. Used by
+    the normalized-set entrypoint to hand the pre-built interventions in
+    directly."""
     _reset_trackers()
-    intvs = build_scenario_intvs(name, end=end)
+    if intvs is None:
+        intvs = build_scenario_intvs(name, end=end)
     sim = rs.make_sim(add_st=False, interventions=intvs,
                       analyzers=[ScenTracker()],
                       stop=end, calib_pars=top_par)
@@ -228,11 +240,12 @@ def run_one(name, top_par, seed_idx, end=2100):
 
 # ---- Categorization ----------------------------------------------------
 
-def categorize(sim, tracker, txv_used=False, hpv_faster=False, end=2100):
-    """Return list of per-cancer rows for 2025-end window."""
+def categorize(sim, tracker, txv_used=False, hpv_faster=False, end=2100,
+               accounting_start=2025):
+    """Return list of per-cancer rows for accounting_start..end window."""
     yearvec = sim.t.yearvec
-    ti_2025 = int(np.searchsorted(yearvec, 2025.0))
-    ti_2100 = int(np.searchsorted(yearvec, float(end)))
+    ti_start = int(np.searchsorted(yearvec, float(accounting_start)))
+    ti_end = int(np.searchsorted(yearvec, float(end)))
     pop_scale = float(sim.pars.pop_scale)
     hpv_modules = list(iter_hpv_modules(sim))
 
@@ -244,7 +257,7 @@ def categorize(sim, tracker, txv_used=False, hpv_faster=False, end=2100):
     rows = []
     for uid, info in tracker.cancer.items():
         ti_c = info['ti']
-        if ti_c < ti_2025 or ti_c >= ti_2100:
+        if ti_c < ti_start or ti_c >= ti_end:
             continue
         # weight per sim.results.new_cancers scaling
         w = info['scale'] * pop_scale
@@ -340,10 +353,10 @@ def categorize(sim, tracker, txv_used=False, hpv_faster=False, end=2100):
     return rows
 
 
-def sim_totals(sim, end=2100):
+def sim_totals(sim, end=2100, accounting_start=2025):
     r = sim.results.all_hpv.new_cancers
     tv = np.asarray(r.timevec.years if hasattr(r.timevec, 'years') else r.timevec)
-    mask = (tv >= 2025) & (tv < float(end))
+    mask = (tv >= float(accounting_start)) & (tv < float(end))
     return float(np.asarray(r.values)[mask].sum())
 
 
@@ -351,41 +364,70 @@ def sim_totals(sim, end=2100):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('--scenarios', nargs='+', default=[
-        'sTT18', 'sTT70', 'sT70', 'sTxV70', 'sTxV18', 'hpvfaster70',
-    ])
+    ap.add_argument('--scenarios', nargs='+', default=None,
+                    help='Scenario names. If omitted with --normalized, runs all '
+                         'normalized scenarios; otherwise defaults to the flagship '
+                         'short-name list.')
     ap.add_argument('--reps', type=int, default=3)
     ap.add_argument('--end', type=int, default=2100)
     ap.add_argument('--outdir', default='results/diagnostic')
     ap.add_argument('--parallel', action='store_true')
+    ap.add_argument('--normalized', action='store_true',
+                    help='Use the normalized scenario set (all interventions '
+                         'start in --intv-start-year); accounting window '
+                         'defaults to that year.')
+    ap.add_argument('--intv-start-year', type=int, default=2030)
+    ap.add_argument('--accounting-start', type=int, default=None,
+                    help='Cumulative accounting start year. Defaults to 2025 '
+                         '(default set) or --intv-start-year (normalized).')
     args = ap.parse_args()
 
     os.makedirs(args.outdir, exist_ok=True)
     top_pars = rsc._top_pars(args.reps)
 
+    # Resolve scenarios + accounting window
+    if args.normalized:
+        norm = build_normalized_scenarios(intv_start_year=args.intv_start_year,
+                                          end_year=args.end)
+        scen_names = args.scenarios if args.scenarios else list(norm.keys())
+        prebuilt = {n: norm[n] for n in scen_names}
+        accounting_start = args.accounting_start or args.intv_start_year
+    else:
+        scen_names = args.scenarios or [
+            'sTT18', 'sTT70', 'sT70', 'sTxV70', 'sTxV18', 'hpvfaster70',
+        ]
+        prebuilt = None
+        accounting_start = args.accounting_start or 2025
+
+    print(f'Running {len(scen_names)} scenarios x {args.reps} reps  '
+          f'(accounting {accounting_start}..{args.end})')
+
     all_rows = []
     summary_rows = []
-    for scen in args.scenarios:
+    for scen in scen_names:
         for rep, tp in enumerate(top_pars):
             T = sc.timer()
             print(f'\n===== {scen} rep {rep} =====')
-            sim, tracker = run_one(scen, dict(tp), rep, end=args.end)
+            intvs = prebuilt[scen] if prebuilt is not None else None
+            sim, tracker = run_one(scen, dict(tp), rep, end=args.end, intvs=intvs)
             rows = categorize(sim, tracker,
-                              txv_used=scen in ('sTxV70', 'sTxV18', 'masstxv70'),
-                              hpv_faster=scen.startswith('hpvfaster'),
-                              end=args.end)
+                              txv_used=('TxV' in scen or scen in ('sTxV70', 'sTxV18', 'masstxv70')),
+                              hpv_faster=('Faster' in scen or scen.startswith('hpvfaster')),
+                              end=args.end,
+                              accounting_start=accounting_start)
             for r in rows:
                 r['scenario'] = scen
                 r['rep'] = rep
             all_rows.extend(rows)
             total_tracked = sum(r['weight'] for r in rows)
-            total_sim = sim_totals(sim, end=args.end)
+            total_sim = sim_totals(sim, end=args.end, accounting_start=accounting_start)
             print(f'  Tracked: {total_tracked:,.0f}  vs sim: {total_sim:,.0f}  '
                   f'(delta {total_tracked - total_sim:+,.0f})')
             summary_rows.append({
                 'scenario': scen, 'rep': rep,
                 'tracked': total_tracked, 'sim_total': total_sim,
                 'n_cancer_uids': len(rows),
+                'accounting_start': accounting_start,
             })
             T.toc(f'{scen} rep {rep}')
 

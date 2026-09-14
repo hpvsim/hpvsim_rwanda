@@ -148,6 +148,62 @@ def make_st_scenarios(end_year=2100):
     return scendict
 
 
+def make_normalized_scenarios(intv_start_year=2030, end_year=2100):
+    """
+    Normalized-comparison scenario set: every new intervention starts in
+    the same year (default 2030) so the 2030-end_year cumulative counts are
+    directly comparable. Routine prophylactic vaccination (from 2011) is
+    unchanged; only the screen-and-treat / campaign layers are gated.
+
+    The pre-intv_start_year screening history is stripped by setting
+    screen_change_year = intv_start_year - 1, which zeros out the length
+    of the "prev coverage" segment inside make_st.
+
+    Used for the residual analysis (Phase 3) and as the base for the
+    reviewer-response sensitivity sweeps (TxV intro year, workforce cap,
+    TxV efficacy assumptions).
+    """
+    y = intv_start_year
+    # st_kwargs is forwarded to nested make_st via make_mv_intvs, which owns
+    # end_year, so keep end_year out of st_kwargs to avoid a duplicate kwarg.
+    st_kwargs = dict(
+        start_year=y,
+        screen_change_year=y - 1,   # no phase-in
+        txv_start_year=y,
+    )
+    st_defaults = {**st_kwargs, 'end_year': end_year}
+
+    scendict = dict()
+    scendict['No interventions'] = []
+    scendict['Baseline'] = make_st(future_screen_cov=0.18, **st_defaults)
+
+    for cov_val in [.18, .35, .70]:
+        scendict[f'S&T&T {cov_val*100:.0f}%'] = make_st(
+            future_screen_cov=cov_val, **st_defaults)
+        scendict[f'S&T {cov_val*100:.0f}%'] = make_st(
+            future_screen_cov=cov_val,
+            tx_assigner_csv='tx_assigner_no_triage', **st_defaults)
+        scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = make_st(
+            future_screen_cov=cov_val,
+            txv_pars='precin', txv=True, **st_defaults)
+        scendict[f'S&TxV {cov_val*100:.0f}%'] = make_st(
+            future_screen_cov=cov_val,
+            txv_pars='cin', txv=True, **st_defaults)
+
+    for cov in [0.18, 0.35, 0.7]:
+        scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(
+            txv_pars='precin', campaign_coverage=cov,
+            intro_year=y, end_year=end_year, st_kwargs=st_kwargs)
+        scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
+            txv_pars='cin', campaign_coverage=cov,
+            intro_year=y, end_year=end_year, st_kwargs=st_kwargs)
+        scendict[f'HPV-Faster {cov*100:.0f}%'] = make_st_older(
+            screen_cov=cov, age_range=[20, 50],
+            start_year=y, end_year=end_year)
+
+    return scendict
+
+
 def make_sims(scenarios=None, end=2100, top_pars=None):
     """One flat list of sims (n_scenarios * n_reps) labelled by scenario.
 
@@ -213,15 +269,16 @@ def process_msim(msim, scenarios):
 BASELINE_SCEN = 'S&T&T 18%'
 
 
-def save_csvs(long, resfolder='results'):
+def save_csvs(long, resfolder='results', cum_start_year=CUM_START_YEAR):
     """Plot-ready CSVs from the long-format ensemble DataFrame:
 
     - scens_timeseries.csv: (scenario, metric, year) -> median/lo/hi
-    - scens_cumulative.csv: (scenario, metric) -> median/lo/hi of the 2025-2100 sum
+    - scens_cumulative.csv: (scenario, metric) -> median/lo/hi of the
+      cum_start_year..end sum
     - scens_paired.csv:     (scenario, metric) -> median/lo/hi of the paired
       diff (baseline sum - scenario sum) per sim. Positive = averted vs
       status quo. Baseline scenario itself is a row of zeros.
-    - scens_per_sim.csv:    (scenario, sim, metric) -> 2025-2100 sum.
+    - scens_per_sim.csv:    (scenario, sim, metric) -> cum_start_year..end sum.
       Kept so plot scripts can derive ratios (e.g. treatments per cancer
       averted) per-sim rather than from medians.
     """
@@ -236,7 +293,7 @@ def save_csvs(long, resfolder='results'):
           .reset_index())
     ts.to_csv(f'{resfolder}/scens_timeseries.csv', index=False)
 
-    per_sim = (long[long.year >= CUM_START_YEAR]
+    per_sim = (long[long.year >= cum_start_year]
                .groupby(['scenario', 'sim', 'metric'])['value'].sum()
                .reset_index())
     cum = (per_sim.groupby(['scenario', 'metric'])['value'].agg(**q)
@@ -277,12 +334,22 @@ if __name__ == '__main__':
                         help='Run scenarios on the VM (heavy); otherwise only re-extract CSVs')
     parser.add_argument('--end', type=int, default=2100)
     parser.add_argument('--resfolder', default='results')
+    parser.add_argument('--scenario-set', choices=['default', 'normalized'],
+                        default='default',
+                        help='default = 2020-start (paper baseline); '
+                             'normalized = all new interventions start in --intv-start-year')
+    parser.add_argument('--intv-start-year', type=int, default=2030,
+                        help='For --scenario-set normalized: year every new intervention begins')
     args = parser.parse_args()
 
     T = sc.timer()
-    scenarios = sc.mergedicts(make_baselines(args.end),
-                              make_st_scenarios(args.end),
-                              make_campaign_scenarios(args.end))
+    if args.scenario_set == 'normalized':
+        scenarios = make_normalized_scenarios(
+            intv_start_year=args.intv_start_year, end_year=args.end)
+    else:
+        scenarios = sc.mergedicts(make_baselines(args.end),
+                                  make_st_scenarios(args.end),
+                                  make_campaign_scenarios(args.end))
 
     if args.run_sim:
         msim = run_sims(scenarios=scenarios, end=args.end)
@@ -291,6 +358,7 @@ if __name__ == '__main__':
     else:
         msim_dict = sc.loadobj(f'{args.resfolder}/st_scens.obj')
 
-    save_csvs(msim_dict, resfolder=args.resfolder)
-    print(f'Saved scens_timeseries.csv + scens_cumulative.csv to {args.resfolder}/')
+    cum_start = args.intv_start_year if args.scenario_set == 'normalized' else CUM_START_YEAR
+    save_csvs(msim_dict, resfolder=args.resfolder, cum_start_year=cum_start)
+    print(f'Saved scens_*.csv to {args.resfolder}/ (cum accounting from {cum_start})')
     T.toc('Done')
