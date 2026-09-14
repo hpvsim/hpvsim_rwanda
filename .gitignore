@@ -15,6 +15,11 @@ results/*.sim
 results/*.msim
 results/*.csv
 
+# Diagnostic sweeps produce per-cancer row dumps that are large and
+# regenerable. Keep the small aggregates (summary.csv, q1_change_year.csv)
+# committed for the write-up.
+results/diagnostic/cancer_rows.csv
+
 # Archives
 results/*.zip
 *.zip
