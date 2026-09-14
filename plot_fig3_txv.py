@@ -16,7 +16,7 @@ import utils as ut
 
 def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
     ut.set_font(20)
-    ts_df, cum_df = ut.load_scens(resfolder)
+    ts_df, cum_df, paired_df, per_sim_df = ut.load_scens(resfolder)
 
     fig = pl.figure(layout="tight", figsize=(18, 10))
     gs = fig.add_gridspec(2, 3)
@@ -40,16 +40,19 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
     def cum(scen, metric):
         return ut.get_cum(cum_df, scen, metric)[0]
 
+    def stack(scen_keys, metric):
+        med, lo, hi = zip(*(ut.get_cum(cum_df, k, metric) for k in scen_keys))
+        return list(med), list(lo), list(hi)
+
     # ---- A: Cumulative cancers ----
     ax = fig.add_subplot(gs[0, 0])
     for idx, (strat_label, strat_key) in enumerate(strategies.items()):
-        cum_res = []
-        for cov in coverage_levels:
-            scen_key = f'{strat_key} {cov}'
-            v, lb, ub = ut.get_cum(cum_df, scen_key, 'cancers')
-            print(f'{scen_key}: {v:.0f} ({lb:.0f}, {ub:.0f}) cancers')
-            cum_res.append(v)
-        ax.bar(x + offsets[idx], cum_res, width=bar_width, color=colors[idx], label=strat_label)
+        keys = [f'{strat_key} {cov}' for cov in coverage_levels]
+        med, lo, hi = stack(keys, 'cancers')
+        for k, v, l, h in zip(keys, med, lo, hi):
+            print(f'{k}: {v:.0f} ({l:.0f}, {h:.0f}) cancers')
+        ax.bar(x + offsets[idx], med, width=bar_width, color=colors[idx], label=strat_label,
+               yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
     ax.set_title('Cumulative cancers\n2025-2100'); sc.SIticks()
     ax.set_xlabel('')
@@ -60,27 +63,36 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
     # ---- B: Cumulative cancers in HIV+ ----
     ax = fig.add_subplot(gs[0, 1])
     for idx, (strat_label, strat_key) in enumerate(strategies.items()):
-        hiv_res = [cum(f'{strat_key} {cov}', 'cancers_with_hiv') for cov in coverage_levels]
-        ax.bar(x + offsets[idx], hiv_res, width=bar_width, color=colors[idx], label=strat_label)
+        keys = [f'{strat_key} {cov}' for cov in coverage_levels]
+        med, lo, hi = stack(keys, 'cancers_with_hiv')
+        ax.bar(x + offsets[idx], med, width=bar_width, color=colors[idx], label=strat_label,
+               yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
     ax.set_title('Cumulative cancers in HIV+ women\n2025-2100'); sc.SIticks()
     ax.set_xlabel('')
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'B', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
-    # ---- C: Combined resource use ----
+    # ---- C: Combined resource use (stacked; error bars on total) ----
     ax = fig.add_subplot(gs[0, 2])
     for idx, (strat_label, strat_key) in enumerate(strategies.items()):
-        ablations = []
-        therapeutics = []
-        for cov in coverage_levels:
-            scen_key = f'{strat_key} {cov}'
-            abl = cum(scen_key, 'ablations')
-            txv = cum(scen_key, 'txvs')
-            print(f'{scen_key}: {abl:.0f} ablations, {txv:.0f} therapeutics')
-            ablations.append(abl); therapeutics.append(txv)
-        ax.bar(x + offsets[idx], ablations, width=bar_width, color=colors[idx])
-        ax.bar(x + offsets[idx], therapeutics, width=bar_width, bottom=ablations,
-               color='none', edgecolor=colors[idx], hatch='//', linewidth=1.5)
+        keys = [f'{strat_key} {cov}' for cov in coverage_levels]
+        m_abl, l_abl, h_abl = stack(keys, 'ablations')
+        m_tx, l_tx, h_tx = stack(keys, 'txvs')
+        total_med = [a + t for a, t in zip(m_abl, m_tx)]
+        # per-sim totals for the combined bar's error bars
+        med, lo, hi = [], [], []
+        for k in keys:
+            sub_a = per_sim_df[(per_sim_df.scenario == k) & (per_sim_df.metric == 'ablations')]['value'].values
+            sub_t = per_sim_df[(per_sim_df.scenario == k) & (per_sim_df.metric == 'txvs')]['value'].values
+            tot = sub_a + sub_t if len(sub_a) == len(sub_t) else sub_a
+            med.append(float(np.median(tot))); lo.append(float(np.quantile(tot, 0.1))); hi.append(float(np.quantile(tot, 0.9)))
+        for k, a, t in zip(keys, m_abl, m_tx):
+            print(f'{k}: {a:.0f} ablations, {t:.0f} therapeutics')
+        ax.bar(x + offsets[idx], m_abl, width=bar_width, color=colors[idx])
+        ax.bar(x + offsets[idx], m_tx, width=bar_width, bottom=m_abl,
+               color='none', edgecolor=colors[idx], hatch='//', linewidth=1.5,
+               yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
     ax.set_title('Cumulative treatments\n2025-2100'); sc.SIticks()
     ax.set_xlabel('')
@@ -88,6 +100,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
         Patch(facecolor='gray', label='Ablations'),
         Patch(facecolor='white', edgecolor='k', hatch='//', label='Therapeutics'),
     ], loc='upper left', frameon=False, fontsize=16)
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- D: Time series ----
@@ -109,34 +122,41 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
     ax.legend(handles=strat_handles, loc='upper right', bbox_to_anchor=(1, 0.8), frameon=False)
     ax.text(-0.05, 1.2, 'D', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
-    # ---- E: Total treatments per cancer averted ----
+    # ---- E: Total treatments per cancer averted (per-sim ratio, median +/- 10/90) ----
     ax = fig.add_subplot(gs[1, 2])
-    baseline_cancers = cum('S&T&T 18%', 'cancers')
-    for idx, (strat_label, strat_key) in enumerate(strategies.items()):
-        treatments_per_cancer = []
-        for cov in coverage_levels:
-            scen_key = f'{strat_key} {cov}'
-            if scen_key == 'S&T&T 18%':
-                treatments_per_cancer.append(0)
-                continue
-            cancers = cum(scen_key, 'cancers')
-            averted = baseline_cancers - cancers
-            total = cum(scen_key, 'ablations') + cum(scen_key, 'txvs')
-            ratio = total / averted if averted > 0 else 0
-            treatments_per_cancer.append(ratio)
-            print(f'{scen_key}: {ratio:.1f} treatments per cancer averted')
+    def ratio_stats(scen_key, num_metrics=('ablations', 'txvs')):
+        pv = per_sim_df[per_sim_df.scenario == scen_key].set_index(['sim', 'metric'])['value']
+        base = per_sim_df[per_sim_df.scenario == 'S&T&T 18%'].set_index(['sim', 'metric'])['value']
+        sims = pv.index.get_level_values('sim').unique()
+        ratios = []
+        for s in sims:
+            averted = base.loc[(s, 'cancers')] - pv.loc[(s, 'cancers')]
+            if averted > 0:
+                total = sum(pv.loc[(s, m)] for m in num_metrics if (s, m) in pv.index)
+                ratios.append(total / averted)
+        if not ratios:
+            return 0.0, 0.0, 0.0
+        arr = np.asarray(ratios)
+        return float(np.median(arr)), float(np.quantile(arr, 0.1)), float(np.quantile(arr, 0.9))
 
+    for idx, (strat_label, strat_key) in enumerate(strategies.items()):
+        keys = [f'{strat_key} {cov}' for cov in coverage_levels]
+        stats = [ratio_stats(k) if k != 'S&T&T 18%' else (0.0, 0.0, 0.0) for k in keys]
+        med, lo, hi = zip(*stats)
+        for k, m in zip(keys, med):
+            print(f'{k}: {m:.1f} treatments per cancer averted')
         if strat_key == 'S&T&T':
-            x_plot = x[1:] + offsets[idx]
-            values_plot = treatments_per_cancer[1:]
+            slc = slice(1, None)
+            ax.bar((x + offsets[idx])[slc], med[slc], width=bar_width, color=colors[idx], label=strat_label,
+                   yerr=ut.yerr(med[slc], lo[slc], hi[slc]), capsize=3, ecolor='0.4')
         else:
-            x_plot = x + offsets[idx]
-            values_plot = treatments_per_cancer
-        ax.bar(x_plot, values_plot, width=bar_width, color=colors[idx], label=strat_label)
+            ax.bar(x + offsets[idx], med, width=bar_width, color=colors[idx], label=strat_label,
+                   yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
 
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
     ax.set_title('Total treatments per cancer averted\n2025-2100')
     ax.set_xlabel('')
+    ax.set_ylim(bottom=0)
     ax.text(*text_height, 'E', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     fig.tight_layout()

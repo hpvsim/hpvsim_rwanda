@@ -37,7 +37,9 @@ TS_METRICS = ['asr_cancer_incidence', 'cancer_incidence',
 # (cancers / cancer_deaths); v3 exposes them as new_cancers / new_cancer_deaths
 # on sim.results.all_hpv, mapped via _V3_ALIAS.
 CUM_METRICS_BOUNDED = ['cancers', 'cancers_with_hiv', 'cancers_no_hiv', 'cancer_deaths']
-_V3_ALIAS = {'cancers': 'new_cancers', 'cancer_deaths': 'new_cancer_deaths'}
+_V3_ALIAS = {'cancers': 'new_cancers', 'cancer_deaths': 'new_cancer_deaths',
+             'cancers_with_hiv': 'new_cancers_with_hiv',
+             'cancers_no_hiv': 'new_cancers_no_hiv'}
 
 CUM_START_YEAR = 2025
 
@@ -93,7 +95,7 @@ def make_baselines(end_year=2100):
     """
     scendict = dict()
     scendict['No interventions'] = []
-    scendict['Baseline'] = make_st(future_screen_cov=0.18, screen_change_year=2025, end_year=end_year)
+    scendict['Baseline'] = make_st(future_screen_cov=0.18, end_year=end_year)
     return scendict
 
 
@@ -115,7 +117,7 @@ def make_campaign_scenarios(end_year=2100):
             txv_pars='cin', campaign_coverage=cov, end_year=end_year,
         )
         mass_intvs = make_st_older(screen_cov=cov, age_range=age_range,
-                                   start_year=2026, end_year=end_year)
+                                   end_year=end_year)
         scendict[f'HPV-Faster {cov*100:.0f}%'] = mass_intvs
 
     return scendict
@@ -127,21 +129,19 @@ def make_st_scenarios(end_year=2100):
     """
     scendict = dict()
 
-    start_year = 2026
     for cov_val in [.18, .35, .70]:
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val,
-                           end_year=end_year)
+        st_intvs = make_st(future_screen_cov=cov_val, end_year=end_year)
         scendict[f'S&T&T {cov_val*100:.0f}%'] = st_intvs
 
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val,
+        st_intvs = make_st(future_screen_cov=cov_val,
                            tx_assigner_csv='tx_assigner_no_triage', end_year=end_year)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
 
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val,
+        st_intvs = make_st(future_screen_cov=cov_val,
                            txv_pars='precin', txv=True, end_year=end_year)
         scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = st_intvs
 
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val,
+        st_intvs = make_st(future_screen_cov=cov_val,
                            txv_pars='cin', txv=True, end_year=end_year)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
 
@@ -210,8 +210,21 @@ def process_msim(msim, scenarios):
     return pd.concat(frames, ignore_index=True)
 
 
+BASELINE_SCEN = 'S&T&T 18%'
+
+
 def save_csvs(long, resfolder='results'):
-    """Two plot-ready CSVs from the long-format ensemble DataFrame."""
+    """Plot-ready CSVs from the long-format ensemble DataFrame:
+
+    - scens_timeseries.csv: (scenario, metric, year) -> median/lo/hi
+    - scens_cumulative.csv: (scenario, metric) -> median/lo/hi of the 2025-2100 sum
+    - scens_paired.csv:     (scenario, metric) -> median/lo/hi of the paired
+      diff (baseline sum - scenario sum) per sim. Positive = averted vs
+      status quo. Baseline scenario itself is a row of zeros.
+    - scens_per_sim.csv:    (scenario, sim, metric) -> 2025-2100 sum.
+      Kept so plot scripts can derive ratios (e.g. treatments per cancer
+      averted) per-sim rather than from medians.
+    """
     os.makedirs(resfolder, exist_ok=True)
 
     q = {'value': 'median',
@@ -235,6 +248,25 @@ def save_csvs(long, resfolder='results'):
     grid = pd.MultiIndex.from_product([scenarios, metrics], names=['scenario', 'metric'])
     cum = cum.set_index(['scenario', 'metric']).reindex(grid, fill_value=0).reset_index()
     cum.to_csv(f'{resfolder}/scens_cumulative.csv', index=False)
+
+    # Per-sim table (used by fig E panels for per-sim ratios).
+    per_sim_full = (per_sim.set_index(['scenario', 'sim', 'metric'])['value']
+                    .unstack('metric').fillna(0).stack().rename('value').reset_index())
+    per_sim_full.to_csv(f'{resfolder}/scens_per_sim.csv', index=False)
+
+    # Paired diff vs baseline per sim; baseline_sum - scen_sum (positive = averted).
+    baseline_sums = (per_sim[per_sim.scenario == BASELINE_SCEN]
+                     .set_index(['sim', 'metric'])['value'])
+    diffs = per_sim.copy()
+    diffs['diff'] = diffs.apply(
+        lambda r: baseline_sums.get((r['sim'], r['metric']), 0.0) - r['value'], axis=1)
+    paired = (diffs.groupby(['scenario', 'metric'])['diff']
+              .agg(value='median',
+                   low=lambda s: s.quantile(0.10),
+                   high=lambda s: s.quantile(0.90))
+              .reset_index())
+    paired = paired.set_index(['scenario', 'metric']).reindex(grid, fill_value=0).reset_index()
+    paired.to_csv(f'{resfolder}/scens_paired.csv', index=False)
 
 
 # %% Run as a script

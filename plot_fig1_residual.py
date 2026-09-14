@@ -18,7 +18,7 @@ def plot_fig1(resfolder='results', outpath='figures/fig1_residual.png', poster=F
     fs = 20 if not poster else 18
     ut.set_font(fs)
 
-    ts_df, cum_df = ut.load_scens(resfolder)
+    ts_df, cum_df, _, _ = ut.load_scens(resfolder)
 
     figsize = (12, 5) if not poster else (12, 4.5)
     fig = pl.figure(layout="tight", figsize=figsize)
@@ -46,17 +46,16 @@ def plot_fig1(resfolder='results', outpath='figures/fig1_residual.png', poster=F
     ax.legend(linestyle_handles, linestyle_labels, title='', loc='upper right', frameon=False)
 
     # Cumulative cancers 2025-2100
-    cum_res = {sname: ut.get_cum(cum_df, scen_key, 'cancers')[0]
-               for sname, scen_key in this_dict.items()}
+    med, lo, hi = [], [], []
     for sname, scen_key in this_dict.items():
-        val, lb, ub = ut.get_cum(cum_df, scen_key, 'cancers')
-        print(f'{sname}: {val:.0f} ({lb:.0f}, {ub:.0f}) cancers')
+        v, l, h = ut.get_cum(cum_df, scen_key, 'cancers')
+        med.append(v); lo.append(l); hi.append(h)
+        print(f'{sname}: {v:.0f} ({l:.0f}, {h:.0f}) cancers')
 
     ax = fig.add_subplot(gs[2])
-    bars = list(cum_res.values())
-    labels = list(cum_res.keys())
+    labels = list(this_dict.keys())
     x = np.arange(len(labels))
-    ax.bar(x, bars, color='k')
+    ax.bar(x, med, color='k', yerr=ut.yerr(med, lo, hi), capsize=4, ecolor='0.4')
     ax.set_xticks(x)
     xlabels = ['No\ninterventions', 'Status\nquo'] if not poster else ['No vax', 'Status quo']
     ax.set_xticklabels(xlabels)
