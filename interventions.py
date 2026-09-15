@@ -40,7 +40,7 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
             screen_change_year=2027, age_range=[30, 50],
             start_year=2020, end_year=2100, future_treat_cov=0.75,
             txv_pars=None, txv=False, tx_assigner_csv='tx_assigner',
-            txv_start_year=2030):
+            txv_start_year=2030, treat_capacity=None):
     """
     Make screening and treatment interventions.
 
@@ -48,6 +48,12 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
     txv_pars=='cin', and (b) the eligibility gate on linked_txvx. Exposed
     as a parameter for the reviewer-response sensitivity sweep (R1.3,
     intro year 2030->2050).
+
+    treat_capacity caps the number of ablation and excision *agents*
+    treated per timestep (queued to the next timestep otherwise). None =
+    no cap. At n_agents=10K + Rwanda pop_scale, 1 agent/ti ~ 5,200
+    real-world treatments/year - useful for the R2.5 workforce
+    sensitivity.
     """
     # Per-year prob split across pre / post the coverage change year.
     screen_years = np.arange(start_year, end_year + 1)
@@ -109,6 +115,7 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
         prob=future_treat_cov,
         product='ablation',
         eligibility=ablation_eligible,
+        max_capacity=treat_capacity,
     )
 
     def excision_eligible(sim):
@@ -120,6 +127,7 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
         prob=future_treat_cov,
         product='excision',
         eligibility=excision_eligible,
+        max_capacity=treat_capacity,
     )
 
     radiation_eligible = lambda sim: sim.interventions['tx_assigner_intv'].outcomes['radiation']

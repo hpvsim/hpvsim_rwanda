@@ -14,6 +14,8 @@ results/*.pkl
 results/*.sim
 results/*.msim
 results/*.csv
+# ...but paper-ready aggregate tables are tracked
+!results/table_s1.csv
 
 # Diagnostic sweeps produce per-cancer row dumps that are large and
 # regenerable. Keep the small aggregates (summary.csv, q1_change_year.csv)
