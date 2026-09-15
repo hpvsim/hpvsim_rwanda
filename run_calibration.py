@@ -87,14 +87,7 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
         hi5=dict(cin_fn=dict(k=[0.20, 0.15, 0.25, 0.01])),    # default 0.20
         ohr=dict(cin_fn=dict(k=[0.20, 0.15, 0.25, 0.01])),    # default 0.20
 
-        # Sexual network. Cross-layer probabilities are ANNUAL since
-        # hpvsim 2.3.0; v2.2.6 values were per-timestep at dt=0.25, so
-        # converted via ``1 - (1 - p_step)**(1/dt)`` = ``1 - (1 - p)**4``:
-        #   m_cross_layer: v2 [0.3, 0.1, 0.7]  -> v3 [0.76, 0.35, 0.95]
-        #   f_cross_layer: v2 [0.4, 0.05, 0.7] -> v3 [0.87, 0.20, 0.95]
-        # Bounds snapped to 0.05-divisible ranges so Optuna doesn't clamp
-        # them silently. ``*_partners_casual`` are Poisson-lambda;
-        # ``Pars.update`` routes a scalar into ``Dist.set(lam=...)``.
+        # Sexual network
         network=dict(
             m_cross_layer=[0.76, 0.35, 0.95, 0.05],
             f_cross_layer=[0.87, 0.20, 0.95, 0.05],

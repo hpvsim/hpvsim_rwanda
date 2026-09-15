@@ -35,18 +35,12 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
     if stop is None: stop = 2100
     if calib: stop = 2025
 
-    # Runtime pars (route through hpv.route_pars, accepts dotted calib keys).
-    # v2 'lognormal' took the mean/std of the lognormal itself, which is ss.lognorm_ex.
-    # v2 'poisson1' was Poisson + 1; v3 applies the +1 shift inside the network.
-    # Debut / layer_probs / partner distributions were fitted to 2019-20 DHS
-    # per-timestep at dt=0.25 under v2.2.6; layer probs are converted to the
-    # v2.3+ annual convention via 1 - (1 - p)**(1/dt). See
-    # https://www.researchsquare.com/article/rs-3074559/v1.
+    # Runtime pars
     pars = sc.objdict(
         ms_agent_ratio=100,
         verbose=0.0,
-        debut_f=ss.lognorm_ex(mean=20.96, std=3.34),
-        debut_m=ss.lognorm_ex(mean=17.91, std=2.83),
+        debut_f=ss.normal(mean=21.0, std=3.34),
+        debut_m=ss.normal(mean=22.5, std=2.83),
         layer_probs_marital=np.array([
             [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
             [0.0000, 0.0000, 0.0963, 0.0452, 0.4914, 0.7772, 0.8593, 0.8772, 0.8546, 0.8033, 0.7237, 0.5904, 0.5904, 0.5904, 0.5904, 0.5904],
