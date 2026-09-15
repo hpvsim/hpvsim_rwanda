@@ -18,9 +18,11 @@ results/*.csv
 !results/table_s1.csv
 
 # Diagnostic sweeps produce per-cancer row dumps that are large and
-# regenerable. Keep the small aggregates (summary.csv, q1_change_year.csv)
-# committed for the write-up.
-results/diagnostic/cancer_rows.csv
+# regenerable. Keep the small aggregates (summary.csv, residual_*.csv,
+# q1_change_year.csv) committed for the write-up.
+results/diagnostic*/cancer_rows.csv
+results/*.log
+results/diagnostic_smoketest/
 
 # Archives
 results/*.zip
