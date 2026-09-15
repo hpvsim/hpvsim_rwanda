@@ -70,6 +70,29 @@ def by_age_causal(df, scenario, bins=(0, 20, 30, 40, 50, 60, 200)):
                          'share_pct': (med / total * 100).round(1)})
 
 
+def age_causal_novax_vs_baseline(df, bins=(0, 20, 30, 40, 50, 60, 200)):
+    """Side-by-side comparison of age at causal HPV infection under
+    No interventions (no vax, no screening) vs Baseline (vax + status-quo
+    screening). Shows that routine vaccination shifts the age
+    distribution of causal HPV infection later - i.e., protects the
+    younger cohorts."""
+    scens = ['No interventions', 'Baseline']
+    scens = [s for s in scens if s in df.scenario.unique()]
+    if len(scens) < 2:
+        return None
+    out = {}
+    for scen in scens:
+        sub = df[df.scenario == scen].copy()
+        sub['age_causal_bin'] = pd.cut(sub['age_causal'], bins=bins, right=False)
+        per_rep = (sub.groupby(['rep', 'age_causal_bin'], observed=True)['weight']
+                      .sum().unstack('age_causal_bin', fill_value=0))
+        med = per_rep.median(axis=0)
+        total = med.sum()
+        out[f'{scen}: n'] = med.round(0).astype(int)
+        out[f'{scen}: %'] = (med / total * 100).round(1)
+    return pd.DataFrame(out)
+
+
 def by_hiv(df, scenario):
     """§2c: share of residual that is HIV+."""
     sub = df[df.scenario == scenario].copy()
@@ -165,6 +188,13 @@ def main():
     print('\n=== §1: Cumulative cancers per scenario (2030-2100) ===')
     print(totals.to_string())
 
+    # §2b bonus: age-at-infection under No interventions vs Baseline
+    cmp_age = age_causal_novax_vs_baseline(df)
+    if cmp_age is not None:
+        cmp_age.to_csv(f'{args.outdir}/residual_age_causal_novax_vs_baseline.csv')
+        print('\n=== §2b bonus: age at causal HPV infection - vax vs no vax ===')
+        print(cmp_age.to_string())
+
     # Pick the best-performing intervention scenario as the "residual"
     intv_scens = [s for s in totals.index if s not in ('No interventions',)]
     best = totals.loc[intv_scens, 'median'].idxmin()
@@ -172,8 +202,16 @@ def main():
     print(f'Residual: {int(totals.loc[best, "median"]):,} '
           f'[{int(totals.loc[best, "p10"]):,}, {int(totals.loc[best, "p90"]):,}]')
 
-    # §2-4 for the best scenario
-    for scen in [best] + (['Baseline'] if 'Baseline' in totals.index else []):
+    # §2-4 for the best scenario, Baseline, and any TxV scenario present
+    # (S&TxV's 8% bucket-3 is a specific policy talking point: TxV is
+    # delivered directly at the screening visit, so LTFU protection is
+    # what TxV effectively buys vs. HPV-Faster's triage-then-ablate chain.)
+    focus = [best]
+    for s in ['Baseline', 'S&TxV 70%', 'No interventions']:
+        if s in totals.index and s not in focus:
+            focus.append(s)
+
+    for scen in focus:
         tag = scen.replace(' ', '_').replace('&', 'and').replace('/', '_').replace(',', '')
 
         by_birth = by_birth_cohort(df, scen)

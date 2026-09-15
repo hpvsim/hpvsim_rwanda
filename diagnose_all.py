@@ -226,11 +226,16 @@ def build_normalized_scenarios(intv_start_year=2030, end_year=2100):
 def run_one(name, top_par, seed_idx, end=2100, intvs=None):
     """intvs, if supplied, overrides the scenario-name dispatch. Used by
     the normalized-set entrypoint to hand the pre-built interventions in
-    directly."""
+    directly.
+
+    'No interventions' scenario drops routine bivalent vax as well as S&T
+    (matches the paper's run_scenarios convention). Every other scenario
+    keeps the routine vax program running from 2011."""
     _reset_trackers()
     if intvs is None:
         intvs = build_scenario_intvs(name, end=end)
-    sim = rs.make_sim(add_st=False, interventions=intvs,
+    add_vax = name != 'No interventions'
+    sim = rs.make_sim(add_st=False, add_vax=add_vax, interventions=intvs,
                       analyzers=[ScenTracker()],
                       stop=end, calib_pars=top_par)
     sim.run(verbose=0)
