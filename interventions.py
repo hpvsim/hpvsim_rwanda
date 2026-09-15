@@ -36,11 +36,25 @@ def make_hpv_test(name='hpv_test'):
     )
 
 
+def make_via_test(name='via_test'):
+    """VIA (visual inspection with acetic acid) diagnostic.
+
+    Sensitivity by stage: precin 15%, cin 55%, cancerous 80%,
+    specificity ~95%. Used for the R2.6 primary-test sensitivity sweep.
+    """
+    return hpv.dx(
+        name=name,
+        df=pd.read_csv('via.csv'),
+        hierarchy=['positive', 'inadequate', 'negative'],
+    )
+
+
 def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
             screen_change_year=2027, age_range=[30, 50],
             start_year=2020, end_year=2100, future_treat_cov=0.75,
             txv_pars=None, txv=False, tx_assigner_csv='tx_assigner',
-            txv_start_year=2030, treat_capacity=None):
+            txv_start_year=2030, treat_capacity=None,
+            txv_efficacy_mult=1.0):
     """
     Make screening and treatment interventions.
 
@@ -141,8 +155,12 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
     st_intvs += [assign_treatment, ablation, excision, radiation]
 
     if txv:
+        txv_df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
+        if txv_efficacy_mult != 1.0:
+            txv_df = txv_df.copy()
+            txv_df['efficacy'] = (txv_df['efficacy'] * txv_efficacy_mult).clip(0, 1)
         txv_prod = hpv.txvx(
-            df=pd.read_csv(f'txvx_pars_{txv_pars}.csv'),
+            df=txv_df,
             imm_init=ss.uniform(low=0.49, high=0.51),
         )
         def txv_eligible(sim):
@@ -160,14 +178,19 @@ def make_st(primary=None, prev_screen_cov=0.1, future_screen_cov=0.18,
 
 
 def make_mv_intvs(campaign_coverage=None, txv_pars=None, intro_year=2030,
-                  campaign_age=[20, 50], end_year=2100, st_kwargs=None):
+                  campaign_age=[20, 50], end_year=2100, st_kwargs=None,
+                  txv_efficacy_mult=1.0):
     """Mass therapeutic vaccination campaign, layered on top of baseline S&T.
 
     st_kwargs is forwarded to the nested make_st() so the normalized-start
     scenario set can strip the pre-2030 screening history.
     """
+    txv_df = pd.read_csv(f'txvx_pars_{txv_pars}.csv')
+    if txv_efficacy_mult != 1.0:
+        txv_df = txv_df.copy()
+        txv_df['efficacy'] = (txv_df['efficacy'] * txv_efficacy_mult).clip(0, 1)
     txv_prod = hpv.txvx(
-        df=pd.read_csv(f'txvx_pars_{txv_pars}.csv'),
+        df=txv_df,
         imm_init=ss.uniform(low=0.49, high=0.51),
     )
 
