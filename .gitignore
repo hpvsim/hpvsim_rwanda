@@ -23,6 +23,10 @@ results/*.csv
 results/diagnostic*/cancer_rows.csv
 results/*.log
 results/diagnostic_smoketest/
+# Scratch folder for the vax-off re-run of 'No interventions';
+# its rows are merged into results/diagnostic_normalized/cancer_rows.csv
+# by analyze_residual.py.
+results/diagnostic_normalized_novax/
 
 # Archives
 results/*.zip
