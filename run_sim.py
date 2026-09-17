@@ -39,21 +39,29 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
     pars = sc.objdict(
         ms_agent_ratio=100,
         verbose=0.0,
-        debut_f=ss.normal(mean=21.0, std=3.34),
-        debut_m=ss.normal(mean=22.5, std=2.83),
+        debut_f=ss.normal(21.0, 1.5),  # 95/99% bewteen 18-24
+        debut_m=ss.normal(22.5, 1.5),  # 95/99% bewteen 19.5-25.5
         layer_probs_marital=np.array([
-            [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
-            [0.0000, 0.0000, 0.0963, 0.0452, 0.4914, 0.7772, 0.8593, 0.8772, 0.8546, 0.8033, 0.7237, 0.5904, 0.5904, 0.5904, 0.5904, 0.5904],
-            [0.0000, 0.0000, 0.0394, 0.0889, 0.7746, 0.9804, 0.9974, 0.9989, 0.9970, 0.9879, 0.9919, 0.9984, 0.9919, 0.9744, 0.9375, 0.9744]]),
+            [0, 5, 10,   15,  20,  25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
+            [0, 0, 0.1, 0.4, 0.7, 0.9, 0.9, 0.9, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.4, 0.3],
+            [0, 0, 0.1, 0.4, 0.7, 0.7, 0.8, 0.9, 0.9, 0.9, 0.9, 0.8, 0.7, 0.7, 0.6, 0.5]]),
         layer_probs_casual=np.array([
-            [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75],
-            [0.0000, 0.0000, 0.3439, 0.9744, 0.7599, 0.5904, 0.5904, 0.5904, 0.5904, 0.1855, 0.0394, 0.0394, 0.0394, 0.0394, 0.0394, 0.0394],
-            [0.0000, 0.0000, 0.3439, 0.7599, 0.8704, 0.7599, 0.7599, 0.8704, 0.9375, 0.9375, 0.0394, 0.0394, 0.0394, 0.0394, 0.0394, 0.0394]]),
+            [0, 5,  10,  15,  20,  25,  30,  35,  40,  45,  50,   55,   60,   65,  70,  75],
+            [0, 0, 0.2, 0.9, 0.8, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0.05, 0.05, 0.05, 0.00, 0],
+            [0, 0, 0.0, 0.5, 0.7, 0.7, 0.7, 0.7, 0.6, 0.5, 0.4,  0.3, 0.10, 0.10, 0.05, 0]]),
         m_partners_marital=ss.poisson(lam=0.01),
         m_partners_casual=ss.poisson(lam=0.2),
         f_partners_marital=ss.poisson(lam=0.01),
         f_partners_casual=ss.poisson(lam=0.2),
     )
+
+    for gtype in ('hpv16', 'hpv18', 'hi5', 'ohr'):
+        pars[gtype] = dict(
+            dur_undetected=ss.lognorm_ex(mean=ss.years(5), std=ss.years(2)),
+            dur_cancer=ss.lognorm_ex(mean=ss.years(12), std=ss.years(3)),
+            sero_prob=0.8,
+        )
+
 
     if calib_pars is None and use_calib:
         calib_pars = sc.loadobj('results/rwanda_pars.obj')
@@ -64,8 +72,6 @@ def make_sim(calib=False, calib_pars=None, use_calib=True, debug=debug, add_vax=
         if 'rand_seed' in pars:
             seed = int(pars.pop('rand_seed'))
 
-    # v2 used `art_failure_prob=0.1`; v3 complement is `p_effective_art`
-    # (Bernoulli p that an ART recipient becomes virally suppressed).
     base_hiv = dict(p_effective_art=0.9)
     hiv_pars = sc.mergedicts(base_hiv, hiv_pars)
 

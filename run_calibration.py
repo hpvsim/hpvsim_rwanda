@@ -26,7 +26,7 @@ import run_sim as rs
 
 # Run settings
 debug = False
-n_trials = [3000, 10][debug]
+n_trials = [1500, 10][debug]
 n_workers = 75
 n_to_save = 500
 
@@ -75,37 +75,51 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
         f'{dataloc}_cancer_types.csv',
     ]
 
-    # v3 nested calib_pars: top-level keys are scopes (broadcast, per-genotype,
-    # network, hiv); leaves are ``[best, low, high, step]`` lists.
-    # cin_fn.k priors sit tight (+/-0.05) around the shipped defaults per
-    # genotype -- natural history doesn't vary much between countries.
-    calib_pars = dict(
-        beta=[0.05, 0.02, 0.5, 0.02],
+    # calib_pars: pre-branch base (beta + per-genotype cin_fn.k + full network
+    # + HIV) plus the three natural-history knobs added on this branch
+    # (age_risk multiplier, imm_init floor, cell_imm_init floor). Detection
+    # lag (dur_undetected) is pinned in run_sim.py, not fit here.
+    calib_pars = {
+        'beta': [0.05, 0.02, 0.7, 0.02],
 
-        hpv16=dict(cin_fn=dict(k=[0.30, 0.25, 0.35, 0.01])),  # default 0.30
-        hpv18=dict(cin_fn=dict(k=[0.25, 0.20, 0.30, 0.01])),  # default 0.25
-        hi5=dict(cin_fn=dict(k=[0.20, 0.15, 0.25, 0.01])),    # default 0.20
-        ohr=dict(cin_fn=dict(k=[0.20, 0.15, 0.25, 0.01])),    # default 0.20
+        # cin_fn.k priors sit tight (+/-0.05) around the shipped defaults per
+        # genotype -- natural history doesn't vary much between countries.
+        'hpv16': {'cin_fn': {'k': [0.30, 0.25, 0.35, 0.01]}},  # default 0.30
+        'hpv18': {'cin_fn': {'k': [0.25, 0.20, 0.30, 0.01]}},  # default 0.25
+        'hi5':   {'cin_fn': {'k': [0.20, 0.15, 0.25, 0.01]}},  # default 0.20
+        'ohr':   {'cin_fn': {'k': [0.20, 0.15, 0.25, 0.01]}},  # default 0.20
 
-        # Sexual network
-        network=dict(
-            m_cross_layer=[0.76, 0.35, 0.95, 0.05],
-            f_cross_layer=[0.87, 0.20, 0.95, 0.05],
-            m_partners_casual=[0.5, 0.1, 0.6, 0.05],
-            f_partners_casual=[0.2, 0.1, 0.6, 0.05],
-        ),
+        # Multiplier on dur_cin for women >=age_risk.age (30, unchanged);
+        # smooth ramp ends at age_risk.age_end=50. Default risk=2; higher
+        # pushes cancer to older ages.
+        'age_risk': {'risk': [2.0, 1.5, 3.5, 0.25]},
 
-        # HIV. v2's ``rel_sus.lt200`` / ``.gt200`` map to v3's ``rel_sus_lo``
-        # (CD4 < cd4_threshold=200) and ``rel_sus_hi`` (CD4 >= 200). v2's
-        # ``art_failure_prob`` becomes v3's ``p_effective_art = 1 - failure``.
-        hiv=dict(
-            rel_sus_lo=[2.25, 2, 5, 0.25],
-            rel_sus_hi=[2.25, 2, 4, 0.25],
-            rel_sev_lo=[2.25, 1.5, 5, 0.25],
-            rel_sev_hi=[2.25, 1.5, 5, 0.25],
-            p_effective_art=[0.9, 0.7, 0.95, 0.01],
-        ),
-    )
+        # Post-clearance immunity floors. ss.uniform(low, high) defaults are
+        # low=0.5, high=0.95 for imm_init (humoral) and low=0.3, high=0.9 for
+        # cell_imm_init (severity). Calibrating the LOW endpoint slides the
+        # whole distribution up while keeping the ceiling fixed -- i.e. floor
+        # of protection is fit, ceiling is biology.
+        'imm_init':      {'low': [0.5, 0.3, 0.85, 0.05]},
+        'cell_imm_init': {'low': [0.3, 0.2, 0.7,  0.05]},
+
+        # Sexual network. cross_layer is annual probability of also being in
+        # the other layer; defaults m=0.76, f=0.185.
+        'network': {
+            'm_cross_layer':     [0.76, 0.35, 0.95, 0.05],
+            'f_cross_layer':     [0.87, 0.20, 0.95, 0.05],
+            'm_partners_casual': [0.5,  0.1,  0.6,  0.05],
+            'f_partners_casual': [0.2,  0.1,  0.6,  0.05],
+        },
+
+        # HIV
+        'hiv': {
+            'rel_sus_lo':      [2.25, 2,   5,    0.25],
+            'rel_sus_hi':      [2.25, 2,   4,    0.25],
+            'rel_sev_lo':      [2.25, 1.5, 5,    0.25],
+            'rel_sev_hi':      [2.25, 1.5, 5,    0.25],
+            'p_effective_art': [0.9,  0.7, 0.95, 0.01],
+        },
+    }
 
     # reseed=True makes rand_seed a searched par; the best trial saves both
     # (pars, rand_seed) so the fit is exactly reproducible. Otherwise, all
@@ -120,9 +134,7 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
     calib.calibrate()
 
     filename = f'rwanda_calib{filestem}'
-    if do_plot:
-        os.makedirs('figures', exist_ok=True)
-        hpv.plot_calibration(calib, fig_path=f'figures/{filename}.png')
+    # Save FIRST so a plot failure never loses a completed calibration.
     if do_save:
         # Two-tier artifact: raw_results/ is the full untracked calib
         # (needed for hpv.make_calib_sims re-runs); results/ is the shrunk,
@@ -133,6 +145,13 @@ def run_calib(n_trials=None, n_workers=None, do_plot=False, do_save=True,
         shrunk = calib.shrink(n_results=n_to_save or 500)
         sc.saveobj(f'results/{filename}.obj', shrunk)
         sc.saveobj(f'results/rwanda_pars{filestem}.obj', calib.best_pars)
+    if do_plot:
+        import matplotlib.pyplot as plt
+        os.makedirs('figures', exist_ok=True)
+        # plot_calibration returns the Figure it drew into.
+        fig = hpv.plot_calibration(calib)
+        fig.savefig(f'figures/{filename}.png', bbox_inches='tight')
+        plt.close(fig)
 
     print(f'Best pars are {calib.best_pars}')
     return sim, calib
@@ -286,8 +305,11 @@ if __name__ == '__main__':
         calib = sc.load(f'{args.resfolder}/rwanda_calib.obj')
 
     if args.plot:
+        import matplotlib.pyplot as plt
         os.makedirs('figures', exist_ok=True)
-        hpv.plot_calibration(calib, fig_path='figures/rwanda_calib.png')
+        fig = hpv.plot_calibration(calib)
+        fig.savefig('figures/rwanda_calib.png', bbox_inches='tight')
+        plt.close(fig)
 
     if args.extract_csvs:
         save_calib_results(calib, resfolder=args.resfolder)
