@@ -41,7 +41,7 @@ _V3_ALIAS = {'cancers': 'new_cancers', 'cancer_deaths': 'new_cancer_deaths',
              'cancers_with_hiv': 'new_cancers_with_hiv',
              'cancers_no_hiv': 'new_cancers_no_hiv'}
 
-CUM_START_YEAR = 2025
+CUM_START_YEAR = 2030
 
 # v3 per-intervention flow counter for each program bucket. Names match
 # the intervention `name=` in interventions.py.
@@ -144,62 +144,6 @@ def make_st_scenarios(end_year=2100):
         st_intvs = make_st(future_screen_cov=cov_val,
                            txv_pars='cin', txv=True, end_year=end_year)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
-
-    return scendict
-
-
-def make_normalized_scenarios(intv_start_year=2030, end_year=2100):
-    """
-    Normalized-comparison scenario set: every new intervention starts in
-    the same year (default 2030) so the 2030-end_year cumulative counts are
-    directly comparable. Routine prophylactic vaccination (from 2011) is
-    unchanged; only the screen-and-treat / campaign layers are gated.
-
-    The pre-intv_start_year screening history is stripped by setting
-    screen_change_year = intv_start_year - 1, which zeros out the length
-    of the "prev coverage" segment inside make_st.
-
-    Used for the residual analysis (Phase 3) and as the base for the
-    reviewer-response sensitivity sweeps (TxV intro year, workforce cap,
-    TxV efficacy assumptions).
-    """
-    y = intv_start_year
-    # st_kwargs is forwarded to nested make_st via make_mv_intvs, which owns
-    # end_year, so keep end_year out of st_kwargs to avoid a duplicate kwarg.
-    st_kwargs = dict(
-        start_year=y,
-        screen_change_year=y - 1,   # no phase-in
-        txv_start_year=y,
-    )
-    st_defaults = {**st_kwargs, 'end_year': end_year}
-
-    scendict = dict()
-    scendict['No interventions'] = []
-    scendict['Baseline'] = make_st(future_screen_cov=0.18, **st_defaults)
-
-    for cov_val in [.18, .35, .70]:
-        scendict[f'S&T&T {cov_val*100:.0f}%'] = make_st(
-            future_screen_cov=cov_val, **st_defaults)
-        scendict[f'S&T {cov_val*100:.0f}%'] = make_st(
-            future_screen_cov=cov_val,
-            tx_assigner_csv='tx_assigner_no_triage', **st_defaults)
-        scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = make_st(
-            future_screen_cov=cov_val,
-            txv_pars='precin', txv=True, **st_defaults)
-        scendict[f'S&TxV {cov_val*100:.0f}%'] = make_st(
-            future_screen_cov=cov_val,
-            txv_pars='cin', txv=True, **st_defaults)
-
-    for cov in [0.18, 0.35, 0.7]:
-        scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(
-            txv_pars='precin', campaign_coverage=cov,
-            intro_year=y, end_year=end_year, st_kwargs=st_kwargs)
-        scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
-            txv_pars='cin', campaign_coverage=cov,
-            intro_year=y, end_year=end_year, st_kwargs=st_kwargs)
-        scendict[f'HPV-Faster {cov*100:.0f}%'] = make_st_older(
-            screen_cov=cov, age_range=[20, 50],
-            start_year=y, end_year=end_year)
 
     return scendict
 
@@ -334,22 +278,12 @@ if __name__ == '__main__':
                         help='Run scenarios on the VM (heavy); otherwise only re-extract CSVs')
     parser.add_argument('--end', type=int, default=2100)
     parser.add_argument('--resfolder', default='results')
-    parser.add_argument('--scenario-set', choices=['default', 'normalized'],
-                        default='default',
-                        help='default = 2020-start (paper baseline); '
-                             'normalized = all new interventions start in --intv-start-year')
-    parser.add_argument('--intv-start-year', type=int, default=2030,
-                        help='For --scenario-set normalized: year every new intervention begins')
     args = parser.parse_args()
 
     T = sc.timer()
-    if args.scenario_set == 'normalized':
-        scenarios = make_normalized_scenarios(
-            intv_start_year=args.intv_start_year, end_year=args.end)
-    else:
-        scenarios = sc.mergedicts(make_baselines(args.end),
-                                  make_st_scenarios(args.end),
-                                  make_campaign_scenarios(args.end))
+    scenarios = sc.mergedicts(make_baselines(args.end),
+                              make_st_scenarios(args.end),
+                              make_campaign_scenarios(args.end))
 
     if args.run_sim:
         msim = run_sims(scenarios=scenarios, end=args.end)
@@ -358,7 +292,6 @@ if __name__ == '__main__':
     else:
         msim_dict = sc.loadobj(f'{args.resfolder}/st_scens.obj')
 
-    cum_start = args.intv_start_year if args.scenario_set == 'normalized' else CUM_START_YEAR
-    save_csvs(msim_dict, resfolder=args.resfolder, cum_start_year=cum_start)
-    print(f'Saved scens_*.csv to {args.resfolder}/ (cum accounting from {cum_start})')
+    save_csvs(msim_dict, resfolder=args.resfolder, cum_start_year=CUM_START_YEAR)
+    print(f'Saved scens_*.csv to {args.resfolder}/ (cum accounting from {CUM_START_YEAR})')
     T.toc('Done')

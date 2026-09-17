@@ -20,7 +20,7 @@ def load_scens(resfolder='results'):
     """Return (timeseries, cumulative, paired, per_sim) DataFrames.
 
     Paired holds median/low/high of (baseline_i - scenario_i) per sim.
-    Per_sim holds the 2025-2100 sum for every (scenario, sim, metric) triple.
+    Per_sim holds the 2030-2100 sum for every (scenario, sim, metric) triple.
     """
     ts   = pd.read_csv(f'{resfolder}/scens_timeseries.csv')
     cum  = pd.read_csv(f'{resfolder}/scens_cumulative.csv')

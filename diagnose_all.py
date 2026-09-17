@@ -215,14 +215,6 @@ def build_scenario_intvs(name, end=2100):
     raise ValueError(f'unknown scenario {name}')
 
 
-def build_normalized_scenarios(intv_start_year=2030, end_year=2100):
-    """Return the dict of normalized scenario -> intv list. Thin wrapper
-    around rsc.make_normalized_scenarios so this file owns nothing that
-    interventions.py doesn't."""
-    return rsc.make_normalized_scenarios(intv_start_year=intv_start_year,
-                                         end_year=end_year)
-
-
 def run_one(name, top_par, seed_idx, end=2100, intvs=None):
     """intvs, if supplied, overrides the scenario-name dispatch. Used by
     the normalized-set entrypoint to hand the pre-built interventions in
@@ -370,39 +362,24 @@ def sim_totals(sim, end=2100, accounting_start=2025):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--scenarios', nargs='+', default=None,
-                    help='Scenario names. If omitted with --normalized, runs all '
-                         'normalized scenarios; otherwise defaults to the flagship '
-                         'short-name list.')
+                    help='Scenario short-names (default set below).')
     ap.add_argument('--reps', type=int, default=3)
     ap.add_argument('--end', type=int, default=2100)
     ap.add_argument('--outdir', default='results/diagnostic')
     ap.add_argument('--parallel', action='store_true')
-    ap.add_argument('--normalized', action='store_true',
-                    help='Use the normalized scenario set (all interventions '
-                         'start in --intv-start-year); accounting window '
-                         'defaults to that year.')
-    ap.add_argument('--intv-start-year', type=int, default=2030)
-    ap.add_argument('--accounting-start', type=int, default=None,
-                    help='Cumulative accounting start year. Defaults to 2025 '
-                         '(default set) or --intv-start-year (normalized).')
+    ap.add_argument('--accounting-start', type=int, default=2030,
+                    help='Cumulative accounting start year (default 2030 '
+                         'to match run_scenarios.CUM_START_YEAR).')
     args = ap.parse_args()
 
     os.makedirs(args.outdir, exist_ok=True)
     top_pars = rsc._top_pars(args.reps)
 
-    # Resolve scenarios + accounting window
-    if args.normalized:
-        norm = build_normalized_scenarios(intv_start_year=args.intv_start_year,
-                                          end_year=args.end)
-        scen_names = args.scenarios if args.scenarios else list(norm.keys())
-        prebuilt = {n: norm[n] for n in scen_names}
-        accounting_start = args.accounting_start or args.intv_start_year
-    else:
-        scen_names = args.scenarios or [
-            'sTT18', 'sTT70', 'sT70', 'sTxV70', 'sTxV18', 'hpvfaster70',
-        ]
-        prebuilt = None
-        accounting_start = args.accounting_start or 2025
+    scen_names = args.scenarios or [
+        'sTT18', 'sTT70', 'sT70', 'sTxV70', 'sTxV18', 'hpvfaster70',
+    ]
+    prebuilt = None
+    accounting_start = args.accounting_start
 
     print(f'Running {len(scen_names)} scenarios x {args.reps} reps  '
           f'(accounting {accounting_start}..{args.end})')

@@ -54,7 +54,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
         ax.bar(x + offsets[idx], med, width=bar_width, color=colors[idx], label=strat_label,
                yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
-    ax.set_title('Cumulative cancers\n2025-2100'); sc.SIticks()
+    ax.set_title('Cumulative cancers\n2030-2100'); sc.SIticks()
     ax.set_xlabel('')
     ax.legend(loc='upper right', frameon=False, fontsize=16)
     ax.set_ylim(bottom=0)
@@ -68,7 +68,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
         ax.bar(x + offsets[idx], med, width=bar_width, color=colors[idx], label=strat_label,
                yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
-    ax.set_title('Cumulative cancers in HIV+ women\n2025-2100'); sc.SIticks()
+    ax.set_title('Cumulative cancers in HIV+ women\n2030-2100'); sc.SIticks()
     ax.set_xlabel('')
     ax.set_ylim(bottom=0)
     ax.text(*text_height, 'B', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
@@ -94,7 +94,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
                color='none', edgecolor=colors[idx], hatch='//', linewidth=1.5,
                yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
-    ax.set_title('Cumulative treatments\n2025-2100'); sc.SIticks()
+    ax.set_title('Cumulative treatments\n2030-2100'); sc.SIticks()
     ax.set_xlabel('')
     ax.legend(handles=[
         Patch(facecolor='gray', label='Ablations'),
@@ -114,7 +114,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
         ax = ut.plot_ts(ax, ts_df, scen_key, 'asr_cancer_incidence', start_year, end_year,
                         color=colors[strat_idx], label='')
     ax.set_ylim(bottom=0)
-    ax.set_title('ASR cervical cancer incidence, 2025-2100\nComparison of screening strategies')
+    ax.set_title('ASR cervical cancer incidence, 2030-2100\nComparison of screening strategies')
     legend_labels = ['Status quo', 'SOC algorithm, 70% coverage',
                      '+TxV 90/0, 70% coverage', '+TxV 50/90, 70% coverage']
     thesecolors = ['k'] + colors
@@ -154,7 +154,7 @@ def plot_fig3(resfolder='results', outpath='figures/fig3_txv.png'):
                    yerr=ut.yerr(med, lo, hi), capsize=3, ecolor='0.4')
 
     ax.set_xticks(x); ax.set_xticklabels(coverage_levels)
-    ax.set_title('Total treatments per cancer averted\n2025-2100')
+    ax.set_title('Total treatments per cancer averted\n2030-2100')
     ax.set_xlabel('')
     ax.set_ylim(bottom=0)
     ax.text(*text_height, 'E', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')

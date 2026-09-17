@@ -38,14 +38,14 @@ def plot_fig1(resfolder='results', outpath='figures/fig1_residual.png', poster=F
                         start_year, end_year, color='k', ls=ls, label=slabel,
                         add_bounds=True)
     ax.set_ylim(bottom=0)
-    ax.set_title('ASR cervical cancer incidence, 2025-2100')
+    ax.set_title('ASR cervical cancer incidence, 2030-2100')
 
     linestyle_labels = ['Status quo', 'No interventions'] if not poster else ['Status quo', 'No vax']
     linestyle_handles = [plt.Line2D([0], [0], color='k', linestyle='-', lw=2),
                          plt.Line2D([0], [0], color='k', linestyle=':', lw=2)]
     ax.legend(linestyle_handles, linestyle_labels, title='', loc='upper right', frameon=False)
 
-    # Cumulative cancers 2025-2100
+    # Cumulative cancers 2030-2100
     med, lo, hi = [], [], []
     for sname, scen_key in this_dict.items():
         v, l, h = ut.get_cum(cum_df, scen_key, 'cancers')
@@ -59,7 +59,7 @@ def plot_fig1(resfolder='results', outpath='figures/fig1_residual.png', poster=F
     ax.set_xticks(x)
     xlabels = ['No\ninterventions', 'Status\nquo'] if not poster else ['No vax', 'Status quo']
     ax.set_xticklabels(xlabels)
-    ax.set_title('Cumulative cancers' if not poster else 'Cervical cancers 2025–2100')
+    ax.set_title('Cumulative cancers' if not poster else 'Cervical cancers 2030–2100')
     sc.SIticks()
 
     fig.tight_layout()

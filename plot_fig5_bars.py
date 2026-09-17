@@ -62,7 +62,7 @@ def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster
 
     ax.set_xticks(x_base)
     ax.set_xticklabels([label for _, label in ALL_STRATEGIES])
-    ax.set_title('Cumulative cancers 2025-2100'); sc.SIticks()
+    ax.set_title('Cumulative cancers 2030-2100'); sc.SIticks()
     ax.set_ylim(bottom=0, top=max(all_cum) * 1.15)
     ax.legend(title='Coverage', loc='upper right', frameon=False, fontsize=14, ncols=3)
 
@@ -88,7 +88,7 @@ def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster
 
     ax.set_xticks(x_base)
     ax.set_xticklabels([label for _, label in ALL_STRATEGIES])
-    ax.set_title('Cancers averted 2025-2100 (paired diff vs. S&T&T 18%)'); sc.SIticks()
+    ax.set_title('Cancers averted 2030-2100 (paired diff vs. S&T&T 18%)'); sc.SIticks()
     ax.axhline(0, color='0.4', lw=0.5)
     ax.set_ylim(top=max(all_avr_hi) * 1.15)
 

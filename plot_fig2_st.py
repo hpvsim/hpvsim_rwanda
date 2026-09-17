@@ -57,7 +57,7 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
 
     # ---- A: Cumulative cancers ----
     ax = fig.add_subplot(gs[0, 0])
-    cancers_nt, cancers_t = bar_panel(ax, 'cancers', 'Cumulative cancers\n2025-2100')
+    cancers_nt, cancers_t = bar_panel(ax, 'cancers', 'Cumulative cancers\n2030-2100')
     for k in no_triage_keys + triage_keys:
         v, lb, ub = ut.get_cum(cum_df, k, 'cancers')
         print(f'{k}: {v:.0f} ({lb:.0f}, {ub:.0f}) cancers')
@@ -69,12 +69,12 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
 
     # ---- B: Cumulative cancers in HIV+ ----
     ax = fig.add_subplot(gs[0, 1])
-    bar_panel(ax, 'cancers_with_hiv', 'Cumulative cancers in HIV+ women\n2025-2100')
+    bar_panel(ax, 'cancers_with_hiv', 'Cumulative cancers in HIV+ women\n2030-2100')
     ax.text(*text_height, 'B', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- C: Cumulative ablations ----
     ax = fig.add_subplot(gs[0, 2])
-    abl_nt, abl_t = bar_panel(ax, 'ablations', 'Cumulative ablations\n2025-2100')
+    abl_nt, abl_t = bar_panel(ax, 'ablations', 'Cumulative ablations\n2030-2100')
     ax.text(*text_height, 'C', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
 
     # ---- D: Time series ----
@@ -88,7 +88,7 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
         ax = ut.plot_ts(ax, ts_df, triage_keys[cn], 'asr_cancer_incidence',
                         start_year, end_year, color=colors[cn], ls='--', label='')
     ax.set_ylim(bottom=0)
-    ax.set_title('ASR cervical cancer incidence, 2025-2100\nScaled-up screening with/without VIA triage')
+    ax.set_title('ASR cervical cancer incidence, 2030-2100\nScaled-up screening with/without VIA triage')
 
     color_handles = [mpatches.Patch(facecolor=colors[i], label=labels[i]) for i in range(3)]
     linestyle_handles = [plt.Line2D([0], [0], color='k', linestyle='-', lw=2),
@@ -124,7 +124,7 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
            edgecolor='k', hatch='//', linewidth=1.5,
            yerr=ut.yerr(t_med, t_lo, t_hi), capsize=3, ecolor='0.4')
     ax.set_xticks(x); ax.set_xticklabels(llabels)
-    ax.set_title('Ablations per cancer averted\n2025-2100')
+    ax.set_title('Ablations per cancer averted\n2030-2100')
     ax.set_xlabel('')
     ax.set_ylim(bottom=0)
     ax.text(*text_height, 'E', transform=ax.transAxes, fontsize=24, fontweight='bold', va='top')
