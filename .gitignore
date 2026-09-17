@@ -28,6 +28,9 @@ results/diagnostic_smoketest/
 # by analyze_residual.py.
 results/diagnostic_normalized_novax/
 
+# Sensitivity-sweep folders (reviewer response); regenerable via run_sensitivity.py
+results/sens_*/
+
 # Archives
 results/*.zip
 *.zip
