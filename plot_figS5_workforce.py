@@ -1,5 +1,5 @@
 """
-Fig S4 (revision): workforce capacity sensitivity (R2.5).
+Fig S5 (revision): workforce capacity sensitivity (R2.5).
 
 Cancers averted 2030-2100 vs S&T&T 18% baseline as a function of workforce
 cap on treat_num.max_capacity, for each S&T-family strategy at 70% coverage.
@@ -27,9 +27,9 @@ ARMS = [
 ]
 
 
-def plot_figS4(cap_resfolder='results/sens_workforce',
+def plot_figS5(cap_resfolder='results/sens_workforce',
                nocap_resfolder='results',
-               outpath='figures/figS4_workforce.png'):
+               outpath='figures/figS5_workforce.png'):
     ut.set_font(16)
     _, _, cap_paired, _ = ut.load_scens(cap_resfolder)
     _, _, nocap_paired, _ = ut.load_scens(nocap_resfolder)
@@ -76,9 +76,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--cap-resfolder', default='results/sens_workforce')
     parser.add_argument('--nocap-resfolder', default='results')
-    parser.add_argument('--outpath', default='figures/figS4_workforce.png')
+    parser.add_argument('--outpath', default='figures/figS5_workforce.png')
     args = parser.parse_args()
-    plot_figS4(cap_resfolder=args.cap_resfolder,
+    plot_figS5(cap_resfolder=args.cap_resfolder,
                nocap_resfolder=args.nocap_resfolder,
                outpath=args.outpath)
     print('Done.')

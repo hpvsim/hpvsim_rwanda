@@ -1,10 +1,10 @@
 """
-Fig S3 (revision): TxV introduction-year sensitivity.
+Fig S4 (revision): TxV introduction-year sensitivity.
 
 Cancers averted 2030-2100 vs S&T&T 18% baseline, plotted as a function
 of TxV introduction year for each of the four TxV-carrying arms.
 
-Reads paired-diff CSV produced by `run_sensitivity.py --run-sim`
+Reads paired-diff CSV produced by `run_sensitivity_txv.py --run-sim`
 (default resfolder: results/sens_txv_year).
 """
 import argparse
@@ -15,7 +15,7 @@ import pylab as pl
 import sciris as sc
 
 import utils as ut
-from run_sensitivity import TXV_INTRO_YEARS, TXV_COV
+from run_sensitivity_txv import TXV_INTRO_YEARS, TXV_COV
 
 
 ARMS = [
@@ -26,8 +26,8 @@ ARMS = [
 ]
 
 
-def plot_figS3(resfolder='results/sens_txv_year',
-               outpath='figures/figS3_txv_intro.png'):
+def plot_figS4(resfolder='results/sens_txv_year',
+               outpath='figures/figS4_txv_intro.png'):
     ut.set_font(16)
     _, _, paired_df, _ = ut.load_scens(resfolder)
 
@@ -61,7 +61,7 @@ def plot_figS3(resfolder='results/sens_txv_year',
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--resfolder', default='results/sens_txv_year')
-    parser.add_argument('--outpath', default='figures/figS3_txv_intro.png')
+    parser.add_argument('--outpath', default='figures/figS4_txv_intro.png')
     args = parser.parse_args()
-    plot_figS3(resfolder=args.resfolder, outpath=args.outpath)
+    plot_figS4(resfolder=args.resfolder, outpath=args.outpath)
     print('Done.')
