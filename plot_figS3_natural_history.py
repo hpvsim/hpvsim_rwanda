@@ -1,5 +1,5 @@
 """
-Fig S2 (revision): natural history under baseline Rwanda programs.
+Fig S3 (revision): natural history under baseline Rwanda programs.
 
 Two-panel figure showing (A) age at causal HPV infection and (B) dwell
 times from causal infection to cancer, both under the baseline scenario
@@ -15,6 +15,8 @@ import numpy as np
 import matplotlib.pyplot as pl
 import sciris as sc
 from scipy.stats import gaussian_kde
+
+import utils as ut
 
 
 SCEN = 'Baseline'
@@ -32,17 +34,18 @@ def _weighted_percentile(a, w, q):
 
 DWELL_ORDER = ['precin', 'cin', 'total']
 DWELL_LABELS = {
-    'precin': 'Causal infection\nto CIN2+',
+    'precin': 'HPV to CIN2+',
     'cin':    'CIN2+ to cancer',
-    'total':  'Causal infection\nto cancer',
+    'total':  'HPV to cancer',
 }
 
 
 def plot_figS2(inpath='raw_results/age_causal_rwanda.obj',
-               outpath='figures/figS2_natural_history.png'):
+               outpath='figures/figS3_natural_history.png'):
+    ut.set_font(16)
     data = sc.loadobj(inpath)[SCEN]
 
-    fig, (ax_age, ax_dwell) = pl.subplots(1, 2, figsize=(11, 4.2))
+    fig, (ax_age, ax_dwell) = pl.subplots(1, 2, figsize=(13, 4.5))
 
     # ---------- Panel A: age at causal infection ----------
     bins = np.arange(10, 81)
@@ -84,10 +87,10 @@ def plot_figS2(inpath='raw_results/age_causal_rwanda.obj',
     ax_age.set_xticks(np.arange(10, 81, 10))
     ax_age.set_xlim(9.5, 80.5)
     ax_age.set_ylim(0, ymax * 1.30)
-    ax_age.set_xlabel('Age', fontsize=12)
-    ax_age.set_ylabel('% of causal infections', fontsize=12)
+    ax_age.set_xlabel('Age')
+    ax_age.set_ylabel('% of causal infections')
     ax_age.yaxis.set_major_formatter(pl.FuncFormatter(lambda x, _: f'{x:.0f}%'))
-    ax_age.set_title('A. Age at causal HPV infection', fontsize=13, loc='left')
+    ax_age.set_title('A. Age at causal HPV infection', loc='left')
     ax_age.spines['top'].set_visible(False)
     ax_age.spines['right'].set_visible(False)
 
@@ -124,15 +127,13 @@ def plot_figS2(inpath='raw_results/age_causal_rwanda.obj',
                       fontsize=9, color='#333')
         print(f'{SCEN} {DWELL_ORDER[i-1]}: median {s["med"]:.1f} years')
 
-    ax_dwell.set_ylabel('Dwell time (years)', fontsize=12)
+    ax_dwell.set_ylabel('Dwell time (years)')
     ax_dwell.set_ylim(0, max(ymax_data * 1.15, 5))
-    ax_dwell.set_title('B. Dwell times to cervical cancer', fontsize=13, loc='left')
+    ax_dwell.set_title('B. Dwell times to cervical cancer', loc='left')
     ax_dwell.spines['top'].set_visible(False)
     ax_dwell.spines['right'].set_visible(False)
     ax_dwell.grid(axis='y', alpha=0.3, linestyle='--')
 
-    fig.suptitle('Baseline natural history in Rwanda (status-quo screening)',
-                 fontsize=13, y=1.02)
     fig.tight_layout()
     os.makedirs(os.path.dirname(outpath), exist_ok=True)
     sc.savefig(outpath, dpi=200)
@@ -142,7 +143,7 @@ def plot_figS2(inpath='raw_results/age_causal_rwanda.obj',
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--inpath', default='raw_results/age_causal_rwanda.obj')
-    parser.add_argument('--outpath', default='figures/figS2_natural_history.png')
+    parser.add_argument('--outpath', default='figures/figS3_natural_history.png')
     args = parser.parse_args()
     plot_figS2(inpath=args.inpath, outpath=args.outpath)
     print('Done.')

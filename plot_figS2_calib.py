@@ -1,5 +1,5 @@
 """
-Fig S1: calibration diagnostic.
+Fig S2: calibration diagnostic.
 
 Plots from plot-ready CSVs produced by `run_calibration.py` (extract step).
 """
@@ -19,7 +19,7 @@ import utils as ut
 YEAR_MIN = 2000
 
 
-def plot_calib(resfolder='results', outpath='figures/figS1_calib.png',
+def plot_calib(resfolder='results', outpath='figures/figS2_calib.png',
                hiv_datafile='data/rwanda_data.csv'):
     ut.set_font(16)
     fig = pl.figure(layout="tight", figsize=(16, 10))
@@ -154,7 +154,7 @@ def plot_calib(resfolder='results', outpath='figures/figS1_calib.png',
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
-    parser.add_argument('--outpath', default='figures/figS1_calib.png')
+    parser.add_argument('--outpath', default='figures/figS2_calib.png')
     args = parser.parse_args()
 
     T = sc.timer()
