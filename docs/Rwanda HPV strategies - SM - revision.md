@@ -46,10 +46,10 @@
 | network.f_cross_layer | Female probability of a concurrent partnership across marital/casual layers | Prior from HPVsim network calibration (Stuart et al. 2024) | 0.200 | 0.950 | 0.800 | 0.750 | 0.939 |
 | network.m_partners_casual | Male mean casual partners per year (Poisson rate) | Prior from HPVsim network calibration (Stuart et al. 2024) | 0.100 | 0.600 | 0.250 | 0.100 | 0.527 |
 | network.f_partners_casual | Female mean casual partners per year (Poisson rate) | Prior from HPVsim network calibration (Stuart et al. 2024) | 0.100 | 0.600 | 0.350 | 0.111 | 0.550 |
-| hiv.rel_sus_lo | HIV+ relative HPV susceptibility at low CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 24) | 2.000 | 5.000 | 3.000 | 2.000 | 5.000 |
-| hiv.rel_sus_hi | HIV+ relative HPV susceptibility at high CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 24) | 2.000 | 4.000 | 2.250 | 2.000 | 3.500 |
-| hiv.rel_sev_lo | HIV+ relative multiplier on HPV disease progression at low CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 24) | 1.500 | 5.000 | 2.500 | 1.500 | 4.694 |
-| hiv.rel_sev_hi | HIV+ relative multiplier on HPV disease progression at high CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 24) | 1.500 | 5.000 | 1.750 | 1.500 | 2.194 |
+| hiv.rel_sus_lo | HIV+ relative HPV susceptibility at low CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 26) | 2.000 | 5.000 | 3.000 | 2.000 | 5.000 |
+| hiv.rel_sus_hi | HIV+ relative HPV susceptibility at high CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 26) | 2.000 | 4.000 | 2.250 | 2.000 | 3.500 |
+| hiv.rel_sev_lo | HIV+ relative multiplier on HPV disease progression at low CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 26) | 1.500 | 5.000 | 2.500 | 1.500 | 4.694 |
+| hiv.rel_sev_hi | HIV+ relative multiplier on HPV disease progression at high CD4 | Prior informed by Liu et al. 2018 meta-analysis (ref 26) | 1.500 | 5.000 | 1.750 | 1.500 | 2.194 |
 | hiv.p_effective_art | Probability that ART fully suppresses HIV-driven HPV effects | Prior from UNAIDS ART effectiveness estimates | 0.700 | 0.950 | 0.840 | 0.760 | 0.950 |
 
 *Caption: Prior distributions and posterior estimates for the 17 parameters of the model that were adjusted through calibration. The posterior summary reports the median and 95% credible interval across the 50 best-fitting parameter sets identified from 10,000 calibration trials.*
