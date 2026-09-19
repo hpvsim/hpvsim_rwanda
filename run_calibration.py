@@ -26,7 +26,7 @@ import run_sim as rs
 
 # Run settings
 debug = False
-n_trials = [1500, 10][debug]
+n_trials = [10000, 10][debug]
 n_workers = 75
 n_to_save = 500
 

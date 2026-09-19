@@ -145,6 +145,14 @@ def make_st_scenarios(end_year=2100):
                            txv_pars='cin', txv=True, end_year=end_year)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
 
+    # R2.3 reviewer-response scenario: S&T at 70% with heavier LTFU
+    # (50% of eligible women decline same-visit ablation absent a
+    # triage confirmation of disease).
+    scendict['S&T 70%, 50% LTFU'] = make_st(
+        future_screen_cov=0.70, tx_assigner_csv='tx_assigner_no_triage',
+        future_treat_cov=0.50, end_year=end_year,
+    )
+
     return scendict
 
 
@@ -179,6 +187,8 @@ def run_sims(scenarios=None, end=2100, verbose=-1, top_pars=None):
     """ Run the simulations """
     msim = make_sims(scenarios=scenarios, end=end, top_pars=top_pars)
     msim.run(verbose=verbose)
+    for sim in msim.sims:
+        sim.shrink()
     return msim
 
 

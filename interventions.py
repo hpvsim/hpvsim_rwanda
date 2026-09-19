@@ -70,11 +70,12 @@ def make_st(future_screen_cov=0.18, coverage_change_year=2028, age_range=[30, 50
         30% for precin, 60% for CIN per tx_assigner.csv.
 
       tx_assigner_csv='tx_assigner_no_triage' (S&T direct):
-        no separate VIA/ablation LTFU split - ablation given at the
-        same visit as receiving results. future_treat_cov is force-
-        overridden to 1.0 internally so LTFU isn't double-counted.
-        Chain per lesion = 0.9 (single-visit attends) x 1.0 x 1.0 x
-        0.936 = 84%.
+        no VIA sensitivity filter - all HPV+ women are assigned to
+        ablation. Same 0.9 attendance x future_treat_cov LTFU chain
+        as S&T&T (per the paper: "in both the screen-triage-treat
+        scenario and the screen-treat scenario, 25% of women eligible
+        for treatment will not receive it"). Chain per lesion =
+        0.9 x future_treat_cov x 0.936 (e.g. 63% at future_treat_cov=0.75).
 
     TxV (linked_txvx at prob=0.9) fires from txv_start_year onwards on
     screen positives. For txv_pars='cin' (lesion-regressing profile) the
@@ -91,7 +92,7 @@ def make_st(future_screen_cov=0.18, coverage_change_year=2028, age_range=[30, 50
     # Screening: one intervention across both eras with time-varying prob.
     # Status quo (SQ) years use 18% lifetime coverage; intv-era years use
     # future_screen_cov.
-    sq_years = np.arange(start_year, coverage_change_year)          # 2020..2027
+    sq_years = np.arange(start_year, min(coverage_change_year, end_year + 1))
     intv_years = np.arange(coverage_change_year, end_year + 1)      # 2028..2100
     screen_years = np.concatenate([sq_years, intv_years])
     screen_cov = np.concatenate([
@@ -171,12 +172,11 @@ def make_st(future_screen_cov=0.18, coverage_change_year=2028, age_range=[30, 50
     intv_active_years = np.arange(coverage_change_year, triage_end_year + 1)
 
     if len(intv_active_years) > 0:
-        # tx_assigner_no_triage: same-visit ablation, no additional LTFU
-        # beyond the 0.9 attendance step.
-        if tx_assigner_csv == 'tx_assigner_no_triage':
-            treat_prob = 1.0
-        else:
-            treat_prob = future_treat_cov
+        # Both S&T&T (with VIA triage) and S&T (no triage) apply the same
+        # future_treat_cov LTFU at the treatment step, per the paper text:
+        # "in both the screen-triage-treat scenario and the screen-treat
+        # scenario, 25% of women eligible for treatment will not receive it."
+        treat_prob = future_treat_cov
 
         tx_assigner = hpv.dx(
             name='tx_assigner_product',
@@ -315,6 +315,8 @@ def make_st_older(start_year=2028, screen_cov=0.4, treat_cov=1,
     )
 
     def excision_eligible(sim):
+        if int(sim.now.years) != start_year:
+            return ss.uids()
         triage_out = sim.interventions['tx_assigner_older'].outcomes['excision']
         abl_fail = sim.interventions['ablation_older'].outcomes['unsuccessful']
         return triage_out | abl_fail
