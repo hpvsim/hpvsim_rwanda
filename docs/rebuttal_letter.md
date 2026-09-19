@@ -94,7 +94,15 @@ On ablation harms: we agree that ablation carries risk of complications and that
 
 > *What is the basis for these assumptions? There are no references in this section? [followed by quoted paragraph on TxV efficacy assumptions]*
 
-**Response:** *[pending]*
+**Response:** The reviewer is correct that this section previously lacked references, and we have substantially revised the Methods paragraph on therapeutic vaccine assumptions to trace each choice to source material. Our assumptions draw on three primary sources: (i) the 2024 WHO Preferred Product Characteristics (PPCs) for therapeutic HPV vaccines and the underlying consultation report, which explicitly distinguish two product archetypes that correspond directly to our virus-clearing and lesion-regressing scenarios and provide indicative efficacy ranges [refs 28 and 29]; (ii) the trial-design consensus document by Dull et al., which documents endpoint definitions, spontaneous HPV clearance rates, and the 90% and 50% target efficacies now standard in trial power calculations [ref 15]; and (iii) prior modelling studies that examined near-identical product profiles in Uganda [ref 12], across multiple settings [refs 30 and 31], and in China [ref 32]. The revised Methods paragraph traces each numeric value to one or more of these sources.
+
+We also want to be transparent about three specific parameter choices where the reviewer's concern is well-founded and where we have adjusted the framing in the manuscript:
+
+- **90% efficacy against high-grade lesions** (lesion-regressing archetype) exceeds efficacies observed to date in phase II/III trials, which have been modest [ref 14]. The revised Methods now describes this explicitly as a target-product-profile assumption in the sense of the WHO PPCs, consistent with the "0-90" and "50-50" product profiles used in the Cohen and Canfell modelling reports [refs 30 and 31].
+- **3-month delay to action** is not directly observed. The revised Methods describes this as a deliberately conservative simplification representing the time for a CD8-mediated cellular response to develop and act. Trial endpoints are assessed at longer timepoints (36 weeks for lesion regression, at least 24 months for virologic clearance), but these windows incorporate confirmatory testing rather than measuring time-to-effect [ref 15]. Our choice of 3 months avoids an unrealistic instantaneous-action assumption while still allowing the vaccine to influence cases arising in cohorts vaccinated near the end of the projection horizon.
+- **50% efficacy against infection in the lesion-regressing product** differs from the Daffodil report's UC2 assumption of 0% [ref 31]. We retain a partial infection-clearing effect on the basis that an E6/E7-directed cellular response would be expected to act on productive infection as well as on established lesions; the revised Methods now says so explicitly.
+
+We have not run a formal sensitivity analysis over the 3-month delay parameter given the length of the current revision, but note that shorter delays would improve TxV impact modestly and longer delays would reduce it, without changing the overall ordering of the strategies.
 
 ---
 
