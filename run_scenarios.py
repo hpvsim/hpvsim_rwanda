@@ -20,9 +20,11 @@ os.environ.update(
 )
 
 # Standard imports
+import numpy as np
 import pandas as pd
 import sciris as sc
 import starsim as ss
+import hpvsim as hpv
 
 # Imports from this repository
 import run_sim as rs
@@ -174,6 +176,7 @@ def make_sims(scenarios=None, end=2100, top_pars=None):
                 add_st=False,
                 add_vax=add_vax,
                 interventions=interventions,
+                analyzers=[hpv.dalys(start=CUM_START_YEAR)],
                 stop=end,
                 calib_pars=dict(trial_pars),
                 use_calib=False,
@@ -188,6 +191,14 @@ def run_sims(scenarios=None, end=2100, verbose=-1, top_pars=None):
     msim = make_sims(scenarios=scenarios, end=end, top_pars=top_pars)
     msim.run(verbose=verbose)
     for sim in msim.sims:
+        # Stash DALY arrays before shrink() potentially drops the analyzer.
+        daly = sim.analyzers['dalys']
+        sim._daly_stash = dict(
+            years=np.asarray(daly.years),
+            yll=np.asarray(daly.yll),
+            yld=np.asarray(daly.yld),
+            dalys=np.asarray(daly.dalys),
+        )
         sim.shrink()
     return msim
 
@@ -217,6 +228,14 @@ def process_msim(msim, scenarios):
                 frames.append(_result_rows(
                     sim.interventions[intv_name].results[counter], bucket,
                 ).assign(scenario=scen_label, sim=sim_idx))
+            stash = getattr(sim, '_daly_stash', None)
+            if stash is not None:
+                for metric in ('yll', 'yld', 'dalys'):
+                    frames.append(pd.DataFrame({
+                        'year':   stash['years'].astype(int),
+                        'metric': metric,
+                        'value':  stash[metric].astype(float),
+                    }).assign(scenario=scen_label, sim=sim_idx))
     return pd.concat(frames, ignore_index=True)
 
 
@@ -235,8 +254,11 @@ def save_csvs(long, resfolder='results', cum_start_year=CUM_START_YEAR):
     - scens_per_sim.csv:    (scenario, sim, metric) -> cum_start_year..end sum.
       Kept so plot scripts can derive ratios (e.g. treatments per cancer
       averted) per-sim rather than from medians.
+    - scens_long.csv.gz:    per (scenario, sim, year, metric) raw values.
+      Needed by the costing script to apply discounting.
     """
     os.makedirs(resfolder, exist_ok=True)
+    long.to_csv(f'{resfolder}/scens_long.csv.gz', index=False, compression='gzip')
 
     q = {'value': 'median',
          'low':   lambda s: s.quantile(0.10),
