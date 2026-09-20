@@ -1,7 +1,0 @@
-bucket,median,share_pct
-1_never_screened,46731.0,87.2
-2_screened_always_negative,2538.0,4.7
-3_positive_no_treatment,4292.0,8.0
-4_treatment_failed,60.0,0.1
-5_treated_then_reinfected,0.0,0.0
-6_treated_but_progressed_anyway,0.0,0.0
