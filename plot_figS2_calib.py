@@ -14,7 +14,12 @@ import sciris as sc
 import utils as ut
 
 
-def plot_calib(resfolder='results', outpath='figures/fig_calib.png',
+# Time-series panels start at YEAR_MIN — matches the v1 submission layout,
+# where the pre-2000 sim burn-in isn't informative on the observed axes.
+YEAR_MIN = 2000
+
+
+def plot_calib(resfolder='results', outpath='figures/figS2_calib.png',
                hiv_datafile='data/rwanda_data.csv'):
     ut.set_font(16)
     fig = pl.figure(layout="tight", figsize=(16, 10))
@@ -41,8 +46,17 @@ def plot_calib(resfolder='results', outpath='figures/fig_calib.png',
     ]
     for rkey, age_labels, title, spec in age_metrics:
         ax = fig.add_subplot(spec)
-        model_df = pd.read_csv(f'{resfolder}/figS2_{rkey}.csv').sort_values('bin')
-        target_df = pd.read_csv(f'{resfolder}/figS2_target_{rkey}.csv')
+        model_path = f'{resfolder}/figS2_{rkey}.csv'
+        target_path = f'{resfolder}/figS2_target_{rkey}.csv'
+        if not os.path.exists(model_path):
+            # v3 pending: no HIV-stratified age analyzer shipped yet.
+            ax.text(0.5, 0.5, f'{rkey}\n(no model CSV yet)',
+                    ha='center', va='center', transform=ax.transAxes,
+                    fontsize=11, alpha=0.5)
+            ax.set_title(title); ax.set_xticks([]); ax.set_yticks([])
+            continue
+        model_df = pd.read_csv(model_path).sort_values('bin')
+        target_df = pd.read_csv(target_path)
 
         stats = [dict(med=r.med, q1=r.q1, q3=r.q3, whislo=r.whislo, whishi=r.whishi,
                       fliers=[], label=str(int(r.bin)))
@@ -63,7 +77,7 @@ def plot_calib(resfolder='results', outpath='figures/fig_calib.png',
     rkeys = ['asr_cancer_incidence', 'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
     rlabels = ['Total', 'HIV+', 'HIV-']
     for rkey, rlabel in zip(rkeys, rlabels):
-        sub = ts_df[ts_df.metric == rkey].sort_values('year')
+        sub = ts_df[(ts_df.metric == rkey) & (ts_df.year >= YEAR_MIN)].sort_values('year')
         ax.plot(sub.year, sub.med, label=rlabel)
         ax.fill_between(sub.year, sub.pi95_low, sub.pi95_high, alpha=0.2)
 
@@ -103,7 +117,7 @@ def plot_calib(resfolder='results', outpath='figures/fig_calib.png',
     hiv_window = hiv_df.loc[(hiv_df.index >= 2000) & (hiv_df.index <= 2025)]
 
     def plot_ts_panel(ax, rkey, color, title, scale=1.0, legend=False, label=None):
-        sub = ts_df[ts_df.metric == rkey].sort_values('year')
+        sub = ts_df[(ts_df.metric == rkey) & (ts_df.year >= YEAR_MIN)].sort_values('year')
         ax.plot(sub.year, sub.med * scale, color=color, label=label)
         ax.fill_between(sub.year, sub.pi95_low * scale, sub.pi95_high * scale,
                         alpha=0.2, color=color)
@@ -139,8 +153,8 @@ def plot_calib(resfolder='results', outpath='figures/fig_calib.png',
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
-    parser.add_argument('--outpath', default='figures/fig_calib.png')
+    parser.add_argument('--resfolder', default='results')
+    parser.add_argument('--outpath', default='figures/figS2_calib.png')
     args = parser.parse_args()
 
     T = sc.timer()

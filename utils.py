@@ -14,22 +14,19 @@ def set_font(size=None, font='Libertinus Sans'):
     return
 
 
-def shrink_calib(calib, n_results=100):
-    plot_indices = calib.df.iloc[0:n_results, 0].values
-    calib.analyzer_results = [calib.analyzer_results[i] for i in plot_indices]
-    calib.sim_results = [calib.sim_results[i] for i in plot_indices]
-    calib.extra_sim_results = [calib.extra_sim_results[i] for i in plot_indices]
-    calib.target_data = calib.target_data
-    calib.df = calib.df.iloc[0:n_results, ]
-    return calib
-
-
 # ---------- Scenario CSV loaders (produced by run_scenarios.py) ----------
 
 def load_scens(resfolder='results'):
-    ts = pd.read_csv(f'{resfolder}/scens_timeseries.csv')
-    cum = pd.read_csv(f'{resfolder}/scens_cumulative.csv')
-    return ts, cum
+    """Return (timeseries, cumulative, paired, per_sim) DataFrames.
+
+    Paired holds median/low/high of (baseline_i - scenario_i) per sim.
+    Per_sim holds the 2030-2100 sum for every (scenario, sim, metric) triple.
+    """
+    ts   = pd.read_csv(f'{resfolder}/scens_timeseries.csv')
+    cum  = pd.read_csv(f'{resfolder}/scens_cumulative.csv')
+    paired  = pd.read_csv(f'{resfolder}/scens_paired.csv')
+    per_sim = pd.read_csv(f'{resfolder}/scens_per_sim.csv')
+    return ts, cum, paired, per_sim
 
 
 def get_ts(ts_df, scenario, metric):
@@ -40,6 +37,21 @@ def get_ts(ts_df, scenario, metric):
 def get_cum(cum_df, scenario, metric):
     row = cum_df[(cum_df.scenario == scenario) & (cum_df.metric == metric)].iloc[0]
     return float(row.value), float(row.low), float(row.high)
+
+
+def get_paired(paired_df, scenario, metric):
+    """Median/lo/hi of paired diff (baseline_sum - scenario_sum) per sim."""
+    row = paired_df[(paired_df.scenario == scenario) & (paired_df.metric == metric)].iloc[0]
+    return float(row.value), float(row.low), float(row.high)
+
+
+def yerr(med, lo, hi):
+    """asymmetric error-bar spec for matplotlib ax.bar(yerr=...)."""
+    import numpy as np
+    med = np.asarray(med, dtype=float)
+    lo  = np.asarray(lo,  dtype=float)
+    hi  = np.asarray(hi,  dtype=float)
+    return np.vstack([med - lo, hi - med])
 
 
 def plot_ts(ax, ts_df, scenario, metric, start_year, end_year,

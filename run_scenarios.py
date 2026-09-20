@@ -1,9 +1,9 @@
 """
-Run scenarios.
+Run scenarios (v3.2 port).
 
 Two modes:
   python run_scenarios.py --run-sim   # run msim + save plot-ready CSVs (VM)
-  python run_scenarios.py             # re-extract CSVs from an existing st_scens.obj
+  python run_scenarios.py             # re-extract CSVs from existing st_scens.obj
 """
 
 
@@ -23,6 +23,7 @@ os.environ.update(
 import numpy as np
 import pandas as pd
 import sciris as sc
+import starsim as ss
 import hpvsim as hpv
 
 # Imports from this repository
@@ -30,17 +31,61 @@ import run_sim as rs
 from interventions import make_st, make_st_older, make_mv_intvs
 
 
-# Metrics with low/high bounds (hpv.Result objects)
-TS_METRICS = ['asr_cancer_incidence', 'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
+# Time-series cancer metrics (v3 module scope: sim.results.all_hpv.<key>)
+TS_METRICS = ['asr_cancer_incidence', 'cancer_incidence',
+              'cancer_incidence_with_hiv', 'cancer_incidence_no_hiv']
+
+# Cancer flow metrics with plot-visible bounds. Column names kept v2-style
+# (cancers / cancer_deaths); v3 exposes them as new_cancers / new_cancer_deaths
+# on sim.results.all_hpv, mapped via _V3_ALIAS.
 CUM_METRICS_BOUNDED = ['cancers', 'cancers_with_hiv', 'cancers_no_hiv', 'cancer_deaths']
-CUM_METRICS_UNBOUNDED = ['ablations', 'txvs', 'vaccinations', 'screens', 'excisions',
-                         'leeps', 'cancer_treatments']
-CUM_START_YEAR = 2025
+_V3_ALIAS = {'cancers': 'new_cancers', 'cancer_deaths': 'new_cancer_deaths',
+             'cancers_with_hiv': 'new_cancers_with_hiv',
+             'cancers_no_hiv': 'new_cancers_no_hiv'}
+
+CUM_START_YEAR = 2030
+
+# v3 per-intervention flow counter for each program bucket. Names match
+# the intervention `name=` in interventions.py.
+INTV_TO_METRIC = {
+    # baseline S&T (from make_st)
+    'screening':       ('screens',           'new_screens'),
+    'ablation_intv':   ('ablations',         'new_treatments'),
+    'excision_intv':   ('leeps',             'new_treatments'),
+    'radiation_intv':  ('cancer_treatments', 'new_treatments'),
+    'txv':             ('txvs',              'new_txvx_doses'),
+    # mass therapeutic-vax campaign (from make_mv_intvs)
+    'campaign_txvx':   ('txvs',              'new_txvx_doses'),
+    # older-cohort screen-and-vax (from make_st_older)
+    'screening_older': ('screens',           'new_screens'),
+    'ablation_older':  ('ablations',         'new_treatments'),
+    'excision_older':  ('excisions',         'new_treatments'),
+    'radiation_older': ('cancer_treatments', 'new_treatments'),
+    'mass_vax':        ('vaccinations',      'new_doses'),
+    # routine childhood HPV vax (from make_vx) — attached to every non-baseline scenario
+    'routine_vx':      ('vaccinations',      'new_doses'),
+}
 
 
 # Settings - used here and imported elsewhere
 debug = 0
-n_seeds = [10, 1][debug]  # How many seeds to run per cluster
+# Ensemble size: rerun each scenario against the top-N calibration trials,
+# each carrying its own (pars, rand_seed). Captures parameter + stochastic
+# uncertainty jointly.
+n_reps = [10, 1][debug]
+
+
+def _top_pars(n):
+    """Top-``n`` (pars + rand_seed) tuples from the full calibration.
+
+    Reads the raw (unshrunk) calib so calib.df is present. Each dict has
+    flat dotted par names plus rand_seed; run_sim.make_sim routes both
+    through Pars.update and pops rand_seed as the trial seed.
+    """
+    calib = sc.loadobj('raw_results/rwanda_calib.obj')
+    top = calib.df.nsmallest(n, 'mismatch')
+    cols = [c for c in top.columns if c not in ('index', 'mismatch')]
+    return [{c: row[c] for c in cols} for _, row in top.iterrows()]
 
 
 # %% Create interventions
@@ -52,7 +97,7 @@ def make_baselines(end_year=2100):
     """
     scendict = dict()
     scendict['No interventions'] = []
-    scendict['Baseline'] = make_st(future_screen_cov=0.18, screen_change_year=2025, end_year=end_year)
+    scendict['Baseline'] = make_st(future_screen_cov=0.18, end_year=end_year)
     return scendict
 
 
@@ -67,23 +112,14 @@ def make_campaign_scenarios(end_year=2100):
     age_range = [20, 50]
 
     for cov in [0.18, 0.35, 0.7]:
-
-        # Virus-clearing mass TxV
         scendict[f'Mass TxV 90/0, {int(cov*100)}%'] = make_mv_intvs(
-            txv_pars='precin',
-            campaign_coverage=cov,
-            end_year=end_year,
+            txv_pars='precin', campaign_coverage=cov, end_year=end_year,
         )
-
-        # Virus-clearing mass TxV
         scendict[f'Mass TxV 50/90, {int(cov*100)}%'] = make_mv_intvs(
-            txv_pars='cin',
-            campaign_coverage=cov,
-            end_year=end_year,
+            txv_pars='cin', campaign_coverage=cov, end_year=end_year,
         )
-
-        # Screen, treat, & vaccinate older women
-        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range, start_year=2026, end_year=end_year)
+        mass_intvs = make_st_older(screen_cov=cov, age_range=age_range,
+                                   end_year=end_year)
         scendict[f'HPV-Faster {cov*100:.0f}%'] = mass_intvs
 
     return scendict
@@ -91,160 +127,179 @@ def make_campaign_scenarios(end_year=2100):
 
 def make_st_scenarios(end_year=2100):
     """
-    Compare vaccination strategies:
+    Compare screen-and-treat vaccination strategies at three coverage levels.
     """
     scendict = dict()
 
-    start_year = 2026
-    cov_array = [.18, .35, .70]
-    for cov_val in cov_array:
-
-        # Scale up S&T&T - default algorithm, screening + triage + treatment
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, end_year=end_year)
+    for cov_val in [.18, .35, .70]:
+        st_intvs = make_st(future_screen_cov=cov_val, end_year=end_year)
         scendict[f'S&T&T {cov_val*100:.0f}%'] = st_intvs
 
-        # Scale up S&T - streamlined algorithm, screening + treatment only
-        st_intvs = make_st(screen_change_year=start_year, future_screen_cov=cov_val, tx_assigner_csv='tx_assigner_no_triage', end_year=end_year)
+        st_intvs = make_st(future_screen_cov=cov_val,
+                           tx_assigner_csv='tx_assigner_no_triage', end_year=end_year)
         scendict[f'S&T {cov_val*100:.0f}%'] = st_intvs
 
-        # Scale up S&TxV&T&T - enhanced algorithm with virus-clearing TxV used in addition to triage and treatment
-        st_intvs = make_st(
-            screen_change_year=start_year,
-            future_screen_cov=cov_val,
-            txv_pars='precin',
-            txv=True,
-            end_year=end_year)
+        st_intvs = make_st(future_screen_cov=cov_val,
+                           txv_pars='precin', txv=True, end_year=end_year)
         scendict[f'S&TxV&T&T {cov_val*100:.0f}%'] = st_intvs
 
-        # Scale up S&TxV - enhanced and streamlined algorithm with virus-clearing TxV used instead of treatment
-        st_intvs = make_st(
-            screen_change_year=start_year,
-            future_screen_cov=cov_val,
-            txv_pars='cin',
-            txv=True,
-            end_year=end_year)
+        st_intvs = make_st(future_screen_cov=cov_val,
+                           txv_pars='cin', txv=True, end_year=end_year)
         scendict[f'S&TxV {cov_val*100:.0f}%'] = st_intvs
+
+    # R2.3 reviewer-response scenario: S&T at 70% with heavier LTFU
+    # (50% of eligible women decline same-visit ablation absent a
+    # triage confirmation of disease).
+    scendict['S&T 70%, 50% LTFU'] = make_st(
+        future_screen_cov=0.70, tx_assigner_csv='tx_assigner_no_triage',
+        future_treat_cov=0.50, end_year=end_year,
+    )
 
     return scendict
 
 
-def make_sims(scenarios=None, end=2100):
-    """ Set up scenarios """
+def make_sims(scenarios=None, end=2100, top_pars=None):
+    """One flat list of sims (n_scenarios * n_reps) labelled by scenario.
 
-    all_msims = sc.autolist()
+    Each scenario is run once per top-N calibration trial. The trial's
+    pars (including rand_seed) flow through ``rs.make_sim`` via
+    calib_pars=, so the fitted seed drives each rep.
+    """
+    if top_pars is None:
+        top_pars = _top_pars(n_reps)
+    sims = sc.autolist()
     for name, interventions in scenarios.items():
-        sims = sc.autolist()
-        for seed in range(n_seeds):
-            if name == 'No interventions':
-                add_vax = False
-            else:
-                add_vax = True
+        add_vax = name != 'No interventions'
+        for trial_pars in top_pars:
             sim = rs.make_sim(
                 debug=debug,
                 add_st=False,
                 add_vax=add_vax,
                 interventions=interventions,
-                end=end,
-                seed=seed,
+                analyzers=[hpv.dalys(start=CUM_START_YEAR)],
+                stop=end,
+                calib_pars=dict(trial_pars),
+                use_calib=False,
             )
             sim.label = name
             sims += sim
-        all_msims += hpv.MultiSim(sims)
-
-    msim = hpv.MultiSim.merge(all_msims, base=False)
-
-    return msim
+    return ss.MultiSim(sims)
 
 
-def run_sims(scenarios=None, end=2100, verbose=-1):
+def run_sims(scenarios=None, end=2100, verbose=-1, top_pars=None):
     """ Run the simulations """
-    msim = make_sims(scenarios=scenarios, end=end)
+    msim = make_sims(scenarios=scenarios, end=end, top_pars=top_pars)
     msim.run(verbose=verbose)
+    for sim in msim.sims:
+        # Stash DALY arrays before shrink() potentially drops the analyzer.
+        daly = sim.analyzers['dalys']
+        sim._daly_stash = dict(
+            years=np.asarray(daly.years),
+            yll=np.asarray(daly.yll),
+            yld=np.asarray(daly.yld),
+            dalys=np.asarray(daly.dalys),
+        )
+        sim.shrink()
     return msim
+
+
+def _result_rows(result, metric):
+    """Long-format annual rows for one ss.Result: (year, metric, value)."""
+    df = result.annualize().to_df()
+    return pd.DataFrame({
+        'year': pd.to_datetime(df['timevec']).dt.year,
+        'metric': metric,
+        'value': df['value'].astype(float),
+    })
 
 
 def process_msim(msim, scenarios):
-    """Reduce msim → per-scenario dict of year + metric arrays (with low/high)."""
-    metrics = ['year'] + TS_METRICS + CUM_METRICS_BOUNDED
-
-    scen_labels = list(scenarios.keys())
-    mlist = msim.split(chunks=len(scen_labels))
-
-    msim_dict = sc.objdict()
-    for si, scen_label in enumerate(scen_labels):
-        reduced_sim = mlist[si].reduce(output=True)
-        mres = sc.objdict({metric: reduced_sim.results[metric] for metric in metrics})
-
-        # Sum intervention product counts across matching interventions
-        programs = {
-            'mass_vax': 'vaccinations',
-            'screening': 'screens',
-            'ablation': 'ablations',
-            'excision': 'leeps',
-            'radiation': 'cancer_treatments',
-            'txv': 'txvs',
-            'campaign txvx': 'txvs',
-            'ablation_older': 'ablations',
-            'excision_older': 'excisions',
-            'radiation_older': 'cancer_treatments',
-        }
-        for intv_name in set(programs.values()):
-            mres[intv_name] = np.zeros_like(mres.year)
-        for intv_name, df_key in programs.items():
-            if reduced_sim.get_intervention(intv_name, die=False) is not None:
-                mres[df_key] += reduced_sim.get_intervention(intv_name).n_products_used.values
-
-        msim_dict[scen_label] = mres
-
-    return msim_dict
+    """Long-format ensemble: rows are (scenario, sim, year, metric, value)."""
+    frames = []
+    for si, scen_label in enumerate(scenarios):
+        for sim_idx, sim in enumerate(msim.sims[si * n_reps : (si + 1) * n_reps]):
+            for metric in TS_METRICS + CUM_METRICS_BOUNDED:
+                frames.append(_result_rows(
+                    sim.results.all_hpv[_V3_ALIAS.get(metric, metric)], metric,
+                ).assign(scenario=scen_label, sim=sim_idx))
+            for intv_name, (bucket, counter) in INTV_TO_METRIC.items():
+                if intv_name not in sim.interventions:
+                    continue
+                frames.append(_result_rows(
+                    sim.interventions[intv_name].results[counter], bucket,
+                ).assign(scenario=scen_label, sim=sim_idx))
+            stash = getattr(sim, '_daly_stash', None)
+            if stash is not None:
+                for metric in ('yll', 'yld', 'dalys'):
+                    frames.append(pd.DataFrame({
+                        'year':   stash['years'].astype(int),
+                        'metric': metric,
+                        'value':  stash[metric].astype(float),
+                    }).assign(scenario=scen_label, sim=sim_idx))
+    return pd.concat(frames, ignore_index=True)
 
 
-def save_csvs(msim_dict, resfolder='results'):
-    """Extract two plot-ready CSVs from an msim_dict.
+BASELINE_SCEN = 'S&T&T 18%'
 
-    scens_timeseries.csv — year, scenario, metric, value, low, high
-                           (for asr + cancer_incidence_with_hiv + cancer_incidence_no_hiv)
-    scens_cumulative.csv — scenario, metric, value[, low, high]
-                           (sums 2025-2100 for cancers, cancers_with_hiv, ablations, txvs, vaccinations, ...)
+
+def save_csvs(long, resfolder='results', cum_start_year=CUM_START_YEAR):
+    """Plot-ready CSVs from the long-format ensemble DataFrame:
+
+    - scens_timeseries.csv: (scenario, metric, year) -> median/lo/hi
+    - scens_cumulative.csv: (scenario, metric) -> median/lo/hi of the
+      cum_start_year..end sum
+    - scens_paired.csv:     (scenario, metric) -> median/lo/hi of the paired
+      diff (baseline sum - scenario sum) per sim. Positive = averted vs
+      status quo. Baseline scenario itself is a row of zeros.
+    - scens_per_sim.csv:    (scenario, sim, metric) -> cum_start_year..end sum.
+      Kept so plot scripts can derive ratios (e.g. treatments per cancer
+      averted) per-sim rather than from medians.
+    - scens_long.csv.gz:    per (scenario, sim, year, metric) raw values.
+      Needed by the costing script to apply discounting.
     """
     os.makedirs(resfolder, exist_ok=True)
+    long.to_csv(f'{resfolder}/scens_long.csv.gz', index=False, compression='gzip')
 
-    # Time series (only plotted metrics, full year range)
-    ts_rows = []
-    for scen_label, mres in msim_dict.items():
-        years = np.asarray(mres.year)
-        for metric in TS_METRICS:
-            r = mres[metric]
-            for yi, yr in enumerate(years):
-                ts_rows.append({
-                    'scenario': scen_label, 'year': float(yr), 'metric': metric,
-                    'value': float(r[yi]),
-                    'low': float(r.low[yi]),
-                    'high': float(r.high[yi]),
-                })
-    pd.DataFrame(ts_rows).to_csv(f'{resfolder}/scens_timeseries.csv', index=False)
+    q = {'value': 'median',
+         'low':   lambda s: s.quantile(0.10),
+         'high':  lambda s: s.quantile(0.90)}
 
-    # Cumulative sums from CUM_START_YEAR → end
-    cum_rows = []
-    for scen_label, mres in msim_dict.items():
-        years = np.asarray(mres.year)
-        fi = int(np.where(years == CUM_START_YEAR)[0][0])
-        for metric in CUM_METRICS_BOUNDED:
-            r = mres[metric]
-            cum_rows.append({
-                'scenario': scen_label, 'metric': metric,
-                'value': float(np.sum(r.values[fi:])),
-                'low': float(np.sum(r.low[fi:])),
-                'high': float(np.sum(r.high[fi:])),
-            })
-        for metric in CUM_METRICS_UNBOUNDED:
-            r = np.asarray(mres[metric])
-            cum_rows.append({
-                'scenario': scen_label, 'metric': metric,
-                'value': float(np.sum(r[fi:])),
-                'low': np.nan, 'high': np.nan,
-            })
-    pd.DataFrame(cum_rows).to_csv(f'{resfolder}/scens_cumulative.csv', index=False)
+    ts = (long[long.metric.isin(TS_METRICS)]
+          .groupby(['scenario', 'metric', 'year'])['value'].agg(**q)
+          .reset_index())
+    ts.to_csv(f'{resfolder}/scens_timeseries.csv', index=False)
+
+    per_sim = (long[long.year >= cum_start_year]
+               .groupby(['scenario', 'sim', 'metric'])['value'].sum()
+               .reset_index())
+    cum = (per_sim.groupby(['scenario', 'metric'])['value'].agg(**q)
+                  .reset_index())
+    # Fill 0 for scenarios that didn't run a given program (e.g. txvs for
+    # non-TxV scenarios); plot scripts assume every (scenario, metric) exists.
+    scenarios = long['scenario'].unique()
+    metrics = long['metric'].unique()
+    grid = pd.MultiIndex.from_product([scenarios, metrics], names=['scenario', 'metric'])
+    cum = cum.set_index(['scenario', 'metric']).reindex(grid, fill_value=0).reset_index()
+    cum.to_csv(f'{resfolder}/scens_cumulative.csv', index=False)
+
+    # Per-sim table (used by fig E panels for per-sim ratios).
+    per_sim_full = (per_sim.set_index(['scenario', 'sim', 'metric'])['value']
+                    .unstack('metric').fillna(0).stack().rename('value').reset_index())
+    per_sim_full.to_csv(f'{resfolder}/scens_per_sim.csv', index=False)
+
+    # Paired diff vs baseline per sim; baseline_sum - scen_sum (positive = averted).
+    baseline_sums = (per_sim[per_sim.scenario == BASELINE_SCEN]
+                     .set_index(['sim', 'metric'])['value'])
+    diffs = per_sim.copy()
+    diffs['diff'] = diffs.apply(
+        lambda r: baseline_sums.get((r['sim'], r['metric']), 0.0) - r['value'], axis=1)
+    paired = (diffs.groupby(['scenario', 'metric'])['diff']
+              .agg(value='median',
+                   low=lambda s: s.quantile(0.10),
+                   high=lambda s: s.quantile(0.90))
+              .reset_index())
+    paired = paired.set_index(['scenario', 'metric']).reindex(grid, fill_value=0).reset_index()
+    paired.to_csv(f'{resfolder}/scens_paired.csv', index=False)
 
 
 # %% Run as a script
@@ -258,7 +313,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     T = sc.timer()
-    scenarios = sc.mergedicts(make_baselines(args.end), make_st_scenarios(args.end), make_campaign_scenarios(args.end))
+    scenarios = sc.mergedicts(make_baselines(args.end),
+                              make_st_scenarios(args.end),
+                              make_campaign_scenarios(args.end))
 
     if args.run_sim:
         msim = run_sims(scenarios=scenarios, end=args.end)
@@ -267,6 +324,6 @@ if __name__ == '__main__':
     else:
         msim_dict = sc.loadobj(f'{args.resfolder}/st_scens.obj')
 
-    save_csvs(msim_dict, resfolder=args.resfolder)
-    print(f'Saved scens_timeseries.csv + scens_cumulative.csv to {args.resfolder}/')
+    save_csvs(msim_dict, resfolder=args.resfolder, cum_start_year=CUM_START_YEAR)
+    print(f'Saved scens_*.csv to {args.resfolder}/ (cum accounting from {CUM_START_YEAR})')
     T.toc('Done')
