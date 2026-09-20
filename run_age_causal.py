@@ -10,7 +10,7 @@ Produces two figures under figures/:
     - age_causal_bar_rwanda.png    (age-at-causal-infection, per scenario)
     - dwelltimes_rwanda.png        (precin/cin/total dwell time, per scenario)
 
-Analyzer arrays are pickled to raw_results/age_causal_rwanda.obj so plots
+Analyzer arrays are pickled to results/age_causal_rwanda.obj so plots
 can be regenerated without rerunning the sims.
 """
 
@@ -63,7 +63,7 @@ def _extract(sim):
     )
 
 
-def run(end=END, verbose=1/12, out='raw_results/age_causal_rwanda.obj'):
+def run(end=END, verbose=1/12, out='results/age_causal_rwanda.obj'):
     data = {}
     for scen in SCENARIOS:
         print(f'\n=== Running: {scen} (to {end}) ===')
@@ -257,7 +257,7 @@ if __name__ == '__main__':
     parser.add_argument('--run-sim', action='store_true',
                         help='Run the two sims (heavy). Otherwise reload cached arrays.')
     parser.add_argument('--end', type=int, default=END)
-    parser.add_argument('--cache', default='raw_results/age_causal_rwanda.obj')
+    parser.add_argument('--cache', default='results/age_causal_rwanda.obj')
     args = parser.parse_args()
 
     T = sc.timer()

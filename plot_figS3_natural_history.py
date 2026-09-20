@@ -6,7 +6,7 @@ times from causal infection to cancer, both under the baseline scenario
 (routine prophylactic vaccination + status-quo 18% screen-and-treat).
 
 Reads analyzer arrays saved by run_age_causal.py at
-raw_results/age_causal_rwanda.obj.
+results/age_causal_rwanda.obj.
 """
 import argparse
 import os
@@ -40,7 +40,7 @@ DWELL_LABELS = {
 }
 
 
-def plot_figS2(inpath='raw_results/age_causal_rwanda.obj',
+def plot_figS2(inpath='results/age_causal_rwanda.obj',
                outpath='figures/figS3_natural_history.png'):
     ut.set_font(16)
     data = sc.loadobj(inpath)[SCEN]
@@ -142,7 +142,7 @@ def plot_figS2(inpath='raw_results/age_causal_rwanda.obj',
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--inpath', default='raw_results/age_causal_rwanda.obj')
+    parser.add_argument('--inpath', default='results/age_causal_rwanda.obj')
     parser.add_argument('--outpath', default='figures/figS3_natural_history.png')
     args = parser.parse_args()
     plot_figS2(inpath=args.inpath, outpath=args.outpath)
