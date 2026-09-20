@@ -153,7 +153,7 @@ def plot_calib(resfolder='results', outpath='figures/figS2_calib.png',
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
+    parser.add_argument('--resfolder', default='results')
     parser.add_argument('--outpath', default='figures/figS2_calib.png')
     args = parser.parse_args()
 

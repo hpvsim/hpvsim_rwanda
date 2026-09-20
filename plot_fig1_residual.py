@@ -69,7 +69,7 @@ def plot_fig1(resfolder='results', outpath='figures/fig1_residual.png', poster=F
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
+    parser.add_argument('--resfolder', default='results')
     parser.add_argument('--outpath', default='figures/fig1_residual.png')
     parser.add_argument('--poster', action='store_true')
     args = parser.parse_args()

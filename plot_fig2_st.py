@@ -136,7 +136,7 @@ def plot_fig2(resfolder='results', outpath='figures/fig2_st.png'):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
+    parser.add_argument('--resfolder', default='results')
     parser.add_argument('--outpath', default='figures/fig2_st.png')
     args = parser.parse_args()
     plot_fig2(resfolder=args.resfolder, outpath=args.outpath)

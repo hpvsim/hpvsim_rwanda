@@ -99,7 +99,7 @@ def plot_fig5(resfolder='results', outpath='figures/fig5_comparison.png', poster
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--resfolder', default='results/v2.2.6_baseline')
+    parser.add_argument('--resfolder', default='results')
     parser.add_argument('--outpath', default='figures/fig5_comparison.png')
     parser.add_argument('--poster', action='store_true')
     args = parser.parse_args()
