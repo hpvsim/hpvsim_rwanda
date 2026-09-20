@@ -1,0 +1,4321 @@
+scenario,sim,metric,value
+Baseline,0,ablations,676435.0638
+Baseline,0,asr_cancer_incidence,744.1256808068922
+Baseline,0,cancer_deaths,74869.52973547291
+Baseline,0,cancer_incidence,678.7083983421326
+Baseline,0,cancer_incidence_no_hiv,649.8026953339577
+Baseline,0,cancer_incidence_with_hiv,3586.2551033496857
+Baseline,0,cancer_treatments,84889.473
+Baseline,0,cancers,77824.27958081439
+Baseline,0,cancers_no_hiv,73642.35978515378
+Baseline,0,cancers_with_hiv,3583.2291828937496
+Baseline,0,dalys,1406556.9450248932
+Baseline,0,excisions,0.0
+Baseline,0,leeps,32168.6424
+Baseline,0,screens,6441174.925
+Baseline,0,txvs,0.0
+Baseline,0,vaccinations,13540317.7302
+Baseline,0,yld,96653.92831422531
+Baseline,0,yll,1309903.0167106679
+Baseline,1,ablations,1230450.5718
+Baseline,1,asr_cancer_incidence,984.2235017299008
+Baseline,1,cancer_deaths,104053.63336117838
+Baseline,1,cancer_incidence,938.9463400840759
+Baseline,1,cancer_incidence_no_hiv,889.731382727623
+Baseline,1,cancer_incidence_with_hiv,5518.960819721222
+Baseline,1,cancer_treatments,140588.8816
+Baseline,1,cancers,114022.93260694605
+Baseline,1,cancers_no_hiv,107076.89619293575
+Baseline,1,cancers_with_hiv,6088.213218800154
+Baseline,1,dalys,2239351.784911669
+Baseline,1,excisions,0.0
+Baseline,1,leeps,58082.271
+Baseline,1,screens,8335848.3908
+Baseline,1,txvs,0.0
+Baseline,1,vaccinations,13570401.368
+Baseline,1,yld,147702.31886112777
+Baseline,1,yll,2091649.466050541
+Baseline,2,ablations,1028800.8412
+Baseline,2,asr_cancer_incidence,815.8536261108711
+Baseline,2,cancer_deaths,85997.49444972494
+Baseline,2,cancer_incidence,772.9261438846588
+Baseline,2,cancer_incidence_no_hiv,734.7850503921509
+Baseline,2,cancer_incidence_with_hiv,4268.146675825119
+Baseline,2,cancer_treatments,112888.1062
+Baseline,2,cancers,93023.95947122082
+Baseline,2,cancers_no_hiv,87823.36866208386
+Baseline,2,cancers_with_hiv,4569.138483295386
+Baseline,2,dalys,1885284.2562531992
+Baseline,2,excisions,0.0
+Baseline,2,leeps,48848.6792
+Baseline,2,screens,7528058.0372
+Baseline,2,txvs,0.0
+Baseline,2,vaccinations,13538828.4412
+Baseline,2,yld,119974.63945374847
+Baseline,2,yll,1765309.6167994507
+Baseline,3,ablations,1738298.1208
+Baseline,3,asr_cancer_incidence,1223.3360129770545
+Baseline,3,cancer_deaths,128588.17629797915
+Baseline,3,cancer_incidence,1194.6121625900269
+Baseline,3,cancer_incidence_no_hiv,1151.9061903953552
+Baseline,3,cancer_incidence_with_hiv,5195.998877763748
+Baseline,3,cancer_treatments,170076.8038
+Baseline,3,cancers,148464.22343345475
+Baseline,3,cancers_no_hiv,141860.72893217663
+Baseline,3,cancers_with_hiv,5525.261953320875
+Baseline,3,dalys,3023397.4298284715
+Baseline,3,excisions,0.0
+Baseline,3,leeps,83400.184
+Baseline,3,screens,9943684.7952
+Baseline,3,txvs,0.0
+Baseline,3,vaccinations,13555806.3358
+Baseline,3,yld,200066.21162122645
+Baseline,3,yll,2823331.218207245
+Baseline,4,ablations,910551.2946
+Baseline,4,asr_cancer_incidence,948.3993615198125
+Baseline,4,cancer_deaths,94817.06522742465
+Baseline,4,cancer_incidence,866.4505630731583
+Baseline,4,cancer_incidence_no_hiv,829.2125754356384
+Baseline,4,cancer_incidence_with_hiv,4618.5622000694275
+Baseline,4,cancer_treatments,103952.3722
+Baseline,4,cancers,100625.29150631565
+Baseline,4,cancers_no_hiv,95004.72022434474
+Baseline,4,cancers_with_hiv,4637.645775764129
+Baseline,4,dalys,1799881.4844062482
+Baseline,4,excisions,0.0
+Baseline,4,leeps,40806.5186
+Baseline,4,screens,7276963.9118
+Baseline,4,txvs,0.0
+Baseline,4,vaccinations,13514404.1016
+Baseline,4,yld,126775.46897890106
+Baseline,4,yll,1673106.0154273473
+Baseline,5,ablations,1983732.948
+Baseline,5,asr_cancer_incidence,1285.6262772625048
+Baseline,5,cancer_deaths,139707.20712093296
+Baseline,5,cancer_incidence,1265.4722456932068
+Baseline,5,cancer_incidence_no_hiv,1220.4175746440887
+Baseline,5,cancer_incidence_with_hiv,5760.489635467529
+Baseline,5,cancer_treatments,212968.32700000002
+Baseline,5,cancers,158156.5157247829
+Baseline,5,cancers_no_hiv,151240.2711990469
+Baseline,5,cancers_with_hiv,5888.6484523217
+Baseline,5,dalys,3406873.729100785
+Baseline,5,excisions,0.0
+Baseline,5,leeps,91442.3446
+Baseline,5,screens,10716923.644
+Baseline,5,txvs,0.0
+Baseline,5,vaccinations,13511127.6658
+Baseline,5,yld,209002.33014865717
+Baseline,5,yll,3197871.3989521284
+Baseline,6,ablations,881659.088
+Baseline,6,asr_cancer_incidence,829.666870836915
+Baseline,6,cancer_deaths,83275.07500195816
+Baseline,6,cancer_incidence,768.9477721452713
+Baseline,6,cancer_incidence_no_hiv,734.0719028711319
+Baseline,6,cancer_incidence_with_hiv,4158.061710119247
+Baseline,6,cancer_treatments,98888.7896
+Baseline,6,cancers,90209.20360320163
+Baseline,6,cancers_no_hiv,85097.97066911704
+Baseline,6,cancers_with_hiv,4438.081076971687
+Baseline,6,dalys,1710889.537694703
+Baseline,6,excisions,0.0
+Baseline,6,leeps,43785.0966
+Baseline,6,screens,7106887.108
+Baseline,6,txvs,0.0
+Baseline,6,vaccinations,13579039.2442
+Baseline,6,yld,115018.99421526182
+Baseline,6,yll,1595870.5434794412
+Baseline,7,ablations,1235216.2966
+Baseline,7,asr_cancer_incidence,919.7595993579819
+Baseline,7,cancer_deaths,96532.72388565743
+Baseline,7,cancer_incidence,891.3688789606094
+Baseline,7,cancer_incidence_no_hiv,852.3567177057266
+Baseline,7,cancer_incidence_with_hiv,4884.439475059509
+Baseline,7,cancer_treatments,125398.1338
+Baseline,7,cancers,109566.9798948232
+Baseline,7,cancers_no_hiv,103973.21824928517
+Baseline,7,cancers_with_hiv,4825.29616171327
+Baseline,7,dalys,2195004.2701974027
+Baseline,7,excisions,0.0
+Baseline,7,leeps,58677.9866
+Baseline,7,screens,8222364.569
+Baseline,7,txvs,0.0
+Baseline,7,vaccinations,13539126.299
+Baseline,7,yld,145471.0624500242
+Baseline,7,yll,2049533.2077473786
+Baseline,8,ablations,1175346.8788
+Baseline,8,asr_cancer_incidence,887.7190629062745
+Baseline,8,cancer_deaths,93098.4251445623
+Baseline,8,cancer_incidence,841.7086954116821
+Baseline,8,cancer_incidence_no_hiv,807.5337911844254
+Baseline,8,cancer_incidence_with_hiv,4093.5384380817413
+Baseline,8,cancer_treatments,136418.8724
+Baseline,8,cancers,101313.3419764474
+Baseline,8,cancers_no_hiv,96205.08716757667
+Baseline,8,cancers_with_hiv,4354.680884849366
+Baseline,8,dalys,2125167.4713590997
+Baseline,8,excisions,0.0
+Baseline,8,leeps,61954.4224
+Baseline,8,screens,8139560.1006000005
+Baseline,8,txvs,0.0
+Baseline,8,vaccinations,13567422.79
+Baseline,8,yld,131822.82548657144
+Baseline,8,yll,1993344.6458725284
+Baseline,9,ablations,667797.1876
+Baseline,9,asr_cancer_incidence,820.0113190229748
+Baseline,9,cancer_deaths,80630.09855216541
+Baseline,9,cancer_incidence,737.2981717586517
+Baseline,9,cancer_incidence_no_hiv,698.9905939400196
+Baseline,9,cancer_incidence_with_hiv,4454.810540437698
+Baseline,9,cancer_treatments,86378.762
+Baseline,9,cancers,83176.78250437668
+Baseline,9,cancers_no_hiv,77928.53327434097
+Baseline,9,cancers_with_hiv,4584.0313724077005
+Baseline,9,dalys,1447110.7542133965
+Baseline,9,excisions,0.0
+Baseline,9,leeps,36040.7938
+Baseline,9,screens,6522192.2466
+Baseline,9,txvs,0.0
+Baseline,9,vaccinations,13507255.5144
+Baseline,9,yld,102056.35695870557
+Baseline,9,yll,1345054.3972546908
+HPV-Faster 18%,0,ablations,622522.802
+HPV-Faster 18%,0,asr_cancer_incidence,673.2742423970088
+HPV-Faster 18%,0,cancer_deaths,68131.98716909393
+HPV-Faster 18%,0,cancer_incidence,613.8748382925987
+HPV-Faster 18%,0,cancer_incidence_no_hiv,587.0418010056019
+HPV-Faster 18%,0,cancer_incidence_with_hiv,3320.0147054195404
+HPV-Faster 18%,0,cancer_treatments,78038.7436
+HPV-Faster 18%,0,cancers,70529.74307126399
+HPV-Faster 18%,0,cancers_no_hiv,66636.74420168214
+HPV-Faster 18%,0,cancers_with_hiv,3321.1143469446088
+HPV-Faster 18%,0,dalys,1255079.6756524656
+HPV-Faster 18%,0,excisions,0.0
+HPV-Faster 18%,0,leeps,30679.3534
+HPV-Faster 18%,0,screens,6411984.8606
+HPV-Faster 18%,0,txvs,0.0
+HPV-Faster 18%,0,vaccinations,13554317.0468
+HPV-Faster 18%,0,yld,86615.36562197059
+HPV-Faster 18%,0,yll,1168464.3100304948
+HPV-Faster 18%,1,ablations,1239684.1636
+HPV-Faster 18%,1,asr_cancer_incidence,905.0253285144428
+HPV-Faster 18%,1,cancer_deaths,95865.5232396931
+HPV-Faster 18%,1,cancer_incidence,868.1054964065552
+HPV-Faster 18%,1,cancer_incidence_no_hiv,825.7803236246109
+HPV-Faster 18%,1,cancer_incidence_with_hiv,4641.072412967682
+HPV-Faster 18%,1,cancer_treatments,129270.2852
+HPV-Faster 18%,1,cancers,106275.65246234056
+HPV-Faster 18%,1,cancers_no_hiv,100467.43162939961
+HPV-Faster 18%,1,cancers_with_hiv,5114.2182062756665
+HPV-Faster 18%,1,dalys,2142921.165524538
+HPV-Faster 18%,1,excisions,0.0
+HPV-Faster 18%,1,leeps,54210.1196
+HPV-Faster 18%,1,screens,8468692.9696
+HPV-Faster 18%,1,txvs,0.0
+HPV-Faster 18%,1,vaccinations,13543892.0238
+HPV-Faster 18%,1,yld,139373.84057184745
+HPV-Faster 18%,1,yll,2003547.3249526906
+HPV-Faster 18%,2,ablations,820598.2390000001
+HPV-Faster 18%,2,asr_cancer_incidence,711.16973968377
+HPV-Faster 18%,2,cancer_deaths,74532.94925669649
+HPV-Faster 18%,2,cancer_incidence,663.0390944480896
+HPV-Faster 18%,2,cancer_incidence_no_hiv,626.7992863059044
+HPV-Faster 18%,2,cancer_incidence_with_hiv,3985.3717596530914
+HPV-Faster 18%,2,cancer_treatments,95612.3538
+HPV-Faster 18%,2,cancers,78488.50061635619
+HPV-Faster 18%,2,cancers_no_hiv,73576.83101624773
+HPV-Faster 18%,2,cancers_with_hiv,4330.8522325322
+HPV-Faster 18%,2,dalys,1546512.827388968
+HPV-Faster 18%,2,excisions,0.0
+HPV-Faster 18%,2,leeps,38721.514
+HPV-Faster 18%,2,screens,7079186.3326
+HPV-Faster 18%,2,txvs,0.0
+HPV-Faster 18%,2,vaccinations,13529892.7072
+HPV-Faster 18%,2,yld,99590.31220403005
+HPV-Faster 18%,2,yll,1446922.515184938
+HPV-Faster 18%,3,ablations,1323084.3476
+HPV-Faster 18%,3,asr_cancer_incidence,1042.9028149636163
+HPV-Faster 18%,3,cancer_deaths,109269.12263187287
+HPV-Faster 18%,3,cancer_incidence,1005.169219493866
+HPV-Faster 18%,3,cancer_incidence_no_hiv,966.1753494739532
+HPV-Faster 18%,3,cancer_incidence_with_hiv,4464.635904788971
+HPV-Faster 18%,3,cancer_treatments,139993.166
+HPV-Faster 18%,3,cancers,123587.1448254599
+HPV-Faster 18%,3,cancers_no_hiv,117632.97653545706
+HPV-Faster 18%,3,cancers_with_hiv,4953.375006192843
+HPV-Faster 18%,3,dalys,2410505.275062257
+HPV-Faster 18%,3,excisions,0.0
+HPV-Faster 18%,3,leeps,69103.0096
+HPV-Faster 18%,3,screens,8893736.0502
+HPV-Faster 18%,3,txvs,0.0
+HPV-Faster 18%,3,vaccinations,13548955.6064
+HPV-Faster 18%,3,yld,163497.6217537394
+HPV-Faster 18%,3,yll,2247007.6533085173
+HPV-Faster 18%,4,ablations,805407.4912
+HPV-Faster 18%,4,asr_cancer_incidence,856.0060340880532
+HPV-Faster 18%,4,cancer_deaths,85434.54604314751
+HPV-Faster 18%,4,cancer_incidence,775.1583681106567
+HPV-Faster 18%,4,cancer_incidence_no_hiv,740.1191939115524
+HPV-Faster 18%,4,cancer_incidence_with_hiv,4219.032914876938
+HPV-Faster 18%,4,cancer_treatments,94420.9226
+HPV-Faster 18%,4,cancers,89646.25473336337
+HPV-Faster 18%,4,cancers_no_hiv,84549.91194322395
+HPV-Faster 18%,4,cancers_with_hiv,4277.237860799565
+HPV-Faster 18%,4,dalys,1572559.004342843
+HPV-Faster 18%,4,excisions,0.0
+HPV-Faster 18%,4,leeps,33955.7892
+HPV-Faster 18%,4,screens,7073824.8922
+HPV-Faster 18%,4,txvs,0.0
+HPV-Faster 18%,4,vaccinations,13572486.3726
+HPV-Faster 18%,4,yld,111810.51404120256
+HPV-Faster 18%,4,yll,1460748.4903016405
+HPV-Faster 18%,5,ablations,1847016.2178
+HPV-Faster 18%,5,asr_cancer_incidence,1180.5520117587103
+HPV-Faster 18%,5,cancer_deaths,129505.5792635027
+HPV-Faster 18%,5,cancer_incidence,1162.033599615097
+HPV-Faster 18%,5,cancer_incidence_no_hiv,1119.9324405193329
+HPV-Faster 18%,5,cancer_incidence_with_hiv,5335.339462518692
+HPV-Faster 18%,5,cancer_treatments,191522.5654
+HPV-Faster 18%,5,cancers,145607.76958816854
+HPV-Faster 18%,5,cancers_no_hiv,139147.24461846767
+HPV-Faster 18%,5,cancers_with_hiv,5465.6904146253255
+HPV-Faster 18%,5,dalys,3124370.010944071
+HPV-Faster 18%,5,excisions,0.0
+HPV-Faster 18%,5,leeps,86974.4776
+HPV-Faster 18%,5,screens,10503061.7436
+HPV-Faster 18%,5,txvs,0.0
+HPV-Faster 18%,5,vaccinations,13548955.6064
+HPV-Faster 18%,5,yld,192926.9518850537
+HPV-Faster 18%,5,yll,2931443.0590590173
+HPV-Faster 18%,6,ablations,840256.8538
+HPV-Faster 18%,6,asr_cancer_incidence,770.4300083538853
+HPV-Faster 18%,6,cancer_deaths,78169.79229702015
+HPV-Faster 18%,6,cancer_incidence,715.8958208560944
+HPV-Faster 18%,6,cancer_incidence_no_hiv,684.6648280024529
+HPV-Faster 18%,6,cancer_incidence_with_hiv,3758.4566292762756
+HPV-Faster 18%,6,cancer_treatments,94718.7804
+HPV-Faster 18%,6,cancers,84633.30594207607
+HPV-Faster 18%,6,cancers_no_hiv,80025.45188204241
+HPV-Faster 18%,6,cancers_with_hiv,3976.401491742996
+HPV-Faster 18%,6,dalys,1607840.1976974134
+HPV-Faster 18%,6,excisions,0.0
+HPV-Faster 18%,6,leeps,31275.069
+HPV-Faster 18%,6,screens,7194159.4434
+HPV-Faster 18%,6,txvs,0.0
+HPV-Faster 18%,6,vaccinations,13579634.9598
+HPV-Faster 18%,6,yld,108302.43056109596
+HPV-Faster 18%,6,yll,1499537.7671363172
+HPV-Faster 18%,7,ablations,1155390.4062
+HPV-Faster 18%,7,asr_cancer_incidence,829.1797710597506
+HPV-Faster 18%,7,cancer_deaths,87939.52712084226
+HPV-Faster 18%,7,cancer_incidence,802.7361754179001
+HPV-Faster 18%,7,cancer_incidence_no_hiv,769.4536160230637
+HPV-Faster 18%,7,cancer_incidence_with_hiv,4222.58349108696
+HPV-Faster 18%,7,cancer_treatments,117058.1154
+HPV-Faster 18%,7,cancers,99183.65812490249
+HPV-Faster 18%,7,cancers_no_hiv,94328.58314830188
+HPV-Faster 18%,7,cancers_with_hiv,4170.0090368878045
+HPV-Faster 18%,7,dalys,2020024.4666637639
+HPV-Faster 18%,7,excisions,0.0
+HPV-Faster 18%,7,leeps,53614.404
+HPV-Faster 18%,7,screens,8110370.0362
+HPV-Faster 18%,7,txvs,0.0
+HPV-Faster 18%,7,vaccinations,13537339.1522
+HPV-Faster 18%,7,yld,131862.48921882943
+HPV-Faster 18%,7,yll,1888161.9774449344
+HPV-Faster 18%,8,ablations,1168496.1494
+HPV-Faster 18%,8,asr_cancer_incidence,825.3959826698557
+HPV-Faster 18%,8,cancer_deaths,87635.71326293131
+HPV-Faster 18%,8,cancer_incidence,786.3998236656189
+HPV-Faster 18%,8,cancer_incidence_no_hiv,754.6046004295349
+HPV-Faster 18%,8,cancer_incidence_with_hiv,3877.2916207313538
+HPV-Faster 18%,8,cancer_treatments,131653.1476
+HPV-Faster 18%,8,cancers,95502.13714902756
+HPV-Faster 18%,8,cancers_no_hiv,90837.69018537653
+HPV-Faster 18%,8,cancers_with_hiv,4047.887353268308
+HPV-Faster 18%,8,dalys,2027287.4603043315
+HPV-Faster 18%,8,excisions,0.0
+HPV-Faster 18%,8,leeps,48550.8214
+HPV-Faster 18%,8,screens,8217896.702
+HPV-Faster 18%,8,txvs,0.0
+HPV-Faster 18%,8,vaccinations,13562359.2074
+HPV-Faster 18%,8,yld,125289.45816356229
+HPV-Faster 18%,8,yll,1901998.0021407693
+HPV-Faster 18%,9,ablations,619842.0818
+HPV-Faster 18%,9,asr_cancer_incidence,764.1939668456148
+HPV-Faster 18%,9,cancer_deaths,75932.88145241464
+HPV-Faster 18%,9,cancer_incidence,687.7513411045074
+HPV-Faster 18%,9,cancer_incidence_no_hiv,652.4222222566605
+HPV-Faster 18%,9,cancer_incidence_with_hiv,4006.9245755672455
+HPV-Faster 18%,9,cancer_treatments,81910.895
+HPV-Faster 18%,9,cancers,78142.98655697145
+HPV-Faster 18%,9,cancers_no_hiv,73228.33748292208
+HPV-Faster 18%,9,cancers_with_hiv,4229.580597220686
+HPV-Faster 18%,9,dalys,1347933.0805026833
+HPV-Faster 18%,9,excisions,0.0
+HPV-Faster 18%,9,leeps,31870.7846
+HPV-Faster 18%,9,screens,6532915.1274
+HPV-Faster 18%,9,txvs,0.0
+HPV-Faster 18%,9,vaccinations,13541211.3036
+HPV-Faster 18%,9,yld,95503.46196944312
+HPV-Faster 18%,9,yll,1252429.6185332402
+HPV-Faster 35%,0,ablations,473296.0442
+HPV-Faster 35%,0,asr_cancer_incidence,575.948651242597
+HPV-Faster 35%,0,cancer_deaths,57799.300392945945
+HPV-Faster 35%,0,cancer_incidence,514.8432177305222
+HPV-Faster 35%,0,cancer_incidence_no_hiv,490.77055564522743
+HPV-Faster 35%,0,cancer_incidence_with_hiv,2950.138570547104
+HPV-Faster 35%,0,cancer_treatments,67315.8628
+HPV-Faster 35%,0,cancers,58201.409418707066
+HPV-Faster 35%,0,cancers_no_hiv,54853.49022772123
+HPV-Faster 35%,0,cancers_with_hiv,2895.177724102367
+HPV-Faster 35%,0,dalys,998720.4264298534
+HPV-Faster 35%,0,excisions,0.0
+HPV-Faster 35%,0,leeps,19956.4726
+HPV-Faster 35%,0,screens,6081958.4182
+HPV-Faster 35%,0,txvs,0.0
+HPV-Faster 35%,0,vaccinations,13523935.5512
+HPV-Faster 35%,0,yld,70306.11039974955
+HPV-Faster 35%,0,yll,928414.316030104
+HPV-Faster 35%,1,ablations,1131561.7822
+HPV-Faster 35%,1,asr_cancer_incidence,835.5526784908267
+HPV-Faster 35%,1,cancer_deaths,90286.64699175725
+HPV-Faster 35%,1,cancer_incidence,804.4015957117081
+HPV-Faster 35%,1,cancer_incidence_no_hiv,766.1593110561371
+HPV-Faster 35%,1,cancer_incidence_with_hiv,4132.810364961624
+HPV-Faster 35%,1,cancer_treatments,122121.698
+HPV-Faster 35%,1,cancers,99439.81660279205
+HPV-Faster 35%,1,cancers_no_hiv,94131.99690372171
+HPV-Faster 35%,1,cancers_with_hiv,4628.710034751414
+HPV-Faster 35%,1,dalys,1974685.0678353633
+HPV-Faster 35%,1,excisions,0.0
+HPV-Faster 35%,1,leeps,58082.271
+HPV-Faster 35%,1,screens,8415972.139
+HPV-Faster 35%,1,txvs,0.0
+HPV-Faster 35%,1,vaccinations,13562657.0652
+HPV-Faster 35%,1,yld,130103.54685413858
+HPV-Faster 35%,1,yll,1844581.5209812247
+HPV-Faster 35%,2,ablations,908764.1478
+HPV-Faster 35%,2,asr_cancer_incidence,680.8238381494073
+HPV-Faster 35%,2,cancer_deaths,73293.86011403827
+HPV-Faster 35%,2,cancer_incidence,643.4192013144493
+HPV-Faster 35%,2,cancer_incidence_no_hiv,610.4048743247986
+HPV-Faster 35%,2,cancer_incidence_with_hiv,3665.8890330791473
+HPV-Faster 35%,2,cancer_treatments,98590.9318
+HPV-Faster 35%,2,cancers,77970.22714384373
+HPV-Faster 35%,2,cancers_no_hiv,73487.4735928053
+HPV-Faster 35%,2,cancers_with_hiv,3934.701389578998
+HPV-Faster 35%,2,dalys,1587395.143501404
+HPV-Faster 35%,2,excisions,0.0
+HPV-Faster 35%,2,leeps,46465.8168
+HPV-Faster 35%,2,screens,7429467.1054
+HPV-Faster 35%,2,txvs,0.0
+HPV-Faster 35%,2,vaccinations,13584102.8268
+HPV-Faster 35%,2,yld,100402.04410220095
+HPV-Faster 35%,2,yll,1486993.099399203
+HPV-Faster 35%,3,ablations,1304617.164
+HPV-Faster 35%,3,asr_cancer_incidence,955.6280170151538
+HPV-Faster 35%,3,cancer_deaths,100389.98250029335
+HPV-Faster 35%,3,cancer_incidence,922.6185986995697
+HPV-Faster 35%,3,cancer_incidence_no_hiv,883.8365920782089
+HPV-Faster 35%,3,cancer_incidence_with_hiv,4484.770630121231
+HPV-Faster 35%,3,cancer_treatments,133440.2944
+HPV-Faster 35%,3,cancers,113921.66081185116
+HPV-Faster 35%,3,cancers_no_hiv,108155.14194521359
+HPV-Faster 35%,3,cancers_with_hiv,4908.696322766602
+HPV-Faster 35%,3,dalys,2241678.4395887633
+HPV-Faster 35%,3,excisions,0.0
+HPV-Faster 35%,3,leeps,53614.404
+HPV-Faster 35%,3,screens,8919947.5366
+HPV-Faster 35%,3,txvs,0.0
+HPV-Faster 35%,3,vaccinations,13536445.5788
+HPV-Faster 35%,3,yld,152592.31516778475
+HPV-Faster 35%,3,yll,2089086.1244209784
+HPV-Faster 35%,4,ablations,642181.4168
+HPV-Faster 35%,4,asr_cancer_incidence,748.2441790087705
+HPV-Faster 35%,4,cancer_deaths,74735.49420504496
+HPV-Faster 35%,4,cancer_incidence,668.0609055757523
+HPV-Faster 35%,4,cancer_incidence_no_hiv,636.016133248806
+HPV-Faster 35%,4,cancer_incidence_with_hiv,3763.3600482940674
+HPV-Faster 35%,4,cancer_treatments,73570.8766
+HPV-Faster 35%,4,cancers,76844.32762435795
+HPV-Faster 35%,4,cancers_no_hiv,72227.53538606029
+HPV-Faster 35%,4,cancers_with_hiv,3863.215519731635
+HPV-Faster 35%,4,dalys,1301846.3426045568
+HPV-Faster 35%,4,excisions,0.0
+HPV-Faster 35%,4,leeps,29785.78
+HPV-Faster 35%,4,screens,6735160.5736
+HPV-Faster 35%,4,txvs,0.0
+HPV-Faster 35%,4,vaccinations,13538828.4412
+HPV-Faster 35%,4,yld,94564.53381675777
+HPV-Faster 35%,4,yll,1207281.808787799
+HPV-Faster 35%,5,ablations,1791018.9514
+HPV-Faster 35%,5,asr_cancer_incidence,1092.8293152706235
+HPV-Faster 35%,5,cancer_deaths,122228.9139541376
+HPV-Faster 35%,5,cancer_incidence,1083.1458704471588
+HPV-Faster 35%,5,cancer_incidence_no_hiv,1044.4570758342743
+HPV-Faster 35%,5,cancer_incidence_with_hiv,4916.981837511063
+HPV-Faster 35%,5,cancer_treatments,176033.9598
+HPV-Faster 35%,5,cancers,136993.72281443642
+HPV-Faster 35%,5,cancers_no_hiv,131087.21217692964
+HPV-Faster 35%,5,cancers_with_hiv,4962.310780493762
+HPV-Faster 35%,5,dalys,2921921.4339921423
+HPV-Faster 35%,5,excisions,0.0
+HPV-Faster 35%,5,leeps,78038.7436
+HPV-Faster 35%,5,screens,10407747.2476
+HPV-Faster 35%,5,txvs,0.0
+HPV-Faster 35%,5,vaccinations,13537041.2944
+HPV-Faster 35%,5,yld,181772.494816439
+HPV-Faster 35%,5,yll,2740148.939175703
+HPV-Faster 35%,6,ablations,736602.3394
+HPV-Faster 35%,6,asr_cancer_incidence,686.3828758282384
+HPV-Faster 35%,6,cancer_deaths,70079.9755375
+HPV-Faster 35%,6,cancer_incidence,635.0014288425446
+HPV-Faster 35%,6,cancer_incidence_no_hiv,606.8836131095886
+HPV-Faster 35%,6,cancer_incidence_with_hiv,3247.9561474323273
+HPV-Faster 35%,6,cancer_treatments,76847.3124
+HPV-Faster 35%,6,cancers,75012.50037832135
+HPV-Faster 35%,6,cancers_no_hiv,70943.76818745847
+HPV-Faster 35%,6,cancers_with_hiv,3526.6362165835894
+HPV-Faster 35%,6,dalys,1426470.2025889468
+HPV-Faster 35%,6,excisions,0.0
+HPV-Faster 35%,6,leeps,36934.3672
+HPV-Faster 35%,6,screens,7044039.1122
+HPV-Faster 35%,6,txvs,0.0
+HPV-Faster 35%,6,vaccinations,13557593.4826
+HPV-Faster 35%,6,yld,95739.77133160355
+HPV-Faster 35%,6,yll,1330730.4312573434
+HPV-Faster 35%,7,ablations,1077351.6626
+HPV-Faster 35%,7,asr_cancer_incidence,756.2703273528138
+HPV-Faster 35%,7,cancer_deaths,80796.89773026749
+HPV-Faster 35%,7,cancer_incidence,734.4858419895172
+HPV-Faster 35%,7,cancer_incidence_no_hiv,702.054792881012
+HPV-Faster 35%,7,cancer_incidence_with_hiv,4066.331154823303
+HPV-Faster 35%,7,cancer_treatments,107526.6658
+HPV-Faster 35%,7,cancers,91153.41286635127
+HPV-Faster 35%,7,cancers_no_hiv,86465.13741294046
+HPV-Faster 35%,7,cancers_with_hiv,4024.0587198144585
+HPV-Faster 35%,7,dalys,1839115.8567893815
+HPV-Faster 35%,7,excisions,0.0
+HPV-Faster 35%,7,leeps,47657.248
+HPV-Faster 35%,7,screens,7955781.838
+HPV-Faster 35%,7,txvs,0.0
+HPV-Faster 35%,7,vaccinations,13543892.0238
+HPV-Faster 35%,7,yld,121006.49616417944
+HPV-Faster 35%,7,yll,1718109.360625202
+HPV-Faster 35%,8,ablations,1044885.1624
+HPV-Faster 35%,8,asr_cancer_incidence,737.5605922508361
+HPV-Faster 35%,8,cancer_deaths,78342.55136838897
+HPV-Faster 35%,8,cancer_incidence,698.3788932561874
+HPV-Faster 35%,8,cancer_incidence_no_hiv,669.6838747262955
+HPV-Faster 35%,8,cancer_incidence_with_hiv,3372.290897846222
+HPV-Faster 35%,8,cancer_treatments,124802.4182
+HPV-Faster 35%,8,cancers,84960.95074641617
+HPV-Faster 35%,8,cancers_no_hiv,80749.24667549331
+HPV-Faster 35%,8,cancers_with_hiv,3583.229208969509
+HPV-Faster 35%,8,dalys,1816885.8997705667
+HPV-Faster 35%,8,excisions,0.0
+HPV-Faster 35%,8,leeps,57486.5554
+HPV-Faster 35%,8,screens,7982589.04
+HPV-Faster 35%,8,txvs,0.0
+HPV-Faster 35%,8,vaccinations,13554912.7624
+HPV-Faster 35%,8,yld,110970.59148765163
+HPV-Faster 35%,8,yll,1705915.308282915
+HPV-Faster 35%,9,ablations,537931.1868
+HPV-Faster 35%,9,asr_cancer_incidence,668.3840047207444
+HPV-Faster 35%,9,cancer_deaths,66261.43968042258
+HPV-Faster 35%,9,cancer_incidence,594.0166082680225
+HPV-Faster 35%,9,cancer_incidence_no_hiv,561.5128760933876
+HPV-Faster 35%,9,cancer_incidence_with_hiv,3752.727967262268
+HPV-Faster 35%,9,cancer_treatments,68507.294
+HPV-Faster 35%,9,cancers,66997.1489370685
+HPV-Faster 35%,9,cancers_no_hiv,62645.44998171982
+HPV-Faster 35%,9,cancers_with_hiv,3815.5582755708747
+HPV-Faster 35%,9,dalys,1115680.9575490586
+HPV-Faster 35%,9,excisions,0.0
+HPV-Faster 35%,9,leeps,25020.0552
+HPV-Faster 35%,9,screens,6326797.5298
+HPV-Faster 35%,9,txvs,0.0
+HPV-Faster 35%,9,vaccinations,13572784.2304
+HPV-Faster 35%,9,yld,81078.82628659933
+HPV-Faster 35%,9,yll,1034602.1312624592
+HPV-Faster 70%,0,ablations,339557.892
+HPV-Faster 70%,0,asr_cancer_incidence,426.1277803115898
+HPV-Faster 70%,0,cancer_deaths,43585.52772908609
+HPV-Faster 70%,0,cancer_incidence,370.7464116215706
+HPV-Faster 70%,0,cancer_incidence_no_hiv,351.95426893234253
+HPV-Faster 70%,0,cancer_incidence_with_hiv,2156.0260467529297
+HPV-Faster 70%,0,cancer_treatments,44082.9544
+HPV-Faster 70%,0,cancers,41676.25998058108
+HPV-Faster 70%,0,cancers_no_hiv,39114.68456288299
+HPV-Faster 70%,0,cancers_with_hiv,2201.1690700530967
+HPV-Faster 70%,0,dalys,685566.0105114564
+HPV-Faster 70%,0,excisions,0.0
+HPV-Faster 70%,0,leeps,15190.7478
+HPV-Faster 70%,0,screens,5952985.9908
+HPV-Faster 70%,0,txvs,0.0
+HPV-Faster 70%,0,vaccinations,13550444.895399999
+HPV-Faster 70%,0,yld,49353.27393926475
+HPV-Faster 70%,0,yll,636212.7365721916
+HPV-Faster 70%,1,ablations,824172.5326
+HPV-Faster 70%,1,asr_cancer_incidence,610.5107460914448
+HPV-Faster 70%,1,cancer_deaths,65686.57395119348
+HPV-Faster 70%,1,cancer_incidence,573.3483524918556
+HPV-Faster 70%,1,cancer_incidence_no_hiv,542.199211537838
+HPV-Faster 70%,1,cancer_incidence_with_hiv,3320.3705835342407
+HPV-Faster 70%,1,cancer_treatments,77145.1702
+HPV-Faster 70%,1,cancers,70082.95418922228
+HPV-Faster 70%,1,cancers_no_hiv,65832.52850918392
+HPV-Faster 70%,1,cancers_with_hiv,3726.200905944374
+HPV-Faster 70%,1,dalys,1335282.8497807125
+HPV-Faster 70%,1,excisions,0.0
+HPV-Faster 70%,1,leeps,38125.7984
+HPV-Faster 70%,1,screens,7545631.6474
+HPV-Faster 70%,1,txvs,0.0
+HPV-Faster 70%,1,vaccinations,13542700.5926
+HPV-Faster 70%,1,yld,90688.61428328427
+HPV-Faster 70%,1,yll,1244594.235497428
+HPV-Faster 70%,2,ablations,544484.0584
+HPV-Faster 70%,2,asr_cancer_incidence,464.1136754154921
+HPV-Faster 70%,2,cancer_deaths,49733.3116194241
+HPV-Faster 70%,2,cancer_incidence,421.23078739643097
+HPV-Faster 70%,2,cancer_incidence_no_hiv,393.81921726465225
+HPV-Faster 70%,2,cancer_incidence_with_hiv,2867.5696115493774
+HPV-Faster 70%,2,cancer_treatments,64933.0004
+HPV-Faster 70%,2,cancers,49551.618509734144
+HPV-Faster 70%,2,cancers_no_hiv,46063.706747852615
+HPV-Faster 70%,2,cancers_with_hiv,3145.378266626325
+HPV-Faster 70%,2,dalys,934867.1692104798
+HPV-Faster 70%,2,excisions,0.0
+HPV-Faster 70%,2,leeps,24424.3396
+HPV-Faster 70%,2,screens,6532617.2696
+HPV-Faster 70%,2,txvs,0.0
+HPV-Faster 70%,2,vaccinations,13559082.7716
+HPV-Faster 70%,2,yld,61840.63395381484
+HPV-Faster 70%,2,yll,873026.535256665
+HPV-Faster 70%,3,ablations,981441.451
+HPV-Faster 70%,3,asr_cancer_incidence,700.9075202741783
+HPV-Faster 70%,3,cancer_deaths,72099.45076829668
+HPV-Faster 70%,3,cancer_incidence,657.6232596635818
+HPV-Faster 70%,3,cancer_incidence_no_hiv,625.5746176242828
+HPV-Faster 70%,3,cancer_incidence_with_hiv,3489.15585398674
+HPV-Faster 70%,3,cancer_treatments,95314.496
+HPV-Faster 70%,3,cancers,80588.39718005646
+HPV-Faster 70%,3,cancers_no_hiv,76117.55750023785
+HPV-Faster 70%,3,cancers_with_hiv,3824.494009925949
+HPV-Faster 70%,3,dalys,1602811.2712390276
+HPV-Faster 70%,3,excisions,0.0
+HPV-Faster 70%,3,leeps,45572.2434
+HPV-Faster 70%,3,screens,8168750.165
+HPV-Faster 70%,3,txvs,0.0
+HPV-Faster 70%,3,vaccinations,13583804.969
+HPV-Faster 70%,3,yld,107762.49177348209
+HPV-Faster 70%,3,yll,1495048.7794655454
+HPV-Faster 70%,4,ablations,470913.18179999996
+HPV-Faster 70%,4,asr_cancer_incidence,581.7840232590736
+HPV-Faster 70%,4,cancer_deaths,58892.43918357821
+HPV-Faster 70%,4,cancer_incidence,508.0319353938103
+HPV-Faster 70%,4,cancer_incidence_no_hiv,482.04234689474106
+HPV-Faster 70%,4,cancer_incidence_with_hiv,2961.2079360485077
+HPV-Faster 70%,4,cancer_treatments,60465.1334
+HPV-Faster 70%,4,cancers,58052.480246298604
+HPV-Faster 70%,4,cancers_no_hiv,54436.48958112834
+HPV-Faster 70%,4,cancers_with_hiv,3038.1494610230757
+HPV-Faster 70%,4,dalys,940432.255204694
+HPV-Faster 70%,4,excisions,0.0
+HPV-Faster 70%,4,leeps,27402.9176
+HPV-Faster 70%,4,screens,6460535.682
+HPV-Faster 70%,4,txvs,0.0
+HPV-Faster 70%,4,vaccinations,13552529.9
+HPV-Faster 70%,4,yld,70101.63868345885
+HPV-Faster 70%,4,yll,870330.6165212352
+HPV-Faster 70%,5,ablations,1679620.1342
+HPV-Faster 70%,5,asr_cancer_incidence,906.0525556924807
+HPV-Faster 70%,5,cancer_deaths,103332.8168510603
+HPV-Faster 70%,5,cancer_incidence,907.1971789598465
+HPV-Faster 70%,5,cancer_incidence_no_hiv,876.2387204170227
+HPV-Faster 70%,5,cancer_incidence_with_hiv,3927.5719742774963
+HPV-Faster 70%,5,cancer_treatments,161438.9276
+HPV-Faster 70%,5,cancers,117638.9248910326
+HPV-Faster 70%,5,cancers_no_hiv,112837.46543349803
+HPV-Faster 70%,5,cancers_with_hiv,3988.3158034766902
+HPV-Faster 70%,5,dalys,2588479.1454814365
+HPV-Faster 70%,5,excisions,0.0
+HPV-Faster 70%,5,leeps,80421.606
+HPV-Faster 70%,5,screens,10324644.9214
+HPV-Faster 70%,5,txvs,0.0
+HPV-Faster 70%,5,vaccinations,13530190.565
+HPV-Faster 70%,5,yld,159234.79479550067
+HPV-Faster 70%,5,yll,2429244.3506859355
+HPV-Faster 70%,6,ablations,459594.5854
+HPV-Faster 70%,6,asr_cancer_incidence,479.4309031358543
+HPV-Faster 70%,6,cancer_deaths,48774.209373955186
+HPV-Faster 70%,6,cancer_incidence,426.81000688672066
+HPV-Faster 70%,6,cancer_incidence_no_hiv,402.9242510795593
+HPV-Faster 70%,6,cancer_incidence_with_hiv,2595.327861070633
+HPV-Faster 70%,6,cancer_treatments,50635.826
+HPV-Faster 70%,6,cancers,49021.43154215856
+HPV-Faster 70%,6,cancers_no_hiv,45822.44212443326
+HPV-Faster 70%,6,cancers_with_hiv,2832.627576404404
+HPV-Faster 70%,6,dalys,849799.6642685519
+HPV-Faster 70%,6,excisions,0.0
+HPV-Faster 70%,6,leeps,22637.1928
+HPV-Faster 70%,6,screens,6353306.874
+HPV-Faster 70%,6,txvs,0.0
+HPV-Faster 70%,6,vaccinations,13571890.657
+HPV-Faster 70%,6,yld,60067.40641790968
+HPV-Faster 70%,6,yll,789732.2578506422
+HPV-Faster 70%,7,ablations,730943.0412
+HPV-Faster 70%,7,asr_cancer_incidence,542.6232845830216
+HPV-Faster 70%,7,cancer_deaths,57846.95670670143
+HPV-Faster 70%,7,cancer_incidence,510.2208611369133
+HPV-Faster 70%,7,cancer_incidence_no_hiv,483.33567321300507
+HPV-Faster 70%,7,cancer_incidence_with_hiv,3250.5749735832214
+HPV-Faster 70%,7,cancer_treatments,76549.4546
+HPV-Faster 70%,7,cancers,62520.34509421627
+HPV-Faster 70%,7,cancers_no_hiv,58844.78479388087
+HPV-Faster 70%,7,cancers_with_hiv,3231.756996181423
+HPV-Faster 70%,7,dalys,1235099.4097144934
+HPV-Faster 70%,7,excisions,0.0
+HPV-Faster 70%,7,leeps,33955.7892
+HPV-Faster 70%,7,screens,7128035.0117999995
+HPV-Faster 70%,7,txvs,0.0
+HPV-Faster 70%,7,vaccinations,13558784.9138
+HPV-Faster 70%,7,yld,82242.05787516692
+HPV-Faster 70%,7,yll,1152857.3518393266
+HPV-Faster 70%,8,ablations,750601.656
+HPV-Faster 70%,8,asr_cancer_incidence,534.2765627942676
+HPV-Faster 70%,8,cancer_deaths,57236.349733866766
+HPV-Faster 70%,8,cancer_incidence,496.3276472091675
+HPV-Faster 70%,8,cancer_incidence_no_hiv,473.98550605773926
+HPV-Faster 70%,8,cancer_incidence_with_hiv,2561.714122533798
+HPV-Faster 70%,8,cancer_treatments,81315.1794
+HPV-Faster 70%,8,cancers,59887.28374397803
+HPV-Faster 70%,8,cancers_no_hiv,56727.01569846717
+HPV-Faster 70%,8,cancers_with_hiv,2725.398770246351
+HPV-Faster 70%,8,dalys,1244781.885929842
+HPV-Faster 70%,8,excisions,0.0
+HPV-Faster 70%,8,leeps,33360.0736
+HPV-Faster 70%,8,screens,7318068.2882
+HPV-Faster 70%,8,txvs,0.0
+HPV-Faster 70%,8,vaccinations,13516786.964
+HPV-Faster 70%,8,yld,77570.21090733197
+HPV-Faster 70%,8,yll,1167211.67502251
+HPV-Faster 70%,9,ablations,303814.956
+HPV-Faster 70%,9,asr_cancer_incidence,465.2093218348579
+HPV-Faster 70%,9,cancer_deaths,46081.575585130304
+HPV-Faster 70%,9,cancer_incidence,391.78743164241314
+HPV-Faster 70%,9,cancer_incidence_no_hiv,366.5013959556818
+HPV-Faster 70%,9,cancer_incidence_with_hiv,2687.974267721176
+HPV-Faster 70%,9,cancer_treatments,46167.958999999995
+HPV-Faster 70%,9,cancers,42593.661379894664
+HPV-Faster 70%,9,cancers_no_hiv,39352.971263591724
+HPV-Faster 70%,9,cancers_with_hiv,2835.606138248529
+HPV-Faster 70%,9,dalys,643262.8650978194
+HPV-Faster 70%,9,excisions,0.0
+HPV-Faster 70%,9,leeps,16382.179
+HPV-Faster 70%,9,screens,5880010.8297999995
+HPV-Faster 70%,9,txvs,0.0
+HPV-Faster 70%,9,vaccinations,13560869.9184
+HPV-Faster 70%,9,yld,48200.603607238765
+HPV-Faster 70%,9,yll,595062.2614905806
+"Mass TxV 50/90, 18%",0,ablations,518570.4298
+"Mass TxV 50/90, 18%",0,asr_cancer_incidence,649.2793393090592
+"Mass TxV 50/90, 18%",0,cancer_deaths,64358.128747135146
+"Mass TxV 50/90, 18%",0,cancer_incidence,581.4143737256527
+"Mass TxV 50/90, 18%",0,cancer_incidence_no_hiv,554.7074328064919
+"Mass TxV 50/90, 18%",0,cancer_incidence_with_hiv,3250.2848002910614
+"Mass TxV 50/90, 18%",0,cancer_treatments,75060.1656
+"Mass TxV 50/90, 18%",0,cancers,65519.77494840927
+"Mass TxV 50/90, 18%",0,cancers_no_hiv,61689.326441234305
+"Mass TxV 50/90, 18%",0,cancers_with_hiv,3267.4999391497536
+"Mass TxV 50/90, 18%",0,dalys,1136231.299157418
+"Mass TxV 50/90, 18%",0,excisions,0.0
+"Mass TxV 50/90, 18%",0,leeps,23232.9084
+"Mass TxV 50/90, 18%",0,screens,6124552.0836
+"Mass TxV 50/90, 18%",0,txvs,1612304.2714
+"Mass TxV 50/90, 18%",0,vaccinations,13535552.0054
+"Mass TxV 50/90, 18%",0,yld,79364.8655035723
+"Mass TxV 50/90, 18%",0,yll,1056866.4336538457
+"Mass TxV 50/90, 18%",1,ablations,1071990.2222
+"Mass TxV 50/90, 18%",1,asr_cancer_incidence,865.8275339796535
+"Mass TxV 50/90, 18%",1,cancer_deaths,90087.08294097518
+"Mass TxV 50/90, 18%",1,cancer_incidence,818.4635553359985
+"Mass TxV 50/90, 18%",1,cancer_incidence_no_hiv,776.3582625389099
+"Mass TxV 50/90, 18%",1,cancer_incidence_with_hiv,4514.945579528809
+"Mass TxV 50/90, 18%",1,cancer_treatments,120632.409
+"Mass TxV 50/90, 18%",1,cancers,98641.55775269674
+"Mass TxV 50/90, 18%",1,cancers_no_hiv,92857.16519092303
+"Mass TxV 50/90, 18%",1,cancers_with_hiv,5075.496696469981
+"Mass TxV 50/90, 18%",1,dalys,1925951.686259523
+"Mass TxV 50/90, 18%",1,excisions,0.0
+"Mass TxV 50/90, 18%",1,leeps,47955.1058
+"Mass TxV 50/90, 18%",1,screens,8015353.398
+"Mass TxV 50/90, 18%",1,txvs,1725788.0932
+"Mass TxV 50/90, 18%",1,vaccinations,13558487.056
+"Mass TxV 50/90, 18%",1,yld,127793.64748855685
+"Mass TxV 50/90, 18%",1,yll,1798158.0387709662
+"Mass TxV 50/90, 18%",2,ablations,967144.2766
+"Mass TxV 50/90, 18%",2,asr_cancer_incidence,752.7406642737403
+"Mass TxV 50/90, 18%",2,cancer_deaths,79408.88023630982
+"Mass TxV 50/90, 18%",2,cancer_incidence,709.3363395929337
+"Mass TxV 50/90, 18%",2,cancer_incidence_no_hiv,672.8010724782944
+"Mass TxV 50/90, 18%",2,cancer_incidence_with_hiv,4197.048664808273
+"Mass TxV 50/90, 18%",2,cancer_treatments,117058.1154
+"Mass TxV 50/90, 18%",2,cancers,85404.75703430276
+"Mass TxV 50/90, 18%",2,cancers_no_hiv,80385.85979589737
+"Mass TxV 50/90, 18%",2,cancers_with_hiv,4381.488067386863
+"Mass TxV 50/90, 18%",2,dalys,1735041.17543853
+"Mass TxV 50/90, 18%",2,excisions,0.0
+"Mass TxV 50/90, 18%",2,leeps,47359.3902
+"Mass TxV 50/90, 18%",2,screens,7519420.161
+"Mass TxV 50/90, 18%",2,txvs,1554222.0004
+"Mass TxV 50/90, 18%",2,vaccinations,13560869.9184
+"Mass TxV 50/90, 18%",2,yld,109814.5031309678
+"Mass TxV 50/90, 18%",2,yll,1625226.672307562
+"Mass TxV 50/90, 18%",3,ablations,1354061.5588
+"Mass TxV 50/90, 18%",3,asr_cancer_incidence,1034.3868925009626
+"Mass TxV 50/90, 18%",3,cancer_deaths,105876.52275628499
+"Mass TxV 50/90, 18%",3,cancer_incidence,987.4995176792145
+"Mass TxV 50/90, 18%",3,cancer_incidence_no_hiv,946.042073726654
+"Mass TxV 50/90, 18%",3,cancer_incidence_with_hiv,4777.021611213684
+"Mass TxV 50/90, 18%",3,cancer_treatments,133142.43660000002
+"Mass TxV 50/90, 18%",3,cancers,120593.6746115433
+"Mass TxV 50/90, 18%",3,cancers_no_hiv,114460.79100806596
+"Mass TxV 50/90, 18%",3,cancers_with_hiv,5176.768338993938
+"Mass TxV 50/90, 18%",3,dalys,2372079.4700598842
+"Mass TxV 50/90, 18%",3,excisions,0.0
+"Mass TxV 50/90, 18%",3,leeps,68805.15179999999
+"Mass TxV 50/90, 18%",3,screens,8834164.4902
+"Mass TxV 50/90, 18%",3,txvs,1839569.7728
+"Mass TxV 50/90, 18%",3,vaccinations,13522148.4044
+"Mass TxV 50/90, 18%",3,yld,160305.629596769
+"Mass TxV 50/90, 18%",3,yll,2211773.8404631154
+"Mass TxV 50/90, 18%",4,ablations,836682.5602000001
+"Mass TxV 50/90, 18%",4,asr_cancer_incidence,864.4478522048288
+"Mass TxV 50/90, 18%",4,cancer_deaths,85890.26833047968
+"Mass TxV 50/90, 18%",4,cancer_incidence,782.1257675886154
+"Mass TxV 50/90, 18%",4,cancer_incidence_no_hiv,748.2344062328339
+"Mass TxV 50/90, 18%",4,cancer_incidence_with_hiv,4079.5356380939484
+"Mass TxV 50/90, 18%",4,cancer_treatments,90548.7712
+"Mass TxV 50/90, 18%",4,cancers,90486.21368617748
+"Mass TxV 50/90, 18%",4,cancers_no_hiv,85506.03533280295
+"Mass TxV 50/90, 18%",4,cancers_with_hiv,4146.1804239616795
+"Mass TxV 50/90, 18%",4,dalys,1613775.4216034391
+"Mass TxV 50/90, 18%",4,excisions,0.0
+"Mass TxV 50/90, 18%",4,leeps,37232.225
+"Mass TxV 50/90, 18%",4,screens,7123865.0026
+"Mass TxV 50/90, 18%",4,txvs,1799656.8276
+"Mass TxV 50/90, 18%",4,vaccinations,13560869.918399999
+"Mass TxV 50/90, 18%",4,yld,112928.99091858447
+"Mass TxV 50/90, 18%",4,yll,1500846.4306848547
+"Mass TxV 50/90, 18%",5,ablations,1864887.6858
+"Mass TxV 50/90, 18%",5,asr_cancer_incidence,1176.9401819088168
+"Mass TxV 50/90, 18%",5,cancer_deaths,128793.69876347698
+"Mass TxV 50/90, 18%",5,cancer_incidence,1158.4487583637238
+"Mass TxV 50/90, 18%",5,cancer_incidence_no_hiv,1116.4131495952606
+"Mass TxV 50/90, 18%",5,cancer_incidence_with_hiv,5298.492063999176
+"Mass TxV 50/90, 18%",5,cancer_treatments,184373.9782
+"Mass TxV 50/90, 18%",5,cancers,145283.10377287117
+"Mass TxV 50/90, 18%",5,cancers_no_hiv,138903.00134887407
+"Mass TxV 50/90, 18%",5,cancers_with_hiv,5412.075994624795
+"Mass TxV 50/90, 18%",5,dalys,3136940.6265682876
+"Mass TxV 50/90, 18%",5,excisions,0.0
+"Mass TxV 50/90, 18%",5,leeps,89059.4822
+"Mass TxV 50/90, 18%",5,screens,10507827.4684
+"Mass TxV 50/90, 18%",5,txvs,1948883.5854
+"Mass TxV 50/90, 18%",5,vaccinations,13545679.1706
+"Mass TxV 50/90, 18%",5,yld,192742.539775926
+"Mass TxV 50/90, 18%",5,yll,2944198.0867923615
+"Mass TxV 50/90, 18%",6,ablations,800046.0508
+"Mass TxV 50/90, 18%",6,asr_cancer_incidence,765.677713733015
+"Mass TxV 50/90, 18%",6,cancer_deaths,77431.10579174971
+"Mass TxV 50/90, 18%",6,cancer_incidence,708.5600465536118
+"Mass TxV 50/90, 18%",6,cancer_incidence_no_hiv,677.4164932966232
+"Mass TxV 50/90, 18%",6,cancer_incidence_with_hiv,3578.5716381073
+"Mass TxV 50/90, 18%",6,cancer_treatments,93229.4914
+"Mass TxV 50/90, 18%",6,cancers,83346.56092728586
+"Mass TxV 50/90, 18%",6,cancers_no_hiv,78735.72768402827
+"Mass TxV 50/90, 18%",6,cancers_with_hiv,3919.8085187751954
+"Mass TxV 50/90, 18%",6,dalys,1563649.9164469556
+"Mass TxV 50/90, 18%",6,excisions,0.0
+"Mass TxV 50/90, 18%",6,leeps,32764.358
+"Mass TxV 50/90, 18%",6,screens,7128928.5852
+"Mass TxV 50/90, 18%",6,txvs,1662642.2396
+"Mass TxV 50/90, 18%",6,vaccinations,13561465.634
+"Mass TxV 50/90, 18%",6,yld,105800.06566057257
+"Mass TxV 50/90, 18%",6,yll,1457849.850786383
+"Mass TxV 50/90, 18%",7,ablations,1092542.4104
+"Mass TxV 50/90, 18%",7,asr_cancer_incidence,821.2013052288469
+"Mass TxV 50/90, 18%",7,cancer_deaths,85762.18721463505
+"Mass TxV 50/90, 18%",7,cancer_incidence,787.070818066597
+"Mass TxV 50/90, 18%",7,cancer_incidence_no_hiv,752.1331137418747
+"Mass TxV 50/90, 18%",7,cancer_incidence_with_hiv,4264.164656162262
+"Mass TxV 50/90, 18%",7,cancer_treatments,110505.2438
+"Mass TxV 50/90, 18%",7,cancers,96446.34552171775
+"Mass TxV 50/90, 18%",7,cancers_no_hiv,91409.57663373632
+"Mass TxV 50/90, 18%",7,cancers_with_hiv,4342.766551478338
+"Mass TxV 50/90, 18%",7,dalys,1937303.1338942852
+"Mass TxV 50/90, 18%",7,excisions,0.0
+"Mass TxV 50/90, 18%",7,leeps,50933.6838
+"Mass TxV 50/90, 18%",7,screens,7948037.5352
+"Mass TxV 50/90, 18%",7,txvs,1611410.698
+"Mass TxV 50/90, 18%",7,vaccinations,13537934.8678
+"Mass TxV 50/90, 18%",7,yld,127260.62314508679
+"Mass TxV 50/90, 18%",7,yll,1810042.5107491985
+"Mass TxV 50/90, 18%",8,ablations,1125902.484
+"Mass TxV 50/90, 18%",8,asr_cancer_incidence,839.1942372865219
+"Mass TxV 50/90, 18%",8,cancer_deaths,88535.24343764823
+"Mass TxV 50/90, 18%",8,cancer_incidence,796.9394044876099
+"Mass TxV 50/90, 18%",8,cancer_incidence_no_hiv,761.7184958457947
+"Mass TxV 50/90, 18%",8,cancer_incidence_with_hiv,4325.291273117065
+"Mass TxV 50/90, 18%",8,cancer_treatments,135525.299
+"Mass TxV 50/90, 18%",8,cancers,96598.2531167147
+"Mass TxV 50/90, 18%",8,cancers_no_hiv,91412.55551070876
+"Mass TxV 50/90, 18%",8,cancers_with_hiv,4512.545516430422
+"Mass TxV 50/90, 18%",8,dalys,2040150.0443494045
+"Mass TxV 50/90, 18%",8,excisions,0.0
+"Mass TxV 50/90, 18%",8,leeps,53018.6884
+"Mass TxV 50/90, 18%",8,screens,8089519.9902
+"Mass TxV 50/90, 18%",8,txvs,1622729.2944
+"Mass TxV 50/90, 18%",8,vaccinations,13576358.524
+"Mass TxV 50/90, 18%",8,yld,125482.91241250913
+"Mass TxV 50/90, 18%",8,yll,1914667.1319368954
+"Mass TxV 50/90, 18%",9,ablations,599885.6092
+"Mass TxV 50/90, 18%",9,asr_cancer_incidence,755.5092238818276
+"Mass TxV 50/90, 18%",9,cancer_deaths,74336.36363904415
+"Mass TxV 50/90, 18%",9,cancer_incidence,676.225803911686
+"Mass TxV 50/90, 18%",9,cancer_incidence_no_hiv,639.6048119664192
+"Mass TxV 50/90, 18%",9,cancer_incidence_with_hiv,4176.795130252838
+"Mass TxV 50/90, 18%",9,cancer_treatments,87570.1932
+"Mass TxV 50/90, 18%",9,cancers,76495.83244049223
+"Mass TxV 50/90, 18%",9,cancers_no_hiv,71542.46202529741
+"Mass TxV 50/90, 18%",9,cancers_with_hiv,4360.638005208796
+"Mass TxV 50/90, 18%",9,dalys,1326076.3192285257
+"Mass TxV 50/90, 18%",9,excisions,0.0
+"Mass TxV 50/90, 18%",9,leeps,26807.202
+"Mass TxV 50/90, 18%",9,screens,6501342.2006
+"Mass TxV 50/90, 18%",9,txvs,1754680.2998
+"Mass TxV 50/90, 18%",9,vaccinations,13538828.4412
+"Mass TxV 50/90, 18%",9,yld,93206.1764817485
+"Mass TxV 50/90, 18%",9,yll,1232870.142746777
+"Mass TxV 50/90, 35%",0,ablations,432191.6678
+"Mass TxV 50/90, 35%",0,asr_cancer_incidence,586.5878386963473
+"Mass TxV 50/90, 35%",0,cancer_deaths,58275.872446191184
+"Mass TxV 50/90, 35%",0,cancer_incidence,518.578948572278
+"Mass TxV 50/90, 35%",0,cancer_incidence_no_hiv,492.0180288553238
+"Mass TxV 50/90, 35%",0,cancer_incidence_with_hiv,3219.946967601776
+"Mass TxV 50/90, 35%",0,cancer_treatments,59571.56
+"Mass TxV 50/90, 35%",0,cancers,57742.70781555296
+"Mass TxV 50/90, 35%",0,cancers_no_hiv,54034.38106689594
+"Mass TxV 50/90, 35%",0,cancers_with_hiv,3216.8641142815527
+"Mass TxV 50/90, 35%",0,dalys,947196.0996793256
+"Mass TxV 50/90, 35%",0,excisions,0.0
+"Mass TxV 50/90, 35%",0,leeps,19658.6148
+"Mass TxV 50/90, 35%",0,screens,5890137.995
+"Mass TxV 50/90, 35%",0,txvs,3131081.1936
+"Mass TxV 50/90, 35%",0,vaccinations,13546572.743999999
+"Mass TxV 50/90, 35%",0,yld,67849.79088919792
+"Mass TxV 50/90, 35%",0,yll,879346.3087901276
+"Mass TxV 50/90, 35%",1,ablations,957612.827
+"Mass TxV 50/90, 35%",1,asr_cancer_incidence,778.838610618742
+"Mass TxV 50/90, 35%",1,cancer_deaths,80055.23264650884
+"Mass TxV 50/90, 35%",1,cancer_incidence,724.955766916275
+"Mass TxV 50/90, 35%",1,cancer_incidence_no_hiv,685.2609918117523
+"Mass TxV 50/90, 35%",1,cancer_incidence_with_hiv,4200.873685121536
+"Mass TxV 50/90, 35%",1,cancer_treatments,105739.519
+"Mass TxV 50/90, 35%",1,cancers,86599.16761115307
+"Mass TxV 50/90, 35%",1,cancers_no_hiv,81216.88299327386
+"Mass TxV 50/90, 35%",1,cancers_with_hiv,4715.088789272664
+"Mass TxV 50/90, 35%",1,dalys,1678359.2671433673
+"Mass TxV 50/90, 35%",1,excisions,0.0
+"Mass TxV 50/90, 35%",1,leeps,45572.2434
+"Mass TxV 50/90, 35%",1,screens,7711836.2998
+"Mass TxV 50/90, 35%",1,txvs,3350304.5344
+"Mass TxV 50/90, 35%",1,vaccinations,13521254.831
+"Mass TxV 50/90, 35%",1,yld,111065.03970998806
+"Mass TxV 50/90, 35%",1,yll,1567294.2274333793
+"Mass TxV 50/90, 35%",2,ablations,882254.8036
+"Mass TxV 50/90, 35%",2,asr_cancer_incidence,683.5692367478844
+"Mass TxV 50/90, 35%",2,cancer_deaths,71908.82178222199
+"Mass TxV 50/90, 35%",2,cancer_incidence,640.2725661993027
+"Mass TxV 50/90, 35%",2,cancer_incidence_no_hiv,605.3909668922424
+"Mass TxV 50/90, 35%",2,cancer_incidence_with_hiv,3883.1506242752075
+"Mass TxV 50/90, 35%",2,cancer_treatments,95612.3538
+"Mass TxV 50/90, 35%",2,cancers,76930.70341179069
+"Mass TxV 50/90, 35%",2,cancers_no_hiv,72272.21380928376
+"Mass TxV 50/90, 35%",2,cancers_with_hiv,4149.159005778727
+"Mass TxV 50/90, 35%",2,dalys,1549224.5349701105
+"Mass TxV 50/90, 35%",2,excisions,0.0
+"Mass TxV 50/90, 35%",2,leeps,44678.67
+"Mass TxV 50/90, 35%",2,screens,7374661.2702
+"Mass TxV 50/90, 35%",2,txvs,3045298.1472
+"Mass TxV 50/90, 35%",2,vaccinations,13554019.189
+"Mass TxV 50/90, 35%",2,yld,98498.65692159062
+"Mass TxV 50/90, 35%",2,yll,1450725.8780485198
+"Mass TxV 50/90, 35%",3,ablations,1053225.1808
+"Mass TxV 50/90, 35%",3,asr_cancer_incidence,902.9768416122137
+"Mass TxV 50/90, 35%",3,cancer_deaths,91221.92038462499
+"Mass TxV 50/90, 35%",3,cancer_incidence,842.8339186906815
+"Mass TxV 50/90, 35%",3,cancer_incidence_no_hiv,804.5146858692169
+"Mass TxV 50/90, 35%",3,cancer_incidence_with_hiv,4200.636914014816
+"Mass TxV 50/90, 35%",3,cancer_treatments,105143.8034
+"Mass TxV 50/90, 35%",3,cancers,100747.41161762235
+"Mass TxV 50/90, 35%",3,cancers_no_hiv,95275.77083015637
+"Mass TxV 50/90, 35%",3,cancers_with_hiv,4649.560067524902
+"Mass TxV 50/90, 35%",3,dalys,1900732.654969397
+"Mass TxV 50/90, 35%",3,excisions,0.0
+"Mass TxV 50/90, 35%",3,leeps,40806.5186
+"Mass TxV 50/90, 35%",3,screens,8070159.2332
+"Mass TxV 50/90, 35%",3,txvs,3530210.6456
+"Mass TxV 50/90, 35%",3,vaccinations,13575167.0928
+"Mass TxV 50/90, 35%",3,yld,130122.08703569233
+"Mass TxV 50/90, 35%",3,yll,1770610.5679337047
+"Mass TxV 50/90, 35%",4,ablations,701157.2612
+"Mass TxV 50/90, 35%",4,asr_cancer_incidence,783.1119014167914
+"Mass TxV 50/90, 35%",4,cancer_deaths,77883.85135530138
+"Mass TxV 50/90, 35%",4,cancer_incidence,699.4138727784157
+"Mass TxV 50/90, 35%",4,cancer_incidence_no_hiv,666.9044035673141
+"Mass TxV 50/90, 35%",4,cancer_incidence_with_hiv,3867.053932905197
+"Mass TxV 50/90, 35%",4,cancer_treatments,84293.7574
+"Mass TxV 50/90, 35%",4,cancers,80403.72848115892
+"Mass TxV 50/90, 35%",4,cancers_no_hiv,75712.47102112976
+"Mass TxV 50/90, 35%",4,cancers_with_hiv,3925.7656579979407
+"Mass TxV 50/90, 35%",4,dalys,1384197.3485591062
+"Mass TxV 50/90, 35%",4,excisions,0.0
+"Mass TxV 50/90, 35%",4,leeps,30381.4956
+"Mass TxV 50/90, 35%",4,screens,6932342.4372
+"Mass TxV 50/90, 35%",4,txvs,3498339.861
+"Mass TxV 50/90, 35%",4,vaccinations,13518574.1108
+"Mass TxV 50/90, 35%",4,yld,98794.23218250938
+"Mass TxV 50/90, 35%",4,yll,1285403.116376597
+"Mass TxV 50/90, 35%",5,ablations,1751701.7218
+"Mass TxV 50/90, 35%",5,asr_cancer_incidence,1102.7282546430731
+"Mass TxV 50/90, 35%",5,cancer_deaths,120933.23286711707
+"Mass TxV 50/90, 35%",5,cancer_incidence,1088.0305655002594
+"Mass TxV 50/90, 35%",5,cancer_incidence_no_hiv,1048.4179120063782
+"Mass TxV 50/90, 35%",5,cancer_incidence_with_hiv,5092.505008220673
+"Mass TxV 50/90, 35%",5,cancer_treatments,167991.7992
+"Mass TxV 50/90, 35%",5,cancers,137089.03730331274
+"Mass TxV 50/90, 35%",5,cancers_no_hiv,131090.191302454
+"Mass TxV 50/90, 35%",5,cancers_with_hiv,5099.325323266189
+"Mass TxV 50/90, 35%",5,dalys,2937468.9350962536
+"Mass TxV 50/90, 35%",5,excisions,0.0
+"Mass TxV 50/90, 35%",5,leeps,78634.4592
+"Mass TxV 50/90, 35%",5,screens,10346090.683
+"Mass TxV 50/90, 35%",5,txvs,3819132.7116
+"Mass TxV 50/90, 35%",5,vaccinations,13549849.1798
+"Mass TxV 50/90, 35%",5,yld,180948.52903645506
+"Mass TxV 50/90, 35%",5,yll,2756520.406059799
+"Mass TxV 50/90, 35%",6,ablations,657967.8802
+"Mass TxV 50/90, 35%",6,asr_cancer_incidence,673.2352853847293
+"Mass TxV 50/90, 35%",6,cancer_deaths,67443.93458349688
+"Mass TxV 50/90, 35%",6,cancer_incidence,613.33067715168
+"Mass TxV 50/90, 35%",6,cancer_incidence_no_hiv,584.8658985495567
+"Mass TxV 50/90, 35%",6,cancer_incidence_with_hiv,3204.221903562546
+"Mass TxV 50/90, 35%",6,cancer_treatments,73570.8766
+"Mass TxV 50/90, 35%",6,cancers,71050.99233604208
+"Mass TxV 50/90, 35%",6,cancers_no_hiv,66943.53797571229
+"Mass TxV 50/90, 35%",6,cancers_with_hiv,3520.679078470451
+"Mass TxV 50/90, 35%",6,dalys,1265866.3727438792
+"Mass TxV 50/90, 35%",6,excisions,0.0
+"Mass TxV 50/90, 35%",6,leeps,34551.5048
+"Mass TxV 50/90, 35%",6,screens,6744692.0232
+"Mass TxV 50/90, 35%",6,txvs,3246947.8778
+"Mass TxV 50/90, 35%",6,vaccinations,13548955.6064
+"Mass TxV 50/90, 35%",6,yld,87670.32057246793
+"Mass TxV 50/90, 35%",6,yll,1178196.0521714115
+"Mass TxV 50/90, 35%",7,ablations,1033864.4238
+"Mass TxV 50/90, 35%",7,asr_cancer_incidence,759.7325719856797
+"Mass TxV 50/90, 35%",7,cancer_deaths,78717.85133138392
+"Mass TxV 50/90, 35%",7,cancer_incidence,727.1319115161896
+"Mass TxV 50/90, 35%",7,cancer_incidence_no_hiv,694.0652860403061
+"Mass TxV 50/90, 35%",7,cancer_incidence_with_hiv,4070.688063621521
+"Mass TxV 50/90, 35%",7,cancer_treatments,97697.3584
+"Mass TxV 50/90, 35%",7,cancers,88910.54441149495
+"Mass TxV 50/90, 35%",7,cancers_no_hiv,84317.58287662257
+"Mass TxV 50/90, 35%",7,cancers_with_hiv,3985.337206125148
+"Mass TxV 50/90, 35%",7,dalys,1770107.0877454816
+"Mass TxV 50/90, 35%",7,excisions,0.0
+"Mass TxV 50/90, 35%",7,leeps,50933.6838
+"Mass TxV 50/90, 35%",7,screens,7860169.4842
+"Mass TxV 50/90, 35%",7,txvs,3081338.941
+"Mass TxV 50/90, 35%",7,vaccinations,13548359.8908
+"Mass TxV 50/90, 35%",7,yld,117016.29685189015
+"Mass TxV 50/90, 35%",7,yll,1653090.7908935915
+"Mass TxV 50/90, 35%",8,ablations,979654.3042
+"Mass TxV 50/90, 35%",8,asr_cancer_incidence,730.0521593383896
+"Mass TxV 50/90, 35%",8,cancer_deaths,76212.86839232381
+"Mass TxV 50/90, 35%",8,cancer_incidence,683.2513061761856
+"Mass TxV 50/90, 35%",8,cancer_incidence_no_hiv,654.3401228189468
+"Mass TxV 50/90, 35%",8,cancer_incidence_with_hiv,3362.1796329021454
+"Mass TxV 50/90, 35%",8,cancer_treatments,111696.675
+"Mass TxV 50/90, 35%",8,cancers,81812.59441116593
+"Mass TxV 50/90, 35%",8,cancers_no_hiv,77627.69693468898
+"Mass TxV 50/90, 35%",8,cancers_with_hiv,3583.2292045310815
+"Mass TxV 50/90, 35%",8,dalys,1701222.557551818
+"Mass TxV 50/90, 35%",8,excisions,0.0
+"Mass TxV 50/90, 35%",8,leeps,43487.2388
+"Mass TxV 50/90, 35%",8,screens,7762769.9836
+"Mass TxV 50/90, 35%",8,txvs,3196609.9096
+"Mass TxV 50/90, 35%",8,vaccinations,13531381.996199999
+"Mass TxV 50/90, 35%",8,yld,105264.30511986939
+"Mass TxV 50/90, 35%",8,yll,1595958.2524319484
+"Mass TxV 50/90, 35%",9,ablations,602566.3294
+"Mass TxV 50/90, 35%",9,asr_cancer_incidence,705.2644296683025
+"Mass TxV 50/90, 35%",9,cancer_deaths,70038.2759929134
+"Mass TxV 50/90, 35%",9,cancer_incidence,631.2830466032028
+"Mass TxV 50/90, 35%",9,cancer_incidence_no_hiv,597.1109704971313
+"Mass TxV 50/90, 35%",9,cancer_incidence_with_hiv,3853.6955060958862
+"Mass TxV 50/90, 35%",9,cancer_treatments,78336.6014
+"Mass TxV 50/90, 35%",9,cancers,71610.96530820208
+"Mass TxV 50/90, 35%",9,cancers_no_hiv,66994.1741972649
+"Mass TxV 50/90, 35%",9,cancers_with_hiv,4041.9301829765727
+"Mass TxV 50/90, 35%",9,dalys,1214000.1161247008
+"Mass TxV 50/90, 35%",9,excisions,0.0
+"Mass TxV 50/90, 35%",9,leeps,31275.069
+"Mass TxV 50/90, 35%",9,screens,6551680.1688
+"Mass TxV 50/90, 35%",9,txvs,3396472.4934
+"Mass TxV 50/90, 35%",9,vaccinations,13525126.9824
+"Mass TxV 50/90, 35%",9,yld,86781.0855818233
+"Mass TxV 50/90, 35%",9,yll,1127219.0305428775
+"Mass TxV 50/90, 70%",0,ablations,285049.9146
+"Mass TxV 50/90, 70%",0,asr_cancer_incidence,447.8442502416324
+"Mass TxV 50/90, 70%",0,cancer_deaths,44222.94276715044
+"Mass TxV 50/90, 70%",0,cancer_incidence,381.99953849613667
+"Mass TxV 50/90, 70%",0,cancer_incidence_no_hiv,360.7078847140074
+"Mass TxV 50/90, 70%",0,cancer_incidence_with_hiv,2461.8168017864227
+"Mass TxV 50/90, 70%",0,cancer_treatments,41997.9498
+"Mass TxV 50/90, 70%",0,cancers,41551.15896726958
+"Mass TxV 50/90, 70%",0,cancers_no_hiv,38676.83358836121
+"Mass TxV 50/90, 70%",0,cancers_with_hiv,2502.005440219273
+"Mass TxV 50/90, 70%",0,dalys,606640.0997292064
+"Mass TxV 50/90, 70%",0,excisions,0.0
+"Mass TxV 50/90, 70%",0,leeps,14892.89
+"Mass TxV 50/90, 70%",0,screens,5672106.0854
+"Mass TxV 50/90, 70%",0,txvs,6238333.7632
+"Mass TxV 50/90, 70%",0,vaccinations,13517382.6796
+"Mass TxV 50/90, 70%",0,yld,46014.78575090114
+"Mass TxV 50/90, 70%",0,yll,560625.3139783053
+"Mass TxV 50/90, 70%",1,ablations,860809.042
+"Mass TxV 50/90, 70%",1,asr_cancer_incidence,651.4439888577706
+"Mass TxV 50/90, 70%",1,cancer_deaths,68152.83625481804
+"Mass TxV 50/90, 70%",1,cancer_incidence,605.277528822422
+"Mass TxV 50/90, 70%",1,cancer_incidence_no_hiv,570.561723947525
+"Mass TxV 50/90, 70%",1,cancer_incidence_with_hiv,3570.021404027939
+"Mass TxV 50/90, 70%",1,cancer_treatments,93825.207
+"Mass TxV 50/90, 70%",1,cancers,73177.69644678567
+"Mass TxV 50/90, 70%",1,cancers_no_hiv,68563.88421171135
+"Mass TxV 50/90, 70%",1,cancers_with_hiv,4038.9516039335426
+"Mass TxV 50/90, 70%",1,dalys,1385131.7100223415
+"Mass TxV 50/90, 70%",1,excisions,0.0
+"Mass TxV 50/90, 70%",1,leeps,47061.5324
+"Mass TxV 50/90, 70%",1,screens,7598650.3358
+"Mass TxV 50/90, 70%",1,txvs,6651164.674
+"Mass TxV 50/90, 70%",1,vaccinations,13536147.720999999
+"Mass TxV 50/90, 70%",1,yld,93914.34239501084
+"Mass TxV 50/90, 70%",1,yll,1291217.3676273306
+"Mass TxV 50/90, 70%",2,ablations,553717.6502
+"Mass TxV 50/90, 70%",2,asr_cancer_incidence,505.41001325672926
+"Mass TxV 50/90, 70%",2,cancer_deaths,52354.460431080275
+"Mass TxV 50/90, 70%",2,cancer_incidence,455.15080136060715
+"Mass TxV 50/90, 70%",2,cancer_incidence_no_hiv,425.4540212750435
+"Mass TxV 50/90, 70%",2,cancer_incidence_with_hiv,3136.5823323726654
+"Mass TxV 50/90, 70%",2,cancer_treatments,61060.849
+"Mass TxV 50/90, 70%",2,cancers,53027.618779947596
+"Mass TxV 50/90, 70%",2,cancers_no_hiv,49215.04232901956
+"Mass TxV 50/90, 70%",2,cancers_with_hiv,3383.664484656111
+"Mass TxV 50/90, 70%",2,dalys,975303.4303891642
+"Mass TxV 50/90, 70%",2,excisions,0.0
+"Mass TxV 50/90, 70%",2,leeps,27998.6332
+"Mass TxV 50/90, 70%",2,screens,6567466.6322
+"Mass TxV 50/90, 70%",2,txvs,6058725.5098
+"Mass TxV 50/90, 70%",2,vaccinations,13559976.345
+"Mass TxV 50/90, 70%",2,yld,64214.35950087431
+"Mass TxV 50/90, 70%",2,yll,911089.07088829
+"Mass TxV 50/90, 70%",3,ablations,878382.6522
+"Mass TxV 50/90, 70%",3,asr_cancer_incidence,735.2927826916807
+"Mass TxV 50/90, 70%",3,cancer_deaths,73552.99820179556
+"Mass TxV 50/90, 70%",3,cancer_incidence,676.2444759011269
+"Mass TxV 50/90, 70%",3,cancer_incidence_no_hiv,639.7339763641357
+"Mass TxV 50/90, 70%",3,cancer_incidence_with_hiv,3974.034083843231
+"Mass TxV 50/90, 70%",3,cancer_treatments,86676.6198
+"Mass TxV 50/90, 70%",3,cancers,80624.1411227805
+"Mass TxV 50/90, 70%",3,cancers_no_hiv,75620.13534209468
+"Mass TxV 50/90, 70%",3,cancers_with_hiv,4348.7236995779385
+"Mass TxV 50/90, 70%",3,dalys,1487707.7481621557
+"Mass TxV 50/90, 70%",3,excisions,0.0
+"Mass TxV 50/90, 70%",3,leeps,41402.2342
+"Mass TxV 50/90, 70%",3,screens,7845872.3098
+"Mass TxV 50/90, 70%",3,txvs,7129524.3008
+"Mass TxV 50/90, 70%",3,vaccinations,13540913.445799999
+"Mass TxV 50/90, 70%",3,yld,103557.0319354742
+"Mass TxV 50/90, 70%",3,yll,1384150.7162266816
+"Mass TxV 50/90, 70%",4,ablations,496528.9526
+"Mass TxV 50/90, 70%",4,asr_cancer_incidence,623.4651853607508
+"Mass TxV 50/90, 70%",4,cancer_deaths,61739.959438824444
+"Mass TxV 50/90, 70%",4,cancer_incidence,544.6728149652481
+"Mass TxV 50/90, 70%",4,cancer_incidence_no_hiv,515.7939758896828
+"Mass TxV 50/90, 70%",4,cancer_incidence_with_hiv,3308.3827381134033
+"Mass TxV 50/90, 70%",4,cancer_treatments,63741.5692
+"Mass TxV 50/90, 70%",4,cancers,61972.28865966116
+"Mass TxV 50/90, 70%",4,cancers_no_hiv,57891.63962438711
+"Mass TxV 50/90, 70%",4,cancers_with_hiv,3398.5573582339307
+"Mass TxV 50/90, 70%",4,dalys,971531.338821671
+"Mass TxV 50/90, 70%",4,excisions,0.0
+"Mass TxV 50/90, 70%",4,leeps,25020.0552
+"Mass TxV 50/90, 70%",4,screens,6565679.4854
+"Mass TxV 50/90, 70%",4,txvs,6980595.4008
+"Mass TxV 50/90, 70%",4,vaccinations,13525126.9824
+"Mass TxV 50/90, 70%",4,yld,73328.20256321227
+"Mass TxV 50/90, 70%",4,yll,898203.1362584587
+"Mass TxV 50/90, 70%",5,ablations,1458311.7888
+"Mass TxV 50/90, 70%",5,asr_cancer_incidence,867.3097854156232
+"Mass TxV 50/90, 70%",5,cancer_deaths,94528.14223359367
+"Mass TxV 50/90, 70%",5,cancer_incidence,843.1577488183975
+"Mass TxV 50/90, 70%",5,cancer_incidence_no_hiv,809.1105954647064
+"Mass TxV 50/90, 70%",5,cancer_incidence_with_hiv,4125.851064682007
+"Mass TxV 50/90, 70%",5,cancer_treatments,149226.7578
+"Mass TxV 50/90, 70%",5,cancers,105897.3726792074
+"Mass TxV 50/90, 70%",5,cancers_no_hiv,100944.00459585122
+"Mass TxV 50/90, 70%",5,cancers_with_hiv,4247.452073698082
+"Mass TxV 50/90, 70%",5,dalys,2275020.5757691874
+"Mass TxV 50/90, 70%",5,excisions,0.0
+"Mass TxV 50/90, 70%",5,leeps,64039.427
+"Mass TxV 50/90, 70%",5,screens,9730716.4682
+"Mass TxV 50/90, 70%",5,txvs,7655839.0334
+"Mass TxV 50/90, 70%",5,vaccinations,13564146.3542
+"Mass TxV 50/90, 70%",5,yld,139595.181255979
+"Mass TxV 50/90, 70%",5,yll,2135425.3945132084
+"Mass TxV 50/90, 70%",6,ablations,439340.255
+"Mass TxV 50/90, 70%",6,asr_cancer_incidence,509.838913998212
+"Mass TxV 50/90, 70%",6,cancer_deaths,50334.98433035188
+"Mass TxV 50/90, 70%",6,cancer_incidence,447.951481372118
+"Mass TxV 50/90, 70%",6,cancer_incidence_no_hiv,422.12557566165924
+"Mass TxV 50/90, 70%",6,cancer_incidence_with_hiv,2816.537815093994
+"Mass TxV 50/90, 70%",6,cancer_treatments,49444.3948
+"Mass TxV 50/90, 70%",6,cancers,50543.48504755873
+"Mass TxV 50/90, 70%",6,cancers_no_hiv,46998.98033767555
+"Mass TxV 50/90, 70%",6,cancers_with_hiv,3076.8709758219925
+"Mass TxV 50/90, 70%",6,dalys,825959.3337902237
+"Mass TxV 50/90, 70%",6,excisions,0.0
+"Mass TxV 50/90, 70%",6,leeps,23530.7662
+"Mass TxV 50/90, 70%",6,screens,6234461.6118
+"Mass TxV 50/90, 70%",6,txvs,6478407.15
+"Mass TxV 50/90, 70%",6,vaccinations,13541807.019199999
+"Mass TxV 50/90, 70%",6,yld,59812.63352846668
+"Mass TxV 50/90, 70%",6,yll,766146.700261757
+"Mass TxV 50/90, 70%",7,ablations,770855.9863999999
+"Mass TxV 50/90, 70%",7,asr_cancer_incidence,590.0007552961964
+"Mass TxV 50/90, 70%",7,cancer_deaths,61227.64301843059
+"Mass TxV 50/90, 70%",7,cancer_incidence,551.1236310005188
+"Mass TxV 50/90, 70%",7,cancer_incidence_no_hiv,521.0929685235023
+"Mass TxV 50/90, 70%",7,cancer_incidence_with_hiv,3556.9685089588165
+"Mass TxV 50/90, 70%",7,cancer_treatments,77740.8858
+"Mass TxV 50/90, 70%",7,cancers,66586.10429290622
+"Mass TxV 50/90, 70%",7,cancers_no_hiv,62556.09272693762
+"Mass TxV 50/90, 70%",7,cancers_with_hiv,3550.4648428249952
+"Mass TxV 50/90, 70%",7,dalys,1267598.1320176113
+"Mass TxV 50/90, 70%",7,excisions,0.0
+"Mass TxV 50/90, 70%",7,leeps,38423.6562
+"Mass TxV 50/90, 70%",7,screens,7201010.1728
+"Mass TxV 50/90, 70%",7,txvs,6189782.9418
+"Mass TxV 50/90, 70%",7,vaccinations,13547764.1752
+"Mass TxV 50/90, 70%",7,yld,85306.32139675411
+"Mass TxV 50/90, 70%",7,yll,1182291.8106208572
+"Mass TxV 50/90, 70%",8,ablations,678222.2106
+"Mass TxV 50/90, 70%",8,asr_cancer_incidence,565.068040478913
+"Mass TxV 50/90, 70%",8,cancer_deaths,59565.59816214738
+"Mass TxV 50/90, 70%",8,cancer_incidence,518.5101942420006
+"Mass TxV 50/90, 70%",8,cancer_incidence_no_hiv,492.83832120895386
+"Mass TxV 50/90, 70%",8,cancer_incidence_with_hiv,2854.1088337898254
+"Mass TxV 50/90, 70%",8,cancer_treatments,90548.7712
+"Mass TxV 50/90, 70%",8,cancers,61397.42347524898
+"Mass TxV 50/90, 70%",8,cancers_no_hiv,57855.89683787334
+"Mass TxV 50/90, 70%",8,cancers_with_hiv,3082.828126140806
+"Mass TxV 50/90, 70%",8,dalys,1200457.5478795976
+"Mass TxV 50/90, 70%",8,excisions,0.0
+"Mass TxV 50/90, 70%",8,leeps,28892.2066
+"Mass TxV 50/90, 70%",8,screens,7135183.598999999
+"Mass TxV 50/90, 70%",8,txvs,6462918.5444
+"Mass TxV 50/90, 70%",8,vaccinations,13542700.5926
+"Mass TxV 50/90, 70%",8,yld,76626.1916716933
+"Mass TxV 50/90, 70%",8,yll,1123831.3562079044
+"Mass TxV 50/90, 70%",9,ablations,411639.4796
+"Mass TxV 50/90, 70%",9,asr_cancer_incidence,551.0648838311811
+"Mass TxV 50/90, 70%",9,cancer_deaths,54639.02933929113
+"Mass TxV 50/90, 70%",9,cancer_incidence,478.46557638049126
+"Mass TxV 50/90, 70%",9,cancer_incidence_no_hiv,450.76154294610023
+"Mass TxV 50/90, 70%",9,cancer_incidence_with_hiv,2996.298315048218
+"Mass TxV 50/90, 70%",9,cancer_treatments,59273.7022
+"Mass TxV 50/90, 70%",9,cancers,53271.86227645577
+"Mass TxV 50/90, 70%",9,cancers_no_hiv,49614.17170663152
+"Mass TxV 50/90, 70%",9,cancers_with_hiv,3163.249688178186
+"Mass TxV 50/90, 70%",9,dalys,837380.1497739746
+"Mass TxV 50/90, 70%",9,excisions,0.0
+"Mass TxV 50/90, 70%",9,leeps,18169.3258
+"Mass TxV 50/90, 70%",9,screens,6297607.4654
+"Mass TxV 50/90, 70%",9,txvs,6780137.1014
+"Mass TxV 50/90, 70%",9,vaccinations,13566231.3588
+"Mass TxV 50/90, 70%",9,yld,61230.181994710736
+"Mass TxV 50/90, 70%",9,yll,776149.9677792639
+"Mass TxV 90/0, 18%",0,ablations,532569.7464
+"Mass TxV 90/0, 18%",0,asr_cancer_incidence,680.4293764582899
+"Mass TxV 90/0, 18%",0,cancer_deaths,67029.91290153537
+"Mass TxV 90/0, 18%",0,cancer_incidence,607.280335098505
+"Mass TxV 90/0, 18%",0,cancer_incidence_no_hiv,578.5010100901127
+"Mass TxV 90/0, 18%",0,cancer_incidence_with_hiv,3498.788674592972
+"Mass TxV 90/0, 18%",0,cancer_treatments,76847.3124
+"Mass TxV 90/0, 18%",0,cancers,67935.40164631297
+"Mass TxV 90/0, 18%",0,cancers_no_hiv,63929.217184760084
+"Mass TxV 90/0, 18%",0,cancers_with_hiv,3490.893278053686
+"Mass TxV 90/0, 18%",0,dalys,1189389.8149394891
+"Mass TxV 90/0, 18%",0,excisions,0.0
+"Mass TxV 90/0, 18%",0,leeps,23530.7662
+"Mass TxV 90/0, 18%",0,screens,6026556.8674
+"Mass TxV 90/0, 18%",0,txvs,1612304.2714
+"Mass TxV 90/0, 18%",0,vaccinations,13557295.6248
+"Mass TxV 90/0, 18%",0,yld,81801.88554488367
+"Mass TxV 90/0, 18%",0,yll,1107587.9293946053
+"Mass TxV 90/0, 18%",1,ablations,1056799.4744
+"Mass TxV 90/0, 18%",1,asr_cancer_incidence,887.7416826317757
+"Mass TxV 90/0, 18%",1,cancer_deaths,91105.75712959131
+"Mass TxV 90/0, 18%",1,cancer_incidence,829.5240430831909
+"Mass TxV 90/0, 18%",1,cancer_incidence_no_hiv,785.5913746356964
+"Mass TxV 90/0, 18%",1,cancer_incidence_with_hiv,4702.9336569309235
+"Mass TxV 90/0, 18%",1,cancer_treatments,122121.698
+"Mass TxV 90/0, 18%",1,cancers,98802.40143102009
+"Mass TxV 90/0, 18%",1,cancers_no_hiv,92821.42246654724
+"Mass TxV 90/0, 18%",1,cancers_with_hiv,5269.104266580941
+"Mass TxV 90/0, 18%",1,dalys,1930283.179815504
+"Mass TxV 90/0, 18%",1,excisions,0.0
+"Mass TxV 90/0, 18%",1,leeps,47657.248
+"Mass TxV 90/0, 18%",1,screens,7729409.91
+"Mass TxV 90/0, 18%",1,txvs,1725788.0932
+"Mass TxV 90/0, 18%",1,vaccinations,13585294.258
+"Mass TxV 90/0, 18%",1,yld,127303.40194953301
+"Mass TxV 90/0, 18%",1,yll,1802979.777865971
+"Mass TxV 90/0, 18%",2,ablations,915317.0194
+"Mass TxV 90/0, 18%",2,asr_cancer_incidence,773.5699618703667
+"Mass TxV 90/0, 18%",2,cancer_deaths,80579.46160271075
+"Mass TxV 90/0, 18%",2,cancer_incidence,722.4041905403137
+"Mass TxV 90/0, 18%",2,cancer_incidence_no_hiv,683.6943567991257
+"Mass TxV 90/0, 18%",2,cancer_incidence_with_hiv,4359.767522096634
+"Mass TxV 90/0, 18%",2,cancer_treatments,115568.8264
+"Mass TxV 90/0, 18%",2,cancers,85753.25136210685
+"Mass TxV 90/0, 18%",2,cancers_no_hiv,80561.59586345516
+"Mass TxV 90/0, 18%",2,cancers_with_hiv,4649.560076401755
+"Mass TxV 90/0, 18%",2,dalys,1732746.769872521
+"Mass TxV 90/0, 18%",2,excisions,0.0
+"Mass TxV 90/0, 18%",2,leeps,47359.3902
+"Mass TxV 90/0, 18%",2,screens,7286197.5036
+"Mass TxV 90/0, 18%",2,txvs,1554222.0004
+"Mass TxV 90/0, 18%",2,vaccinations,13573677.8038
+"Mass TxV 90/0, 18%",2,yld,109369.08684318382
+"Mass TxV 90/0, 18%",2,yll,1623377.683029337
+"Mass TxV 90/0, 18%",3,ablations,1457120.3576
+"Mass TxV 90/0, 18%",3,asr_cancer_incidence,1086.047250505094
+"Mass TxV 90/0, 18%",3,cancer_deaths,109394.22276914984
+"Mass TxV 90/0, 18%",3,cancer_incidence,1029.8532108068466
+"Mass TxV 90/0, 18%",3,cancer_incidence_no_hiv,988.9294428825378
+"Mass TxV 90/0, 18%",3,cancer_incidence_with_hiv,4662.60476565361
+"Mass TxV 90/0, 18%",3,cancer_treatments,143269.6018
+"Mass TxV 90/0, 18%",3,cancers,125034.73267138869
+"Mass TxV 90/0, 18%",3,cancers_no_hiv,118961.42187322302
+"Mass TxV 90/0, 18%",3,cancers_with_hiv,5146.982580742231
+"Mass TxV 90/0, 18%",3,dalys,2543021.725154381
+"Mass TxV 90/0, 18%",3,excisions,0.0
+"Mass TxV 90/0, 18%",3,leeps,65230.8582
+"Mass TxV 90/0, 18%",3,screens,9108789.3818
+"Mass TxV 90/0, 18%",3,txvs,1839569.7728
+"Mass TxV 90/0, 18%",3,vaccinations,13536147.721
+"Mass TxV 90/0, 18%",3,yld,167044.68546303434
+"Mass TxV 90/0, 18%",3,yll,2375977.0396913467
+"Mass TxV 90/0, 18%",4,ablations,845320.4364
+"Mass TxV 90/0, 18%",4,asr_cancer_incidence,903.4749094575767
+"Mass TxV 90/0, 18%",4,cancer_deaths,89291.80404250647
+"Mass TxV 90/0, 18%",4,cancer_incidence,815.7692482471466
+"Mass TxV 90/0, 18%",4,cancer_incidence_no_hiv,779.9318796992302
+"Mass TxV 90/0, 18%",4,cancer_incidence_with_hiv,4361.147735595703
+"Mass TxV 90/0, 18%",4,cancer_treatments,108420.2392
+"Mass TxV 90/0, 18%",4,cancers,94033.69962761867
+"Mass TxV 90/0, 18%",4,cancers_no_hiv,88719.9208414109
+"Mass TxV 90/0, 18%",4,cancers_with_hiv,4420.209594391454
+"Mass TxV 90/0, 18%",4,dalys,1700838.2654742382
+"Mass TxV 90/0, 18%",4,excisions,0.0
+"Mass TxV 90/0, 18%",4,leeps,41700.092
+"Mass TxV 90/0, 18%",4,screens,7118205.7044
+"Mass TxV 90/0, 18%",4,txvs,1799656.8276
+"Mass TxV 90/0, 18%",4,vaccinations,13555508.478
+"Mass TxV 90/0, 18%",4,yld,117788.97340479394
+"Mass TxV 90/0, 18%",4,yll,1583049.2920694442
+"Mass TxV 90/0, 18%",5,ablations,1786253.2266
+"Mass TxV 90/0, 18%",5,asr_cancer_incidence,1195.078693627325
+"Mass TxV 90/0, 18%",5,cancer_deaths,128227.77033814172
+"Mass TxV 90/0, 18%",5,cancer_incidence,1161.5804500579834
+"Mass TxV 90/0, 18%",5,cancer_incidence_no_hiv,1115.5455877780914
+"Mass TxV 90/0, 18%",5,cancer_incidence_with_hiv,5784.569714546204
+"Mass TxV 90/0, 18%",5,cancer_treatments,184969.6938
+"Mass TxV 90/0, 18%",5,cancers,143752.11566768883
+"Mass TxV 90/0, 18%",5,cancers_no_hiv,136832.8896246711
+"Mass TxV 90/0, 18%",5,cancers_with_hiv,5980.984378799095
+"Mass TxV 90/0, 18%",5,dalys,3092803.7363737444
+"Mass TxV 90/0, 18%",5,excisions,0.0
+"Mass TxV 90/0, 18%",5,leeps,81910.895
+"Mass TxV 90/0, 18%",5,screens,10154568.1176
+"Mass TxV 90/0, 18%",5,txvs,1948883.5854
+"Mass TxV 90/0, 18%",5,vaccinations,13546274.8862
+"Mass TxV 90/0, 18%",5,yld,189944.44731665458
+"Mass TxV 90/0, 18%",5,yll,2902859.2890570895
+"Mass TxV 90/0, 18%",6,ablations,841150.4272
+"Mass TxV 90/0, 18%",6,asr_cancer_incidence,802.1858225236854
+"Mass TxV 90/0, 18%",6,cancer_deaths,79522.0668335846
+"Mass TxV 90/0, 18%",6,cancer_incidence,739.1613941192627
+"Mass TxV 90/0, 18%",6,cancer_incidence_no_hiv,704.8166037201881
+"Mass TxV 90/0, 18%",6,cancer_incidence_with_hiv,3998.11474609375
+"Mass TxV 90/0, 18%",6,cancer_treatments,97399.5006
+"Mass TxV 90/0, 18%",6,cancers,86113.65879272806
+"Mass TxV 90/0, 18%",6,cancers_no_hiv,81124.5473497462
+"Mass TxV 90/0, 18%",6,cancers_with_hiv,4351.7023052515315
+"Mass TxV 90/0, 18%",6,dalys,1636238.690315419
+"Mass TxV 90/0, 18%",6,excisions,0.0
+"Mass TxV 90/0, 18%",6,leeps,40508.6608
+"Mass TxV 90/0, 18%",6,screens,7060421.2912
+"Mass TxV 90/0, 18%",6,txvs,1662642.2396
+"Mass TxV 90/0, 18%",6,vaccinations,13557891.3404
+"Mass TxV 90/0, 18%",6,yld,109563.60525315483
+"Mass TxV 90/0, 18%",6,yll,1526675.0850622642
+"Mass TxV 90/0, 18%",7,ablations,1055608.0432
+"Mass TxV 90/0, 18%",7,asr_cancer_incidence,846.832390471309
+"Mass TxV 90/0, 18%",7,cancer_deaths,87325.94095979045
+"Mass TxV 90/0, 18%",7,cancer_incidence,806.9172726869583
+"Mass TxV 90/0, 18%",7,cancer_incidence_no_hiv,770.9375787973404
+"Mass TxV 90/0, 18%",7,cancer_incidence_with_hiv,4432.915666818619
+"Mass TxV 90/0, 18%",7,cancer_treatments,101271.652
+"Mass TxV 90/0, 18%",7,cancers,97745.00549680683
+"Mass TxV 90/0, 18%",7,cancers_no_hiv,92627.8144242986
+"Mass TxV 90/0, 18%",7,cancers_with_hiv,4417.231006471569
+"Mass TxV 90/0, 18%",7,dalys,1955496.6241962775
+"Mass TxV 90/0, 18%",7,excisions,0.0
+"Mass TxV 90/0, 18%",7,leeps,46465.8168
+"Mass TxV 90/0, 18%",7,screens,7777960.7314
+"Mass TxV 90/0, 18%",7,txvs,1611410.698
+"Mass TxV 90/0, 18%",7,vaccinations,13562954.923
+"Mass TxV 90/0, 18%",7,yld,129409.43759107232
+"Mass TxV 90/0, 18%",7,yll,1826087.1866052053
+"Mass TxV 90/0, 18%",8,ablations,1140497.5162
+"Mass TxV 90/0, 18%",8,asr_cancer_incidence,863.1766636823049
+"Mass TxV 90/0, 18%",8,cancer_deaths,89586.68212167807
+"Mass TxV 90/0, 18%",8,cancer_incidence,814.9230428934097
+"Mass TxV 90/0, 18%",8,cancer_incidence_no_hiv,782.011216878891
+"Mass TxV 90/0, 18%",8,cancer_incidence_with_hiv,3909.4775836467743
+"Mass TxV 90/0, 18%",8,cancer_treatments,130461.7164
+"Mass TxV 90/0, 18%",8,cancers,97670.54186181299
+"Mass TxV 90/0, 18%",8,cancers_no_hiv,92803.55188552251
+"Mass TxV 90/0, 18%",8,cancers_with_hiv,4181.923354169532
+"Mass TxV 90/0, 18%",8,dalys,2055534.0114110997
+"Mass TxV 90/0, 18%",8,excisions,0.0
+"Mass TxV 90/0, 18%",8,leeps,59273.7022
+"Mass TxV 90/0, 18%",8,screens,8028459.1412
+"Mass TxV 90/0, 18%",8,txvs,1622729.2944
+"Mass TxV 90/0, 18%",8,vaccinations,13555806.3358
+"Mass TxV 90/0, 18%",8,yld,126772.65725669908
+"Mass TxV 90/0, 18%",8,yll,1928761.3541544005
+"Mass TxV 90/0, 18%",9,ablations,644862.137
+"Mass TxV 90/0, 18%",9,asr_cancer_incidence,796.9621190890032
+"Mass TxV 90/0, 18%",9,cancer_deaths,77752.79233949305
+"Mass TxV 90/0, 18%",9,cancer_incidence,711.9925799071789
+"Mass TxV 90/0, 18%",9,cancer_incidence_no_hiv,673.9689871668816
+"Mass TxV 90/0, 18%",9,cancer_incidence_with_hiv,4387.840758085251
+"Mass TxV 90/0, 18%",9,cancer_treatments,86974.4776
+"Mass TxV 90/0, 18%",9,cancers,79953.9607798443
+"Mass TxV 90/0, 18%",9,cancers_no_hiv,74774.21934881283
+"Mass TxV 90/0, 18%",9,cancers_with_hiv,4512.545497567107
+"Mass TxV 90/0, 18%",9,dalys,1400178.7756110006
+"Mass TxV 90/0, 18%",9,excisions,0.0
+"Mass TxV 90/0, 18%",9,leeps,28892.2066
+"Mass TxV 90/0, 18%",9,screens,6505512.2098
+"Mass TxV 90/0, 18%",9,txvs,1754680.2998
+"Mass TxV 90/0, 18%",9,vaccinations,13506659.798799999
+"Mass TxV 90/0, 18%",9,yld,97756.67741674415
+"Mass TxV 90/0, 18%",9,yll,1302422.0981942564
+"Mass TxV 90/0, 35%",0,ablations,485806.0718
+"Mass TxV 90/0, 35%",0,asr_cancer_incidence,651.325643448906
+"Mass TxV 90/0, 35%",0,cancer_deaths,63041.59696601547
+"Mass TxV 90/0, 35%",0,cancer_incidence,574.043963611126
+"Mass TxV 90/0, 35%",0,cancer_incidence_no_hiv,545.4650647193193
+"Mass TxV 90/0, 35%",0,cancer_incidence_with_hiv,3477.410645008087
+"Mass TxV 90/0, 35%",0,cancer_treatments,74762.3078
+"Mass TxV 90/0, 35%",0,cancers,63443.70607721631
+"Mass TxV 90/0, 35%",0,cancers_no_hiv,59514.96436009232
+"Mass TxV 90/0, 35%",0,cancers_with_hiv,3440.2574670555696
+"Mass TxV 90/0, 35%",0,dalys,1114737.571246161
+"Mass TxV 90/0, 35%",0,excisions,0.0
+"Mass TxV 90/0, 35%",0,leeps,21445.761599999998
+"Mass TxV 90/0, 35%",0,screens,5937795.243
+"Mass TxV 90/0, 35%",0,txvs,3131081.1936
+"Mass TxV 90/0, 35%",0,vaccinations,13556402.0514
+"Mass TxV 90/0, 35%",0,yld,75870.38398204991
+"Mass TxV 90/0, 35%",0,yll,1038867.1872641109
+"Mass TxV 90/0, 35%",1,ablations,1091946.6948
+"Mass TxV 90/0, 35%",1,asr_cancer_incidence,881.737795817174
+"Mass TxV 90/0, 35%",1,cancer_deaths,90456.42637447629
+"Mass TxV 90/0, 35%",1,cancer_incidence,824.4486615657806
+"Mass TxV 90/0, 35%",1,cancer_incidence_no_hiv,781.9012988805771
+"Mass TxV 90/0, 35%",1,cancer_incidence_with_hiv,4510.8599417209625
+"Mass TxV 90/0, 35%",1,cancer_treatments,122717.4136
+"Mass TxV 90/0, 35%",1,cancers,98608.79346145068
+"Mass TxV 90/0, 35%",1,cancers_no_hiv,92824.40091743068
+"Mass TxV 90/0, 35%",1,cancers_with_hiv,5045.710951533554
+"Mass TxV 90/0, 35%",1,dalys,1972716.832525975
+"Mass TxV 90/0, 35%",1,excisions,0.0
+"Mass TxV 90/0, 35%",1,leeps,54805.8352
+"Mass TxV 90/0, 35%",1,screens,7961441.1362
+"Mass TxV 90/0, 35%",1,txvs,3350304.5344
+"Mass TxV 90/0, 35%",1,vaccinations,13543594.166
+"Mass TxV 90/0, 35%",1,yld,127592.06391669279
+"Mass TxV 90/0, 35%",1,yll,1845124.7686092823
+"Mass TxV 90/0, 35%",2,ablations,1057395.19
+"Mass TxV 90/0, 35%",2,asr_cancer_incidence,805.714315354124
+"Mass TxV 90/0, 35%",2,cancer_deaths,85080.09212610892
+"Mass TxV 90/0, 35%",2,cancer_incidence,763.5603624582291
+"Mass TxV 90/0, 35%",2,cancer_incidence_no_hiv,724.5760346651077
+"Mass TxV 90/0, 35%",2,cancer_incidence_with_hiv,4413.9349637031555
+"Mass TxV 90/0, 35%",2,cancer_treatments,116164.542
+"Mass TxV 90/0, 35%",2,cancers,92192.93551320888
+"Mass TxV 90/0, 35%",2,cancers_no_hiv,86920.85964312789
+"Mass TxV 90/0, 35%",2,cancers_with_hiv,4703.17448419661
+"Mass TxV 90/0, 35%",2,dalys,1902841.4091709696
+"Mass TxV 90/0, 35%",2,excisions,0.0
+"Mass TxV 90/0, 35%",2,leeps,51231.5416
+"Mass TxV 90/0, 35%",2,screens,7772301.4332
+"Mass TxV 90/0, 35%",2,txvs,3045298.1472
+"Mass TxV 90/0, 35%",2,vaccinations,13533467.0008
+"Mass TxV 90/0, 35%",2,yld,119014.43507970174
+"Mass TxV 90/0, 35%",2,yll,1783826.974091268
+"Mass TxV 90/0, 35%",3,ablations,1294787.8566
+"Mass TxV 90/0, 35%",3,asr_cancer_incidence,1053.748979028408
+"Mass TxV 90/0, 35%",3,cancer_deaths,106594.35938246247
+"Mass TxV 90/0, 35%",3,cancer_incidence,997.8350032567978
+"Mass TxV 90/0, 35%",3,cancer_incidence_no_hiv,955.8764088153839
+"Mass TxV 90/0, 35%",3,cancer_incidence_with_hiv,4864.386152982712
+"Mass TxV 90/0, 35%",3,cancer_treatments,143269.6018
+"Mass TxV 90/0, 35%",3,cancers,120537.0810144217
+"Mass TxV 90/0, 35%",3,cancers_no_hiv,114326.75381211824
+"Mass TxV 90/0, 35%",3,cancers_with_hiv,5269.104274902992
+"Mass TxV 90/0, 35%",3,dalys,2393022.8527838807
+"Mass TxV 90/0, 35%",3,excisions,0.0
+"Mass TxV 90/0, 35%",3,leeps,56890.8398
+"Mass TxV 90/0, 35%",3,screens,8720978.5262
+"Mass TxV 90/0, 35%",3,txvs,3530210.6456
+"Mass TxV 90/0, 35%",3,vaccinations,13578443.5286
+"Mass TxV 90/0, 35%",3,yld,159284.1829613148
+"Mass TxV 90/0, 35%",3,yll,2233738.6698225657
+"Mass TxV 90/0, 35%",4,ablations,741368.0642
+"Mass TxV 90/0, 35%",4,asr_cancer_incidence,879.1812737043391
+"Mass TxV 90/0, 35%",4,cancer_deaths,86527.68383291447
+"Mass TxV 90/0, 35%",4,cancer_incidence,787.9331389069557
+"Mass TxV 90/0, 35%",4,cancer_incidence_no_hiv,751.9451203942299
+"Mass TxV 90/0, 35%",4,cancer_incidence_with_hiv,4274.058531284332
+"Mass TxV 90/0, 35%",4,cancer_treatments,91740.20240000001
+"Mass TxV 90/0, 35%",4,cancers,89976.87665262038
+"Mass TxV 90/0, 35%",4,cancers_no_hiv,84683.94769224443
+"Mass TxV 90/0, 35%",4,cancers_with_hiv,4423.188160119203
+"Mass TxV 90/0, 35%",4,dalys,1577955.8856487675
+"Mass TxV 90/0, 35%",4,excisions,0.0
+"Mass TxV 90/0, 35%",4,leeps,33062.2158
+"Mass TxV 90/0, 35%",4,screens,6873068.735
+"Mass TxV 90/0, 35%",4,txvs,3498339.861
+"Mass TxV 90/0, 35%",4,vaccinations,13547168.4596
+"Mass TxV 90/0, 35%",4,yld,110796.89363832732
+"Mass TxV 90/0, 35%",4,yll,1467158.9920104402
+"Mass TxV 90/0, 35%",5,ablations,1808294.7038
+"Mass TxV 90/0, 35%",5,asr_cancer_incidence,1190.458965655921
+"Mass TxV 90/0, 35%",5,cancer_deaths,128013.3124950274
+"Mass TxV 90/0, 35%",5,cancer_incidence,1161.7591202259064
+"Mass TxV 90/0, 35%",5,cancer_incidence_no_hiv,1119.1077075004578
+"Mass TxV 90/0, 35%",5,cancer_incidence_with_hiv,5276.728200435638
+"Mass TxV 90/0, 35%",5,cancer_treatments,182884.6892
+"Mass TxV 90/0, 35%",5,cancers,144589.09566031
+"Mass TxV 90/0, 35%",5,cancers_no_hiv,138039.21391351265
+"Mass TxV 90/0, 35%",5,cancers_with_hiv,5486.540451282436
+"Mass TxV 90/0, 35%",5,dalys,3113281.311045543
+"Mass TxV 90/0, 35%",5,excisions,0.0
+"Mass TxV 90/0, 35%",5,leeps,91442.3446
+"Mass TxV 90/0, 35%",5,screens,10262392.6412
+"Mass TxV 90/0, 35%",5,txvs,3819132.7116
+"Mass TxV 90/0, 35%",5,vaccinations,13586485.689199999
+"Mass TxV 90/0, 35%",5,yld,191519.88928200948
+"Mass TxV 90/0, 35%",5,yll,2921761.4217635337
+"Mass TxV 90/0, 35%",6,ablations,717539.4402
+"Mass TxV 90/0, 35%",6,asr_cancer_incidence,750.332693083164
+"Mass TxV 90/0, 35%",6,cancer_deaths,73755.54081164775
+"Mass TxV 90/0, 35%",6,cancer_incidence,677.896077632904
+"Mass TxV 90/0, 35%",6,cancer_incidence_no_hiv,646.2033523917198
+"Mass TxV 90/0, 35%",6,cancer_incidence_with_hiv,3599.999416589737
+"Mass TxV 90/0, 35%",6,cancer_treatments,92038.0602
+"Mass TxV 90/0, 35%",6,cancers,77627.69175948299
+"Mass TxV 90/0, 35%",6,cancers_no_hiv,73103.23693564541
+"Mass TxV 90/0, 35%",6,cancers_with_hiv,3916.829932519721
+"Mass TxV 90/0, 35%",6,dalys,1479248.7483869274
+"Mass TxV 90/0, 35%",6,excisions,0.0
+"Mass TxV 90/0, 35%",6,leeps,31572.9268
+"Mass TxV 90/0, 35%",6,screens,6796519.2804
+"Mass TxV 90/0, 35%",6,txvs,3246947.8778
+"Mass TxV 90/0, 35%",6,vaccinations,13545977.0284
+"Mass TxV 90/0, 35%",6,yld,97190.60036776504
+"Mass TxV 90/0, 35%",6,yll,1382058.1480191625
+"Mass TxV 90/0, 35%",7,ablations,944209.226
+"Mass TxV 90/0, 35%",7,asr_cancer_incidence,796.7306851500895
+"Mass TxV 90/0, 35%",7,cancer_deaths,80832.64210240934
+"Mass TxV 90/0, 35%",7,cancer_incidence,747.046481013298
+"Mass TxV 90/0, 35%",7,cancer_incidence_no_hiv,709.9308522343636
+"Mass TxV 90/0, 35%",7,cancer_incidence_with_hiv,4508.137058019638
+"Mass TxV 90/0, 35%",7,cancer_treatments,106633.0924
+"Mass TxV 90/0, 35%",7,cancers,89113.08789127885
+"Mass TxV 90/0, 35%",7,cancers_no_hiv,84016.74643044834
+"Mass TxV 90/0, 35%",7,cancers_with_hiv,4506.588334487817
+"Mass TxV 90/0, 35%",7,dalys,1754421.2365308083
+"Mass TxV 90/0, 35%",7,excisions,0.0
+"Mass TxV 90/0, 35%",7,leeps,46763.6746
+"Mass TxV 90/0, 35%",7,screens,7469082.1928
+"Mass TxV 90/0, 35%",7,txvs,3081338.941
+"Mass TxV 90/0, 35%",7,vaccinations,13536147.721
+"Mass TxV 90/0, 35%",7,yld,115791.82259649251
+"Mass TxV 90/0, 35%",7,yll,1638629.4139343156
+"Mass TxV 90/0, 35%",8,ablations,1094329.5572
+"Mass TxV 90/0, 35%",8,asr_cancer_incidence,827.312198344313
+"Mass TxV 90/0, 35%",8,cancer_deaths,84800.10773052808
+"Mass TxV 90/0, 35%",8,cancer_incidence,774.7314181923866
+"Mass TxV 90/0, 35%",8,cancer_incidence_no_hiv,741.2138656973839
+"Mass TxV 90/0, 35%",8,cancer_incidence_with_hiv,3997.7569415569305
+"Mass TxV 90/0, 35%",8,cancer_treatments,141184.5972
+"Mass TxV 90/0, 35%",8,cancers,92642.70316792
+"Mass TxV 90/0, 35%",8,cancers_no_hiv,87745.92645359504
+"Mass TxV 90/0, 35%",8,cancers_with_hiv,4241.494904515954
+"Mass TxV 90/0, 35%",8,dalys,1994460.7656441445
+"Mass TxV 90/0, 35%",8,excisions,0.0
+"Mass TxV 90/0, 35%",8,leeps,51827.2572
+"Mass TxV 90/0, 35%",8,screens,7956675.4114
+"Mass TxV 90/0, 35%",8,txvs,3196609.9096
+"Mass TxV 90/0, 35%",8,vaccinations,13553423.4734
+"Mass TxV 90/0, 35%",8,yld,121273.80594934957
+"Mass TxV 90/0, 35%",8,yll,1873186.9596947948
+"Mass TxV 90/0, 35%",9,ablations,576652.7008
+"Mass TxV 90/0, 35%",9,asr_cancer_incidence,766.9564438675895
+"Mass TxV 90/0, 35%",9,cancer_deaths,74714.6432091328
+"Mass TxV 90/0, 35%",9,cancer_incidence,679.608040034771
+"Mass TxV 90/0, 35%",9,cancer_incidence_no_hiv,642.3233273327351
+"Mass TxV 90/0, 35%",9,cancer_incidence_with_hiv,4253.875091552734
+"Mass TxV 90/0, 35%",9,cancer_treatments,79825.8904
+"Mass TxV 90/0, 35%",9,cancers,75539.70926728655
+"Mass TxV 90/0, 35%",9,cancers_no_hiv,70550.59570273654
+"Mass TxV 90/0, 35%",9,cancers_with_hiv,4378.509463932483
+"Mass TxV 90/0, 35%",9,dalys,1292084.3968524246
+"Mass TxV 90/0, 35%",9,excisions,0.0
+"Mass TxV 90/0, 35%",9,leeps,30083.6378
+"Mass TxV 90/0, 35%",9,screens,6323223.2362
+"Mass TxV 90/0, 35%",9,txvs,3396472.4934
+"Mass TxV 90/0, 35%",9,vaccinations,13527807.7026
+"Mass TxV 90/0, 35%",9,yld,90711.25705432052
+"Mass TxV 90/0, 35%",9,yll,1201373.139798104
+"Mass TxV 90/0, 70%",0,ablations,397342.3052
+"Mass TxV 90/0, 70%",0,asr_cancer_incidence,600.3465245458124
+"Mass TxV 90/0, 70%",0,cancer_deaths,57468.677978249514
+"Mass TxV 90/0, 70%",0,cancer_incidence,519.4369013905525
+"Mass TxV 90/0, 70%",0,cancer_incidence_no_hiv,492.6533785611391
+"Mass TxV 90/0, 70%",0,cancer_incidence_with_hiv,3188.196736574173
+"Mass TxV 90/0, 70%",0,cancer_treatments,68507.294
+"Mass TxV 90/0, 70%",0,cancers,56384.476494839924
+"Mass TxV 90/0, 70%",0,cancers_no_hiv,52771.46434047188
+"Mass TxV 90/0, 70%",0,cancers_with_hiv,3172.1854658079237
+"Mass TxV 90/0, 70%",0,dalys,975666.9265027506
+"Mass TxV 90/0, 70%",0,excisions,0.0
+"Mass TxV 90/0, 70%",0,leeps,14595.0322
+"Mass TxV 90/0, 70%",0,screens,5762356.9988
+"Mass TxV 90/0, 70%",0,txvs,6238333.7632
+"Mass TxV 90/0, 70%",0,vaccinations,13551636.3266
+"Mass TxV 90/0, 70%",0,yld,65979.98789230028
+"Mass TxV 90/0, 70%",0,yll,909686.9386104502
+"Mass TxV 90/0, 70%",1,ablations,935869.2076
+"Mass TxV 90/0, 70%",1,asr_cancer_incidence,819.5593912084403
+"Mass TxV 90/0, 70%",1,cancer_deaths,83099.33932831076
+"Mass TxV 90/0, 70%",1,cancer_incidence,755.8171344995499
+"Mass TxV 90/0, 70%",1,cancer_incidence_no_hiv,712.5882608890533
+"Mass TxV 90/0, 70%",1,cancer_incidence_with_hiv,4504.106421947479
+"Mass TxV 90/0, 70%",1,cancer_treatments,115270.9686
+"Mass TxV 90/0, 70%",1,cancers,89449.6668665381
+"Mass TxV 90/0, 70%",1,cancers_no_hiv,83698.03833802686
+"Mass TxV 90/0, 70%",1,cancers_with_hiv,5096.346779730576
+"Mass TxV 90/0, 70%",1,dalys,1788112.8476653954
+"Mass TxV 90/0, 70%",1,excisions,0.0
+"Mass TxV 90/0, 70%",1,leeps,46763.6746
+"Mass TxV 90/0, 70%",1,screens,7635584.703
+"Mass TxV 90/0, 70%",1,txvs,6651164.674
+"Mass TxV 90/0, 70%",1,vaccinations,13561465.634
+"Mass TxV 90/0, 70%",1,yld,115078.56464240878
+"Mass TxV 90/0, 70%",1,yll,1673034.2830229865
+"Mass TxV 90/0, 70%",2,ablations,547760.4942
+"Mass TxV 90/0, 70%",2,asr_cancer_incidence,621.3305827576658
+"Mass TxV 90/0, 70%",2,cancer_deaths,61060.84299480815
+"Mass TxV 90/0, 70%",2,cancer_incidence,548.4905981421471
+"Mass TxV 90/0, 70%",2,cancer_incidence_no_hiv,512.5318665802479
+"Mass TxV 90/0, 70%",2,cancer_incidence_with_hiv,3779.4743237495422
+"Mass TxV 90/0, 70%",2,cancer_treatments,80421.606
+"Mass TxV 90/0, 70%",2,cancers,61197.85808572632
+"Mass TxV 90/0, 70%",2,cancers_no_hiv,56631.701138021206
+"Mass TxV 90/0, 70%",2,cancers_with_hiv,4107.458904724336
+"Mass TxV 90/0, 70%",2,dalys,1161402.1081945274
+"Mass TxV 90/0, 70%",2,excisions,0.0
+"Mass TxV 90/0, 70%",2,leeps,24424.3396
+"Mass TxV 90/0, 70%",2,screens,6224930.1622
+"Mass TxV 90/0, 70%",2,txvs,6058725.5098
+"Mass TxV 90/0, 70%",2,vaccinations,13552827.7578
+"Mass TxV 90/0, 70%",2,yld,74205.50869198829
+"Mass TxV 90/0, 70%",2,yll,1087196.5995025393
+"Mass TxV 90/0, 70%",3,ablations,1041310.8687999999
+"Mass TxV 90/0, 70%",3,asr_cancer_incidence,928.1477669363509
+"Mass TxV 90/0, 70%",3,cancer_deaths,91168.3065288595
+"Mass TxV 90/0, 70%",3,cancer_incidence,854.4615525007248
+"Mass TxV 90/0, 70%",3,cancer_incidence_no_hiv,815.6276030540466
+"Mass TxV 90/0, 70%",3,cancer_incidence_with_hiv,4230.587235927582
+"Mass TxV 90/0, 70%",3,cancer_treatments,114973.1108
+"Mass TxV 90/0, 70%",3,cancers,100288.71029686317
+"Mass TxV 90/0, 70%",3,cancers_no_hiv,94834.94128935205
+"Mass TxV 90/0, 70%",3,cancers_with_hiv,4661.474390354663
+"Mass TxV 90/0, 70%",3,dalys,1929318.7758968929
+"Mass TxV 90/0, 70%",3,excisions,0.0
+"Mass TxV 90/0, 70%",3,leeps,45870.1012
+"Mass TxV 90/0, 70%",3,screens,7865530.9246
+"Mass TxV 90/0, 70%",3,txvs,7129524.3008
+"Mass TxV 90/0, 70%",3,vaccinations,13578443.5286
+"Mass TxV 90/0, 70%",3,yld,129557.37700256162
+"Mass TxV 90/0, 70%",3,yll,1799761.3988943312
+"Mass TxV 90/0, 70%",4,ablations,596907.0312
+"Mass TxV 90/0, 70%",4,asr_cancer_incidence,797.4886640619856
+"Mass TxV 90/0, 70%",4,cancer_deaths,76552.42660961613
+"Mass TxV 90/0, 70%",4,cancer_incidence,695.5742176175117
+"Mass TxV 90/0, 70%",4,cancer_incidence_no_hiv,661.5359891057014
+"Mass TxV 90/0, 70%",4,cancer_incidence_with_hiv,3979.0236897468567
+"Mass TxV 90/0, 70%",4,cancer_treatments,86974.4776
+"Mass TxV 90/0, 70%",4,cancers,77606.8431497802
+"Mass TxV 90/0, 70%",4,cancers_no_hiv,72754.74287858538
+"Mass TxV 90/0, 70%",4,cancers_with_hiv,4044.9087481495185
+"Mass TxV 90/0, 70%",4,dalys,1364618.446149818
+"Mass TxV 90/0, 70%",4,excisions,0.0
+"Mass TxV 90/0, 70%",4,leeps,29487.9222
+"Mass TxV 90/0, 70%",4,screens,6513554.3704
+"Mass TxV 90/0, 70%",4,txvs,6980595.4008
+"Mass TxV 90/0, 70%",4,vaccinations,13569507.7946
+"Mass TxV 90/0, 70%",4,yld,93603.11417543657
+"Mass TxV 90/0, 70%",4,yll,1271015.3319743813
+"Mass TxV 90/0, 70%",5,ablations,1625410.0145999999
+"Mass TxV 90/0, 70%",5,asr_cancer_incidence,1095.663125636854
+"Mass TxV 90/0, 70%",5,cancer_deaths,116277.7158379065
+"Mass TxV 90/0, 70%",5,cancer_incidence,1055.1752038002014
+"Mass TxV 90/0, 70%",5,cancer_incidence_no_hiv,1013.3652231693268
+"Mass TxV 90/0, 70%",5,cancer_incidence_with_hiv,5066.226192235947
+"Mass TxV 90/0, 70%",5,cancer_treatments,170076.8038
+"Mass TxV 90/0, 70%",5,cancers,129636.63563289886
+"Mass TxV 90/0, 70%",5,cancers_no_hiv,123459.07497989126
+"Mass TxV 90/0, 70%",5,cancers_with_hiv,5278.04001647051
+"Mass TxV 90/0, 70%",5,dalys,2822600.5840735235
+"Mass TxV 90/0, 70%",5,excisions,0.0
+"Mass TxV 90/0, 70%",5,leeps,73868.7344
+"Mass TxV 90/0, 70%",5,screens,9785224.4456
+"Mass TxV 90/0, 70%",5,txvs,7655839.0334
+"Mass TxV 90/0, 70%",5,vaccinations,13540615.588
+"Mass TxV 90/0, 70%",5,yld,170366.8364599676
+"Mass TxV 90/0, 70%",5,yll,2652233.7476135558
+"Mass TxV 90/0, 70%",6,ablations,448573.8468
+"Mass TxV 90/0, 70%",6,asr_cancer_incidence,650.1807641365237
+"Mass TxV 90/0, 70%",6,cancer_deaths,61856.1228197985
+"Mass TxV 90/0, 70%",6,cancer_incidence,564.9344980120659
+"Mass TxV 90/0, 70%",6,cancer_incidence_no_hiv,534.2186378538609
+"Mass TxV 90/0, 70%",6,cancer_incidence_with_hiv,3371.6267268657684
+"Mass TxV 90/0, 70%",6,cancer_treatments,71485.872
+"Mass TxV 90/0, 70%",6,cancers,61734.00115615192
+"Mass TxV 90/0, 70%",6,cancers_no_hiv,57468.68176977586
+"Mass TxV 90/0, 70%",6,cancers_with_hiv,3699.3937350577476
+"Mass TxV 90/0, 70%",6,dalys,1075407.8910924043
+"Mass TxV 90/0, 70%",6,excisions,0.0
+"Mass TxV 90/0, 70%",6,leeps,19956.4726
+"Mass TxV 90/0, 70%",6,screens,5985452.491
+"Mass TxV 90/0, 70%",6,txvs,6478407.15
+"Mass TxV 90/0, 70%",6,vaccinations,13502787.6474
+"Mass TxV 90/0, 70%",6,yld,73200.70241292374
+"Mass TxV 90/0, 70%",6,yll,1002207.1886794805
+"Mass TxV 90/0, 70%",7,ablations,963569.983
+"Mass TxV 90/0, 70%",7,asr_cancer_incidence,753.934264267272
+"Mass TxV 90/0, 70%",7,cancer_deaths,75039.30733172505
+"Mass TxV 90/0, 70%",7,cancer_incidence,701.8801224827766
+"Mass TxV 90/0, 70%",7,cancer_incidence_no_hiv,667.8951804041862
+"Mass TxV 90/0, 70%",7,cancer_incidence_with_hiv,4038.982397556305
+"Mass TxV 90/0, 70%",7,cancer_treatments,100675.9364
+"Mass TxV 90/0, 70%",7,cancers,83775.47574191837
+"Mass TxV 90/0, 70%",7,cancers_no_hiv,79087.20004106524
+"Mass TxV 90/0, 70%",7,cancers_with_hiv,4053.844500258301
+"Mass TxV 90/0, 70%",7,dalys,1719860.9570191205
+"Mass TxV 90/0, 70%",7,excisions,0.0
+"Mass TxV 90/0, 70%",7,leeps,39912.9452
+"Mass TxV 90/0, 70%",7,screens,7559928.8218
+"Mass TxV 90/0, 70%",7,txvs,6189782.9418
+"Mass TxV 90/0, 70%",7,vaccinations,13542700.5926
+"Mass TxV 90/0, 70%",7,yld,109694.37327694494
+"Mass TxV 90/0, 70%",7,yll,1610166.5837421755
+"Mass TxV 90/0, 70%",8,ablations,898041.267
+"Mass TxV 90/0, 70%",8,asr_cancer_incidence,750.2419353678332
+"Mass TxV 90/0, 70%",8,cancer_deaths,75605.2383302384
+"Mass TxV 90/0, 70%",8,cancer_incidence,688.6046563982964
+"Mass TxV 90/0, 70%",8,cancer_incidence_no_hiv,657.1363789439201
+"Mass TxV 90/0, 70%",8,cancer_incidence_with_hiv,3633.566930294037
+"Mass TxV 90/0, 70%",8,cancer_treatments,117653.831
+"Mass TxV 90/0, 70%",8,cancers,80579.46359500971
+"Mass TxV 90/0, 70%",8,cancers_no_hiv,76183.08695266166
+"Mass TxV 90/0, 70%",8,cancers_with_hiv,3827.472588414176
+"Mass TxV 90/0, 70%",8,dalys,1699381.0608747394
+"Mass TxV 90/0, 70%",8,excisions,0.0
+"Mass TxV 90/0, 70%",8,leeps,50933.6838
+"Mass TxV 90/0, 70%",8,screens,7422318.5182
+"Mass TxV 90/0, 70%",8,txvs,6462918.5444
+"Mass TxV 90/0, 70%",8,vaccinations,13521254.831
+"Mass TxV 90/0, 70%",8,yld,103200.97291842302
+"Mass TxV 90/0, 70%",8,yll,1596180.0879563163
+"Mass TxV 90/0, 70%",9,ablations,527804.0216
+"Mass TxV 90/0, 70%",9,asr_cancer_incidence,721.9752038632602
+"Mass TxV 90/0, 70%",9,cancer_deaths,69385.96754200236
+"Mass TxV 90/0, 70%",9,cancer_incidence,631.0294550061226
+"Mass TxV 90/0, 70%",9,cancer_incidence_no_hiv,594.4205256402493
+"Mass TxV 90/0, 70%",9,cancer_incidence_with_hiv,4173.918039083481
+"Mass TxV 90/0, 70%",9,cancer_treatments,79230.1748
+"Mass TxV 90/0, 70%",9,cancers,69466.38872843784
+"Mass TxV 90/0, 70%",9,cancers_no_hiv,64623.22587598118
+"Mass TxV 90/0, 70%",9,cancers_with_hiv,4277.2378158604915
+"Mass TxV 90/0, 70%",9,dalys,1218359.2407478082
+"Mass TxV 90/0, 70%",9,excisions,0.0
+"Mass TxV 90/0, 70%",9,leeps,28296.490999999998
+"Mass TxV 90/0, 70%",9,screens,6230887.3182
+"Mass TxV 90/0, 70%",9,txvs,6780137.1014
+"Mass TxV 90/0, 70%",9,vaccinations,13571294.941399999
+"Mass TxV 90/0, 70%",9,yld,82885.48667638112
+"Mass TxV 90/0, 70%",9,yll,1135473.754071427
+No interventions,0,ablations,0.0
+No interventions,0,asr_cancer_incidence,1863.5731097241478
+No interventions,0,cancer_deaths,217555.3143681789
+No interventions,0,cancer_incidence,1932.2571077346802
+No interventions,0,cancer_incidence_no_hiv,1894.0663166046143
+No interventions,0,cancer_incidence_with_hiv,5972.408448934555
+No interventions,0,cancer_treatments,0.0
+No interventions,0,cancers,254999.01257823562
+No interventions,0,cancers_no_hiv,247519.82217749007
+No interventions,0,cancers_with_hiv,5912.477090213976
+No interventions,0,dalys,6340941.6671540225
+No interventions,0,excisions,0.0
+No interventions,0,leeps,0.0
+No interventions,0,screens,0.0
+No interventions,0,txvs,0.0
+No interventions,0,vaccinations,0.0
+No interventions,0,yld,350240.2748291694
+No interventions,0,yll,5990701.392324854
+No interventions,1,ablations,0.0
+No interventions,1,asr_cancer_incidence,2022.8125419240607
+No interventions,1,cancer_deaths,233937.49166326807
+No interventions,1,cancer_incidence,2086.9662642478943
+No interventions,1,cancer_incidence_no_hiv,2035.0926871299744
+No interventions,1,cancer_incidence_with_hiv,7246.441412687302
+No interventions,1,cancer_treatments,0.0
+No interventions,1,cancers,276799.22218217974
+No interventions,1,cancers_no_hiv,267646.0727804131
+No interventions,1,cancers_with_hiv,7589.416487259185
+No interventions,1,dalys,7098842.698839575
+No interventions,1,excisions,0.0
+No interventions,1,leeps,0.0
+No interventions,1,screens,0.0
+No interventions,1,txvs,0.0
+No interventions,1,vaccinations,0.0
+No interventions,1,yld,383569.45762019046
+No interventions,1,yll,6715273.241219385
+No interventions,2,ablations,0.0
+No interventions,2,asr_cancer_incidence,1865.2383218100774
+No interventions,2,cancer_deaths,216369.83964496639
+No interventions,2,cancer_incidence,1923.7148613929749
+No interventions,2,cancer_incidence_no_hiv,1879.5016224384308
+No interventions,2,cancer_incidence_with_hiv,6385.646397352219
+No interventions,2,cancer_treatments,0.0
+No interventions,2,cancers,255561.96394524392
+No interventions,2,cancers_no_hiv,247537.69348641683
+No interventions,2,cancers_with_hiv,6567.7642361219705
+No interventions,2,dalys,6669679.417215964
+No interventions,2,excisions,0.0
+No interventions,2,leeps,0.0
+No interventions,2,screens,0.0
+No interventions,2,txvs,0.0
+No interventions,2,vaccinations,0.0
+No interventions,2,yld,352319.5633309355
+No interventions,2,yll,6317359.8538850285
+No interventions,3,ablations,0.0
+No interventions,3,asr_cancer_incidence,2533.7959984199942
+No interventions,3,cancer_deaths,295421.286633436
+No interventions,3,cancer_incidence,2646.598545074463
+No interventions,3,cancer_incidence_no_hiv,2588.02765083313
+No interventions,3,cancer_incidence_with_hiv,8679.349545001984
+No interventions,3,cancer_treatments,0.0
+No interventions,3,cancers,353694.18039073306
+No interventions,3,cancers_no_hiv,342667.5134946288
+No interventions,3,cancers_with_hiv,8780.847635107666
+No interventions,3,dalys,8953702.209546935
+No interventions,3,excisions,0.0
+No interventions,3,leeps,0.0
+No interventions,3,screens,0.0
+No interventions,3,txvs,0.0
+No interventions,3,vaccinations,0.0
+No interventions,3,yld,492043.1565171774
+No interventions,3,yll,8461659.053029757
+No interventions,4,ablations,0.0
+No interventions,4,asr_cancer_incidence,2211.632931387299
+No interventions,4,cancer_deaths,254987.09921798974
+No interventions,4,cancer_incidence,2287.4575786590576
+No interventions,4,cancer_incidence_no_hiv,2237.898305416107
+No interventions,4,cancer_incidence_with_hiv,7651.292675971985
+No interventions,4,cancer_treatments,0.0
+No interventions,4,cancers,301753.74528389855
+No interventions,4,cancers_no_hiv,292362.3126040053
+No interventions,4,cancers_with_hiv,7482.187646703322
+No interventions,4,dalys,7350466.106789972
+No interventions,4,excisions,0.0
+No interventions,4,leeps,0.0
+No interventions,4,screens,0.0
+No interventions,4,txvs,0.0
+No interventions,4,vaccinations,0.0
+No interventions,4,yld,416875.0897353638
+No interventions,4,yll,6933591.017054608
+No interventions,5,ablations,0.0
+No interventions,5,asr_cancer_incidence,2703.057865075951
+No interventions,5,cancer_deaths,315079.8990755216
+No interventions,5,cancer_incidence,2791.8729796409607
+No interventions,5,cancer_incidence_no_hiv,2734.4847478866577
+No interventions,5,cancer_incidence_with_hiv,8915.057384729385
+No interventions,5,cancer_treatments,0.0
+No interventions,5,cancers,372375.8180889245
+No interventions,5,cancers_no_hiv,361548.7177280119
+No interventions,5,cancers_with_hiv,8643.833021320404
+No interventions,5,dalys,10118079.852264015
+No interventions,5,excisions,0.0
+No interventions,5,leeps,0.0
+No interventions,5,screens,0.0
+No interventions,5,txvs,0.0
+No interventions,5,vaccinations,0.0
+No interventions,5,yld,515174.7452125909
+No interventions,5,yll,9602905.107051425
+No interventions,6,ablations,0.0
+No interventions,6,asr_cancer_incidence,2485.268324362637
+No interventions,6,cancer_deaths,294837.4882551135
+No interventions,6,cancer_incidence,2614.4729080200195
+No interventions,6,cancer_incidence_no_hiv,2568.660984516144
+No interventions,6,cancer_incidence_with_hiv,7096.670247554779
+No interventions,6,cancer_treatments,0.0
+No interventions,6,cancers,352267.45190770633
+No interventions,6,cancers_no_hiv,342813.4630383062
+No interventions,6,cancers_with_hiv,7508.994867522253
+No interventions,6,dalys,9154305.70718724
+No interventions,6,excisions,0.0
+No interventions,6,leeps,0.0
+No interventions,6,screens,0.0
+No interventions,6,txvs,0.0
+No interventions,6,vaccinations,0.0
+No interventions,6,yld,490347.12966470624
+No interventions,6,yll,8663958.577522533
+No interventions,7,ablations,0.0
+No interventions,7,asr_cancer_incidence,2131.087536902375
+No interventions,7,cancer_deaths,251856.6100184352
+No interventions,7,cancer_incidence,2237.860562801361
+No interventions,7,cancer_incidence_no_hiv,2192.8564150333405
+No interventions,7,cancer_incidence_with_hiv,6877.084112405777
+No interventions,7,cancer_treatments,0.0
+No interventions,7,cancers,300386.5732788746
+No interventions,7,cancers_no_hiv,291724.89641916234
+No interventions,7,cancers_with_hiv,6871.579174235109
+No interventions,7,dalys,7714787.51167663
+No interventions,7,excisions,0.0
+No interventions,7,leeps,0.0
+No interventions,7,screens,0.0
+No interventions,7,txvs,0.0
+No interventions,7,vaccinations,0.0
+No interventions,7,yld,417686.0625240787
+No interventions,7,yll,7297101.449152551
+No interventions,8,ablations,0.0
+No interventions,8,asr_cancer_incidence,2220.5857958288907
+No interventions,8,cancer_deaths,260670.22409853566
+No interventions,8,cancer_incidence,2295.674900531769
+No interventions,8,cancer_incidence_no_hiv,2250.327317237854
+No interventions,8,cancer_incidence_with_hiv,7042.685736656189
+No interventions,8,cancer_treatments,0.0
+No interventions,8,cancers,306885.83310528623
+No interventions,8,cancers_no_hiv,298122.88079709874
+No interventions,8,cancers_with_hiv,7097.951111045387
+No interventions,8,dalys,8336066.717290456
+No interventions,8,excisions,0.0
+No interventions,8,leeps,0.0
+No interventions,8,screens,0.0
+No interventions,8,txvs,0.0
+No interventions,8,vaccinations,0.0
+No interventions,8,yld,424751.3148385565
+No interventions,8,yll,7911315.4024519
+No interventions,9,ablations,0.0
+No interventions,9,asr_cancer_incidence,2301.3116555835836
+No interventions,9,cancer_deaths,267797.95914974203
+No interventions,9,cancer_incidence,2395.461573123932
+No interventions,9,cancer_incidence_no_hiv,2345.5467014312744
+No interventions,9,cancer_incidence_with_hiv,7563.881323099136
+No interventions,9,cancer_treatments,0.0
+No interventions,9,cancers,318326.5527523417
+No interventions,9,cancers_no_hiv,308923.20479979523
+No interventions,9,cancers_with_hiv,7494.101952334179
+No interventions,9,dalys,8078628.137957202
+No interventions,9,excisions,0.0
+No interventions,9,leeps,0.0
+No interventions,9,screens,0.0
+No interventions,9,txvs,0.0
+No interventions,9,vaccinations,0.0
+No interventions,9,yld,440758.00190388085
+No interventions,9,yll,7637870.136053321
+S&T 18%,0,ablations,1058586.6212
+S&T 18%,0,asr_cancer_incidence,683.5395745915881
+S&T 18%,0,cancer_deaths,67163.94879258552
+S&T 18%,0,cancer_incidence,609.0944596529007
+S&T 18%,0,cancer_incidence_no_hiv,580.8263077437878
+S&T 18%,0,cancer_incidence_with_hiv,3448.6159324645996
+S&T 18%,0,cancer_treatments,72081.5876
+S&T 18%,0,cancers,68093.26610091174
+S&T 18%,0,cancers_no_hiv,64084.102977650124
+S&T 18%,0,cancers_with_hiv,3446.214614600366
+S&T 18%,0,dalys,1180681.1838382562
+S&T 18%,0,excisions,0.0
+S&T 18%,0,leeps,52720.8306
+S&T 18%,0,screens,6041449.7574000005
+S&T 18%,0,txvs,0.0
+S&T 18%,0,vaccinations,13571890.657
+S&T 18%,0,yld,82011.52419268567
+S&T 18%,0,yll,1098669.6596455707
+S&T 18%,1,ablations,2330737.285
+S&T 18%,1,asr_cancer_incidence,921.4766953609727
+S&T 18%,1,cancer_deaths,95698.72316669315
+S&T 18%,1,cancer_incidence,869.3524366617203
+S&T 18%,1,cancer_incidence_no_hiv,823.2201187610626
+S&T 18%,1,cancer_incidence_with_hiv,5087.067758798599
+S&T 18%,1,cancer_treatments,127483.1384
+S&T 18%,1,cancers,104312.76962252292
+S&T 18%,1,cancers_no_hiv,97974.36193074785
+S&T 18%,1,cancers_with_hiv,5599.726449369557
+S&T 18%,1,dalys,2039057.639868933
+S&T 18%,1,excisions,0.0
+S&T 18%,1,leeps,104548.08780000001
+S&T 18%,1,screens,8104115.0224
+S&T 18%,1,txvs,0.0
+S&T 18%,1,vaccinations,13558784.9138
+S&T 18%,1,yld,134525.10388689264
+S&T 18%,1,yll,1904532.5359820405
+S&T 18%,2,ablations,1828846.892
+S&T 18%,2,asr_cancer_incidence,765.2657709838468
+S&T 18%,2,cancer_deaths,80010.55399026796
+S&T 18%,2,cancer_incidence,715.7780439853668
+S&T 18%,2,cancer_incidence_no_hiv,678.0090091228485
+S&T 18%,2,cancer_incidence_with_hiv,4177.643363237381
+S&T 18%,2,cancer_treatments,109313.8126
+S&T 18%,2,cancers,84847.76434887062
+S&T 18%,2,cancers_no_hiv,79712.70129501392
+S&T 18%,2,cancers_with_hiv,4506.588331158996
+S&T 18%,2,dalys,1678303.4319836963
+S&T 18%,2,excisions,0.0
+S&T 18%,2,leeps,84591.6152
+S&T 18%,2,screens,7292750.3752
+S&T 18%,2,txvs,0.0
+S&T 18%,2,vaccinations,13540019.8724
+S&T 18%,2,yld,107587.50155058606
+S&T 18%,2,yll,1570715.93043311
+S&T 18%,3,ablations,3293413.6946
+S&T 18%,3,asr_cancer_incidence,1162.303046775441
+S&T 18%,3,cancer_deaths,121436.61200137077
+S&T 18%,3,cancer_incidence,1128.6604754924774
+S&T 18%,3,cancer_incidence_no_hiv,1087.5592005252838
+S&T 18%,3,cancer_incidence_with_hiv,4832.237974882126
+S&T 18%,3,cancer_treatments,155183.9138
+S&T 18%,3,cancers,139620.8267130976
+S&T 18%,3,cancers_no_hiv,133318.1668177109
+S&T 18%,3,cancers_with_hiv,5301.868624403404
+S&T 18%,3,dalys,2803091.1801824425
+S&T 18%,3,excisions,0.0
+S&T 18%,3,leeps,151013.9046
+S&T 18%,3,screens,9734886.4774
+S&T 18%,3,txvs,0.0
+S&T 18%,3,vaccinations,13551338.4688
+S&T 18%,3,yld,186855.18505935703
+S&T 18%,3,yll,2616235.9951230856
+S&T 18%,4,ablations,1570306.3216
+S&T 18%,4,asr_cancer_incidence,892.2346569823916
+S&T 18%,4,cancer_deaths,88204.62299860666
+S&T 18%,4,cancer_incidence,803.4136099219322
+S&T 18%,4,cancer_incidence_no_hiv,767.4088045954704
+S&T 18%,4,cancer_incidence_with_hiv,4314.293427467346
+S&T 18%,4,cancer_treatments,95016.6382
+S&T 18%,4,cancers,92032.09520753533
+S&T 18%,4,cancers_no_hiv,86727.2521512442
+S&T 18%,4,cancers_with_hiv,4423.18816622204
+S&T 18%,4,dalys,1600125.8953167584
+S&T 18%,4,excisions,0.0
+S&T 18%,4,leeps,77145.17020000001
+S&T 18%,4,screens,6894812.3544
+S&T 18%,4,txvs,0.0
+S&T 18%,4,vaccinations,13561167.7762
+S&T 18%,4,yld,114093.89516834702
+S&T 18%,4,yll,1486032.0001484114
+S&T 18%,5,ablations,3752710.4222
+S&T 18%,5,asr_cancer_incidence,1192.9066033499403
+S&T 18%,5,cancer_deaths,127977.56872096361
+S&T 18%,5,cancer_incidence,1161.1153590679169
+S&T 18%,5,cancer_incidence_no_hiv,1118.3220129013062
+S&T 18%,5,cancer_incidence_with_hiv,5349.390239953995
+S&T 18%,5,cancer_treatments,181991.1158
+S&T 18%,5,cancers,143236.82084356982
+S&T 18%,5,cancers_no_hiv,136806.08234171418
+S&T 18%,5,cancers_with_hiv,5453.776101227221
+S&T 18%,5,dalys,3074974.6874633357
+S&T 18%,5,excisions,0.0
+S&T 18%,5,leeps,192416.13880000002
+S&T 18%,5,screens,10467616.6654
+S&T 18%,5,txvs,0.0
+S&T 18%,5,vaccinations,13534360.5742
+S&T 18%,5,yld,189067.90092675894
+S&T 18%,5,yll,2885906.7865365767
+S&T 18%,6,ablations,1614687.1338
+S&T 18%,6,asr_cancer_incidence,799.5118267617197
+S&T 18%,6,cancer_deaths,80028.42495799065
+S&T 18%,6,cancer_incidence,735.0066649317741
+S&T 18%,6,cancer_incidence_no_hiv,702.5350332260132
+S&T 18%,6,cancer_incidence_with_hiv,3820.3242304325104
+S&T 18%,6,cancer_treatments,101271.652
+S&T 18%,6,cancers,85616.23665899625
+S&T 18%,6,cancers_no_hiv,80832.64676220299
+S&T 18%,6,cancers_with_hiv,4098.523185348953
+S&T 18%,6,dalys,1601729.3528506642
+S&T 18%,6,excisions,0.0
+S&T 18%,6,leeps,75953.739
+S&T 18%,6,screens,6973744.6714
+S&T 18%,6,txvs,0.0
+S&T 18%,6,vaccinations,13559976.345
+S&T 18%,6,yld,107967.79956613162
+S&T 18%,6,yll,1493761.5532845326
+S&T 18%,7,ablations,2606851.4656
+S&T 18%,7,asr_cancer_incidence,914.6726599220972
+S&T 18%,7,cancer_deaths,96830.58146928411
+S&T 18%,7,cancer_incidence,889.0512124300003
+S&T 18%,7,cancer_incidence_no_hiv,850.7008782625198
+S&T 18%,7,cancer_incidence_with_hiv,4773.560739278793
+S&T 18%,7,cancer_treatments,134631.7256
+S&T 18%,7,cancers,110123.97418696595
+S&T 18%,7,cancers_no_hiv,104494.46931051664
+S&T 18%,7,cancers_with_hiv,4861.039084153875
+S&T 18%,7,dalys,2249232.878220794
+S&T 18%,7,excisions,0.0
+S&T 18%,7,leeps,121228.1246
+S&T 18%,7,screens,8570560.337199999
+S&T 18%,7,txvs,0.0
+S&T 18%,7,vaccinations,13540615.588
+S&T 18%,7,yld,145612.24085767783
+S&T 18%,7,yll,2103620.6373631163
+S&T 18%,8,ablations,2373628.8082
+S&T 18%,8,asr_cancer_incidence,861.1272585541941
+S&T 18%,8,cancer_deaths,90298.561901569
+S&T 18%,8,cancer_incidence,812.9126176834106
+S&T 18%,8,cancer_incidence_no_hiv,779.3230819702148
+S&T 18%,8,cancer_incidence_with_hiv,3945.833778858185
+S&T 18%,8,cancer_treatments,130163.8586
+S&T 18%,8,cancers,97476.93399876585
+S&T 18%,8,cancers_no_hiv,92553.35020509681
+S&T 18%,8,cancers_with_hiv,4262.34497002284
+S&T 18%,8,dalys,2064250.3513718513
+S&T 18%,8,excisions,0.0
+S&T 18%,8,leeps,120334.5512
+S&T 18%,8,screens,8123177.9216
+S&T 18%,8,txvs,0.0
+S&T 18%,8,vaccinations,13555806.3358
+S&T 18%,8,yld,126741.12454519536
+S&T 18%,8,yll,1937509.226826656
+S&T 18%,9,ablations,1298362.1502
+S&T 18%,9,asr_cancer_incidence,800.6284085998514
+S&T 18%,9,cancer_deaths,78959.1166954658
+S&T 18%,9,cancer_incidence,716.2292031049728
+S&T 18%,9,cancer_incidence_no_hiv,678.1641748845577
+S&T 18%,9,cancer_incidence_with_hiv,4383.4500851631165
+S&T 18%,9,cancer_treatments,85187.3308
+S&T 18%,9,cancers,80570.52725425453
+S&T 18%,9,cancers_no_hiv,75363.97739459715
+S&T 18%,9,cancers_with_hiv,4557.224155472393
+S&T 18%,9,dalys,1387979.9312638992
+S&T 18%,9,excisions,0.0
+S&T 18%,9,leeps,64337.2848
+S&T 18%,9,screens,6511171.508
+S&T 18%,9,txvs,0.0
+S&T 18%,9,vaccinations,13559678.4872
+S&T 18%,9,yld,98178.30987533132
+S&T 18%,9,yll,1289801.6213885678
+S&T 35%,0,ablations,1953351.4523999998
+S&T 35%,0,asr_cancer_incidence,642.0616500784135
+S&T 35%,0,cancer_deaths,63211.376138464024
+S&T 35%,0,cancer_incidence,570.7278904616833
+S&T 35%,0,cancer_incidence_no_hiv,543.4300756454468
+S&T 35%,0,cancer_incidence_with_hiv,3287.083903312683
+S&T 35%,0,cancer_treatments,137908.1614
+S&T 35%,0,cancers,63541.9991995064
+S&T 35%,0,cancers_no_hiv,59699.63655036757
+S&T 35%,0,cancers_with_hiv,3297.285716264776
+S&T 35%,0,dalys,1071460.584394986
+S&T 35%,0,excisions,0.0
+S&T 35%,0,leeps,91144.4868
+S&T 35%,0,screens,11455610.988
+S&T 35%,0,txvs,0.0
+S&T 35%,0,vaccinations,13559976.345
+S&T 35%,0,yld,76106.61622598484
+S&T 35%,0,yll,995353.9681690012
+S&T 35%,1,ablations,3784283.349
+S&T 35%,1,asr_cancer_incidence,813.0738472664631
+S&T 35%,1,cancer_deaths,83051.682707749
+S&T 35%,1,cancer_incidence,750.815566778183
+S&T 35%,1,cancer_incidence_no_hiv,706.9002212882042
+S&T 35%,1,cancer_incidence_with_hiv,4639.287537574768
+S&T 35%,1,cancer_treatments,193011.8544
+S&T 35%,1,cancers,88151.00770146197
+S&T 35%,1,cancers_no_hiv,82295.12863902946
+S&T 35%,1,cancers_with_hiv,5155.918337289441
+S&T 35%,1,dalys,1642443.1771168995
+S&T 35%,1,excisions,0.0
+S&T 35%,1,leeps,184373.9782
+S&T 35%,1,screens,14413934.6576
+S&T 35%,1,txvs,0.0
+S&T 35%,1,vaccinations,13528999.1338
+S&T 35%,1,yld,111130.1572479442
+S&T 35%,1,yll,1531313.0198689552
+S&T 35%,2,ablations,3333326.6398
+S&T 35%,2,asr_cancer_incidence,696.9065618828306
+S&T 35%,2,cancer_deaths,71700.32200096844
+S&T 35%,2,cancer_incidence,640.8506161570549
+S&T 35%,2,cancer_incidence_no_hiv,603.6360881328583
+S&T 35%,2,cancer_incidence_with_hiv,4067.811784505844
+S&T 35%,2,cancer_treatments,198671.1526
+S&T 35%,2,cancers,74830.80748888833
+S&T 35%,2,cancers_no_hiv,69931.05157691454
+S&T 35%,2,cancers_with_hiv,4366.595168288087
+S&T 35%,2,dalys,1470136.7179736362
+S&T 35%,2,excisions,0.0
+S&T 35%,2,leeps,151907.478
+S&T 35%,2,screens,13694905.9284
+S&T 35%,2,txvs,0.0
+S&T 35%,2,vaccinations,13568912.079
+S&T 35%,2,yld,93662.83681108945
+S&T 35%,2,yll,1376473.8811625468
+S&T 35%,3,ablations,5307528.1382
+S&T 35%,3,asr_cancer_incidence,1006.0587897264046
+S&T 35%,3,cancer_deaths,101161.4336513292
+S&T 35%,3,cancer_incidence,946.2223757505417
+S&T 35%,3,cancer_incidence_no_hiv,903.8403306007385
+S&T 35%,3,cancer_incidence_with_hiv,4800.842653512955
+S&T 35%,3,cancer_treatments,253476.9878
+S&T 35%,3,cancers,113594.01656564327
+S&T 35%,3,cancers_no_hiv,107505.8118148072
+S&T 35%,3,cancers_with_hiv,5251.232806192844
+S&T 35%,3,dalys,2228382.4779727287
+S&T 35%,3,excisions,0.0
+S&T 35%,3,leeps,258838.4282
+S&T 35%,3,screens,17027338.9948
+S&T 35%,3,txvs,0.0
+S&T 35%,3,vaccinations,13549253.4642
+S&T 35%,3,yld,149276.39374752538
+S&T 35%,3,yll,2079106.0842252036
+S&T 35%,4,ablations,2851690.5772
+S&T 35%,4,asr_cancer_incidence,826.0598244780202
+S&T 35%,4,cancer_deaths,80844.55774012314
+S&T 35%,4,cancer_incidence,732.4220915436745
+S&T 35%,4,cancer_incidence_no_hiv,697.8661869168282
+S&T 35%,4,cancer_incidence_with_hiv,4063.2803606987
+S&T 35%,4,cancer_treatments,184969.6938
+S&T 35%,4,cancers,82816.37623107534
+S&T 35%,4,cancers_no_hiv,77782.58268319475
+S&T 35%,4,cancers_with_hiv,4175.9662038507195
+S&T 35%,4,dalys,1414794.101423968
+S&T 35%,4,excisions,0.0
+S&T 35%,4,leeps,129866.00080000001
+S&T 35%,4,screens,12883243.4234
+S&T 35%,4,txvs,0.0
+S&T 35%,4,vaccinations,13548657.7486
+S&T 35%,4,yld,100606.21109176081
+S&T 35%,4,yll,1314187.8903322073
+S&T 35%,5,ablations,6671419.0044
+S&T 35%,5,asr_cancer_incidence,1090.890762454895
+S&T 35%,5,cancer_deaths,116867.4746176957
+S&T 35%,5,cancer_incidence,1049.4356122016907
+S&T 35%,5,cancer_incidence_no_hiv,1008.2331502437592
+S&T 35%,5,cancer_incidence_with_hiv,5004.167227983475
+S&T 35%,5,cancer_treatments,336877.1718
+S&T 35%,5,cancers,128466.05587542776
+S&T 35%,5,cancers_no_hiv,122434.44377577353
+S&T 35%,5,cancers_with_hiv,5185.70407945185
+S&T 35%,5,dalys,2704423.1396088474
+S&T 35%,5,excisions,0.0
+S&T 35%,5,leeps,303814.956
+S&T 35%,5,screens,19214806.678
+S&T 35%,5,txvs,0.0
+S&T 35%,5,vaccinations,13555508.478
+S&T 35%,5,yld,166448.74611582188
+S&T 35%,5,yll,2537974.3934930256
+S&T 35%,6,ablations,2213381.3118000003
+S&T 35%,6,asr_cancer_incidence,689.6685169239079
+S&T 35%,6,cancer_deaths,67402.23439644797
+S&T 35%,6,cancer_incidence,613.7766226530075
+S&T 35%,6,cancer_incidence_no_hiv,582.6015917658806
+S&T 35%,6,cancer_incidence_with_hiv,3506.775391101837
+S&T 35%,6,cancer_treatments,143865.3174
+S&T 35%,6,cancers,68736.63748982323
+S&T 35%,6,cancers_no_hiv,64328.34623392844
+S&T 35%,6,cancers_with_hiv,3797.6868401489296
+S&T 35%,6,dalys,1177036.9383102753
+S&T 35%,6,excisions,0.0
+S&T 35%,6,leeps,109313.8126
+S&T 35%,6,screens,11876781.9172
+S&T 35%,6,txvs,0.0
+S&T 35%,6,vaccinations,13562954.923
+S&T 35%,6,yld,83333.71361074202
+S&T 35%,6,yll,1093703.2246995333
+S&T 35%,7,ablations,4011548.8504
+S&T 35%,7,asr_cancer_incidence,777.3136814939431
+S&T 35%,7,cancer_deaths,79483.34580312904
+S&T 35%,7,cancer_incidence,731.8861422538757
+S&T 35%,7,cancer_incidence_no_hiv,695.6765335798264
+S&T 35%,7,cancer_incidence_with_hiv,4322.859082460403
+S&T 35%,7,cancer_treatments,204926.1664
+S&T 35%,7,cancers,87591.03429378133
+S&T 35%,7,cancers_no_hiv,82521.50051092774
+S&T 35%,7,cancers_with_hiv,4455.952509619615
+S&T 35%,7,dalys,1699068.858658568
+S&T 35%,7,excisions,0.0
+S&T 35%,7,leeps,195990.4324
+S&T 35%,7,screens,14698388.8566
+S&T 35%,7,txvs,0.0
+S&T 35%,7,vaccinations,13517978.3952
+S&T 35%,7,yld,113872.7829228454
+S&T 35%,7,yll,1585196.0757357227
+S&T 35%,8,ablations,4341277.435
+S&T 35%,8,asr_cancer_incidence,809.2272409637804
+S&T 35%,8,cancer_deaths,85071.15843620432
+S&T 35%,8,cancer_incidence,759.1277465820312
+S&T 35%,8,cancer_incidence_no_hiv,727.0788108110428
+S&T 35%,8,cancer_incidence_with_hiv,3769.092418909073
+S&T 35%,8,cancer_treatments,248711.263
+S&T 35%,8,cancers,90760.24201330611
+S&T 35%,8,cancers_no_hiv,86119.62226836028
+S&T 35%,8,cancers_with_hiv,4035.973064836356
+S&T 35%,8,dalys,1895923.9494113862
+S&T 35%,8,excisions,0.0
+S&T 35%,8,leeps,190628.992
+S&T 35%,8,screens,15325677.3834
+S&T 35%,8,txvs,0.0
+S&T 35%,8,vaccinations,13559976.345
+S&T 35%,8,yld,115725.64043119995
+S&T 35%,8,yll,1780198.3089801862
+S&T 35%,9,ablations,2030794.4804
+S&T 35%,9,asr_cancer_incidence,721.9687057537684
+S&T 35%,9,cancer_deaths,69993.59710587432
+S&T 35%,9,cancer_incidence,632.7182549536228
+S&T 35%,9,cancer_incidence_no_hiv,597.2771397233009
+S&T 35%,9,cancer_incidence_with_hiv,3994.9393351078033
+S&T 35%,9,cancer_treatments,143269.6018
+S&T 35%,9,cancers,69603.40354472834
+S&T 35%,9,cancers_no_hiv,64864.490619238066
+S&T 35%,9,cancers_with_hiv,4134.266088926243
+S&T 35%,9,dalys,1136708.3516076338
+S&T 35%,9,excisions,0.0
+S&T 35%,9,leeps,95016.6382
+S&T 35%,9,screens,11623007.0716
+S&T 35%,9,txvs,0.0
+S&T 35%,9,vaccinations,13553423.4734
+S&T 35%,9,yld,82115.77354737236
+S&T 35%,9,yll,1054592.5780602614
+S&T 70%,0,ablations,3390515.3374
+S&T 70%,0,asr_cancer_incidence,535.1718142019664
+S&T 70%,0,cancer_deaths,51892.78016677224
+S&T 70%,0,cancer_incidence,462.83678214251995
+S&T 70%,0,cancer_incidence_no_hiv,438.2423355281353
+S&T 70%,0,cancer_incidence_with_hiv,2813.1910655498505
+S&T 70%,0,cancer_treatments,221010.4876
+S&T 70%,0,cancers,50287.32746290262
+S&T 70%,0,cancers_no_hiv,46927.494722482945
+S&T 70%,0,cancers_with_hiv,2880.284821674771
+S&T 70%,0,dalys,814880.1786102875
+S&T 70%,0,excisions,0.0
+S&T 70%,0,leeps,164417.5056
+S&T 70%,0,screens,21896718.3092
+S&T 70%,0,txvs,0.0
+S&T 70%,0,vaccinations,13534956.2898
+S&T 70%,0,yld,57911.373939922145
+S&T 70%,0,yll,756968.8046703654
+S&T 70%,1,ablations,6509086.5034
+S&T 70%,1,asr_cancer_incidence,683.7336517808981
+S&T 70%,1,cancer_deaths,68364.3163338955
+S&T 70%,1,cancer_incidence,614.0961512327194
+S&T 70%,1,cancer_incidence_no_hiv,573.3039160966873
+S&T 70%,1,cancer_incidence_with_hiv,4158.336142539978
+S&T 70%,1,cancer_treatments,330622.158
+S&T 70%,1,cancers,70255.71303423133
+S&T 70%,1,cancers_no_hiv,64983.63343476197
+S&T 70%,1,cancers_with_hiv,4712.110233531376
+S&T 70%,1,dalys,1253647.7075754665
+S&T 70%,1,excisions,0.0
+S&T 70%,1,leeps,307687.1074
+S&T 70%,1,screens,27016298.1756
+S&T 70%,1,txvs,0.0
+S&T 70%,1,vaccinations,13544487.7394
+S&T 70%,1,yld,85777.95115033453
+S&T 70%,1,yll,1167869.756425132
+S&T 70%,2,ablations,5347143.2256
+S&T 70%,2,asr_cancer_incidence,575.8329232005145
+S&T 70%,2,cancer_deaths,58755.42369653042
+S&T 70%,2,cancer_incidence,515.8912587761879
+S&T 70%,2,cancer_incidence_no_hiv,482.2303465306759
+S&T 70%,2,cancer_incidence_with_hiv,3534.27702665329
+S&T 70%,2,cancer_treatments,302623.5248
+S&T 70%,2,cancers,58639.25932523233
+S&T 70%,2,cancers_no_hiv,54370.96064356206
+S&T 70%,2,cancers_with_hiv,3836.4083211048396
+S&T 70%,2,dalys,1055325.8835100115
+S&T 70%,2,excisions,0.0
+S&T 70%,2,leeps,254072.7034
+S&T 70%,2,screens,25209790.6186
+S&T 70%,2,txvs,0.0
+S&T 70%,2,vaccinations,13540019.8724
+S&T 70%,2,yld,70234.00171219783
+S&T 70%,2,yll,985091.8817978136
+S&T 70%,3,ablations,7860169.4842
+S&T 70%,3,asr_cancer_incidence,811.7975798863345
+S&T 70%,3,cancer_deaths,79831.83952730705
+S&T 70%,3,cancer_incidence,739.855670273304
+S&T 70%,3,cancer_incidence_no_hiv,701.7059491872787
+S&T 70%,3,cancer_incidence_with_hiv,4117.816072702408
+S&T 70%,3,cancer_treatments,364875.805
+S&T 70%,3,cancers,85824.73753709608
+S&T 70%,3,cancers_no_hiv,80594.36051865225
+S&T 70%,3,cancers_with_hiv,4530.416949633154
+S&T 70%,3,dalys,1534640.4120690592
+S&T 70%,3,excisions,0.0
+S&T 70%,3,leeps,355046.4976
+S&T 70%,3,screens,29412266.3188
+S&T 70%,3,txvs,0.0
+S&T 70%,3,vaccinations,13543594.166
+S&T 70%,3,yld,108694.12569649745
+S&T 70%,3,yll,1425946.2863725617
+S&T 70%,4,ablations,4190859.246
+S&T 70%,4,asr_cancer_incidence,686.5493027891225
+S&T 70%,4,cancer_deaths,65597.21772113314
+S&T 70%,4,cancer_incidence,587.5259895026684
+S&T 70%,4,cancer_incidence_no_hiv,554.7539422661066
+S&T 70%,4,cancer_incidence_with_hiv,3739.837963104248
+S&T 70%,4,cancer_treatments,257051.2814
+S&T 70%,4,cancers,64173.458236804545
+S&T 70%,4,cancers_no_hiv,59657.93644709397
+S&T 70%,4,cancers_with_hiv,3830.451155806335
+S&T 70%,4,dalys,1000411.6564245062
+S&T 70%,4,excisions,0.0
+S&T 70%,4,leeps,194203.2856
+S&T 70%,4,screens,23292182.1022
+S&T 70%,4,txvs,0.0
+S&T 70%,4,vaccinations,13527807.7026
+S&T 70%,4,yld,75016.63275561377
+S&T 70%,4,yll,925395.0236688924
+S&T 70%,5,ablations,12117451.0196
+S&T 70%,5,asr_cancer_incidence,925.5544350204924
+S&T 70%,5,cancer_deaths,98084.5631487545
+S&T 70%,5,cancer_incidence,873.2349263429642
+S&T 70%,5,cancer_incidence_no_hiv,835.6293870210648
+S&T 70%,5,cancer_incidence_with_hiv,4380.615451335907
+S&T 70%,5,cancer_treatments,557291.9438
+S&T 70%,5,cancers,105045.49880104706
+S&T 70%,5,cancers_no_hiv,99713.85174124184
+S&T 70%,5,cancers_with_hiv,4634.667190618261
+S&T 70%,5,dalys,2169613.13332134
+S&T 70%,5,excisions,0.0
+S&T 70%,5,leeps,579333.421
+S&T 70%,5,screens,37076445.3706
+S&T 70%,5,txvs,0.0
+S&T 70%,5,vaccinations,13510234.0924
+S&T 70%,5,yld,133265.67791014133
+S&T 70%,5,yll,2036347.455411199
+S&T 70%,6,ablations,3995464.5291999998
+S&T 70%,6,asr_cancer_incidence,586.9770411765188
+S&T 70%,6,cancer_deaths,56575.10446007639
+S&T 70%,6,cancer_incidence,512.3658036738634
+S&T 70%,6,cancer_incidence_no_hiv,483.67389960587025
+S&T 70%,6,cancer_incidence_with_hiv,3109.5593073368073
+S&T 70%,6,cancer_treatments,233520.5152
+S&T 70%,6,cancers,56479.790894947706
+S&T 70%,6,cancers_no_hiv,52565.94278984484
+S&T 70%,6,cancers_with_hiv,3425.3645918133393
+S&T 70%,6,dalys,941406.2886620418
+S&T 70%,6,excisions,0.0
+S&T 70%,6,leeps,206117.5976
+S&T 70%,6,screens,22914796.2696
+S&T 70%,6,txvs,0.0
+S&T 70%,6,vaccinations,13579337.102
+S&T 70%,6,yld,66473.27326482201
+S&T 70%,6,yll,874933.0153972198
+S&T 70%,7,ablations,6571636.6414
+S&T 70%,7,asr_cancer_incidence,658.1131803382282
+S&T 70%,7,cancer_deaths,67104.37667855887
+S&T 70%,7,cancer_incidence,608.8632696866989
+S&T 70%,7,cancer_incidence_no_hiv,575.2916263341904
+S&T 70%,7,cancer_incidence_with_hiv,3970.0532326698303
+S&T 70%,7,cancer_treatments,311559.2588
+S&T 70%,7,cancers,71887.97267985377
+S&T 70%,7,cancers_no_hiv,67384.3673833638
+S&T 70%,7,cancers_with_hiv,3955.551433448553
+S&T 70%,7,dalys,1304887.3105683092
+S&T 70%,7,excisions,0.0
+S&T 70%,7,leeps,311261.401
+S&T 70%,7,screens,27141994.1672
+S&T 70%,7,txvs,0.0
+S&T 70%,7,vaccinations,13562061.3496
+S&T 70%,7,yld,90604.65252985427
+S&T 70%,7,yll,1214282.6580384548
+S&T 70%,8,ablations,5729592.6408
+S&T 70%,8,asr_cancer_incidence,609.2192397248342
+S&T 70%,8,cancer_deaths,62016.967287052255
+S&T 70%,8,cancer_incidence,544.2285901606083
+S&T 70%,8,cancer_incidence_no_hiv,515.8851915895939
+S&T 70%,8,cancer_incidence_with_hiv,3061.678423643112
+S&T 70%,8,cancer_treatments,306793.534
+S&T 70%,8,cancers,61343.80908132421
+S&T 70%,8,cancers_no_hiv,57546.12501241819
+S&T 70%,8,cancers_with_hiv,3356.8572843649054
+S&T 70%,8,dalys,1151714.1024789389
+S&T 70%,8,excisions,0.0
+S&T 70%,8,leeps,271944.1714
+S&T 70%,8,screens,25745934.6586
+S&T 70%,8,txvs,0.0
+S&T 70%,8,vaccinations,13517680.5374
+S&T 70%,8,yld,73493.46679535776
+S&T 70%,8,yll,1078220.635683581
+S&T 70%,9,ablations,3470936.9433999998
+S&T 70%,9,asr_cancer_incidence,630.4564761793488
+S&T 70%,9,cancer_deaths,60453.21256044966
+S&T 70%,9,cancer_incidence,540.7603172808886
+S&T 70%,9,cancer_incidence_no_hiv,507.2800792604685
+S&T 70%,9,cancer_incidence_with_hiv,3684.5699825286865
+S&T 70%,9,cancer_treatments,237690.5244
+S&T 70%,9,cancers,58260.97968634806
+S&T 70%,9,cancers_no_hiv,53948.00295095339
+S&T 70%,9,cancers_with_hiv,3833.4297121024265
+S&T 70%,9,dalys,902461.4612743282
+S&T 70%,9,excisions,0.0
+S&T 70%,9,leeps,173055.3818
+S&T 70%,9,screens,21996202.8144
+S&T 70%,9,txvs,0.0
+S&T 70%,9,vaccinations,13562657.0652
+S&T 70%,9,yld,66362.33750349858
+S&T 70%,9,yll,836099.1237708295
+"S&T 70%, 50% LTFU",0,ablations,2427838.9278
+"S&T 70%, 50% LTFU",0,asr_cancer_incidence,604.9736081281274
+"S&T 70%, 50% LTFU",0,cancer_deaths,58856.694987309034
+"S&T 70%, 50% LTFU",0,cancer_incidence,531.1386272311211
+"S&T 70%, 50% LTFU",0,cancer_incidence_no_hiv,504.8819631636143
+"S&T 70%, 50% LTFU",0,cancer_incidence_with_hiv,3109.6241705417633
+"S&T 70%, 50% LTFU",0,cancer_treatments,239477.6712
+"S&T 70%, 50% LTFU",0,cancers,58707.76718526494
+"S&T 70%, 50% LTFU",0,cancers_no_hiv,55082.841038729945
+"S&T 70%, 50% LTFU",0,cancers_with_hiv,3139.4211029922303
+"S&T 70%, 50% LTFU",0,dalys,994554.6531079368
+"S&T 70%, 50% LTFU",0,excisions,0.0
+"S&T 70%, 50% LTFU",0,leeps,78038.7436
+"S&T 70%, 50% LTFU",0,screens,22043562.2046
+"S&T 70%, 50% LTFU",0,txvs,0.0
+"S&T 70%, 50% LTFU",0,vaccinations,13563550.6386
+"S&T 70%, 50% LTFU",0,yld,69775.28937789792
+"S&T 70%, 50% LTFU",0,yll,924779.3637300389
+"S&T 70%, 50% LTFU",1,ablations,5295613.8262
+"S&T 70%, 50% LTFU",1,asr_cancer_incidence,820.6220442472253
+"S&T 70%, 50% LTFU",1,cancer_deaths,85065.20065008082
+"S&T 70%, 50% LTFU",1,cancer_incidence,766.0250272750854
+"S&T 70%, 50% LTFU",1,cancer_incidence_no_hiv,724.4801295995712
+"S&T 70%, 50% LTFU",1,cancer_incidence_with_hiv,4404.707057952881
+"S&T 70%, 50% LTFU",1,cancer_treatments,387512.9978
+"S&T 70%, 50% LTFU",1,cancers,91072.99161944221
+"S&T 70%, 50% LTFU",1,cancers_no_hiv,85494.12128959408
+"S&T 70%, 50% LTFU",1,cancers_with_hiv,4920.610699967096
+"S&T 70%, 50% LTFU",1,dalys,1725060.4570725942
+"S&T 70%, 50% LTFU",1,excisions,0.0
+"S&T 70%, 50% LTFU",1,leeps,169183.2304
+"S&T 70%, 50% LTFU",1,screens,29080452.7296
+"S&T 70%, 50% LTFU",1,txvs,0.0
+"S&T 70%, 50% LTFU",1,vaccinations,13565635.6432
+"S&T 70%, 50% LTFU",1,yld,115774.87870300916
+"S&T 70%, 50% LTFU",1,yll,1609285.578369585
+"S&T 70%, 50% LTFU",2,ablations,3900447.891
+"S&T 70%, 50% LTFU",2,asr_cancer_incidence,658.5159089814724
+"S&T 70%, 50% LTFU",2,cancer_deaths,67986.0357867981
+"S&T 70%, 50% LTFU",2,cancer_incidence,603.4116511940956
+"S&T 70%, 50% LTFU",2,cancer_incidence_no_hiv,566.6593311429024
+"S&T 70%, 50% LTFU",2,cancer_incidence_with_hiv,3958.887576818466
+"S&T 70%, 50% LTFU",2,cancer_treatments,327643.58
+"S&T 70%, 50% LTFU",2,cancers,70050.19047830056
+"S&T 70%, 50% LTFU",2,cancers_no_hiv,65201.070175931265
+"S&T 70%, 50% LTFU",2,cancers_with_hiv,4298.087881367378
+"S&T 70%, 50% LTFU",2,dalys,1330134.5533800574
+"S&T 70%, 50% LTFU",2,excisions,0.0
+"S&T 70%, 50% LTFU",2,leeps,115270.9686
+"S&T 70%, 50% LTFU",2,screens,25671470.2086
+"S&T 70%, 50% LTFU",2,txvs,0.0
+"S&T 70%, 50% LTFU",2,vaccinations,13560274.2028
+"S&T 70%, 50% LTFU",2,yld,86809.12357042982
+"S&T 70%, 50% LTFU",2,yll,1243325.4298096276
+"S&T 70%, 50% LTFU",3,ablations,5599428.7822
+"S&T 70%, 50% LTFU",3,asr_cancer_incidence,912.3287740809548
+"S&T 70%, 50% LTFU",3,cancer_deaths,90650.03389631935
+"S&T 70%, 50% LTFU",3,cancer_incidence,843.5326044559479
+"S&T 70%, 50% LTFU",3,cancer_incidence_no_hiv,801.4311584234238
+"S&T 70%, 50% LTFU",3,cancer_incidence_with_hiv,4680.072782278061
+"S&T 70%, 50% LTFU",3,cancer_treatments,404193.0346
+"S&T 70%, 50% LTFU",3,cancers,99505.3444712522
+"S&T 70%, 50% LTFU",3,cancers_no_hiv,93542.23852505536
+"S&T 70%, 50% LTFU",3,cancers_with_hiv,5144.003977842655
+"S&T 70%, 50% LTFU",3,dalys,1863371.5445585507
+"S&T 70%, 50% LTFU",3,excisions,0.0
+"S&T 70%, 50% LTFU",3,leeps,170076.8038
+"S&T 70%, 50% LTFU",3,screens,29804545.0414
+"S&T 70%, 50% LTFU",3,txvs,0.0
+"S&T 70%, 50% LTFU",3,vaccinations,13542998.4504
+"S&T 70%, 50% LTFU",3,yld,128436.77270343856
+"S&T 70%, 50% LTFU",3,yll,1734934.7718551122
+"S&T 70%, 50% LTFU",4,ablations,3588292.9166
+"S&T 70%, 50% LTFU",4,asr_cancer_incidence,789.3390945037927
+"S&T 70%, 50% LTFU",4,cancer_deaths,76549.44834681103
+"S&T 70%, 50% LTFU",4,cancer_incidence,696.0219020247459
+"S&T 70%, 50% LTFU",4,cancer_incidence_no_hiv,661.7144618034363
+"S&T 70%, 50% LTFU",4,cancer_incidence_with_hiv,4029.5359337329865
+"S&T 70%, 50% LTFU",4,cancer_treatments,292794.2174
+"S&T 70%, 50% LTFU",4,cancers,78330.63806362342
+"S&T 70%, 50% LTFU",4,cancers_no_hiv,73404.07355935674
+"S&T 70%, 50% LTFU",4,cancers_with_hiv,4107.458921923241
+"S&T 70%, 50% LTFU",4,dalys,1322713.1568921036
+"S&T 70%, 50% LTFU",4,excisions,0.0
+"S&T 70%, 50% LTFU",4,leeps,111994.5328
+"S&T 70%, 50% LTFU",4,screens,24879168.4606
+"S&T 70%, 50% LTFU",4,txvs,0.0
+"S&T 70%, 50% LTFU",4,vaccinations,13558487.056
+"S&T 70%, 50% LTFU",4,yld,95540.23818378618
+"S&T 70%, 50% LTFU",4,yll,1227172.9187083172
+"S&T 70%, 50% LTFU",5,ablations,8240831.7526
+"S&T 70%, 50% LTFU",5,asr_cancer_incidence,1047.0955849708619
+"S&T 70%, 50% LTFU",5,cancer_deaths,111729.42783843975
+"S&T 70%, 50% LTFU",5,cancer_incidence,1004.248272895813
+"S&T 70%, 50% LTFU",5,cancer_incidence_no_hiv,962.0331890583038
+"S&T 70%, 50% LTFU",5,cancer_incidence_with_hiv,5114.412903547287
+"S&T 70%, 50% LTFU",5,cancer_treatments,586779.866
+"S&T 70%, 50% LTFU",5,cancers,122449.32881719194
+"S&T 70%, 50% LTFU",5,cancers_no_hiv,116241.9803381804
+"S&T 70%, 50% LTFU",5,cancers_with_hiv,5334.632989438311
+"S&T 70%, 50% LTFU",5,dalys,2556784.0362591557
+"S&T 70%, 50% LTFU",5,excisions,0.0
+"S&T 70%, 50% LTFU",5,leeps,252583.4144
+"S&T 70%, 50% LTFU",5,screens,36761609.676
+"S&T 70%, 50% LTFU",5,txvs,0.0
+"S&T 70%, 50% LTFU",5,vaccinations,13547168.4596
+"S&T 70%, 50% LTFU",5,yld,158509.45601141098
+"S&T 70%, 50% LTFU",5,yll,2398274.580247745
+"S&T 70%, 50% LTFU",6,ablations,3807218.3996
+"S&T 70%, 50% LTFU",6,asr_cancer_incidence,698.4798821477707
+"S&T 70%, 50% LTFU",6,cancer_deaths,68870.67298474375
+"S&T 70%, 50% LTFU",6,cancer_incidence,633.9592703580856
+"S&T 70%, 50% LTFU",6,cancer_incidence_no_hiv,603.4358675479889
+"S&T 70%, 50% LTFU",6,cancer_incidence_with_hiv,3461.4692335128784
+"S&T 70%, 50% LTFU",6,cancer_treatments,290709.2128
+"S&T 70%, 50% LTFU",6,cancers,72975.15292039828
+"S&T 70%, 50% LTFU",6,cancers_no_hiv,68605.58453912551
+"S&T 70%, 50% LTFU",6,cancers_with_hiv,3776.836775196846
+"S&T 70%, 50% LTFU",6,dalys,1331825.9305424113
+"S&T 70%, 50% LTFU",6,excisions,0.0
+"S&T 70%, 50% LTFU",6,leeps,111398.8172
+"S&T 70%, 50% LTFU",6,screens,25346805.2066
+"S&T 70%, 50% LTFU",6,txvs,0.0
+"S&T 70%, 50% LTFU",6,vaccinations,13564146.3542
+"S&T 70%, 50% LTFU",6,yld,90648.41939918572
+"S&T 70%, 50% LTFU",6,yll,1241177.5111432255
+"S&T 70%, 50% LTFU",7,ablations,4966778.815
+"S&T 70%, 50% LTFU",7,asr_cancer_incidence,748.5996692853483
+"S&T 70%, 50% LTFU",7,cancer_deaths,76996.23346617619
+"S&T 70%, 50% LTFU",7,cancer_incidence,704.3199911117554
+"S&T 70%, 50% LTFU",7,cancer_incidence_no_hiv,668.1691093444824
+"S&T 70%, 50% LTFU",7,cancer_incidence_with_hiv,4395.342744588852
+"S&T 70%, 50% LTFU",7,cancer_treatments,363684.3738
+"S&T 70%, 50% LTFU",7,cancers,84570.75688068314
+"S&T 70%, 50% LTFU",7,cancers_no_hiv,79501.22206811445
+"S&T 70%, 50% LTFU",7,cancers_with_hiv,4402.338092393103
+"S&T 70%, 50% LTFU",7,dalys,1647690.2362631573
+"S&T 70%, 50% LTFU",7,excisions,0.0
+"S&T 70%, 50% LTFU",7,leeps,162332.501
+"S&T 70%, 50% LTFU",7,screens,28284576.688
+"S&T 70%, 50% LTFU",7,txvs,0.0
+"S&T 70%, 50% LTFU",7,vaccinations,13530488.4228
+"S&T 70%, 50% LTFU",7,yld,109236.7245938049
+"S&T 70%, 50% LTFU",7,yll,1538453.5116693524
+"S&T 70%, 50% LTFU",8,ablations,4762448.3642
+"S&T 70%, 50% LTFU",8,asr_cancer_incidence,721.8396640090044
+"S&T 70%, 50% LTFU",8,cancer_deaths,73904.4700473038
+"S&T 70%, 50% LTFU",8,cancer_incidence,662.6500414609909
+"S&T 70%, 50% LTFU",8,cancer_incidence_no_hiv,632.2275419831276
+"S&T 70%, 50% LTFU",8,cancer_incidence_with_hiv,3437.753859758377
+"S&T 70%, 50% LTFU",8,cancer_treatments,370237.2454
+"S&T 70%, 50% LTFU",8,cancers,77127.29163258053
+"S&T 70%, 50% LTFU",8,cancers_no_hiv,72861.97206367414
+"S&T 70%, 50% LTFU",8,cancers_with_hiv,3720.24378503014
+"S&T 70%, 50% LTFU",8,dalys,1556139.7045871364
+"S&T 70%, 50% LTFU",8,excisions,0.0
+"S&T 70%, 50% LTFU",8,leeps,145950.32200000001
+"S&T 70%, 50% LTFU",8,screens,27704945.409199998
+"S&T 70%, 50% LTFU",8,txvs,0.0
+"S&T 70%, 50% LTFU",8,vaccinations,13540019.8724
+"S&T 70%, 50% LTFU",8,yld,96824.89182435305
+"S&T 70%, 50% LTFU",8,yll,1459314.8127627834
+"S&T 70%, 50% LTFU",9,ablations,3267797.9238
+"S&T 70%, 50% LTFU",9,asr_cancer_incidence,730.6121559156115
+"S&T 70%, 50% LTFU",9,cancer_deaths,71363.74293361184
+"S&T 70%, 50% LTFU",9,cancer_incidence,648.8789506554604
+"S&T 70%, 50% LTFU",9,cancer_incidence_no_hiv,612.6779337525368
+"S&T 70%, 50% LTFU",9,cancer_incidence_with_hiv,4099.372324228287
+"S&T 70%, 50% LTFU",9,cancer_treatments,288028.4926
+"S&T 70%, 50% LTFU",9,cancers,72838.13920594731
+"S&T 70%, 50% LTFU",9,cancers_no_hiv,67986.04020913588
+"S&T 70%, 50% LTFU",9,cancers_with_hiv,4244.473487442608
+"S&T 70%, 50% LTFU",9,dalys,1248804.6909620047
+"S&T 70%, 50% LTFU",9,excisions,0.0
+"S&T 70%, 50% LTFU",9,leeps,111398.8172
+"S&T 70%, 50% LTFU",9,screens,24064825.2354
+"S&T 70%, 50% LTFU",9,txvs,0.0
+"S&T 70%, 50% LTFU",9,vaccinations,13554614.9046
+"S&T 70%, 50% LTFU",9,yld,88176.97858807721
+"S&T 70%, 50% LTFU",9,yll,1160627.7123739277
+S&T&T 18%,0,ablations,676435.0638
+S&T&T 18%,0,asr_cancer_incidence,744.1256808068922
+S&T&T 18%,0,cancer_deaths,74869.52973547291
+S&T&T 18%,0,cancer_incidence,678.7083983421326
+S&T&T 18%,0,cancer_incidence_no_hiv,649.8026953339577
+S&T&T 18%,0,cancer_incidence_with_hiv,3586.2551033496857
+S&T&T 18%,0,cancer_treatments,84889.473
+S&T&T 18%,0,cancers,77824.27958081439
+S&T&T 18%,0,cancers_no_hiv,73642.35978515378
+S&T&T 18%,0,cancers_with_hiv,3583.2291828937496
+S&T&T 18%,0,dalys,1406556.9450248932
+S&T&T 18%,0,excisions,0.0
+S&T&T 18%,0,leeps,32168.6424
+S&T&T 18%,0,screens,6441174.925
+S&T&T 18%,0,txvs,0.0
+S&T&T 18%,0,vaccinations,13540317.7302
+S&T&T 18%,0,yld,96653.92831422531
+S&T&T 18%,0,yll,1309903.0167106679
+S&T&T 18%,1,ablations,1230450.5718
+S&T&T 18%,1,asr_cancer_incidence,984.2235017299008
+S&T&T 18%,1,cancer_deaths,104053.63336117838
+S&T&T 18%,1,cancer_incidence,938.9463400840759
+S&T&T 18%,1,cancer_incidence_no_hiv,889.731382727623
+S&T&T 18%,1,cancer_incidence_with_hiv,5518.960819721222
+S&T&T 18%,1,cancer_treatments,140588.8816
+S&T&T 18%,1,cancers,114022.93260694605
+S&T&T 18%,1,cancers_no_hiv,107076.89619293575
+S&T&T 18%,1,cancers_with_hiv,6088.213218800154
+S&T&T 18%,1,dalys,2239351.784911669
+S&T&T 18%,1,excisions,0.0
+S&T&T 18%,1,leeps,58082.271
+S&T&T 18%,1,screens,8335848.3908
+S&T&T 18%,1,txvs,0.0
+S&T&T 18%,1,vaccinations,13570401.368
+S&T&T 18%,1,yld,147702.31886112777
+S&T&T 18%,1,yll,2091649.466050541
+S&T&T 18%,2,ablations,1028800.8412
+S&T&T 18%,2,asr_cancer_incidence,815.8536261108711
+S&T&T 18%,2,cancer_deaths,85997.49444972494
+S&T&T 18%,2,cancer_incidence,772.9261438846588
+S&T&T 18%,2,cancer_incidence_no_hiv,734.7850503921509
+S&T&T 18%,2,cancer_incidence_with_hiv,4268.146675825119
+S&T&T 18%,2,cancer_treatments,112888.1062
+S&T&T 18%,2,cancers,93023.95947122082
+S&T&T 18%,2,cancers_no_hiv,87823.36866208386
+S&T&T 18%,2,cancers_with_hiv,4569.138483295386
+S&T&T 18%,2,dalys,1885284.2562531992
+S&T&T 18%,2,excisions,0.0
+S&T&T 18%,2,leeps,48848.6792
+S&T&T 18%,2,screens,7528058.0372
+S&T&T 18%,2,txvs,0.0
+S&T&T 18%,2,vaccinations,13538828.4412
+S&T&T 18%,2,yld,119974.63945374847
+S&T&T 18%,2,yll,1765309.6167994507
+S&T&T 18%,3,ablations,1738298.1208
+S&T&T 18%,3,asr_cancer_incidence,1223.3360129770545
+S&T&T 18%,3,cancer_deaths,128588.17629797915
+S&T&T 18%,3,cancer_incidence,1194.6121625900269
+S&T&T 18%,3,cancer_incidence_no_hiv,1151.9061903953552
+S&T&T 18%,3,cancer_incidence_with_hiv,5195.998877763748
+S&T&T 18%,3,cancer_treatments,170076.8038
+S&T&T 18%,3,cancers,148464.22343345475
+S&T&T 18%,3,cancers_no_hiv,141860.72893217663
+S&T&T 18%,3,cancers_with_hiv,5525.261953320875
+S&T&T 18%,3,dalys,3023397.4298284715
+S&T&T 18%,3,excisions,0.0
+S&T&T 18%,3,leeps,83400.184
+S&T&T 18%,3,screens,9943684.7952
+S&T&T 18%,3,txvs,0.0
+S&T&T 18%,3,vaccinations,13555806.3358
+S&T&T 18%,3,yld,200066.21162122645
+S&T&T 18%,3,yll,2823331.218207245
+S&T&T 18%,4,ablations,910551.2946
+S&T&T 18%,4,asr_cancer_incidence,948.3993615198125
+S&T&T 18%,4,cancer_deaths,94817.06522742465
+S&T&T 18%,4,cancer_incidence,866.4505630731583
+S&T&T 18%,4,cancer_incidence_no_hiv,829.2125754356384
+S&T&T 18%,4,cancer_incidence_with_hiv,4618.5622000694275
+S&T&T 18%,4,cancer_treatments,103952.3722
+S&T&T 18%,4,cancers,100625.29150631565
+S&T&T 18%,4,cancers_no_hiv,95004.72022434474
+S&T&T 18%,4,cancers_with_hiv,4637.645775764129
+S&T&T 18%,4,dalys,1799881.4844062482
+S&T&T 18%,4,excisions,0.0
+S&T&T 18%,4,leeps,40806.5186
+S&T&T 18%,4,screens,7276963.9118
+S&T&T 18%,4,txvs,0.0
+S&T&T 18%,4,vaccinations,13514404.1016
+S&T&T 18%,4,yld,126775.46897890106
+S&T&T 18%,4,yll,1673106.0154273473
+S&T&T 18%,5,ablations,1983732.948
+S&T&T 18%,5,asr_cancer_incidence,1285.6262772625048
+S&T&T 18%,5,cancer_deaths,139707.20712093296
+S&T&T 18%,5,cancer_incidence,1265.4722456932068
+S&T&T 18%,5,cancer_incidence_no_hiv,1220.4175746440887
+S&T&T 18%,5,cancer_incidence_with_hiv,5760.489635467529
+S&T&T 18%,5,cancer_treatments,212968.32700000002
+S&T&T 18%,5,cancers,158156.5157247829
+S&T&T 18%,5,cancers_no_hiv,151240.2711990469
+S&T&T 18%,5,cancers_with_hiv,5888.6484523217
+S&T&T 18%,5,dalys,3406873.729100785
+S&T&T 18%,5,excisions,0.0
+S&T&T 18%,5,leeps,91442.3446
+S&T&T 18%,5,screens,10716923.644
+S&T&T 18%,5,txvs,0.0
+S&T&T 18%,5,vaccinations,13511127.6658
+S&T&T 18%,5,yld,209002.33014865717
+S&T&T 18%,5,yll,3197871.3989521284
+S&T&T 18%,6,ablations,881659.088
+S&T&T 18%,6,asr_cancer_incidence,829.666870836915
+S&T&T 18%,6,cancer_deaths,83275.07500195816
+S&T&T 18%,6,cancer_incidence,768.9477721452713
+S&T&T 18%,6,cancer_incidence_no_hiv,734.0719028711319
+S&T&T 18%,6,cancer_incidence_with_hiv,4158.061710119247
+S&T&T 18%,6,cancer_treatments,98888.7896
+S&T&T 18%,6,cancers,90209.20360320163
+S&T&T 18%,6,cancers_no_hiv,85097.97066911704
+S&T&T 18%,6,cancers_with_hiv,4438.081076971687
+S&T&T 18%,6,dalys,1710889.537694703
+S&T&T 18%,6,excisions,0.0
+S&T&T 18%,6,leeps,43785.0966
+S&T&T 18%,6,screens,7106887.108
+S&T&T 18%,6,txvs,0.0
+S&T&T 18%,6,vaccinations,13579039.2442
+S&T&T 18%,6,yld,115018.99421526182
+S&T&T 18%,6,yll,1595870.5434794412
+S&T&T 18%,7,ablations,1235216.2966
+S&T&T 18%,7,asr_cancer_incidence,919.7595993579819
+S&T&T 18%,7,cancer_deaths,96532.72388565743
+S&T&T 18%,7,cancer_incidence,891.3688789606094
+S&T&T 18%,7,cancer_incidence_no_hiv,852.3567177057266
+S&T&T 18%,7,cancer_incidence_with_hiv,4884.439475059509
+S&T&T 18%,7,cancer_treatments,125398.1338
+S&T&T 18%,7,cancers,109566.9798948232
+S&T&T 18%,7,cancers_no_hiv,103973.21824928517
+S&T&T 18%,7,cancers_with_hiv,4825.29616171327
+S&T&T 18%,7,dalys,2195004.2701974027
+S&T&T 18%,7,excisions,0.0
+S&T&T 18%,7,leeps,58677.9866
+S&T&T 18%,7,screens,8222364.569
+S&T&T 18%,7,txvs,0.0
+S&T&T 18%,7,vaccinations,13539126.299
+S&T&T 18%,7,yld,145471.0624500242
+S&T&T 18%,7,yll,2049533.2077473786
+S&T&T 18%,8,ablations,1175346.8788
+S&T&T 18%,8,asr_cancer_incidence,887.7190629062745
+S&T&T 18%,8,cancer_deaths,93098.4251445623
+S&T&T 18%,8,cancer_incidence,841.7086954116821
+S&T&T 18%,8,cancer_incidence_no_hiv,807.5337911844254
+S&T&T 18%,8,cancer_incidence_with_hiv,4093.5384380817413
+S&T&T 18%,8,cancer_treatments,136418.8724
+S&T&T 18%,8,cancers,101313.3419764474
+S&T&T 18%,8,cancers_no_hiv,96205.08716757667
+S&T&T 18%,8,cancers_with_hiv,4354.680884849366
+S&T&T 18%,8,dalys,2125167.4713590997
+S&T&T 18%,8,excisions,0.0
+S&T&T 18%,8,leeps,61954.4224
+S&T&T 18%,8,screens,8139560.1006000005
+S&T&T 18%,8,txvs,0.0
+S&T&T 18%,8,vaccinations,13567422.79
+S&T&T 18%,8,yld,131822.82548657144
+S&T&T 18%,8,yll,1993344.6458725284
+S&T&T 18%,9,ablations,667797.1876
+S&T&T 18%,9,asr_cancer_incidence,820.0113190229748
+S&T&T 18%,9,cancer_deaths,80630.09855216541
+S&T&T 18%,9,cancer_incidence,737.2981717586517
+S&T&T 18%,9,cancer_incidence_no_hiv,698.9905939400196
+S&T&T 18%,9,cancer_incidence_with_hiv,4454.810540437698
+S&T&T 18%,9,cancer_treatments,86378.762
+S&T&T 18%,9,cancers,83176.78250437668
+S&T&T 18%,9,cancers_no_hiv,77928.53327434097
+S&T&T 18%,9,cancers_with_hiv,4584.0313724077005
+S&T&T 18%,9,dalys,1447110.7542133965
+S&T&T 18%,9,excisions,0.0
+S&T&T 18%,9,leeps,36040.7938
+S&T&T 18%,9,screens,6522192.2466
+S&T&T 18%,9,txvs,0.0
+S&T&T 18%,9,vaccinations,13507255.5144
+S&T&T 18%,9,yld,102056.35695870557
+S&T&T 18%,9,yll,1345054.3972546908
+S&T&T 35%,0,ablations,1153901.1172
+S&T&T 35%,0,asr_cancer_incidence,706.6758632119338
+S&T&T 35%,0,cancer_deaths,70386.77057370784
+S&T&T 35%,0,cancer_incidence,639.7488975226879
+S&T&T 35%,0,cancer_incidence_no_hiv,610.5249060094357
+S&T&T 35%,0,cancer_incidence_with_hiv,3573.464344739914
+S&T&T 35%,0,cancer_treatments,143865.3174
+S&T&T 35%,0,cancers,72763.6765562843
+S&T&T 35%,0,cancers_no_hiv,68575.79847240313
+S&T&T 35%,0,cancers_with_hiv,3592.1649211324475
+S&T&T 35%,0,dalys,1292835.5594856339
+S&T&T 35%,0,excisions,0.0
+S&T&T 35%,0,leeps,55103.693
+S&T&T 35%,0,screens,11967330.6884
+S&T&T 35%,0,txvs,0.0
+S&T&T 35%,0,vaccinations,13558487.056
+S&T&T 35%,0,yld,89205.41595438916
+S&T&T 35%,0,yll,1203630.1435312447
+S&T&T 35%,1,ablations,2208615.587
+S&T&T 35%,1,asr_cancer_incidence,919.5010576062684
+S&T&T 35%,1,cancer_deaths,95883.39491035168
+S&T&T 35%,1,cancer_incidence,872.2052748203278
+S&T&T 35%,1,cancer_incidence_no_hiv,825.846787571907
+S&T&T 35%,1,cancer_incidence_with_hiv,5045.170104026794
+S&T&T 35%,1,cancer_treatments,235605.5198
+S&T&T 35%,1,cancers,105280.80738763801
+S&T&T 35%,1,cancers_no_hiv,98870.91438525739
+S&T&T 35%,1,cancers_with_hiv,5638.447952517602
+S&T&T 35%,1,dalys,2059501.1936453714
+S&T&T 35%,1,excisions,0.0
+S&T&T 35%,1,leeps,105739.519
+S&T&T 35%,1,screens,15372738.9158
+S&T&T 35%,1,txvs,0.0
+S&T&T 35%,1,vaccinations,13556104.193599999
+S&T&T 35%,1,yld,136709.63076637607
+S&T&T 35%,1,yll,1922791.5628789952
+S&T&T 35%,2,ablations,1675152.2672000001
+S&T&T 35%,2,asr_cancer_incidence,748.994878754445
+S&T&T 35%,2,cancer_deaths,77860.02049431193
+S&T&T 35%,2,cancer_incidence,698.084615945816
+S&T&T 35%,2,cancer_incidence_no_hiv,659.8985409736633
+S&T&T 35%,2,cancer_incidence_with_hiv,4235.649631500244
+S&T&T 35%,2,cancer_treatments,202543.304
+S&T&T 35%,2,cancers,82223.6373315541
+S&T&T 35%,2,cancers_no_hiv,77121.33854508691
+S&T&T 35%,2,cancers_with_hiv,4530.416952961975
+S&T&T 35%,2,dalys,1612781.3144423452
+S&T&T 35%,2,excisions,0.0
+S&T&T 35%,2,leeps,74166.5922
+S&T&T 35%,2,screens,13637419.373
+S&T&T 35%,2,txvs,0.0
+S&T&T 35%,2,vaccinations,13567124.9322
+S&T&T 35%,2,yld,104878.84089003463
+S&T&T 35%,2,yll,1507902.4735523106
+S&T&T 35%,3,ablations,2763524.6684
+S&T&T 35%,3,asr_cancer_incidence,1105.064142880113
+S&T&T 35%,3,cancer_deaths,114052.7180262129
+S&T&T 35%,3,cancer_incidence,1062.364714384079
+S&T&T 35%,3,cancer_incidence_no_hiv,1020.4493013620377
+S&T&T 35%,3,cancer_incidence_with_hiv,4893.720810413361
+S&T&T 35%,3,cancer_treatments,263604.153
+S&T&T 35%,3,cancers,129883.85713200936
+S&T&T 35%,3,cancers_no_hiv,123566.30352584652
+S&T&T 35%,3,cancers_with_hiv,5319.740092558749
+S&T&T 35%,3,dalys,2549624.0007502614
+S&T&T 35%,3,excisions,0.0
+S&T&T 35%,3,leeps,139397.4504
+S&T&T 35%,3,screens,17194735.0784
+S&T&T 35%,3,txvs,0.0
+S&T&T 35%,3,vaccinations,13566529.216599999
+S&T&T 35%,3,yld,172779.16088683717
+S&T&T 35%,3,yll,2376844.839863424
+S&T&T 35%,4,ablations,1614984.9916
+S&T&T 35%,4,asr_cancer_incidence,899.8240887191918
+S&T&T 35%,4,cancer_deaths,88842.03873627807
+S&T&T 35%,4,cancer_incidence,812.713136613369
+S&T&T 35%,4,cancer_incidence_no_hiv,776.6448763608932
+S&T&T 35%,4,cancer_incidence_with_hiv,4430.319788694382
+S&T&T 35%,4,cancer_treatments,196288.2902
+S&T&T 35%,4,cancers,93533.2983017861
+S&T&T 35%,4,cancers_no_hiv,88189.73409020864
+S&T&T 35%,4,cancers_with_hiv,4458.9311069711575
+S&T&T 35%,4,dalys,1658040.4126288
+S&T&T 35%,4,excisions,0.0
+S&T&T 35%,4,leeps,82208.7528
+S&T&T 35%,4,screens,13388410.2522
+S&T&T 35%,4,txvs,0.0
+S&T&T 35%,4,vaccinations,13549253.4642
+S&T&T 35%,4,yld,117057.48044305884
+S&T&T 35%,4,yll,1540982.9321857411
+S&T&T 35%,5,ablations,3602292.2332
+S&T&T 35%,5,asr_cancer_incidence,1213.3114086668065
+S&T&T 35%,5,cancer_deaths,131158.68975967882
+S&T&T 35%,5,cancer_incidence,1186.6489865779877
+S&T&T 35%,5,cancer_incidence_no_hiv,1142.599713563919
+S&T&T 35%,5,cancer_incidence_with_hiv,5562.298388242722
+S&T&T 35%,5,cancer_treatments,346706.4792
+S&T&T 35%,5,cancers,147216.20072072945
+S&T&T 35%,5,cancers_no_hiv,140553.13294588562
+S&T&T 35%,5,cancers_with_hiv,5689.083734665943
+S&T&T 35%,5,dalys,3155310.90519611
+S&T&T 35%,5,excisions,0.0
+S&T&T 35%,5,leeps,156077.4872
+S&T&T 35%,5,screens,19929367.5402
+S&T&T 35%,5,txvs,0.0
+S&T&T 35%,5,vaccinations,13540317.7302
+S&T&T 35%,5,yld,194140.25639760905
+S&T&T 35%,5,yll,2961170.6487985007
+S&T&T 35%,6,ablations,1375209.4626
+S&T&T 35%,6,asr_cancer_incidence,759.2881576473485
+S&T&T 35%,6,cancer_deaths,74857.61442620274
+S&T&T 35%,6,cancer_incidence,690.1208726167679
+S&T&T 35%,6,cancer_incidence_no_hiv,658.5353541970253
+S&T&T 35%,6,cancer_incidence_with_hiv,3609.238248348236
+S&T&T 35%,6,cancer_treatments,167693.9414
+S&T&T 35%,6,cancers,79170.59514175689
+S&T&T 35%,6,cancers_no_hiv,74619.33315646434
+S&T&T 35%,6,cancers_with_hiv,3931.7228249608556
+S&T&T 35%,6,dalys,1432528.4569864154
+S&T&T 35%,6,excisions,0.0
+S&T&T 35%,6,leeps,63145.8536
+S&T&T 35%,6,screens,12604448.5226
+S&T&T 35%,6,txvs,0.0
+S&T&T 35%,6,vaccinations,13576656.3818
+S&T&T 35%,6,yld,98749.25077477642
+S&T&T 35%,6,yll,1333779.206211639
+S&T&T 35%,7,ablations,2176744.8024
+S&T&T 35%,7,asr_cancer_incidence,863.9220547042502
+S&T&T 35%,7,cancer_deaths,90313.45400618932
+S&T&T 35%,7,cancer_incidence,828.9244006872177
+S&T&T 35%,7,cancer_incidence_no_hiv,791.8785432577133
+S&T&T 35%,7,cancer_incidence_with_hiv,4523.615599870682
+S&T&T 35%,7,cancer_treatments,226669.7858
+S&T&T 35%,7,cancers,101277.59812027268
+S&T&T 35%,7,cancers_no_hiv,96026.37265801227
+S&T&T 35%,7,cancers_with_hiv,4557.224148814753
+S&T&T 35%,7,dalys,2010584.5535683553
+S&T&T 35%,7,excisions,0.0
+S&T&T 35%,7,leeps,95612.3538
+S&T&T 35%,7,screens,15219044.291
+S&T&T 35%,7,txvs,0.0
+S&T&T 35%,7,vaccinations,13558784.9138
+S&T&T 35%,7,yld,133191.44165216113
+S&T&T 35%,7,yll,1877393.1119161942
+S&T&T 35%,8,ablations,2086196.0312
+S&T&T 35%,8,asr_cancer_incidence,843.9147210326123
+S&T&T 35%,8,cancer_deaths,87680.39252057906
+S&T&T 35%,8,cancer_incidence,795.6853737831116
+S&T&T 35%,8,cancer_incidence_no_hiv,763.2247424125671
+S&T&T 35%,8,cancer_incidence_with_hiv,3889.285254240036
+S&T&T 35%,8,cancer_treatments,237392.6666
+S&T&T 35%,8,cancers,95162.57962523948
+S&T&T 35%,8,cancers_no_hiv,90471.32496141938
+S&T&T 35%,8,cancers_with_hiv,4071.715988941371
+S&T&T 35%,8,dalys,1984777.1144220773
+S&T&T 35%,8,excisions,0.0
+S&T&T 35%,8,leeps,103058.7988
+S&T&T 35%,8,screens,15009054.542
+S&T&T 35%,8,txvs,0.0
+S&T&T 35%,8,vaccinations,13532573.4274
+S&T&T 35%,8,yld,123364.94772407429
+S&T&T 35%,8,yll,1861412.166698003
+S&T&T 35%,9,ablations,1550647.7068
+S&T&T 35%,9,asr_cancer_incidence,833.4898443438394
+S&T&T 35%,9,cancer_deaths,82771.69520360479
+S&T&T 35%,9,cancer_incidence,758.7495748400688
+S&T&T 35%,9,cancer_incidence_no_hiv,722.2083607316017
+S&T&T 35%,9,cancer_incidence_with_hiv,4265.280320882797
+S&T&T 35%,9,cancer_treatments,181991.1158
+S&T&T 35%,9,cancers,87242.53976180959
+S&T&T 35%,9,cancers_no_hiv,82116.41362348436
+S&T&T 35%,9,cancers_with_hiv,4402.3381112564175
+S&T&T 35%,9,dalys,1564880.0120232473
+S&T&T 35%,9,excisions,0.0
+S&T&T 35%,9,leeps,75953.739
+S&T&T 35%,9,screens,13134933.2644
+S&T&T 35%,9,txvs,0.0
+S&T&T 35%,9,vaccinations,13575464.9506
+S&T&T 35%,9,yld,109436.71270578132
+S&T&T 35%,9,yll,1455443.2993174659
+S&T&T 70%,0,ablations,2015008.017
+S&T&T 70%,0,asr_cancer_incidence,637.377992586321
+S&T&T 70%,0,cancer_deaths,63074.36159902041
+S&T&T 70%,0,cancer_incidence,570.2246675491333
+S&T&T 70%,0,cancer_incidence_no_hiv,543.2238760590553
+S&T&T 70%,0,cancer_incidence_with_hiv,3245.0621750354767
+S&T&T 70%,0,cancer_treatments,252583.4144
+S&T&T 70%,0,cancers,64075.16475722108
+S&T&T 70%,0,cancers_no_hiv,60265.56681820487
+S&T&T 70%,0,cancers_with_hiv,3261.542781063693
+S&T&T 70%,0,dalys,1090490.6477242555
+S&T&T 70%,0,excisions,0.0
+S&T&T 70%,0,leeps,94123.0648
+S&T&T 70%,0,screens,22490944.6202
+S&T&T 70%,0,txvs,0.0
+S&T&T 70%,0,vaccinations,13559678.4872
+S&T&T 70%,0,yld,77083.30860990795
+S&T&T 70%,0,yll,1013407.3391143474
+S&T&T 70%,1,ablations,4000230.2539999997
+S&T&T 70%,1,asr_cancer_incidence,843.9981397865993
+S&T&T 70%,1,cancer_deaths,88100.37107434808
+S&T&T 70%,1,cancer_incidence,791.9578723907471
+S&T&T 70%,1,cancer_incidence_no_hiv,749.8127820491791
+S&T&T 70%,1,cancer_incidence_with_hiv,4469.767595052719
+S&T&T 70%,1,cancer_treatments,405086.608
+S&T&T 70%,1,cancers,94697.92041238936
+S&T&T 70%,1,cancers_no_hiv,88982.03571286747
+S&T&T 70%,1,cancers_with_hiv,5027.839473946552
+S&T&T 70%,1,dalys,1804652.8668975558
+S&T&T 70%,1,excisions,0.0
+S&T&T 70%,1,leeps,194203.2856
+S&T&T 70%,1,screens,29138237.1428
+S&T&T 70%,1,txvs,0.0
+S&T&T 70%,1,vaccinations,13575167.0928
+S&T&T 70%,1,yld,121494.84177123952
+S&T&T 70%,1,yll,1683158.0251263161
+S&T&T 70%,2,ablations,3155803.391
+S&T&T 70%,2,asr_cancer_incidence,691.8236782268325
+S&T&T 70%,2,cancer_deaths,72325.82293091195
+S&T&T 70%,2,cancer_incidence,642.7426288723946
+S&T&T 70%,2,cancer_incidence_no_hiv,605.2581349611282
+S&T&T 70%,2,cancer_incidence_with_hiv,4092.6241557598114
+S&T&T 70%,2,cancer_treatments,356833.6444
+S&T&T 70%,2,cancers,75780.9732515724
+S&T&T 70%,2,cancers_no_hiv,70771.0106861832
+S&T&T 70%,2,cancers_with_hiv,4447.016796347069
+S&T&T 70%,2,dalys,1463643.4202893868
+S&T&T 70%,2,excisions,0.0
+S&T&T 70%,2,leeps,166502.5102
+S&T&T 70%,2,screens,26317523.7768
+S&T&T 70%,2,txvs,0.0
+S&T&T 70%,2,vaccinations,13545381.3128
+S&T&T 70%,2,yld,95577.69789051895
+S&T&T 70%,2,yll,1368065.7223988678
+S&T&T 70%,3,ablations,5112431.2792
+S&T&T 70%,3,asr_cancer_incidence,1014.0064168565633
+S&T&T 70%,3,cancer_deaths,103725.98928806913
+S&T&T 70%,3,cancer_incidence,967.4751335382462
+S&T&T 70%,3,cancer_incidence_no_hiv,928.3268231153488
+S&T&T 70%,3,cancer_incidence_with_hiv,4416.779886960983
+S&T&T 70%,3,cancer_treatments,456913.8652
+S&T&T 70%,3,cancers,117445.31785242328
+S&T&T 70%,3,cancers_no_hiv,111678.79928815355
+S&T&T 70%,3,cancers_with_hiv,4905.717784779022
+S&T&T 70%,3,dalys,2282896.9663581634
+S&T&T 70%,3,excisions,0.0
+S&T&T 70%,3,leeps,241264.818
+S&T&T 70%,3,screens,32944859.8268
+S&T&T 70%,3,txvs,0.0
+S&T&T 70%,3,vaccinations,13515893.3906
+S&T&T 70%,3,yld,155650.575297994
+S&T&T 70%,3,yll,2127246.3910601693
+S&T&T 70%,4,ablations,3240692.864
+S&T&T 70%,4,asr_cancer_incidence,847.8550016559504
+S&T&T 70%,4,cancer_deaths,84171.6285882666
+S&T&T 70%,4,cancer_incidence,763.3073778748512
+S&T&T 70%,4,cancer_incidence_no_hiv,729.2697991728783
+S&T&T 70%,4,cancer_incidence_with_hiv,4063.3103399276733
+S&T&T 70%,4,cancer_treatments,331515.7314
+S&T&T 70%,4,cancers,87927.6148291477
+S&T&T 70%,4,cancers_no_hiv,82938.50138831884
+S&T&T 70%,4,cancers_with_hiv,4146.180405653168
+S&T&T 70%,4,dalys,1543570.5655534775
+S&T&T 70%,4,excisions,0.0
+S&T&T 70%,4,leeps,159056.0652
+S&T&T 70%,4,screens,26352075.2816
+S&T&T 70%,4,txvs,0.0
+S&T&T 70%,4,vaccinations,13536147.721
+S&T&T 70%,4,yld,109614.43831714582
+S&T&T 70%,4,yll,1433956.1272363316
+S&T&T 70%,5,ablations,6463812.1178
+S&T&T 70%,5,asr_cancer_incidence,1106.7056983728194
+S&T&T 70%,5,cancer_deaths,119175.87254938719
+S&T&T 70%,5,cancer_incidence,1074.8433768749237
+S&T&T 70%,5,cancer_incidence_no_hiv,1032.671950340271
+S&T&T 70%,5,cancer_incidence_with_hiv,5234.126048564911
+S&T&T 70%,5,cancer_treatments,601374.8982
+S&T&T 70%,5,cancers,132362.03527307694
+S&T&T 70%,5,cancers_no_hiv,126124.90209104972
+S&T&T 70%,5,cancers_with_hiv,5340.590146414765
+S&T&T 70%,5,dalys,2780302.520393016
+S&T&T 70%,5,excisions,0.0
+S&T&T 70%,5,leeps,303814.956
+S&T&T 70%,5,screens,37614376.5574
+S&T&T 70%,5,txvs,0.0
+S&T&T 70%,5,vaccinations,13510234.0924
+S&T&T 70%,5,yld,173470.6867295723
+S&T&T 70%,5,yll,2606831.8336634436
+S&T&T 70%,6,ablations,2782885.4254
+S&T&T 70%,6,asr_cancer_incidence,727.1161918349011
+S&T&T 70%,6,cancer_deaths,72867.92422520091
+S&T&T 70%,6,cancer_incidence,665.0621341466904
+S&T&T 70%,6,cancer_incidence_no_hiv,634.0858767032623
+S&T&T 70%,6,cancer_incidence_with_hiv,3561.160147190094
+S&T&T 70%,6,cancer_treatments,302623.5248
+S&T&T 70%,6,cancers,76945.59718747881
+S&T&T 70%,6,cancers_no_hiv,72504.54280487029
+S&T&T 70%,6,cancers_with_hiv,3821.5154436433963
+S&T&T 70%,6,dalys,1392093.8702717596
+S&T&T 70%,6,excisions,0.0
+S&T&T 70%,6,leeps,132546.721
+S&T&T 70%,6,screens,25120135.4208
+S&T&T 70%,6,txvs,0.0
+S&T&T 70%,6,vaccinations,13542700.5926
+S&T&T 70%,6,yld,95379.38156425775
+S&T&T 70%,6,yll,1296714.488707502
+S&T&T 70%,7,ablations,3925170.0884
+S&T&T 70%,7,asr_cancer_incidence,787.9930383477658
+S&T&T 70%,7,cancer_deaths,81848.33589777538
+S&T&T 70%,7,cancer_incidence,750.5326939821243
+S&T&T 70%,7,cancer_incidence_no_hiv,716.5977813005447
+S&T&T 70%,7,cancer_incidence_with_hiv,4070.1695625782013
+S&T&T 70%,7,cancer_treatments,364280.0894
+S&T&T 70%,7,cancers,90944.91216523372
+S&T&T 70%,7,cancers_no_hiv,86125.57934766426
+S&T&T 70%,7,cancers_with_hiv,4131.287511547624
+S&T&T 70%,7,dalys,1760189.2109705945
+S&T&T 70%,7,excisions,0.0
+S&T&T 70%,7,leeps,179906.1112
+S&T&T 70%,7,screens,28650643.9242
+S&T&T 70%,7,txvs,0.0
+S&T&T 70%,7,vaccinations,13545083.455
+S&T&T 70%,7,yld,119224.75828178712
+S&T&T 70%,7,yll,1640964.4526888074
+S&T&T 70%,8,ablations,4047887.502
+S&T&T 70%,8,asr_cancer_incidence,776.1292043811093
+S&T&T 70%,8,cancer_deaths,81243.68611132176
+S&T&T 70%,8,cancer_incidence,726.3414471149445
+S&T&T 70%,8,cancer_incidence_no_hiv,695.2100244760513
+S&T&T 70%,8,cancer_incidence_with_hiv,3678.0496594905853
+S&T&T 70%,8,cancer_treatments,419383.7824
+S&T&T 70%,8,cancers,86554.4902015554
+S&T&T 70%,8,cancers_no_hiv,82024.07803321783
+S&T&T 70%,8,cancers_with_hiv,3895.979870341654
+S&T&T 70%,8,dalys,1802958.5270795708
+S&T&T 70%,8,excisions,0.0
+S&T&T 70%,8,leeps,185267.5516
+S&T&T 70%,8,screens,29419117.0482
+S&T&T 70%,8,txvs,0.0
+S&T&T 70%,8,vaccinations,13529296.9916
+S&T&T 70%,8,yld,111028.94737223604
+S&T&T 70%,8,yll,1691929.5797073347
+S&T&T 70%,9,ablations,2153809.7518
+S&T&T 70%,9,asr_cancer_incidence,733.6438522263553
+S&T&T 70%,9,cancer_deaths,71506.7147443214
+S&T&T 70%,9,cancer_incidence,649.2140442728996
+S&T&T 70%,9,cancer_incidence_no_hiv,613.18578389287
+S&T&T 70%,9,cancer_incidence_with_hiv,4116.708758592606
+S&T&T 70%,9,cancer_treatments,271944.1714
+S&T&T 70%,9,cancers,72316.88821462108
+S&T&T 70%,9,cancers_no_hiv,67476.70357725643
+S&T&T 70%,9,cancers_with_hiv,4241.494893974689
+S&T&T 70%,9,dalys,1207971.6269407761
+S&T&T 70%,9,excisions,0.0
+S&T&T 70%,9,leeps,107526.6658
+S&T&T 70%,9,screens,23047045.1328
+S&T&T 70%,9,txvs,0.0
+S&T&T 70%,9,vaccinations,13530190.565
+S&T&T 70%,9,yld,86870.06222483837
+S&T&T 70%,9,yll,1121101.564715938
+S&TxV 18%,0,ablations,33062.2158
+S&TxV 18%,0,asr_cancer_incidence,681.1618974183241
+S&TxV 18%,0,cancer_deaths,67324.79223345302
+S&TxV 18%,0,cancer_incidence,609.4588326215744
+S&TxV 18%,0,cancer_incidence_no_hiv,580.4743837714195
+S&TxV 18%,0,cancer_incidence_with_hiv,3540.857645511627
+S&TxV 18%,0,cancer_treatments,4170.0092
+S&TxV 18%,0,cancers,68254.10976924862
+S&TxV 18%,0,cancers_no_hiv,64143.67517767131
+S&TxV 18%,0,cancers_with_hiv,3544.5076852937377
+S&TxV 18%,0,dalys,1170607.4339448349
+S&TxV 18%,0,excisions,0.0
+S&TxV 18%,0,leeps,1191.4312
+S&TxV 18%,0,screens,6141827.836
+S&TxV 18%,0,txvs,1480651.1238
+S&TxV 18%,0,vaccinations,13557295.6248
+S&TxV 18%,0,yld,82099.740826215
+S&TxV 18%,0,yll,1088507.6931186197
+S&TxV 18%,1,ablations,28594.3488
+S&TxV 18%,1,asr_cancer_incidence,945.302175108351
+S&TxV 18%,1,cancer_deaths,99177.70157543574
+S&TxV 18%,1,cancer_incidence,897.9656828641891
+S&TxV 18%,1,cancer_incidence_no_hiv,853.1626914739609
+S&TxV 18%,1,cancer_incidence_with_hiv,4928.332986354828
+S&TxV 18%,1,cancer_treatments,5063.582600000001
+S&TxV 18%,1,cancers,108578.09293857137
+S&TxV 18%,1,cancers_no_hiv,102296.27858815355
+S&TxV 18%,1,cancers_with_hiv,5456.754724099719
+S&TxV 18%,1,dalys,2157540.5949969264
+S&TxV 18%,1,excisions,0.0
+S&TxV 18%,1,leeps,595.7156
+S&TxV 18%,1,screens,8474352.2678
+S&TxV 18%,1,txvs,3372346.0116
+S&TxV 18%,1,vaccinations,13565337.7854
+S&TxV 18%,1,yld,141050.0366491411
+S&TxV 18%,1,yll,2016490.5583477851
+S&TxV 18%,2,ablations,30381.495600000002
+S&TxV 18%,2,asr_cancer_incidence,757.3581916181176
+S&TxV 18%,2,cancer_deaths,78631.47203759378
+S&TxV 18%,2,cancer_incidence,704.5282139778137
+S&TxV 18%,2,cancer_incidence_no_hiv,666.3450102806091
+S&TxV 18%,2,cancer_incidence_with_hiv,4265.176488637924
+S&TxV 18%,2,cancer_treatments,3276.4358
+S&TxV 18%,2,cancers,83328.68909240548
+S&TxV 18%,2,cancers_no_hiv,78205.54095057973
+S&TxV 18%,2,cancers_with_hiv,4533.395536998235
+S&TxV 18%,2,dalys,1673551.369006814
+S&TxV 18%,2,excisions,0.0
+S&TxV 18%,2,leeps,2085.0046
+S&TxV 18%,2,screens,7426488.5274
+S&TxV 18%,2,txvs,2575278.5388
+S&TxV 18%,2,vaccinations,13573677.8038
+S&TxV 18%,2,yld,106157.18682984354
+S&TxV 18%,2,yll,1567394.1821769704
+S&TxV 18%,3,ablations,34849.3626
+S&TxV 18%,3,asr_cancer_incidence,1089.841684402206
+S&TxV 18%,3,cancer_deaths,111309.44809073384
+S&TxV 18%,3,cancer_incidence,1040.0511729717255
+S&TxV 18%,3,cancer_incidence_no_hiv,999.1090103387833
+S&TxV 18%,3,cancer_incidence_with_hiv,4703.176332235336
+S&TxV 18%,3,cancer_treatments,3276.4358
+S&TxV 18%,3,cancers,126628.2718152832
+S&TxV 18%,3,cancers_no_hiv,120417.94677726775
+S&TxV 18%,3,cancers_with_hiv,5182.72550207323
+S&TxV 18%,3,dalys,2490910.5361705716
+S&TxV 18%,3,excisions,0.0
+S&TxV 18%,3,leeps,1191.4312
+S&TxV 18%,3,screens,9209763.175999999
+S&TxV 18%,3,txvs,3981465.2126
+S&TxV 18%,3,vaccinations,13587974.9782
+S&TxV 18%,3,yld,167387.67446726552
+S&TxV 18%,3,yll,2323522.861703306
+S&TxV 18%,4,ablations,42593.6654
+S&TxV 18%,4,asr_cancer_incidence,929.4871232826092
+S&TxV 18%,4,cancer_deaths,92553.34611675065
+S&TxV 18%,4,cancer_incidence,847.926206111908
+S&TxV 18%,4,cancer_incidence_no_hiv,812.5809428095818
+S&TxV 18%,4,cancer_incidence_with_hiv,4320.763003826141
+S&TxV 18%,4,cancer_treatments,3574.2936
+S&TxV 18%,4,cancers,98501.56515184167
+S&TxV 18%,4,cancers_no_hiv,93226.50920308409
+S&TxV 18%,4,cancers_with_hiv,4360.638026846128
+S&TxV 18%,4,dalys,1774267.2844217694
+S&TxV 18%,4,excisions,0.0
+S&TxV 18%,4,leeps,4170.0092
+S&TxV 18%,4,screens,7447338.5734
+S&TxV 18%,4,txvs,2567236.3782
+S&TxV 18%,4,vaccinations,13533764.8586
+S&TxV 18%,4,yld,124049.63595128375
+S&TxV 18%,4,yll,1650217.6484704858
+S&TxV 18%,5,ablations,36934.3672
+S&TxV 18%,5,asr_cancer_incidence,1225.4573668675687
+S&TxV 18%,5,cancer_deaths,132826.69310835024
+S&TxV 18%,5,cancer_incidence,1196.92343044281
+S&TxV 18%,5,cancer_incidence_no_hiv,1152.5026214122772
+S&TxV 18%,5,cancer_incidence_with_hiv,5617.1520819664
+S&TxV 18%,5,cancer_treatments,6255.0138
+S&TxV 18%,5,cancers,148872.28932547534
+S&TxV 18%,5,cancers_no_hiv,142236.0296863212
+S&TxV 18%,5,cancers_with_hiv,5665.255103431306
+S&TxV 18%,5,dalys,3214477.6393996254
+S&TxV 18%,5,excisions,0.0
+S&TxV 18%,5,leeps,2680.7201999999997
+S&TxV 18%,5,screens,10898021.1864
+S&TxV 18%,5,txvs,5355185.3862
+S&TxV 18%,5,vaccinations,13543892.0238
+S&TxV 18%,5,yld,196219.92596233613
+S&TxV 18%,5,yll,3018257.7134372895
+S&TxV 18%,6,ablations,36338.6516
+S&TxV 18%,6,asr_cancer_incidence,794.6723449383056
+S&TxV 18%,6,cancer_deaths,80013.53220203114
+S&TxV 18%,6,cancer_incidence,733.2774088382721
+S&TxV 18%,6,cancer_incidence_no_hiv,701.4836581349373
+S&TxV 18%,6,cancer_incidence_with_hiv,3666.7361726760864
+S&TxV 18%,6,cancer_treatments,2382.8624
+S&TxV 18%,6,cancers,85351.1433144641
+S&TxV 18%,6,cancers_no_hiv,80650.95352657266
+S&TxV 18%,6,cancers_with_hiv,4021.0801674019904
+S&TxV 18%,6,dalys,1581482.012617703
+S&TxV 18%,6,excisions,0.0
+S&TxV 18%,6,leeps,893.5734
+S&TxV 18%,6,screens,7049102.6948
+S&TxV 18%,6,txvs,2232742.0688
+S&TxV 18%,6,vaccinations,13585294.258
+S&TxV 18%,6,yld,107659.8382333411
+S&TxV 18%,6,yll,1473822.1743843618
+S&TxV 18%,7,ablations,31572.9268
+S&TxV 18%,7,asr_cancer_incidence,889.9452624641903
+S&TxV 18%,7,cancer_deaths,93283.09593173978
+S&TxV 18%,7,cancer_incidence,857.4197206497192
+S&TxV 18%,7,cancer_incidence_no_hiv,819.40773665905
+S&TxV 18%,7,cancer_incidence_with_hiv,4681.5882024765015
+S&TxV 18%,7,cancer_treatments,4170.0092
+S&TxV 18%,7,cancers,105245.06385602328
+S&TxV 18%,7,cancers_no_hiv,99716.830209879
+S&TxV 18%,7,cancers_with_hiv,4768.703187081059
+S&TxV 18%,7,dalys,2118387.686686901
+S&TxV 18%,7,excisions,0.0
+S&TxV 18%,7,leeps,2382.8624
+S&TxV 18%,7,screens,8386484.2168
+S&TxV 18%,7,txvs,3335113.7865999998
+S&TxV 18%,7,vaccinations,13554614.9046
+S&TxV 18%,7,yld,138925.46180777263
+S&TxV 18%,7,yll,1979462.2248791282
+S&TxV 18%,8,ablations,32168.6424
+S&TxV 18%,8,asr_cancer_incidence,837.2279883104327
+S&TxV 18%,8,cancer_deaths,86962.55530575519
+S&TxV 18%,8,cancer_incidence,785.3980476856232
+S&TxV 18%,8,cancer_incidence_no_hiv,754.388794541359
+S&TxV 18%,8,cancer_incidence_with_hiv,3594.0726912021637
+S&TxV 18%,8,cancer_treatments,5063.5826
+S&TxV 18%,8,cancers,93306.92609312215
+S&TxV 18%,8,cancers_no_hiv,88737.79244327387
+S&TxV 18%,8,cancers_with_hiv,3910.8727949613854
+S&TxV 18%,8,dalys,1927759.0821158146
+S&TxV 18%,8,excisions,0.0
+S&TxV 18%,8,leeps,1191.4312
+S&TxV 18%,8,screens,7968589.7234
+S&TxV 18%,8,txvs,3000619.4772
+S&TxV 18%,8,vaccinations,13571890.657
+S&TxV 18%,8,yld,120076.6855769723
+S&TxV 18%,8,yll,1807682.3965388422
+S&TxV 18%,9,ablations,33360.0736
+S&TxV 18%,9,asr_cancer_incidence,793.6155785877331
+S&TxV 18%,9,cancer_deaths,77931.5072490707
+S&TxV 18%,9,cancer_incidence,710.9858729839325
+S&TxV 18%,9,cancer_incidence_no_hiv,673.2057503461838
+S&TxV 18%,9,cancer_incidence_with_hiv,4317.228124141693
+S&TxV 18%,9,cancer_treatments,3872.1513999999997
+S&TxV 18%,9,cancers,79998.6400757735
+S&TxV 18%,9,cancers_no_hiv,74860.59798405135
+S&TxV 18%,9,cancers_with_hiv,4482.759699369556
+S&TxV 18%,9,dalys,1377077.1261694885
+S&TxV 18%,9,excisions,0.0
+S&TxV 18%,9,leeps,893.5734
+S&TxV 18%,9,screens,6569551.6367999995
+S&TxV 18%,9,txvs,1820804.7314
+S&TxV 18%,9,vaccinations,13522446.2622
+S&TxV 18%,9,yld,97894.96785126667
+S&TxV 18%,9,yll,1279182.1583182218
+S&TxV 35%,0,ablations,65826.5738
+S&TxV 35%,0,asr_cancer_incidence,637.9914072733856
+S&TxV 35%,0,cancer_deaths,62457.79606777595
+S&TxV 35%,0,cancer_incidence,566.1342698335648
+S&TxV 35%,0,cancer_incidence_no_hiv,539.5403757691383
+S&TxV 35%,0,cancer_incidence_with_hiv,3172.988585472107
+S&TxV 35%,0,cancer_treatments,8935.734
+S&TxV 35%,0,cancers,63202.441417734735
+S&TxV 35%,0,cancers_no_hiv,59446.457286770914
+S&TxV 35%,0,cancers_with_hiv,3213.885529135685
+S&TxV 35%,0,dalys,1082347.5514445864
+S&TxV 35%,0,excisions,0.0
+S&TxV 35%,0,leeps,3276.4358
+S&TxV 35%,0,screens,11778190.9854
+S&TxV 35%,0,txvs,2886242.082
+S&TxV 35%,0,vaccinations,13560869.918399999
+S&TxV 35%,0,yld,75991.04539208759
+S&TxV 35%,0,yll,1006356.5060524988
+S&TxV 35%,1,ablations,65528.716
+S&TxV 35%,1,asr_cancer_incidence,802.4883111514371
+S&TxV 35%,1,cancer_deaths,81642.81569310137
+S&TxV 35%,1,cancer_incidence,743.3795076012611
+S&TxV 35%,1,cancer_incidence_no_hiv,699.6295300126076
+S&TxV 35%,1,cancer_incidence_with_hiv,4571.29154253006
+S&TxV 35%,1,cancer_treatments,9233.5918
+S&TxV 35%,1,cancers,87266.370289917
+S&TxV 35%,1,cancers_no_hiv,81440.27673385545
+S&TxV 35%,1,cancers_with_hiv,5141.02544706752
+S&TxV 35%,1,dalys,1625395.2126480173
+S&TxV 35%,1,excisions,0.0
+S&TxV 35%,1,leeps,2085.0046
+S&TxV 35%,1,screens,14705239.586
+S&TxV 35%,1,txvs,5314378.8676
+S&TxV 35%,1,vaccinations,13537041.2944
+S&TxV 35%,1,yld,111067.69871811954
+S&TxV 35%,1,yll,1514327.5139298977
+S&TxV 35%,2,ablations,60465.1334
+S&TxV 35%,2,asr_cancer_incidence,663.5670519702174
+S&TxV 35%,2,cancer_deaths,67747.75017627802
+S&TxV 35%,2,cancer_incidence,604.3188586831093
+S&TxV 35%,2,cancer_incidence_no_hiv,568.2492153644562
+S&TxV 35%,2,cancer_incidence_with_hiv,3870.6978080272675
+S&TxV 35%,2,cancer_treatments,7744.3027999999995
+S&TxV 35%,2,cancers,69481.28255461308
+S&TxV 35%,2,cancers_no_hiv,64760.24048422041
+S&TxV 35%,2,cancers_with_hiv,4164.05187491812
+S&TxV 35%,2,dalys,1294270.4900801177
+S&TxV 35%,2,excisions,0.0
+S&TxV 35%,2,leeps,2680.7201999999997
+S&TxV 35%,2,screens,13003280.116799999
+S&TxV 35%,2,txvs,3949296.5702
+S&TxV 35%,2,vaccinations,13534658.432
+S&TxV 35%,2,yld,85599.61773826763
+S&TxV 35%,2,yll,1208670.87234185
+S&TxV 35%,3,ablations,75060.16560000001
+S&TxV 35%,3,asr_cancer_incidence,1034.0004162821222
+S&TxV 35%,3,cancer_deaths,106350.11624269286
+S&TxV 35%,3,cancer_incidence,987.7470589876175
+S&TxV 35%,3,cancer_incidence_no_hiv,946.7605965137482
+S&TxV 35%,3,cancer_incidence_with_hiv,4633.340219259262
+S&TxV 35%,3,cancer_treatments,6255.013800000001
+S&TxV 35%,3,cancers,120203.48061654107
+S&TxV 35%,3,cancers_no_hiv,114070.59748464661
+S&TxV 35%,3,cancers_with_hiv,5126.132527995822
+S&TxV 35%,3,dalys,2354465.6739588846
+S&TxV 35%,3,excisions,0.0
+S&TxV 35%,3,leeps,4467.867
+S&TxV 35%,3,screens,17972441.7942
+S&TxV 35%,3,txvs,7929272.4938
+S&TxV 35%,3,vaccinations,13565635.643199999
+S&TxV 35%,3,yld,159205.38864593158
+S&TxV 35%,3,yll,2195260.285312953
+S&TxV 35%,4,ablations,81017.3216
+S&TxV 35%,4,asr_cancer_incidence,839.8122443965888
+S&TxV 35%,4,cancer_deaths,82521.4969163566
+S&TxV 35%,4,cancer_incidence,750.5525997281075
+S&TxV 35%,4,cancer_incidence_no_hiv,715.5547906160355
+S&TxV 35%,4,cancer_incidence_with_hiv,4185.245391130447
+S&TxV 35%,4,cancer_treatments,8042.1606
+S&TxV 35%,4,cancers,85583.47459306657
+S&TxV 35%,4,cancers_no_hiv,80427.5601676958
+S&TxV 35%,4,cancers_with_hiv,4277.237862463976
+S&TxV 35%,4,dalys,1473519.0925771748
+S&TxV 35%,4,excisions,0.0
+S&TxV 35%,4,leeps,4467.867
+S&TxV 35%,4,screens,13316924.3802
+S&TxV 35%,4,txvs,4177753.5028
+S&TxV 35%,4,vaccinations,13534062.7164
+S&TxV 35%,4,yld,105213.47222717396
+S&TxV 35%,4,yll,1368305.620350001
+S&TxV 35%,5,ablations,78634.4592
+S&TxV 35%,5,asr_cancer_incidence,1082.810163467257
+S&TxV 35%,5,cancer_deaths,116027.5160099693
+S&TxV 35%,5,cancer_incidence,1041.251667022705
+S&TxV 35%,5,cancer_incidence_no_hiv,1000.3773033618927
+S&TxV 35%,5,cancer_incidence_with_hiv,4930.636207103729
+S&TxV 35%,5,cancer_treatments,10425.023000000001
+S&TxV 35%,5,cancers,127081.01746371978
+S&TxV 35%,5,cancers_no_hiv,121055.36310414037
+S&TxV 35%,5,cancers_with_hiv,5152.93971552655
+S&TxV 35%,5,dalys,2666323.941151931
+S&TxV 35%,5,excisions,0.0
+S&TxV 35%,5,leeps,3276.4358
+S&TxV 35%,5,screens,19660699.8046
+S&TxV 35%,5,txvs,9244314.6808
+S&TxV 35%,5,vaccinations,13525126.9824
+S&TxV 35%,5,yld,164192.11153619803
+S&TxV 35%,5,yll,2502131.829615733
+S&TxV 35%,6,ablations,67613.7206
+S&TxV 35%,6,asr_cancer_incidence,699.9033216633837
+S&TxV 35%,6,cancer_deaths,68748.55185759206
+S&TxV 35%,6,cancer_incidence,628.0775274336338
+S&TxV 35%,6,cancer_incidence_no_hiv,596.5458613336086
+S&TxV 35%,6,cancer_incidence_with_hiv,3561.252425670624
+S&TxV 35%,6,cancer_treatments,5063.5826
+S&TxV 35%,6,cancers,71107.58531733193
+S&TxV 35%,6,cancers_no_hiv,66612.91584452038
+S&TxV 35%,6,cancers_with_hiv,3863.2155502458213
+S&TxV 35%,6,dalys,1239107.6976793814
+S&TxV 35%,6,excisions,0.0
+S&TxV 35%,6,leeps,2085.0046
+S&TxV 35%,6,screens,12437648.1546
+S&TxV 35%,6,txvs,3401536.076
+S&TxV 35%,6,vaccinations,13558189.1982
+S&TxV 35%,6,yld,87007.06064987893
+S&TxV 35%,6,yll,1152100.6370295023
+S&TxV 35%,7,ablations,65230.8582
+S&TxV 35%,7,asr_cancer_incidence,780.9893031310909
+S&TxV 35%,7,cancer_deaths,80534.78396619849
+S&TxV 35%,7,cancer_incidence,736.0087167024612
+S&TxV 35%,7,cancer_incidence_no_hiv,698.6941390037537
+S&TxV 35%,7,cancer_incidence_with_hiv,4492.930324792862
+S&TxV 35%,7,cancer_treatments,7148.5872
+S&TxV 35%,7,cancers,88475.67187065771
+S&TxV 35%,7,cancers_no_hiv,83245.29461198402
+S&TxV 35%,7,cancers_with_hiv,4530.416960174419
+S&TxV 35%,7,dalys,1726900.3847406954
+S&TxV 35%,7,excisions,0.0
+S&TxV 35%,7,leeps,2680.7201999999997
+S&TxV 35%,7,screens,15196704.956
+S&TxV 35%,7,txvs,5721848.338
+S&TxV 35%,7,vaccinations,13540317.7302
+S&TxV 35%,7,yld,115001.89807083008
+S&TxV 35%,7,yll,1611898.4866698652
+S&TxV 35%,8,ablations,68209.43620000001
+S&TxV 35%,8,asr_cancer_incidence,786.6564715636058
+S&TxV 35%,8,cancer_deaths,81398.5717227911
+S&TxV 35%,8,cancer_incidence,736.6903933882713
+S&TxV 35%,8,cancer_incidence_no_hiv,704.1238122582436
+S&TxV 35%,8,cancer_incidence_with_hiv,3922.7452490329742
+S&TxV 35%,8,cancer_treatments,10722.880799999999
+S&TxV 35%,8,cancers,87519.54883726248
+S&TxV 35%,8,cancers_no_hiv,82878.92976973159
+S&TxV 35%,8,cancers_with_hiv,4047.8873671383926
+S&TxV 35%,8,dalys,1801331.5541778863
+S&TxV 35%,8,excisions,0.0
+S&TxV 35%,8,leeps,1489.289
+S&TxV 35%,8,screens,15360526.746
+S&TxV 35%,8,txvs,5865117.9398
+S&TxV 35%,8,vaccinations,13514404.1016
+S&TxV 35%,8,yld,111919.39788786133
+S&TxV 35%,8,yll,1689412.156290025
+S&TxV 35%,9,ablations,68805.1518
+S&TxV 35%,9,asr_cancer_incidence,724.4263558451213
+S&TxV 35%,9,cancer_deaths,69808.92546873805
+S&TxV 35%,9,cancer_incidence,635.4762686491013
+S&TxV 35%,9,cancer_incidence_no_hiv,598.7418046593666
+S&TxV 35%,9,cancer_incidence_with_hiv,4161.106554269791
+S&TxV 35%,9,cancer_treatments,7744.3028
+S&TxV 35%,9,cancers,70106.7831627706
+S&TxV 35%,9,cancers_no_hiv,65183.19844979234
+S&TxV 35%,9,cancers_with_hiv,4324.895099412292
+S&TxV 35%,9,dalys,1161117.1468055146
+S&TxV 35%,9,excisions,0.0
+S&TxV 35%,9,leeps,3276.4358
+S&TxV 35%,9,screens,11999201.473
+S&TxV 35%,9,txvs,3010150.9268
+S&TxV 35%,9,vaccinations,13542104.877
+S&TxV 35%,9,yld,83380.21493189511
+S&TxV 35%,9,yll,1077736.9318736196
+S&TxV 70%,0,ablations,151013.90459999998
+S&TxV 70%,0,asr_cancer_incidence,531.9669997708404
+S&TxV 70%,0,cancer_deaths,51386.42204236618
+S&TxV 70%,0,cancer_incidence,459.5226156413555
+S&TxV 70%,0,cancer_incidence_no_hiv,433.82104167342186
+S&TxV 70%,0,cancer_incidence_with_hiv,3021.8344655036926
+S&TxV 70%,0,cancer_treatments,22935.0506
+S&TxV 70%,0,cancers,49661.826205625126
+S&TxV 70%,0,cancers_no_hiv,46191.78572603981
+S&TxV 70%,0,cancers_with_hiv,3026.235142631741
+S&TxV 70%,0,dalys,773991.8474431194
+S&TxV 70%,0,excisions,0.0
+S&TxV 70%,0,leeps,5957.156
+S&TxV 70%,0,screens,21734385.808199998
+S&TxV 70%,0,txvs,4518204.9682
+S&TxV 70%,0,vaccinations,13553125.6156
+S&TxV 70%,0,yld,56949.57432277719
+S&TxV 70%,0,yll,717042.2731203423
+S&TxV 70%,1,ablations,146546.0376
+S&TxV 70%,1,asr_cancer_incidence,682.001676084041
+S&TxV 70%,1,cancer_deaths,69022.58204775046
+S&TxV 70%,1,cancer_incidence,615.9675185680389
+S&TxV 70%,1,cancer_incidence_no_hiv,575.8455139994621
+S&TxV 70%,1,cancer_incidence_with_hiv,4083.2633543014526
+S&TxV 70%,1,cancer_treatments,20850.046
+S&TxV 70%,1,cancers,70762.07142716223
+S&TxV 70%,1,cancers_no_hiv,65540.62758432025
+S&TxV 70%,1,cancers_with_hiv,4616.795726901343
+S&TxV 70%,1,dalys,1244770.3737354418
+S&TxV 70%,1,excisions,0.0
+S&TxV 70%,1,leeps,5659.2982
+S&TxV 70%,1,screens,28054928.3242
+S&TxV 70%,1,txvs,9588936.1554
+S&TxV 70%,1,vaccinations,13551040.611
+S&TxV 70%,1,yld,87349.67037719992
+S&TxV 70%,1,yll,1157420.7033582418
+S&TxV 70%,2,ablations,127185.2806
+S&TxV 70%,2,asr_cancer_incidence,560.4857121731272
+S&TxV 70%,2,cancer_deaths,56864.02708995636
+S&TxV 70%,2,cancer_incidence,499.23989206552505
+S&TxV 70%,2,cancer_incidence_no_hiv,464.3466141819954
+S&TxV 70%,2,cancer_incidence_with_hiv,3639.276021003723
+S&TxV 70%,2,cancer_treatments,15786.4634
+S&TxV 70%,2,cancers,56375.540564084455
+S&TxV 70%,2,cancers_no_hiv,51988.0981681088
+S&TxV 70%,2,cancers_with_hiv,3961.5085937538274
+S&TxV 70%,2,dalys,1018305.4157273198
+S&TxV 70%,2,excisions,0.0
+S&TxV 70%,2,leeps,6850.7294
+S&TxV 70%,2,screens,25588070.0246
+S&TxV 70%,2,txvs,7538185.2024
+S&TxV 70%,2,vaccinations,13512914.8126
+S&TxV 70%,2,yld,67284.24522785083
+S&TxV 70%,2,yll,951021.170499469
+S&TxV 70%,3,ablations,162034.6432
+S&TxV 70%,3,asr_cancer_incidence,772.8872305571052
+S&TxV 70%,3,cancer_deaths,75045.26530259807
+S&TxV 70%,3,cancer_incidence,695.0986860394478
+S&TxV 70%,3,cancer_incidence_no_hiv,656.9105215668678
+S&TxV 70%,3,cancer_incidence_with_hiv,4026.101454257965
+S&TxV 70%,3,cancer_treatments,18467.1836
+S&TxV 70%,3,cancers,79441.64576310302
+S&TxV 70%,3,cancers_no_hiv,74285.73226813754
+S&TxV 70%,3,cancers_with_hiv,4467.8668180244895
+S&TxV 70%,3,dalys,1353437.2204336445
+S&TxV 70%,3,excisions,0.0
+S&TxV 70%,3,leeps,7446.445
+S&TxV 70%,3,screens,28362913.2894
+S&TxV 70%,3,txvs,9658337.0228
+S&TxV 70%,3,vaccinations,13544487.7394
+S&TxV 70%,3,yld,98613.54351244918
+S&TxV 70%,3,yll,1254823.6769211954
+S&TxV 70%,4,ablations,179906.11119999998
+S&TxV 70%,4,asr_cancer_incidence,687.926980797921
+S&TxV 70%,4,cancer_deaths,65341.06007489385
+S&TxV 70%,4,cancer_incidence,591.2677059173584
+S&TxV 70%,4,cancer_incidence_no_hiv,558.2660443484783
+S&TxV 70%,4,cancer_incidence_with_hiv,3809.06516122818
+S&TxV 70%,4,cancer_treatments,17871.468
+S&TxV 70%,4,cancers,64867.46698461559
+S&TxV 70%,4,cancers_no_hiv,60286.41663127621
+S&TxV 70%,4,cancers_with_hiv,3869.1726916877806
+S&TxV 70%,4,dalys,1012087.6491925195
+S&TxV 70%,4,excisions,0.0
+S&TxV 70%,4,leeps,7744.3028
+S&TxV 70%,4,screens,24231327.7456
+S&TxV 70%,4,txvs,6386369.0898
+S&TxV 70%,4,vaccinations,13541211.3036
+S&TxV 70%,4,yld,76445.04715492057
+S&TxV 70%,4,yll,935642.602037599
+S&TxV 70%,5,ablations,193607.57
+S&TxV 70%,5,asr_cancer_incidence,865.5503341029857
+S&TxV 70%,5,cancer_deaths,90155.59011083236
+S&TxV 70%,5,cancer_incidence,803.6573312282562
+S&TxV 70%,5,cancer_incidence_no_hiv,765.1286121606827
+S&TxV 70%,5,cancer_incidence_with_hiv,4437.940106630325
+S&TxV 70%,5,cancer_treatments,24722.197399999997
+S&TxV 70%,5,cancers,94977.90691566825
+S&TxV 70%,5,cancers_no_hiv,89670.0872138239
+S&TxV 70%,5,cancers_with_hiv,4640.624339827468
+S&TxV 70%,5,dalys,1885265.1400192895
+S&TxV 70%,5,excisions,0.0
+S&TxV 70%,5,leeps,9233.5918
+S&TxV 70%,5,screens,35904672.7854
+S&TxV 70%,5,txvs,15463287.687
+S&TxV 70%,5,vaccinations,13548359.8908
+S&TxV 70%,5,yld,118832.15132396878
+S&TxV 70%,5,yll,1766432.9886953207
+S&TxV 70%,6,ablations,151013.90459999998
+S&TxV 70%,6,asr_cancer_incidence,597.0193578075116
+S&TxV 70%,6,cancer_deaths,58448.63020655962
+S&TxV 70%,6,cancer_incidence,527.7573130428791
+S&TxV 70%,6,cancer_incidence_no_hiv,499.4769706428051
+S&TxV 70%,6,cancer_incidence_with_hiv,3037.731624364853
+S&TxV 70%,6,cancer_treatments,16977.8946
+S&TxV 70%,6,cancers,58892.43874916716
+S&TxV 70%,6,cancers_no_hiv,55005.39791592514
+S&TxV 70%,6,cancers_with_hiv,3374.7287630615147
+S&TxV 70%,6,dalys,980667.6701244097
+S&TxV 70%,6,excisions,0.0
+S&TxV 70%,6,leeps,8340.0184
+S&TxV 70%,6,screens,24217328.429
+S&TxV 70%,6,txvs,6522192.2466
+S&TxV 70%,6,vaccinations,13586187.8314
+S&TxV 70%,6,yld,70179.44551802613
+S&TxV 70%,6,yll,910488.2246063836
+S&TxV 70%,7,ablations,143865.3174
+S&TxV 70%,7,asr_cancer_incidence,613.3628248618021
+S&TxV 70%,7,cancer_deaths,61251.47205023327
+S&TxV 70%,7,cancer_incidence,556.9360772967339
+S&TxV 70%,7,cancer_incidence_no_hiv,526.1383538842201
+S&TxV 70%,7,cancer_incidence_with_hiv,3512.220944404602
+S&TxV 70%,7,cancer_treatments,14297.174399999998
+S&TxV 70%,7,cancers,64161.5428848145
+S&TxV 70%,7,cancers_no_hiv,60083.873001140586
+S&TxV 70%,7,cancers_with_hiv,3553.4434074431374
+S&TxV 70%,7,dalys,1118957.3497546888
+S&TxV 70%,7,excisions,0.0
+S&TxV 70%,7,leeps,6850.7294
+S&TxV 70%,7,screens,25922862.1918
+S&TxV 70%,7,txvs,7794640.7682
+S&TxV 70%,7,vaccinations,13586783.547
+S&TxV 70%,7,yld,79208.41595406322
+S&TxV 70%,7,yll,1039748.9338006257
+S&TxV 70%,8,ablations,157864.634
+S&TxV 70%,8,asr_cancer_incidence,620.6931067747519
+S&TxV 70%,8,cancer_deaths,63238.183809228496
+S&TxV 70%,8,cancer_incidence,559.4671374559402
+S&TxV 70%,8,cancer_incidence_no_hiv,530.6584140658379
+S&TxV 70%,8,cancer_incidence_with_hiv,3177.464267015457
+S&TxV 70%,8,cancer_treatments,21445.7616
+S&TxV 70%,8,cancers,64033.46438320342
+S&TxV 70%,8,cancers_no_hiv,60039.194604547694
+S&TxV 70%,8,cancers_with_hiv,3431.321714946787
+S&TxV 70%,8,dalys,1223107.1945721612
+S&TxV 70%,8,excisions,0.0
+S&TxV 70%,8,leeps,5659.298199999999
+S&TxV 70%,8,screens,27694520.3862
+S&TxV 70%,8,txvs,9160020.9234
+S&TxV 70%,8,vaccinations,13550444.8954
+S&TxV 70%,8,yld,78065.01573986078
+S&TxV 70%,8,yll,1145042.1788323002
+S&TxV 70%,9,ablations,160545.3542
+S&TxV 70%,9,asr_cancer_incidence,631.9649352214412
+S&TxV 70%,9,cancer_deaths,60917.87082347638
+S&TxV 70%,9,cancer_incidence,546.5357367247343
+S&TxV 70%,9,cancer_incidence_no_hiv,513.0867977291346
+S&TxV 70%,9,cancer_incidence_with_hiv,3635.9736268520355
+S&TxV 70%,9,cancer_treatments,17573.610200000003
+S&TxV 70%,9,cancers,59371.989481874836
+S&TxV 70%,9,cancers_no_hiv,54993.48363526043
+S&TxV 70%,9,cancers_with_hiv,3845.344033822582
+S&TxV 70%,9,dalys,926698.1234401882
+S&TxV 70%,9,excisions,0.0
+S&TxV 70%,9,leeps,6255.0138
+S&TxV 70%,9,screens,23054491.5778
+S&TxV 70%,9,txvs,5514241.4514
+S&TxV 70%,9,vaccinations,13548955.6064
+S&TxV 70%,9,yld,68660.45917046805
+S&TxV 70%,9,yll,858037.6642697202
+S&TxV&T&T 18%,0,ablations,534654.7509999999
+S&TxV&T&T 18%,0,asr_cancer_incidence,697.7058521861936
+S&TxV&T&T 18%,0,cancer_deaths,68775.35944291682
+S&TxV&T&T 18%,0,cancer_incidence,624.3208031356335
+S&TxV&T&T 18%,0,cancer_incidence_no_hiv,595.8465287387371
+S&TxV&T&T 18%,0,cancer_incidence_with_hiv,3453.012605190277
+S&TxV&T&T 18%,0,cancer_treatments,72975.161
+S&TxV&T&T 18%,0,cancers,69919.13417159716
+S&TxV&T&T 18%,0,cancers_no_hiv,65868.27137115096
+S&TxV&T&T 18%,0,cancers_with_hiv,3470.043238622558
+S&TxV&T&T 18%,0,dalys,1210112.482283791
+S&TxV&T&T 18%,0,excisions,0.0
+S&TxV&T&T 18%,0,leeps,24424.3396
+S&TxV&T&T 18%,0,screens,6053364.069399999
+S&TxV&T&T 18%,0,txvs,1410654.5408
+S&TxV&T&T 18%,0,vaccinations,13547764.1752
+S&TxV&T&T 18%,0,yld,84212.15863699678
+S&TxV&T&T 18%,0,yll,1125900.3236467943
+S&TxV&T&T 18%,1,ablations,1218536.2598
+S&TxV&T&T 18%,1,asr_cancer_incidence,954.208240507055
+S&TxV&T&T 18%,1,cancer_deaths,99532.15278614342
+S&TxV&T&T 18%,1,cancer_incidence,904.6263788938522
+S&TxV&T&T 18%,1,cancer_incidence_no_hiv,858.559086561203
+S&TxV&T&T 18%,1,cancer_incidence_with_hiv,5056.694140195847
+S&TxV&T&T 18%,1,cancer_treatments,127780.9962
+S&TxV&T&T 18%,1,cancers,109081.4724034879
+S&TxV&T&T 18%,1,cancers_no_hiv,102701.36516490702
+S&TxV&T&T 18%,1,cancers_with_hiv,5626.533649105959
+S&TxV&T&T 18%,1,dalys,2164353.390049516
+S&TxV&T&T 18%,1,excisions,0.0
+S&TxV&T&T 18%,1,leeps,55401.5508
+S&TxV&T&T 18%,1,screens,8334954.8174
+S&TxV&T&T 18%,1,txvs,3293711.5524
+S&TxV&T&T 18%,1,vaccinations,13578741.3864
+S&TxV&T&T 18%,1,yld,141440.9722786796
+S&TxV&T&T 18%,1,yll,2022912.4177708367
+S&TxV&T&T 18%,2,ablations,999312.919
+S&TxV&T&T 18%,2,asr_cancer_incidence,790.305307453684
+S&TxV&T&T 18%,2,cancer_deaths,82512.55862824153
+S&TxV&T&T 18%,2,cancer_incidence,740.5205209255219
+S&TxV&T&T 18%,2,cancer_incidence_no_hiv,702.7854934930801
+S&TxV&T&T 18%,2,cancer_incidence_with_hiv,4202.092086791992
+S&TxV&T&T 18%,2,cancer_treatments,109313.8126
+S&TxV&T&T 18%,2,cancers,88109.30655959643
+S&TxV&T&T 18%,2,cancers_no_hiv,83048.708296389
+S&TxV&T&T 18%,2,cancers_with_hiv,4482.759721561692
+S&TxV&T&T 18%,2,dalys,1780194.7769151374
+S&TxV&T&T 18%,2,excisions,0.0
+S&TxV&T&T 18%,2,leeps,48848.6792
+S&TxV&T&T 18%,2,screens,7475039.3488
+S&TxV&T&T 18%,2,txvs,2607745.039
+S&TxV&T&T 18%,2,vaccinations,13545381.3128
+S&TxV&T&T 18%,2,yld,112476.50920579195
+S&TxV&T&T 18%,2,yll,1667718.2677093456
+S&TxV&T&T 18%,3,ablations,1545881.982
+S&TxV&T&T 18%,3,asr_cancer_incidence,1156.1993759464406
+S&TxV&T&T 18%,3,cancer_deaths,118863.12078506591
+S&TxV&T&T 18%,3,cancer_incidence,1111.7511596679688
+S&TxV&T&T 18%,3,cancer_incidence_no_hiv,1069.1755204200745
+S&TxV&T&T 18%,3,cancer_incidence_with_hiv,5002.477191448212
+S&TxV&T&T 18%,3,cancer_treatments,156375.345
+S&TxV&T&T 18%,3,cancers,136451.62074786113
+S&TxV&T&T 18%,3,cancers_no_hiv,129895.78204215215
+S&TxV&T&T 18%,3,cancers_with_hiv,5465.690401310044
+S&TxV&T&T 18%,3,dalys,2757624.5601702696
+S&TxV&T&T 18%,3,excisions,0.0
+S&TxV&T&T 18%,3,leeps,74762.3078
+S&TxV&T&T 18%,3,screens,9471580.1822
+S&TxV&T&T 18%,3,txvs,4154222.7366
+S&TxV&T&T 18%,3,vaccinations,13547466.3174
+S&TxV&T&T 18%,3,yld,182026.73570963068
+S&TxV&T&T 18%,3,yll,2575597.824460639
+S&TxV&T&T 18%,4,ablations,923954.8956
+S&TxV&T&T 18%,4,asr_cancer_incidence,955.4773886069881
+S&TxV&T&T 18%,4,cancer_deaths,95939.98948725607
+S&TxV&T&T 18%,4,cancer_incidence,873.5368354916573
+S&TxV&T&T 18%,4,cancer_incidence_no_hiv,836.2930491566658
+S&TxV&T&T 18%,4,cancer_incidence_with_hiv,4609.140411615372
+S&TxV&T&T 18%,4,cancer_treatments,110207.386
+S&TxV&T&T 18%,4,cancers,101748.21504379305
+S&TxV&T&T 18%,4,cancers_no_hiv,96222.95860965626
+S&TxV&T&T 18%,4,cancers_with_hiv,4625.731449050743
+S&TxV&T&T 18%,4,dalys,1838929.9714140089
+S&TxV&T&T 18%,4,excisions,0.0
+S&TxV&T&T 18%,4,leeps,42891.5232
+S&TxV&T&T 18%,4,screens,7344875.4902
+S&TxV&T&T 18%,4,txvs,2481453.3318
+S&TxV&T&T 18%,4,vaccinations,13519169.8264
+S&TxV&T&T 18%,4,yld,128306.08081282055
+S&TxV&T&T 18%,4,yll,1710623.8906011884
+S&TxV&T&T 18%,5,ablations,1956627.8882
+S&TxV&T&T 18%,5,asr_cancer_incidence,1266.7608463425606
+S&TxV&T&T 18%,5,cancer_deaths,137768.153671321
+S&TxV&T&T 18%,5,cancer_incidence,1240.6836142539978
+S&TxV&T&T 18%,5,cancer_incidence_no_hiv,1191.7913966178894
+S&TxV&T&T 18%,5,cancer_incidence_with_hiv,6335.519969940186
+S&TxV&T&T 18%,5,cancer_treatments,198075.437
+S&TxV&T&T 18%,5,cancers,154305.21516035686
+S&TxV&T&T 18%,5,cancers_no_hiv,146888.56795562283
+S&TxV&T&T 18%,5,cancers_with_hiv,6368.199501267309
+S&TxV&T&T 18%,5,dalys,3344011.83033723
+S&TxV&T&T 18%,5,excisions,0.0
+S&TxV&T&T 18%,5,leeps,91144.4868
+S&TxV&T&T 18%,5,screens,10756240.8736
+S&TxV&T&T 18%,5,txvs,5277742.3582
+S&TxV&T&T 18%,5,vaccinations,13522148.4044
+S&TxV&T&T 18%,5,yld,202939.45237435555
+S&TxV&T&T 18%,5,yll,3141072.3779628747
+S&TxV&T&T 18%,6,ablations,806896.7802
+S&TxV&T&T 18%,6,asr_cancer_incidence,810.7003553138862
+S&TxV&T&T 18%,6,cancer_deaths,80838.59802383865
+S&TxV&T&T 18%,6,cancer_incidence,745.0929089188576
+S&TxV&T&T 18%,6,cancer_incidence_no_hiv,711.4539100527763
+S&TxV&T&T 18%,6,cancer_incidence_with_hiv,3924.193651676178
+S&TxV&T&T 18%,6,cancer_treatments,97995.2162
+S&TxV&T&T 18%,6,cancers,86628.95249115101
+S&TxV&T&T 18%,6,cancers_no_hiv,81702.39162306572
+S&TxV&T&T 18%,6,cancers_with_hiv,4271.2807176931965
+S&TxV&T&T 18%,6,dalys,1622253.804279241
+S&TxV&T&T 18%,6,excisions,0.0
+S&TxV&T&T 18%,6,leeps,43189.381
+S&TxV&T&T 18%,6,screens,6973148.9558
+S&TxV&T&T 18%,6,txvs,2166617.6372
+S&TxV&T&T 18%,6,vaccinations,13580230.6754
+S&TxV&T&T 18%,6,yld,109190.44972092457
+S&TxV&T&T 18%,6,yll,1513063.3545583165
+S&TxV&T&T 18%,7,ablations,1165219.7136
+S&TxV&T&T 18%,7,asr_cancer_incidence,910.5527651724163
+S&TxV&T&T 18%,7,cancer_deaths,95165.5567445948
+S&TxV&T&T 18%,7,cancer_incidence,876.4735118150711
+S&TxV&T&T 18%,7,cancer_incidence_no_hiv,836.4888026714325
+S&TxV&T&T 18%,7,cancer_incidence_with_hiv,5027.247069120407
+S&TxV&T&T 18%,7,cancer_treatments,109015.95479999999
+S&TxV&T&T 18%,7,cancers,107079.86707907503
+S&TxV&T&T 18%,7,cancers_no_hiv,101381.85510877658
+S&TxV&T&T 18%,7,cancers_with_hiv,4980.1821942783745
+S&TxV&T&T 18%,7,dalys,2153194.1836818005
+S&TxV&T&T 18%,7,excisions,0.0
+S&TxV&T&T 18%,7,leeps,51827.2572
+S&TxV&T&T 18%,7,screens,8149389.408
+S&TxV&T&T 18%,7,txvs,3126613.3266
+S&TxV&T&T 18%,7,vaccinations,13529892.7072
+S&TxV&T&T 18%,7,yld,141387.25243604922
+S&TxV&T&T 18%,7,yll,2011806.9312457512
+S&TxV&T&T 18%,8,ablations,1126796.0574
+S&TxV&T&T 18%,8,asr_cancer_incidence,865.239120585525
+S&TxV&T&T 18%,8,cancer_deaths,89786.24674390764
+S&TxV&T&T 18%,8,cancer_incidence,815.346750497818
+S&TxV&T&T 18%,8,cancer_incidence_no_hiv,782.4718288183212
+S&TxV&T&T 18%,8,cancer_incidence_with_hiv,3934.091279745102
+S&TxV&T&T 18%,8,cancer_treatments,128078.854
+S&TxV&T&T 18%,8,cancers,97515.65558679882
+S&TxV&T&T 18%,8,cancers_no_hiv,92654.6225239261
+S&TxV&T&T 18%,8,cancers_with_hiv,4158.094747346246
+S&TxV&T&T 18%,8,dalys,2036358.9920910145
+S&TxV&T&T 18%,8,excisions,0.0
+S&TxV&T&T 18%,8,leeps,53316.5462
+S&TxV&T&T 18%,8,screens,7967994.0078
+S&TxV&T&T 18%,8,txvs,3032192.404
+S&TxV&T&T 18%,8,vaccinations,13576060.6662
+S&TxV&T&T 18%,8,yld,126687.93526437214
+S&TxV&T&T 18%,8,yll,1909671.0568266425
+S&TxV&T&T 18%,9,ablations,633245.6828
+S&TxV&T&T 18%,9,asr_cancer_incidence,803.8161245877461
+S&TxV&T&T 18%,9,cancer_deaths,78598.7086445744
+S&TxV&T&T 18%,9,cancer_incidence,718.4912687838078
+S&TxV&T&T 18%,9,cancer_incidence_no_hiv,679.8897320330143
+S&TxV&T&T 18%,9,cancer_incidence_with_hiv,4435.621216773987
+S&TxV&T&T 18%,9,cancer_treatments,84889.473
+S&TxV&T&T 18%,9,cancers,80463.2981546055
+S&TxV&T&T 18%,9,cancers_no_hiv,75176.327465806
+S&TxV&T&T 18%,9,cancers_with_hiv,4625.731440173889
+S&TxV&T&T 18%,9,dalys,1375489.361337128
+S&TxV&T&T 18%,9,excisions,0.0
+S&TxV&T&T 18%,9,leeps,30381.4956
+S&TxV&T&T 18%,9,screens,6434026.3378
+S&TxV&T&T 18%,9,txvs,1691236.5884
+S&TxV&T&T 18%,9,vaccinations,13520063.3998
+S&TxV&T&T 18%,9,yld,98183.32458848893
+S&TxV&T&T 18%,9,yll,1277306.036748639
+S&TxV&T&T 35%,0,ablations,1066033.0662
+S&TxV&T&T 35%,0,asr_cancer_incidence,668.9772093821043
+S&TxV&T&T 35%,0,cancer_deaths,65731.25318886832
+S&TxV&T&T 35%,0,cancer_incidence,594.4423732161522
+S&TxV&T&T 35%,0,cancer_incidence_no_hiv,566.7385406792164
+S&TxV&T&T 35%,0,cancer_incidence_with_hiv,3304.384800672531
+S&TxV&T&T 35%,0,cancer_treatments,133142.4366
+S&TxV&T&T 35%,0,cancers,66365.69116472208
+S&TxV&T&T 35%,0,cancers_no_hiv,62490.5637494255
+S&TxV&T&T 35%,0,cancers_with_hiv,3347.921530036909
+S&TxV&T&T 35%,0,dalys,1176349.66069416
+S&TxV&T&T 35%,0,excisions,0.0
+S&TxV&T&T 35%,0,leeps,50040.1104
+S&TxV&T&T 35%,0,screens,11651899.2782
+S&TxV&T&T 35%,0,txvs,2816841.2146
+S&TxV&T&T 35%,0,vaccinations,13569209.9368
+S&TxV&T&T 35%,0,yld,79653.22335553326
+S&TxV&T&T 35%,0,yll,1096696.4373386267
+S&TxV&T&T 35%,1,ablations,2001902.2738
+S&TxV&T&T 35%,1,asr_cancer_incidence,876.9151270416787
+S&TxV&T&T 35%,1,cancer_deaths,90751.3058306699
+S&TxV&T&T 35%,1,cancer_incidence,819.7550349235535
+S&TxV&T&T 35%,1,cancer_incidence_no_hiv,775.1589169502258
+S&TxV&T&T 35%,1,cancer_incidence_with_hiv,4762.260758638382
+S&TxV&T&T 35%,1,cancer_treatments,216542.6206
+S&TxV&T&T 35%,1,cancers,97462.04110022188
+S&TxV&T&T 35%,1,cancers_no_hiv,91409.57666924373
+S&TxV&T&T 35%,1,cancers_with_hiv,5316.761537372264
+S&TxV&T&T 35%,1,dalys,1884400.087819176
+S&TxV&T&T 35%,1,excisions,0.0
+S&TxV&T&T 35%,1,leeps,92335.918
+S&TxV&T&T 35%,1,screens,14833318.44
+S&TxV&T&T 35%,1,txvs,5440968.4326
+S&TxV&T&T 35%,1,vaccinations,13550444.8954
+S&TxV&T&T 35%,1,yld,123861.12121106329
+S&TxV&T&T 35%,1,yll,1760538.9666081127
+S&TxV&T&T 35%,2,ablations,1566434.1702
+S&TxV&T&T 35%,2,asr_cancer_incidence,718.219433948379
+S&TxV&T&T 35%,2,cancer_deaths,74178.4985669492
+S&TxV&T&T 35%,2,cancer_incidence,659.9655396342278
+S&TxV&T&T 35%,2,cancer_incidence_no_hiv,621.0453059673309
+S&TxV&T&T 35%,2,cancer_incidence_with_hiv,4312.434084177017
+S&TxV&T&T 35%,2,cancer_treatments,192416.1388
+S&TxV&T&T 35%,2,cancers,76868.15482087103
+S&TxV&T&T 35%,2,cancers_no_hiv,71697.34806673937
+S&TxV&T&T 35%,2,cancers_with_hiv,4589.988505527609
+S&TxV&T&T 35%,2,dalys,1488851.7538592308
+S&TxV&T&T 35%,2,excisions,0.0
+S&TxV&T&T 35%,2,leeps,70592.2986
+S&TxV&T&T 35%,2,screens,13295180.7608
+S&TxV&T&T 35%,2,txvs,4173583.4936
+S&TxV&T&T 35%,2,vaccinations,13544189.8816
+S&TxV&T&T 35%,2,yld,95600.3410533851
+S&TxV&T&T 35%,2,yll,1393251.4128058457
+S&TxV&T&T 35%,3,ablations,2538642.0294
+S&TxV&T&T 35%,3,asr_cancer_incidence,1065.7917327629953
+S&TxV&T&T 35%,3,cancer_deaths,108983.17896218586
+S&TxV&T&T 35%,3,cancer_incidence,1012.8325966596603
+S&TxV&T&T 35%,3,cancer_incidence_no_hiv,970.7053451538086
+S&TxV&T&T 35%,3,cancer_incidence_with_hiv,4846.009565830231
+S&TxV&T&T 35%,3,cancer_treatments,257051.2814
+S&TxV&T&T 35%,3,cancers,122321.24885811236
+S&TxV&T&T 35%,3,cancers_no_hiv,116024.54422726775
+S&TxV&T&T 35%,3,cancers_with_hiv,5322.718691574702
+S&TxV&T&T 35%,3,dalys,2383952.6337075033
+S&TxV&T&T 35%,3,excisions,0.0
+S&TxV&T&T 35%,3,leeps,111398.8172
+S&TxV&T&T 35%,3,screens,16733949.0618
+S&TxV&T&T 35%,3,txvs,6893025.2076
+S&TxV&T&T 35%,3,vaccinations,13535552.0054
+S&TxV&T&T 35%,3,yld,160294.7637397143
+S&TxV&T&T 35%,3,yll,2223657.869967789
+S&TxV&T&T 35%,4,ablations,1562264.161
+S&TxV&T&T 35%,4,asr_cancer_incidence,884.5448922714402
+S&TxV&T&T 35%,4,cancer_deaths,87096.59206396303
+S&TxV&T&T 35%,4,cancer_incidence,792.3988974094391
+S&TxV&T&T 35%,4,cancer_incidence_no_hiv,757.033859193325
+S&TxV&T&T 35%,4,cancer_incidence_with_hiv,4302.902925491333
+S&TxV&T&T 35%,4,cancer_treatments,194799.0012
+S&TxV&T&T 35%,4,cancers,90608.3352449662
+S&TxV&T&T 35%,4,cancers_no_hiv,85383.913706883
+S&TxV&T&T 35%,4,cancers_with_hiv,4354.680873753297
+S&TxV&T&T 35%,4,dalys,1614094.5319144456
+S&TxV&T&T 35%,4,excisions,0.0
+S&TxV&T&T 35%,4,leeps,74464.45
+S&TxV&T&T 35%,4,screens,13254076.384399999
+S&TxV&T&T 35%,4,txvs,4076779.7086
+S&TxV&T&T 35%,4,vaccinations,13542402.7348
+S&TxV&T&T 35%,4,yld,111886.19352379521
+S&TxV&T&T 35%,4,yll,1502208.3383906505
+S&TxV&T&T 35%,5,ablations,3418216.1128000002
+S&TxV&T&T 35%,5,asr_cancer_incidence,1147.3275374419006
+S&TxV&T&T 35%,5,cancer_deaths,122273.59286891686
+S&TxV&T&T 35%,5,cancer_incidence,1101.9020030498505
+S&TxV&T&T 35%,5,cancer_incidence_no_hiv,1060.5858759880066
+S&TxV&T&T 35%,5,cancer_incidence_with_hiv,5058.754432439804
+S&TxV&T&T 35%,5,cancer_treatments,338962.1764
+S&TxV&T&T 35%,5,cancers,134914.6758624139
+S&TxV&T&T 35%,5,cancers_no_hiv,128808.60044012012
+S&TxV&T&T 35%,5,cancers_with_hiv,5218.468439493527
+S&TxV&T&T 35%,5,dalys,2898415.654064472
+S&TxV&T&T 35%,5,excisions,0.0
+S&TxV&T&T 35%,5,leeps,156375.345
+S&TxV&T&T 35%,5,screens,19472155.8172
+S&TxV&T&T 35%,5,txvs,9122788.6984
+S&TxV&T&T 35%,5,vaccinations,13542402.7348
+S&TxV&T&T 35%,5,yld,175344.668671462
+S&TxV&T&T 35%,5,yll,2723070.98539301
+S&TxV&T&T 35%,6,ablations,1573284.8996
+S&TxV&T&T 35%,6,asr_cancer_incidence,779.2686353812167
+S&TxV&T&T 35%,6,cancer_deaths,78008.94914631482
+S&TxV&T&T 35%,6,cancer_incidence,714.3054078221321
+S&TxV&T&T 35%,6,cancer_incidence_no_hiv,681.0336596369743
+S&TxV&T&T 35%,6,cancer_incidence_with_hiv,3927.9139981269836
+S&TxV&T&T 35%,6,cancer_treatments,181097.5424
+S&TxV&T&T 35%,6,cancers,82983.17356445616
+S&TxV&T&T 35%,6,cancers_no_hiv,78128.098005312
+S&TxV&T&T 35%,6,cancers_with_hiv,4187.880539995763
+S&TxV&T&T 35%,6,dalys,1556062.8642648684
+S&TxV&T&T 35%,6,excisions,0.0
+S&TxV&T&T 35%,6,leeps,74166.5922
+S&TxV&T&T 35%,6,screens,13409856.0138
+S&TxV&T&T 35%,6,txvs,4227495.7554
+S&TxV&T&T 35%,6,vaccinations,13571592.7992
+S&TxV&T&T 35%,6,yld,103750.71392233427
+S&TxV&T&T 35%,6,yll,1452312.1503425343
+S&TxV&T&T 35%,7,ablations,2000412.9848
+S&TxV&T&T 35%,7,asr_cancer_incidence,816.1385832207102
+S&TxV&T&T 35%,7,cancer_deaths,83456.76818599176
+S&TxV&T&T 35%,7,cancer_incidence,768.8770073652267
+S&TxV&T&T 35%,7,cancer_incidence_no_hiv,732.5924946069717
+S&TxV&T&T 35%,7,cancer_incidence_with_hiv,4421.9704439640045
+S&TxV&T&T 35%,7,cancer_treatments,202245.4462
+S&TxV&T&T 35%,7,cancers,92070.8146678973
+S&TxV&T&T 35%,7,cancers_no_hiv,87031.06717257784
+S&TxV&T&T 35%,7,cancers_with_hiv,4393.40237301772
+S&TxV&T&T 35%,7,dalys,1815782.139164384
+S&TxV&T&T 35%,7,excisions,0.0
+S&TxV&T&T 35%,7,leeps,91144.4868
+S&TxV&T&T 35%,7,screens,14668603.0766
+S&TxV&T&T 35%,7,txvs,5308719.5694
+S&TxV&T&T 35%,7,vaccinations,13557891.3404
+S&TxV&T&T 35%,7,yld,119027.80887456113
+S&TxV&T&T 35%,7,yll,1696754.3302898228
+S&TxV&T&T 35%,8,ablations,1833612.6168
+S&TxV&T&T 35%,8,asr_cancer_incidence,775.7142882660041
+S&TxV&T&T 35%,8,cancer_deaths,79081.23867368589
+S&TxV&T&T 35%,8,cancer_incidence,712.12488758564
+S&TxV&T&T 35%,8,cancer_incidence_no_hiv,680.1306305527687
+S&TxV&T&T 35%,8,cancer_incidence_with_hiv,3697.9146144390106
+S&TxV&T&T 35%,8,cancer_treatments,215946.905
+S&TxV&T&T 35%,8,cancers,82801.4824703669
+S&TxV&T&T 35%,8,cancers_no_hiv,78229.36983591432
+S&TxV&T&T 35%,8,cancers_with_hiv,3937.679988040147
+S&TxV&T&T 35%,8,dalys,1692968.562904435
+S&TxV&T&T 35%,8,excisions,0.0
+S&TxV&T&T 35%,8,leeps,88463.7666
+S&TxV&T&T 35%,8,screens,14173861.2708
+S&TxV&T&T 35%,8,txvs,4864613.5896
+S&TxV&T&T 35%,8,vaccinations,13514106.2438
+S&TxV&T&T 35%,8,yld,103992.94896262052
+S&TxV&T&T 35%,8,yll,1588975.6139418145
+S&TxV&T&T 35%,9,ablations,1132455.3556
+S&TxV&T&T 35%,9,asr_cancer_incidence,769.8812774353765
+S&TxV&T&T 35%,9,cancer_deaths,75203.12997301537
+S&TxV&T&T 35%,9,cancer_incidence,682.1104721426964
+S&TxV&T&T 35%,9,cancer_incidence_no_hiv,644.8636208772659
+S&TxV&T&T 35%,9,cancer_incidence_with_hiv,4233.818610668182
+S&TxV&T&T 35%,9,cancer_treatments,157864.634
+S&TxV&T&T 35%,9,cancers,75968.62437208123
+S&TxV&T&T 35%,9,cancers_no_hiv,70875.26064810221
+S&TxV&T&T 35%,9,cancers_with_hiv,4423.188156235579
+S&TxV&T&T 35%,9,dalys,1288521.987729294
+S&TxV&T&T 35%,9,excisions,0.0
+S&TxV&T&T 35%,9,leeps,55997.2664
+S&TxV&T&T 35%,9,screens,12021242.950199999
+S&TxV&T&T 35%,9,txvs,3017299.514
+S&TxV&T&T 35%,9,vaccinations,13537041.2944
+S&TxV&T&T 35%,9,yld,91387.73842026241
+S&TxV&T&T 35%,9,yll,1197134.2493090315
+S&TxV&T&T 70%,0,ablations,1724298.8042
+S&TxV&T&T 70%,0,asr_cancer_incidence,597.6261241753706
+S&TxV&T&T 70%,0,cancer_deaths,58123.96501097762
+S&TxV&T&T 70%,0,cancer_incidence,521.4010141864419
+S&TxV&T&T 70%,0,cancer_incidence_no_hiv,494.4454238563776
+S&TxV&T&T 70%,0,cancer_incidence_with_hiv,3174.2209186553955
+S&TxV&T&T 70%,0,cancer_treatments,245136.9694
+S&TxV&T&T 70%,0,cancers,57018.9137666482
+S&TxV&T&T 70%,0,cancers_no_hiv,53340.37310912493
+S&TxV&T&T 70%,0,cancers_with_hiv,3213.885535238522
+S&TxV&T&T 70%,0,dalys,967749.0445534027
+S&TxV&T&T 70%,0,excisions,0.0
+S&TxV&T&T 70%,0,leeps,78634.4592
+S&TxV&T&T 70%,0,screens,21832678.8822
+S&TxV&T&T 70%,0,txvs,4594456.5649999995
+S&TxV&T&T 70%,0,vaccinations,13559976.345
+S&TxV&T&T 70%,0,yld,66289.01303866935
+S&TxV&T&T 70%,0,yll,901460.0315147333
+S&TxV&T&T 70%,1,ablations,3306817.2956
+S&TxV&T&T 70%,1,asr_cancer_incidence,756.9012410191842
+S&TxV&T&T 70%,1,cancer_deaths,76653.69777500918
+S&TxV&T&T 70%,1,cancer_incidence,685.3034744262695
+S&TxV&T&T 70%,1,cancer_incidence_no_hiv,642.6948041915894
+S&TxV&T&T 70%,1,cancer_incidence_with_hiv,4430.524940729141
+S&TxV&T&T 70%,1,cancer_treatments,367258.6674
+S&TxV&T&T 70%,1,cancers,79149.74591788674
+S&TxV&T&T 70%,1,cancers_no_hiv,73555.98133632919
+S&TxV&T&T 70%,1,cancers_with_hiv,5001.032265333296
+S&TxV&T&T 70%,1,dalys,1473406.634597986
+S&TxV&T&T 70%,1,excisions,0.0
+S&TxV&T&T 70%,1,leeps,156673.2028
+S&TxV&T&T 70%,1,screens,27133058.4332
+S&TxV&T&T 70%,1,txvs,8801400.1322
+S&TxV&T&T 70%,1,vaccinations,13517382.6796
+S&TxV&T&T 70%,1,yld,97645.43780153428
+S&TxV&T&T 70%,1,yll,1375761.1967964517
+S&TxV&T&T 70%,2,ablations,2569023.525
+S&TxV&T&T 70%,2,asr_cancer_incidence,622.5137473478867
+S&TxV&T&T 70%,2,cancer_deaths,63166.697107176056
+S&TxV&T&T 70%,2,cancer_incidence,557.8187716603279
+S&TxV&T&T 70%,2,cancer_incidence_no_hiv,521.6348273158073
+S&TxV&T&T 70%,2,cancer_incidence_with_hiv,3793.2273786067963
+S&TxV&T&T 70%,2,cancer_treatments,313942.1212
+S&TxV&T&T 70%,2,cancers,63443.70558566051
+S&TxV&T&T 70%,2,cancers_no_hiv,58764.36296276385
+S&TxV&T&T 70%,2,cancers_with_hiv,4170.009048538675
+S&TxV&T&T 70%,2,dalys,1193541.9575332145
+S&TxV&T&T 70%,2,excisions,0.0
+S&TxV&T&T 70%,2,leeps,117653.831
+S&TxV&T&T 70%,2,screens,24661732.266599998
+S&TxV&T&T 70%,2,txvs,6806050.73
+S&TxV&T&T 70%,2,vaccinations,13557593.4826
+S&TxV&T&T 70%,2,yld,76545.42080683091
+S&TxV&T&T 70%,2,yll,1116996.5367263837
+S&TxV&T&T 70%,3,ablations,3751518.991
+S&TxV&T&T 70%,3,asr_cancer_incidence,882.6766532143893
+S&TxV&T&T 70%,3,cancer_deaths,86462.15374745998
+S&TxV&T&T 70%,3,cancer_incidence,805.085770368576
+S&TxV&T&T 70%,3,cancer_incidence_no_hiv,766.3049533367157
+S&TxV&T&T 70%,3,cancer_incidence_with_hiv,4205.797660112381
+S&TxV&T&T 70%,3,cancer_treatments,378577.2638
+S&TxV&T&T 70%,3,cancers,93637.54644284038
+S&TxV&T&T 70%,3,cancers_no_hiv,88207.60519496776
+S&TxV&T&T 70%,3,cancers_with_hiv,4676.367275583354
+S&TxV&T&T 70%,3,dalys,1724287.6347848037
+S&TxV&T&T 70%,3,excisions,0.0
+S&TxV&T&T 70%,3,leeps,179906.1112
+S&TxV&T&T 70%,3,screens,28765319.1772
+S&TxV&T&T 70%,3,txvs,10085465.108
+S&TxV&T&T 70%,3,vaccinations,13543594.166
+S&TxV&T&T 70%,3,yld,118281.11841460118
+S&TxV&T&T 70%,3,yll,1606006.5163702026
+S&TxV&T&T 70%,4,ablations,2091855.3294
+S&TxV&T&T 70%,4,asr_cancer_incidence,737.3451634081501
+S&TxV&T&T 70%,4,cancer_deaths,69996.57698648609
+S&TxV&T&T 70%,4,cancer_incidence,630.814982816577
+S&TxV&T&T 70%,4,cancer_incidence_no_hiv,596.7704109400511
+S&TxV&T&T 70%,4,cancer_incidence_with_hiv,3930.7263770103455
+S&TxV&T&T 70%,4,cancer_treatments,270157.0246
+S&TxV&T&T 70%,4,cancers,68715.78908650728
+S&TxV&T&T 70%,4,cancers_no_hiv,63979.85278493291
+S&TxV&T&T 70%,4,cancers_with_hiv,4030.01588955139
+S&TxV&T&T 70%,4,dalys,1118628.7997643515
+S&TxV&T&T 70%,4,excisions,0.0
+S&TxV&T&T 70%,4,leeps,101867.3676
+S&TxV&T&T 70%,4,screens,22889776.2144
+S&TxV&T&T 70%,4,txvs,5390928.3222
+S&TxV&T&T 70%,4,vaccinations,13554614.9046
+S&TxV&T&T 70%,4,yld,80470.35024338894
+S&TxV&T&T 70%,4,yll,1038158.4495209624
+S&TxV&T&T 70%,5,ablations,5712912.604
+S&TxV&T&T 70%,5,asr_cancer_incidence,1000.1689042465532
+S&TxV&T&T 70%,5,cancer_deaths,104959.12047261481
+S&TxV&T&T 70%,5,cancer_incidence,938.6955780982971
+S&TxV&T&T 70%,5,cancer_incidence_no_hiv,898.6681309938431
+S&TxV&T&T 70%,5,cancer_incidence_with_hiv,4749.074197769165
+S&TxV&T&T 70%,5,cancer_treatments,552526.219
+S&TxV&T&T 70%,5,cancers,112447.26422161335
+S&TxV&T&T 70%,5,cancers_no_hiv,106707.55234055808
+S&TxV&T&T 70%,5,cancers_with_hiv,4965.289315152521
+S&TxV&T&T 70%,5,dalys,2382444.802708414
+S&TxV&T&T 70%,5,excisions,0.0
+S&TxV&T&T 70%,5,leeps,256455.5658
+S&TxV&T&T 70%,5,screens,35778381.0782
+S&TxV&T&T 70%,5,txvs,15390312.526
+S&TxV&T&T 70%,5,vaccinations,13514106.2438
+S&TxV&T&T 70%,5,yld,143195.12797423886
+S&TxV&T&T 70%,5,yll,2239249.6747341747
+S&TxV&T&T 70%,6,ablations,2411456.7488
+S&TxV&T&T 70%,6,asr_cancer_incidence,677.9408839529718
+S&TxV&T&T 70%,6,cancer_deaths,66371.6466617268
+S&TxV&T&T 70%,6,cancer_incidence,605.7341142296791
+S&TxV&T&T 70%,6,cancer_incidence_no_hiv,575.9052479565144
+S&TxV&T&T 70%,6,cancer_incidence_with_hiv,3331.5906512737274
+S&TxV&T&T 70%,6,cancer_treatments,277603.4696
+S&TxV&T&T 70%,6,cancers,68456.65120846567
+S&TxV&T&T 70%,6,cancers_no_hiv,64262.81760705206
+S&TxV&T&T 70%,6,cancers_with_hiv,3615.9935950869444
+S&TxV&T&T 70%,6,dalys,1218960.1317888938
+S&TxV&T&T 70%,6,excisions,0.0
+S&TxV&T&T 70%,6,leeps,123015.2714
+S&TxV&T&T 70%,6,screens,24180989.7774
+S&TxV&T&T 70%,6,txvs,6435217.769
+S&TxV&T&T 70%,6,vaccinations,13584400.6846
+S&TxV&T&T 70%,6,yld,83038.13715352846
+S&TxV&T&T 70%,6,yll,1135921.9946353654
+S&TxV&T&T 70%,7,ablations,3082828.23
+S&TxV&T&T 70%,7,asr_cancer_incidence,693.5377425592944
+S&TxV&T&T 70%,7,cancer_deaths,69642.12497852596
+S&TxV&T&T 70%,7,cancer_incidence,634.9097086191177
+S&TxV&T&T 70%,7,cancer_incidence_no_hiv,601.4628363251686
+S&TxV&T&T 70%,7,cancer_incidence_with_hiv,3869.4703245162964
+S&TxV&T&T 70%,7,cancer_treatments,313048.5478
+S&TxV&T&T 70%,7,cancers,74023.6131407842
+S&TxV&T&T 70%,7,cancers_no_hiv,69502.13616808761
+S&TxV&T&T 70%,7,cancers_with_hiv,3943.6371145024145
+S&TxV&T&T 70%,7,dalys,1389421.1949645588
+S&TxV&T&T 70%,7,excisions,0.0
+S&TxV&T&T 70%,7,leeps,137610.3036
+S&TxV&T&T 70%,7,screens,26255271.4966
+S&TxV&T&T 70%,7,txvs,8158325.142
+S&TxV&T&T 70%,7,vaccinations,13573379.946
+S&TxV&T&T 70%,7,yld,92727.32820502637
+S&TxV&T&T 70%,7,yll,1296693.8667595324
+S&TxV&T&T 70%,8,ablations,3228778.552
+S&TxV&T&T 70%,8,asr_cancer_incidence,698.5402163627826
+S&TxV&T&T 70%,8,cancer_deaths,71691.38753766794
+S&TxV&T&T 70%,8,cancer_incidence,636.1656337380409
+S&TxV&T&T 70%,8,cancer_incidence_no_hiv,606.2340888381004
+S&TxV&T&T 70%,8,cancer_incidence_with_hiv,3366.2412049770355
+S&TxV&T&T 70%,8,cancer_treatments,342536.47000000003
+S&TxV&T&T 70%,8,cancers,73621.5065422879
+S&TxV&T&T 70%,8,cancers_no_hiv,69382.993365879
+S&TxV&T&T 70%,8,cancers_with_hiv,3636.8435984558523
+S&TxV&T&T 70%,8,dalys,1459108.2365644847
+S&TxV&T&T 70%,8,excisions,0.0
+S&TxV&T&T 70%,8,leeps,144461.033
+S&TxV&T&T 70%,8,screens,27057402.552
+S&TxV&T&T 70%,8,txvs,8699830.6224
+S&TxV&T&T 70%,8,vaccinations,13552232.0422
+S&TxV&T&T 70%,8,yld,90683.52351504315
+S&TxV&T&T 70%,8,yll,1368424.7130494413
+S&TxV&T&T 70%,9,ablations,1961691.4708
+S&TxV&T&T 70%,9,asr_cancer_incidence,688.2403416753011
+S&TxV&T&T 70%,9,cancer_deaths,66142.29607097503
+S&TxV&T&T 70%,9,cancer_incidence,596.2103832364082
+S&TxV&T&T 70%,9,cancer_incidence_no_hiv,561.9308913052082
+S&TxV&T&T 70%,9,cancer_incidence_with_hiv,3780.5750164985657
+S&TxV&T&T 70%,9,cancer_treatments,257051.2814
+S&TxV&T&T 70%,9,cancers,64962.77989507628
+S&TxV&T&T 70%,9,cancers_no_hiv,60444.281099190266
+S&TxV&T&T 70%,9,cancers_with_hiv,3967.465727428539
+S&TxV&T&T 70%,9,dalys,1074322.233559339
+S&TxV&T&T 70%,9,excisions,0.0
+S&TxV&T&T 70%,9,leeps,89059.4822
+S&TxV&T&T 70%,9,screens,22504348.2212
+S&TxV&T&T 70%,9,txvs,5111537.7058
+S&TxV&T&T 70%,9,vaccinations,13545381.3128
+S&TxV&T&T 70%,9,yld,76056.08738413102
+S&TxV&T&T 70%,9,yll,998266.146175208

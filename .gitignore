@@ -18,6 +18,15 @@ results/*.csv
 !results/table_s1.csv
 !results/table_s2.csv
 !results/table_s3_costing.csv
+# Plot-ready scenario summaries for Figs 1-5 (produced by run_scenarios.py)
+!results/scens_timeseries.csv
+!results/scens_cumulative.csv
+!results/scens_paired.csv
+!results/scens_per_sim.csv
+# Plot-ready calibration diagnostics for Fig S2 (produced by run_calibration.py extract)
+!results/figS2_*.csv
+# Plot-ready analyzer arrays for Fig S3 (produced by run_age_causal.py)
+!results/age_causal_rwanda.obj
 
 # Diagnostic sweeps produce per-cancer row dumps that are large and
 # regenerable. Keep the small aggregates (summary.csv, residual_*.csv,
@@ -32,6 +41,13 @@ results/diagnostic_normalized_novax/
 
 # Sensitivity-sweep folders (reviewer response); regenerable via run_sensitivity.py
 results/sens_*/
+# ...but plot-ready paired-diff CSVs for Figs S4 and S5 are tracked
+!results/sens_txv_year/
+results/sens_txv_year/*
+!results/sens_txv_year/scens_paired.csv
+!results/sens_workforce/
+results/sens_workforce/*
+!results/sens_workforce/scens_paired.csv
 
 # Archives
 results/*.zip
